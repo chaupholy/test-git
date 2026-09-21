@@ -256,6 +256,28 @@
         return;
       }
 
+      // 8. Câu hỏi: Hồ sơ đăng ký tuyển sinh gồm những gì?
+      if (q.includes('hồ sơ') || q.includes('giấy tờ') || q.includes('cần chuẩn bị')) {
+        setTimeout(() => {
+          appendMessage(`📄 <b>HỒ SƠ ĐĂNG KÝ TUYỂN SINH</b><br><br>
+          📝 Phiếu đăng ký dự tuyển<br>
+          📋 Bản sao giấy khai sinh<br>
+          🎓 Bản sao bằng tốt nghiệp<br>
+          📸 Ảnh 4×6<br>
+          📌 Giấy tờ ưu tiên (nếu có).`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 9. Câu hỏi: Hình thức tuyển sinh
+      if (q.includes('hình thức') || q.includes('xét tuyển') || q.includes('thi tuyển') || q.includes('thi không') || q.includes('có thi')) {
+        setTimeout(() => {
+          appendMessage(`📋 <b>HÌNH THỨC TUYỂN SINH</b><br><br>
+          Nhà trường <b>xét tuyển hồ sơ</b>, không tổ chức thi tuyển.`, 'bot');
+        }, 300);
+        return;
+      }
+
       // Trả lời mặc định
       setTimeout(() => {
         appendMessage(`Cảm ơn bạn! Bạn có thể xem ngay <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-indigo-600 underline font-semibold">Sổ tay các nghề</a> hoặc truy cập <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 underline font-semibold">Cổng Đăng Ký Online</a> nhé!`, 'bot');
