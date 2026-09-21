@@ -148,10 +148,24 @@
     function processBotResponse(query) {
       const q = query.toLowerCase();
 
-      // 0. Lời chào & Bắt đầu câu hỏi
+      // 0. Kiểm tra chủ đề chuyên biệt
+      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('tuyển sinh') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật');
+
+      // 0.1. Khi người dùng nhắn: Có câu hỏi / Muốn hỏi
       if (
-        (q.includes('xin chào') || q.includes('chào') || q.includes('hello') || q === 'hi' || q.includes('có câu hỏi') || q === 'cho em hỏi' || q === 'cho tôi hỏi')
-        && !q.includes('học phí') && !q.includes('ngành') && !q.includes('nghề') && !q.includes('ký túc xá') && !q.includes('hồ sơ') && !q.includes('liên hệ') && !q.includes('thời gian') && !q.includes('thực hành') && !q.includes('tuyển sinh') && !q.includes('lĩnh vực') && !q.includes('trình độ') && !q.includes('máy tính') && !q.includes('công nghệ thông tin') && !q.includes('cntt') && !q.includes('việc làm') && !q.includes('ô tô') && !q.includes('cơ khí') && !q.includes('điện') && !q.includes('kinh tế') && !q.includes('du lịch') && !q.includes('nông nghiệp') && !q.includes('kế toán') && !q.includes('thương mại điện tử') && !q.includes('pháp luật')
+        (q.includes('có câu hỏi') || q.includes('muốn hỏi') || q === 'cho em hỏi' || q === 'cho tôi hỏi' || q === 'em muốn hỏi' || q === 'tôi muốn hỏi')
+        && !hasSpecificTopic
+      ) {
+        setTimeout(() => {
+          appendMessage(`💬 <b>Cảm ơn bạn, bạn muốn hỏi về vấn đề gì? Vui lòng đặt câu hỏi trong khung chat!</b>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 0.2. Lời chào chung
+      if (
+        (q.includes('xin chào') || q.includes('chào') || q.includes('hello') || q === 'hi')
+        && !hasSpecificTopic
       ) {
         setTimeout(() => {
           appendMessage(`👋 <b>Chào bạn, cảm ơn bạn đã liên hệ, bạn có câu hỏi gì không?</b>`, 'bot');

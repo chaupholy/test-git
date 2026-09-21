@@ -682,31 +682,35 @@ function guiTinNhan() {
 
 
     /* =========================
-       CHÀO
+       CÓ CÂU HỎI / BẮT ĐẦU HỎI
     ========================= */
 
     if(
-
-        text.includes("xin chào") ||
-
-        text === "chào" ||
-
-        text.includes("hello") ||
-
-        text.includes("hi")
-
+        text.includes("có câu hỏi") ||
+        text.includes("muốn hỏi") ||
+        text === "cho em hỏi" ||
+        text === "cho tôi hỏi" ||
+        text === "em muốn hỏi" ||
+        text === "tôi muốn hỏi"
     ) {
-
         traLoi =
+        "💬 <b>Cảm ơn bạn, bạn muốn hỏi về vấn đề gì? Vui lòng đặt câu hỏi trong khung chat!</b>";
+    }
 
-        "👋 Xin chào bạn!<br><br>" +
 
-        "Tôi là trợ lý tư vấn tuyển sinh của Trường.<br><br>" +
 
-        "Bạn có thể hỏi về ngành học, điều kiện tuyển sinh, " +
+    /* =========================
+       CHÀO
+    ========================= */
 
-        "học phí, ký túc xá hoặc hồ sơ.";
-
+    else if(
+        text.includes("xin chào") ||
+        text === "chào" ||
+        text.includes("hello") ||
+        text.includes("hi")
+    ) {
+        traLoi =
+        "👋 <b>Chào bạn, cảm ơn bạn đã liên hệ, bạn có câu hỏi gì không?</b>";
     }
 
 
