@@ -753,12 +753,18 @@ function guiTinNhan() {
     ========================= */
 
     if(
-        text.includes("có câu hỏi") ||
+        (text.includes("có câu hỏi") ||
         text.includes("muốn hỏi") ||
         text === "cho em hỏi" ||
         text === "cho tôi hỏi" ||
         text === "em muốn hỏi" ||
-        text === "tôi muốn hỏi"
+        text === "tôi muốn hỏi") &&
+        !text.includes("thời khóa biểu") && !text.includes("tkb") && !text.includes("lịch học") &&
+        !text.includes("điểm danh") && !text.includes("lms") && !text.includes("trực tuyến") &&
+        !text.includes("ngành") && !text.includes("nghề") && !text.includes("học phí") &&
+        !text.includes("tuyển sinh") && !text.includes("hồ sơ") && !text.includes("liên hệ") &&
+        !text.includes("giáo viên") && !text.includes("thầy") && !text.includes("cô") &&
+        !text.includes("địa chỉ")
     ) {
         traLoi =
         "💬 <b>Cảm ơn bạn, bạn muốn hỏi về vấn đề gì? Vui lòng đặt câu hỏi trong khung chat!</b>";
@@ -817,6 +823,57 @@ function guiTinNhan() {
             "• Cô <b>Võ Thị Thu</b> (Trưởng Phòng TH - TC - TB): tcndantocnoitru_thu@angiang.edu.vn<br>" +
             "• Cô <b>Nguyễn Thị Thúy</b> (Phó Trưởng Phòng QLHS & GTVL): tcndantocnoitru_thuy@angiang.edu.vn<br><br>" +
             "💡 <i>Bạn có thể gõ: <b>'email [Tên thầy/cô]'</b> (ví dụ: email thầy Ka, email thầy Danh...) để lấy email chính xác của từng người muốn tìm nhé!</i>";
+        }
+    }
+
+    /* =========================
+       HỆ THỐNG HỌC TẬP (THỜI KHÓA BIỂU, ĐIỂM DANH, LMS)
+    ========================= */
+    else if(
+        text.includes("thời khóa biểu") || text.includes("tkb") || text.includes("lịch học") || text.includes("lịch giảng dạy") ||
+        text.includes("điểm danh") || text.includes("diem danh") ||
+        text.includes("lms") || text.includes("học trực tuyến") || text.includes("hệ thống học tập")
+    ) {
+        var isTkb = text.includes("thời khóa biểu") || text.includes("tkb") || text.includes("lịch học") || text.includes("lịch giảng dạy");
+        var isDiemDanh = text.includes("điểm danh") || text.includes("diem danh");
+        var isLms = text.includes("lms") || text.includes("học trực tuyến");
+        var isTongHop = (isTkb && isDiemDanh) || (isTkb && isLms) || (isDiemDanh && isLms) || text.includes("hệ thống học tập") || text.includes("vào địa chỉ nào") || text.includes("địa chỉ nào");
+
+        if(isTongHop) {
+            traLoi =
+            "💻 <b>ĐỊA CHỈ HỆ THỐNG HỌC TẬP TRƯỜNG (dtntag.edu.vn)</b><br><br>" +
+            "Để xem <b>Thời khóa biểu</b>, <b>Điểm danh học sinh</b> hoặc <b>Học trực tuyến LMS</b>, bạn vào các địa chỉ sau của trường:<br><br>" +
+            "📅 <b>1. Xem Thời Khóa Biểu:</b><br>" +
+            "👉 <a href='https://online.dtntag.edu.vn/professor/schedules' target='_blank'><b>https://online.dtntag.edu.vn/professor/schedules</b></a><br><br>" +
+            "📝 <b>2. Điểm Danh Học Sinh Trực Tuyến:</b><br>" +
+            "👉 <a href='https://online.dtntag.edu.vn/professor/diemdanhonline' target='_blank'><b>https://online.dtntag.edu.vn/professor/diemdanhonline</b></a><br><br>" +
+            "📚 <b>3. Hệ Thống Học Trực Tuyến (LMS):</b><br>" +
+            "👉 <a href='https://lms.dtntag.edu.vn/' target='_blank'><b>https://lms.dtntag.edu.vn/</b></a><br><br>" +
+            "📁 <b>4. Biểu Mẫu Hồ Sơ:</b><br>" +
+            "👉 <a href='https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so' target='_blank'><b>https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so</b></a><br><br>" +
+            "💡 <b>Cách vào từ website trường:</b><br>" +
+            "1. Truy cập website: <a href='https://dtntag.edu.vn' target='_blank'><b>dtntag.edu.vn</b></a><br>" +
+            "2. Nhìn lên thanh menu màu xanh đầu trang (Topbar), chọn mục <b>'HỆ THỐNG HỌC TẬP'</b> (biểu tượng 💻)<br>" +
+            "3. Bấm vào chức năng cần xem.<br><br>" +
+            "<i>(Lưu ý: Học sinh và giáo viên sử dụng tài khoản cá nhân do trường cấp để đăng nhập).</i>";
+        } else if(isTkb) {
+            traLoi =
+            "📅 <b>ĐỊA CHỈ XEM THỜI KHÓA BIỂU</b><br><br>" +
+            "Để xem thời khóa biểu các lớp và lịch giảng dạy, bạn truy cập vào hệ thống trực tuyến của trường tại:<br><br>" +
+            "👉 <a href='https://online.dtntag.edu.vn/professor/schedules' target='_blank'><b>https://online.dtntag.edu.vn/professor/schedules</b></a><br><br>" +
+            "💡 <i>Hoặc trên website <a href='https://dtntag.edu.vn' target='_blank'>dtntag.edu.vn</a>, bạn bấm menu <b>'HỆ THỐNG HỌC TẬP'</b> trên thanh đầu trang &rarr; chọn <b>'Thời khóa biểu'</b>.</i>";
+        } else if(isDiemDanh) {
+            traLoi =
+            "📝 <b>ĐỊA CHỈ ĐIỂM DANH HỌC SINH ONLINE</b><br><br>" +
+            "Để thực hiện hoặc xem điểm danh học sinh trực tuyến, bạn truy cập tại:<br><br>" +
+            "👉 <a href='https://online.dtntag.edu.vn/professor/diemdanhonline' target='_blank'><b>https://online.dtntag.edu.vn/professor/diemdanhonline</b></a><br><br>" +
+            "💡 <i>Hoặc trên website <a href='https://dtntag.edu.vn' target='_blank'>dtntag.edu.vn</a>, bạn bấm menu <b>'HỆ THỐNG HỌC TẬP'</b> trên thanh đầu trang &rarr; chọn <b>'Điểm danh học sinh'</b> (cần đăng nhập tài khoản).</i>";
+        } else if(isLms) {
+            traLoi =
+            "📚 <b>ĐỊA CHỈ HỌC TRỰC TUYẾN (LMS)</b><br><br>" +
+            "Để vào hệ thống LMS học trực tuyến, xem bài giảng điện tử và làm bài tập, bạn truy cập tại:<br><br>" +
+            "👉 <a href='https://lms.dtntag.edu.vn/' target='_blank'><b>https://lms.dtntag.edu.vn/</b></a><br><br>" +
+            "💡 <i>Học sinh đăng nhập bằng tài khoản (User/Password) do nhà trường cấp để vào lớp học nhé! Hoặc trên website <a href='https://dtntag.edu.vn' target='_blank'>dtntag.edu.vn</a> &rarr; chọn menu <b>'HỆ THỐNG HỌC TẬP'</b> &rarr; <b>'LMS'</b>.</i>";
         }
     }
 

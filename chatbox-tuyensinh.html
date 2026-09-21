@@ -214,7 +214,7 @@
       const q = query.toLowerCase();
 
       // 0. Kiểm tra chủ đề chuyên biệt
-      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('tuyển sinh') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật');
+      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('tuyển sinh') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật') || q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('điểm danh') || q.includes('lms') || q.includes('trực tuyến');
 
       // 0.1. Khi người dùng nhắn: Có câu hỏi / Muốn hỏi
       if (
@@ -284,6 +284,76 @@
           }, 300);
           return;
         }
+      }
+
+      // 0.4. Tra cứu Hệ thống học tập: Thời khóa biểu, Điểm danh học sinh, Học LMS từ dtntag.edu.vn
+      const isTkb = q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('lịch giảng dạy');
+      const isDiemDanh = q.includes('điểm danh') || q.includes('diem danh');
+      const isLms = q.includes('lms') || q.includes('học trực tuyến') || q.includes('bài giảng điện tử') || q.includes('e-learning') || q.includes('elearning');
+      const isHeThongHocTap = q.includes('hệ thống học tập') || (q.includes('địa chỉ') && (isTkb || isDiemDanh || isLms)) || (q.includes('vào đâu') && (isTkb || isDiemDanh || isLms)) || (q.includes('ở đâu') && (isTkb || isDiemDanh || isLms));
+
+      // 0.4.1. Hỏi tổng hợp nhiều mục hoặc hỏi chung "hệ thống học tập", "vào địa chỉ nào..."
+      if (isHeThongHocTap || (isTkb && isDiemDanh) || (isTkb && isLms) || (isDiemDanh && isLms)) {
+        setTimeout(() => {
+          appendMessage(`💻 <b>ĐỊA CHỈ HỆ THỐNG HỌC TẬP (dtntag.edu.vn)</b><br><br>
+          Để xem <b>Thời khóa biểu</b>, <b>Điểm danh học sinh</b> hoặc <b>Học trực tuyến LMS</b>, bạn vào các địa chỉ sau của trường:<br><br>
+          📅 <b>1. Xem Thời Khóa Biểu:</b><br>
+          👉 <a href="https://online.dtntag.edu.vn/professor/schedules" target="_blank" class="text-indigo-600 font-bold underline">https://online.dtntag.edu.vn/professor/schedules</a><br><br>
+          📝 <b>2. Điểm Danh Học Sinh Trực Tuyến:</b><br>
+          👉 <a href="https://online.dtntag.edu.vn/professor/diemdanhonline" target="_blank" class="text-indigo-600 font-bold underline">https://online.dtntag.edu.vn/professor/diemdanhonline</a><br><br>
+          📚 <b>3. Hệ Thống Học Trực Tuyến (LMS):</b><br>
+          👉 <a href="https://lms.dtntag.edu.vn/" target="_blank" class="text-indigo-600 font-bold underline">https://lms.dtntag.edu.vn/</a><br><br>
+          📁 <b>4. Biểu Mẫu Hồ Sơ:</b><br>
+          👉 <a href="https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so" target="_blank" class="text-indigo-600 font-bold underline">https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so</a><br><br>
+          💡 <b>Cách truy cập từ website trường:</b><br>
+          1. Truy cập trang chủ: <a href="https://dtntag.edu.vn" target="_blank" class="text-indigo-600 underline">dtntag.edu.vn</a><br>
+          2. Tại thanh menu màu xanh trên cùng (Topbar), chọn mục <b>"HỆ THỐNG HỌC TẬP"</b> (biểu tượng 💻)<br>
+          3. Bấm vào chức năng cần xem.<br><br>
+          <i>(Lưu ý: Học sinh và giáo viên đăng nhập bằng tài khoản do trường cấp để sử dụng hệ thống).</i>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 0.4.2. Hỏi riêng về Thời khóa biểu
+      if (isTkb) {
+        setTimeout(() => {
+          appendMessage(`📅 <b>ĐỊA CHỈ XEM THỜI KHÓA BIỂU</b><br><br>
+          Để xem thời khóa biểu các lớp và lịch giảng dạy, bạn truy cập địa chỉ trực tuyến:<br><br>
+          👉 <a href="https://online.dtntag.edu.vn/professor/schedules" target="_blank" class="text-indigo-600 font-bold underline">https://online.dtntag.edu.vn/professor/schedules</a><br><br>
+          <a href="https://online.dtntag.edu.vn/professor/schedules" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            📅 Xem Thời Khóa Biểu Ngay ↗
+          </a><br><br>
+          💡 <i>Hoặc trên website trường <a href="https://dtntag.edu.vn" target="_blank" class="text-indigo-600 underline">dtntag.edu.vn</a>, bạn bấm menu <b>"HỆ THỐNG HỌC TẬP"</b> ở góc trên &rarr; chọn <b>"Thời khóa biểu"</b>.</i>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 0.4.3. Hỏi riêng về Điểm danh học sinh
+      if (isDiemDanh) {
+        setTimeout(() => {
+          appendMessage(`📝 <b>ĐỊA CHỈ ĐIỂM DANH HỌC SINH ONLINE</b><br><br>
+          Để thực hiện hoặc xem điểm danh học sinh trực tuyến, bạn truy cập địa chỉ:<br><br>
+          👉 <a href="https://online.dtntag.edu.vn/professor/diemdanhonline" target="_blank" class="text-indigo-600 font-bold underline">https://online.dtntag.edu.vn/professor/diemdanhonline</a><br><br>
+          <a href="https://online.dtntag.edu.vn/professor/diemdanhonline" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            📝 Vào Điểm Danh Học Sinh ↗
+          </a><br><br>
+          💡 <i>Hoặc trên website trường <a href="https://dtntag.edu.vn" target="_blank" class="text-indigo-600 underline">dtntag.edu.vn</a>, bạn bấm menu <b>"HỆ THỐNG HỌC TẬP"</b> &rarr; chọn <b>"Điểm danh học sinh"</b> (cần đăng nhập tài khoản).</i>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 0.4.4. Hỏi riêng về Học LMS / Học trực tuyến
+      if (isLms) {
+        setTimeout(() => {
+          appendMessage(`📚 <b>ĐỊA CHỈ HỌC TRỰC TUYẾN (LMS)</b><br><br>
+          Để vào hệ thống học tập trực tuyến LMS (học bài giảng số, nộp bài tập, thi trực tuyến), bạn truy cập tại:<br><br>
+          👉 <a href="https://lms.dtntag.edu.vn/" target="_blank" class="text-indigo-600 font-bold underline">https://lms.dtntag.edu.vn/</a><br><br>
+          <a href="https://lms.dtntag.edu.vn/" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            📚 Vào Học LMS Trực Tuyến ↗
+          </a><br><br>
+          💡 <i>Học sinh đăng nhập bằng tài khoản (User/Password) do trường cấp để tham gia học nhé! Hoặc trên trang chủ <a href="https://dtntag.edu.vn" target="_blank" class="text-indigo-600 underline">dtntag.edu.vn</a>, bấm menu <b>"HỆ THỐNG HỌC TẬP"</b> &rarr; chọn <b>"LMS"</b>.</i>`, 'bot');
+        }, 300);
+        return;
       }
 
       // 1. Phản hồi yêu cầu Đăng ký online
