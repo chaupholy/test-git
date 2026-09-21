@@ -7,24 +7,9 @@
   <!-- Thư viện Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body style="background: transparent !important; margin: 0; padding: 0; overflow: hidden;">
-  <!-- Khu vực hiển thị giao diện Chatbox Tuyển sinh -->
-
-  <!-- ================= BẮT ĐẦU CHATBOX WIDGET ================= -->
-<aside id="admissions-chat-container" class="fixed bottom-2 right-2 z-50 font-sans">
-    <!-- Nút tròn bật/tắt chatbox -->
-    <button id="chat-toggle-btn" onclick="toggleChat()" class="relative flex items-center justify-center w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg transition-transform transform hover:scale-105">
-      <svg id="chat-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-      </svg>
-      <svg id="chat-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-    
-
-    <!-- Khung cửa sổ Chat -->
-    <div id="chat-box" class="hidden absolute bottom-16 right-0 w-[calc(100vw-20px)] sm:w-[380px] max-w-[380px] h-[calc(100vh-90px)] sm:h-[520px] max-h-[560px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-100">
+<body class="m-0 p-0 overflow-hidden font-sans w-screen h-screen flex flex-col bg-white">
+  <!-- ================= BẮT ĐẦU GIAO DIỆN CHATBOX ================= -->
+  <div id="chat-box" class="w-full h-full bg-white flex flex-col overflow-hidden">
       
       <!-- Tiêu đề Chatbox -->
       <div class="bg-indigo-600 text-white px-4 py-3 flex items-center justify-between shadow">
@@ -40,7 +25,7 @@
             <p class="text-[11px] text-indigo-200">Hỗ trợ trực tuyến 24/7</p>
           </div>
         </div>
-        <button onclick="toggleChat()" class="text-white hover:text-gray-200 p-1">
+        <button onclick="dongChat()" class="text-white hover:text-gray-200 p-1" title="Đóng chat">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
@@ -104,41 +89,20 @@
       </div>
 
     </div>
-  </aside>
-  <!-- ================= KẾT THÚC CHATBOX WIDGET ================= -->
+  </div>
+  <!-- ================= KẾT THÚC GIAO DIỆN CHATBOX ================= -->
 
   <!-- ================= MÃ JAVASCRIPT XỬ LÝ ================= -->
   <script>
     const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxZiikLptQw8DRS2vHunU2HbWVjKDwM9ckuxMo2ae6bmEr19RYxpwVNswjliQvpBVrmJA/exec';
 
-    function toggleChat() {
-      const box = document.getElementById('chat-box');
-      const iconOpen = document.getElementById('chat-icon-open');
-      const iconClose = document.getElementById('chat-icon-close');
-      
-      const willOpen = box.classList.contains('hidden');
-      box.classList.toggle('hidden');
-      iconOpen.classList.toggle('hidden');
-      iconClose.classList.toggle('hidden');
-
-      // Gửi tín hiệu thông báo trạng thái mở/đóng ra trang web cha để điều chỉnh kích thước iframe
+    function dongChat() {
       try {
         window.parent.postMessage({
-          type: 'TOGGLE_ADMISSIONS_CHAT',
-          isOpen: willOpen
+          type: 'CLOSE_ADMISSIONS_CHAT'
         }, '*');
       } catch (e) {}
     }
-
-    // Khi trang tải xong, gửi tín hiệu ban đầu là đóng
-    window.addEventListener('DOMContentLoaded', function() {
-      try {
-        window.parent.postMessage({
-          type: 'TOGGLE_ADMISSIONS_CHAT',
-          isOpen: false
-        }, '*');
-      } catch (e) {}
-    });
 
     function sendMessage() {
       const input = document.getElementById('chat-input');
