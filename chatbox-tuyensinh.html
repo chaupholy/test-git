@@ -159,13 +159,16 @@
         return;
       }
 
-      // 2. Phản hồi Sổ tay nghề đào tạo
-      if (q.includes('sổ tay') || q.includes('nghề') || q.includes('ngành')) {
+      // 2. Các ngành, nghề đang đào tạo
+      if (q.includes('sổ tay') || q.includes('nghề') || q.includes('ngành') || q.includes('đang đào tạo') || q.includes('học gì')) {
         setTimeout(() => {
-          appendMessage(`Chi tiết mô tả từng nghề đào tạo, vị trí việc làm và môi trường học tập được tổng hợp trong cuốn sổ tay điện tử:<br><br>
-            <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="inline-block bg-emerald-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-emerald-700 transition">
-              📖 Mở Sổ Tay Các Nghề Đào Tạo
-            </a>`, 'bot');
+          appendMessage(`🎓 <b>CÁC NGÀNH, NGHỀ ĐÀO TẠO</b><br><br>
+          Trường đào tạo đa dạng các ngành nghề.<br><br>
+          Bấm vào sổ tay để biết các ngành đang đào tạo và xem chi tiết chương trình học tại:<br><br>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            👉 Xem Chi Tiết Chương Trình Đào Tạo
+          </a><br><br>
+          📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
         }, 300);
         return;
       }
@@ -257,6 +260,52 @@
         setTimeout(() => {
           appendMessage(`📋 <b>HÌNH THỨC TUYỂN SINH</b><br><br>
           Nhà trường <b>xét tuyển hồ sơ</b>, không tổ chức thi tuyển.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 10. Câu hỏi: Thời gian đào tạo trình độ trung cấp là bao lâu?
+      if (q.includes('thời gian đào tạo') || q.includes('thời gian học') || q.includes('bao lâu') || q.includes('mấy năm') || q.includes('mấy tháng')) {
+        setTimeout(() => {
+          appendMessage(`⏱️ <b>THỜI GIAN ĐÀO TẠO</b><br><br>
+          Thời gian đào tạo trình độ trung cấp là <b>2 năm</b> theo chương trình đào tạo hiện hành của Trường.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 11. Câu hỏi: Học sinh học tại trường có được thực hành nhiều không?
+      if (q.includes('thực hành') || q.includes('thực tập') || q.includes('xưởng') || q.includes('phòng máy')) {
+        setTimeout(() => {
+          appendMessage(`🔧 <b>HỌC TẬP VÀ THỰC HÀNH</b><br><br>
+          Chương trình đào tạo chú trọng thực hành là chủ yếu. Học sinh được học tập tại các xưởng thực hành, phòng máy và các khu vực thực hành nghề nghiệp.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 12. Câu hỏi: Học liên thông lên Cao đẳng, Đại học
+      if (q.includes('liên thông') || q.includes('học tiếp') || q.includes('cao đẳng') || q.includes('đại học')) {
+        setTimeout(() => {
+          appendMessage(`🎓 <b>HỌC LIÊN THÔNG</b><br><br>
+          Sau khi tốt nghiệp Trung cấp, học sinh có thể học liên thông lên trình độ Cao đẳng, Đại học theo quy định hiện hành.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 13. Câu hỏi: Cơ hội việc làm sau tốt nghiệp
+      if (q.includes('việc làm') || q.includes('có việc') || q.includes('xin việc') || q.includes('ra trường')) {
+        setTimeout(() => {
+          appendMessage(`💼 <b>CƠ HỘI VIỆC LÀM</b><br><br>
+          Nhà trường phối hợp chặt chẽ với các doanh nghiệp để giới thiệu việc làm cho học sinh sau khi tốt nghiệp.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 14. Câu hỏi: Địa chỉ & Hotline tư vấn
+      if (q.includes('địa chỉ') || q.includes('ở đâu') || q.includes('trường nằm') || q.includes('hotline') || q.includes('điện thoại') || q.includes('cô thuỷ')) {
+        setTimeout(() => {
+          appendMessage(`📍 <b>ĐỊA CHỈ & LIÊN HỆ NHÀ TRƯỜNG</b><br><br>
+          🏫 <b>Địa chỉ:</b> Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang.<br><br>
+          📞 <b>Hotline tư vấn tuyển sinh:</b> 0983 498 091 (Cô Thuỷ).`, 'bot');
         }, 300);
         return;
       }
