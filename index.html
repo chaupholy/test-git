@@ -1062,52 +1062,49 @@ function guiTinNhan() {
        1. CÔNG NGHỆ Ô TÔ
     ========================= */
     else if(
-        (text.includes("ô tô") || text.includes("oto")) &&
+        (text.includes("ô tô") || text.includes("oto") || text.includes("có ngành ô tô")) &&
         !text.includes("số điện thoại") && !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
     ) {
         traLoi =
-        "🚗 <b>NGÀNH CÔNG NGHỆ Ô TÔ</b><br><br>" +
-        "• <b>Nội dung đào tạo:</b> Thực hành chuyên sâu về bảo dưỡng, chẩn đoán lỗi, sửa chữa động cơ xăng & diesel, hệ thống khung gầm, hệ thống truyền lực, hệ thống điện - điện tử ô tô hiện đại và điều hòa ô tô.<br><br>" +
-        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
-        "- Kỹ thuật viên bảo dưỡng, sửa chữa ô tô tại các hãng xe lớn (Toyota, Hyundai, Ford, Kia...), garage tư nhân, trạm đăng kiểm.<br>" +
-        "- Cố vấn dịch vụ kỹ thuật, nhân viên chăm sóc và làm đẹp ô tô (detailing).<br>" +
-        "- Nhân viên kinh doanh phụ tùng, phụ kiện ô tô hoặc tự mở xưởng/garage ô tô.<br><br>" +
-        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+        "🚗 <b>DẠ CÓ BẠN NHÉ! TRƯỜNG ĐÀO TẠO NGÀNH CÔNG NGHỆ Ô TÔ</b><br><br>" +
+        "• <b>Học phí & Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>" +
+        "• <b>Nội dung:</b> Thực hành sửa chữa động cơ xăng & diesel, khung gầm, điện – điện tử ô tô hiện đại.<br>" +
+        "• <b>Việc làm:</b> Kỹ thuật viên bảo dưỡng tại hãng xe (Toyota, Hyundai...), garage ô tô hoặc tự mở xưởng.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
     }
 
     /* =========================
        2. KỸ THUẬT MÁY LẠNH & ĐIỀU HÒA KHÔNG KHÍ
     ========================= */
     else if(
-        (text.includes("máy lạnh") || text.includes("điều hòa") || text.includes("điện lạnh") || text.includes("nhiệt lạnh")) &&
+        (text.includes("máy lạnh") || text.includes("điều hòa") || text.includes("điện lạnh") || text.includes("nhiệt lạnh") || text.includes("có ngành máy lạnh")) &&
         !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
     ) {
         traLoi =
-        "❄️ <b>NGÀNH KỸ THUẬT MÁY LẠNH & ĐIỀU HÒA KHÔNG KHÍ (ĐIỆN LẠNH)</b><br><br>" +
-        "• <b>Nội dung đào tạo:</b> Lắp đặt, vận hành, bảo dưỡng và sửa chữa máy lạnh dân dụng, tủ lạnh, máy giặt, điều hòa trung tâm (VRV, Chiller), hệ thống thông gió và kho lạnh công nghiệp.<br><br>" +
-        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
-        "- Kỹ thuật viên lắp đặt, sửa chữa tại siêu thị điện máy (Điện Máy Xanh, Nguyễn Kim...), trung tâm bảo hành hãng (Daikin, Panasonic, LG...).<br>" +
-        "- Kỹ thuật viên vận hành hệ thống thông gió, điều hòa không khí trung tâm (HVAC), kho lạnh tại tòa nhà cao ốc, khách sạn, xí nghiệp chế biến.<br>" +
-        "- Tự mở cơ sở dịch vụ sửa chữa và bảo dưỡng điện lạnh dân dụng.<br><br>" +
-        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+        "❄️ <b>DẠ CÓ BẠN NHÉ! NGÀNH KỸ THUẬT MÁY LẠNH & ĐIỀU HÒA KHÔNG KHÍ</b><br><br>" +
+        "• <b>Học phí & Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>" +
+        "• <b>Nội dung:</b> Lắp đặt, bảo dưỡng, sửa chữa máy lạnh dân dụng, tủ lạnh, máy giặt, điều hòa trung tâm.<br>" +
+        "• <b>Việc làm:</b> Kỹ thuật viên tại siêu thị điện máy (Điện Máy Xanh...), trung tâm bảo hành hãng (Daikin, Panasonic, LG...) hoặc mở cơ sở riêng.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
     }
 
     /* =========================
        3. ĐIỆN CÔNG NGHIỆP
     ========================= */
     else if(
-        (text.includes("điện công nghiệp") || (text.includes("ngành điện") && !text.includes("điện lạnh") && !text.includes("cơ điện") && !text.includes("ô tô"))) &&
+        (text.includes("điện công nghiệp") || (text.includes("ngành điện") && !text.includes("điện lạnh") && !text.includes("cơ điện") && !text.includes("ô tô")) || text.includes("có ngành điện") || text.includes("học điện")) &&
         !text.includes("số điện thoại") && !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
     ) {
         traLoi =
-        "⚡ <b>NGÀNH ĐIỆN CÔNG NGHIỆP</b><br><br>" +
-        "• <b>Nội dung đào tạo:</b> Lắp đặt, vận hành, bảo trì mạng hạ thế, tủ điện phân phối, tủ điều khiển công nghiệp, động cơ điện, biến tần, mạch tự động hóa và an toàn điện nhà xưởng.<br><br>" +
-        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
-        "- Kỹ thuật viên bảo trì hệ thống điện, máy điện tại các khu công nghiệp, xí nghiệp, nhà máy sản xuất.<br>" +
-        "- Thợ điện thi công lắp đặt hệ thống điện công trình, dân dụng và công nghiệp.<br>" +
-        "- Nhân viên kỹ thuật vận hành trạm biến áp, tòa nhà, resort, khách sạn.<br>" +
-        "- Tự nhận thầu thi công điện nước dân dụng và công nghiệp.<br><br>" +
-        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+        "⚡ <b>DẠ CÓ BẠN NHÉ! TRƯỜNG ĐÀO TẠO NGÀNH ĐIỆN CÔNG NGHIỆP</b><br><br>" +
+        "• <b>Học phí & Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>" +
+        "• <b>Nội dung:</b> Đấu nối tủ điện phân phối, điều khiển máy điện, mạch tự động hóa và an toàn điện xí nghiệp.<br>" +
+        "• <b>Việc làm:</b> Kỹ thuật viên bảo trì hệ thống điện tại các nhà máy, khu công nghiệp, trạm điện hoặc thi công điện công trình.<br>" +
+        "<i>(Ngoài ra trường còn đào tạo ngành <b>Cơ điện nông thôn</b> chuyên máy nông nghiệp)</i>.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
     }
 
     /* =========================
@@ -1235,68 +1232,64 @@ function guiTinNhan() {
        11. KẾ TOÁN DOANH NGHIỆP
     ========================= */
     else if(
-        text.includes("kế toán") &&
+        (text.includes("kế toán") || text.includes("có ngành kế toán")) &&
         !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
     ) {
         traLoi =
-        "📑 <b>NGÀNH KẾ TOÁN DOANH NGHIỆP</b><br><br>" +
-        "• <b>Nội dung đào tạo:</b> Nghiệp vụ kế toán kho, kế toán tiền lương, kế toán bán hàng; xuất hóa đơn điện tử, kê khai các loại thuế (GTGT, TNCN, TNDN); sử dụng thành thạo phần mềm kế toán MISA; lập báo cáo tài chính.<br><br>" +
-        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
-        "- Nhân viên kế toán nội bộ, kế toán kho, kế toán thuế tại các công ty, hợp tác xã, doanh nghiệp tư nhân.<br>" +
-        "- Thu ngân, giao dịch viên tại các siêu thị, ngân hàng, chuỗi bán lẻ.<br>" +
-        "- Nhân viên kiểm kê hàng hóa, thủ quỹ tài chính.<br><br>" +
-        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+        "📑 <b>DẠ CÓ BẠN NHÉ! NGÀNH KẾ TOÁN DOANH NGHIỆP</b><br><br>" +
+        "• <b>Học phí & Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>" +
+        "• <b>Nội dung:</b> Kế toán kho, tiền lương, bán hàng; xuất hóa đơn điện tử, kê khai thuế (GTGT, TNDN), thành thạo phần mềm MISA.<br>" +
+        "• <b>Việc làm:</b> Kế toán viên nội bộ, kế toán kho/thuế tại công ty, hợp tác xã, siêu thị hoặc thu ngân, thủ quỹ doanh nghiệp.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
     }
 
     /* =========================
        12. HƯỚNG DẪN DU LỊCH
     ========================= */
     else if(
-        (text.includes("hướng dẫn du lịch") || text.includes("hướng dẫn viên") || text.includes("lữ hành") || (text.includes("du lịch") && !text.includes("kinh tế") && !text.includes("nông nghiệp"))) &&
+        (text.includes("hướng dẫn du lịch") || text.includes("hướng dẫn viên") || text.includes("lữ hành") || (text.includes("du lịch") && !text.includes("kinh tế") && !text.includes("nông nghiệp")) || text.includes("có ngành du lịch")) &&
         !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
     ) {
         traLoi =
-        "🎒 <b>NGÀNH HƯỚNG DẪN DU LỊCH</b><br><br>" +
-        "• <b>Nội dung đào tạo:</b> Nghiệp vụ hướng dẫn viên du lịch nội địa, kỹ năng thuyết minh tuyến điểm; thiết kế, định giá và điều hành tour du lịch; tâm lý du khách; nghiệp vụ lễ tân khách sạn, nhà hàng.<br><br>" +
-        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
-        "- Hướng dẫn viên du lịch nội địa, thuyết minh viên tại các khu di tích lịch sử, danh lam thắng cảnh, khu du lịch sinh thái tại An Giang và ĐBSCL.<br>" +
-        "- Nhân viên điều hành tour, bán tour (sales tour) tại các công ty lữ hành.<br>" +
-        "- Nhân viên lễ tân, quan hệ khách hàng tại khách sạn, resort, homestay.<br><br>" +
-        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+        "🎒 <b>DẠ CÓ BẠN NHÉ! NGÀNH HƯỚNG DẪN DU LỊCH</b><br><br>" +
+        "• <b>Học phí & Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>" +
+        "• <b>Nội dung:</b> Kỹ năng thuyết minh tuyến điểm, thiết kế tour du lịch, tâm lý du khách, nghiệp vụ lễ tân khách sạn – nhà hàng.<br>" +
+        "• <b>Việc làm:</b> Hướng dẫn viên du lịch nội địa, nhân viên điều hành tour lữ hành, lễ tân tại các khu di tích, resort, khách sạn ở An Giang và ĐBSCL.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
     }
 
     /* =========================
        13. PHÁP LUẬT
     ========================= */
     else if(
-        (text.includes("pháp luật") || text.includes("ngành luật") || text.includes("học luật")) &&
+        (text.includes("pháp luật") || text.includes("ngành luật") || text.includes("học luật") || text.includes("có ngành pháp luật")) &&
         !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
     ) {
         traLoi =
-        "⚖️ <b>NGÀNH PHÁP LUẬT</b><br><br>" +
-        "• <b>Nội dung đào tạo:</b> Kiến thức pháp luật Dân sự, Hình sự, Đất đai, Hôn nhân gia đình, Lao động; kỹ năng soạn thảo văn bản pháp quy, hợp đồng kinh tế; thủ tục hành chính, công tác chứng thực, hộ tịch; tư vấn pháp luật cơ sở.<br><br>" +
-        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
-        "- Cán bộ tư pháp - hộ tịch, cán bộ văn phòng tại UBND xã, phường, thị trấn.<br>" +
-        "- Thư ký, trợ lý pháp lý tại các văn phòng luật sư, công chứng, thừa phát lại.<br>" +
-        "- Chuyên viên pháp chế nội bộ, quản lý hợp đồng và nhân sự tại các doanh nghiệp tư nhân.<br><br>" +
-        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+        "⚖️ <b>DẠ CÓ BẠN NHÉ! TRƯỜNG ĐÀO TẠO NGÀNH PHÁP LUẬT</b><br><br>" +
+        "• <b>Học phí & Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>" +
+        "• <b>Nội dung:</b> Pháp luật Dân sự, Đất đai, Lao động; soạn thảo văn bản, hợp đồng; thủ tục chứng thực, hộ tịch và tư vấn pháp luật cơ sở.<br>" +
+        "• <b>Việc làm:</b> Cán bộ Tư pháp – Hộ tịch, văn phòng tại UBND xã/phường; thư ký văn phòng luật sư, công chứng hoặc chuyên viên pháp chế doanh nghiệp.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
     }
 
     /* =========================
        14. TRỒNG TRỌT VÀ BẢO VỆ THỰC VẬT
     ========================= */
     else if(
-        (text.includes("trồng trọt") || text.includes("bảo vệ thực vật") || text.includes("bvtv") || text.includes("cây trồng") || (text.includes("nông nghiệp") && !text.includes("kinh tế") && !text.includes("du lịch") && !text.includes("cơ điện"))) &&
+        (text.includes("trồng trọt") || text.includes("bảo vệ thực vật") || text.includes("bvtv") || text.includes("cây trồng") || (text.includes("nông nghiệp") && !text.includes("kinh tế") && !text.includes("du lịch") && !text.includes("cơ điện")) || text.includes("có ngành trồng trọt") || text.includes("có ngành bảo vệ thực vật")) &&
         !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
     ) {
         traLoi =
-        "🌾 <b>NGÀNH TRỒNG TRỌT VÀ BẢO VỆ THỰC VẬT</b><br><br>" +
-        "• <b>Nội dung đào tạo:</b> Kỹ thuật nhân giống, trồng trọt và chăm sóc các loại cây trồng chủ lực (lúa, cây ăn quả, rau màu); nhận biết và phòng trừ sâu bệnh hại theo tiêu chuẩn VietGAP; sử dụng phân bón, thuốc BVTV an toàn; ứng dụng công nghệ tưới nhỏ giọt, nhà màng công nghệ cao.<br><br>" +
-        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
-        "- Kỹ thuật viên nông nghiệp tại các trang trại, nông trường công nghệ cao, hợp tác xã nông nghiệp.<br>" +
-        "- Nhân viên kỹ thuật, tư vấn bán hàng tại các công ty sản xuất giống cây trồng, phân bón, thuốc BVTV.<br>" +
-        "- Tự làm chủ mô hình nông nghiệp sinh thái, trồng trọt hữu cơ hoặc mở đại lý kinh doanh vật tư nông nghiệp.<br><br>" +
-        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+        "🌱 <b>DẠ CÓ BẠN NHÉ! NGÀNH TRỒNG TRỌT VÀ BẢO VỆ THỰC VẬT</b><br><br>" +
+        "• <b>Học phí & Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>" +
+        "• <b>Nội dung:</b> Kỹ thuật trồng trọt công nghệ cao, nông nghiệp sạch, chẩn đoán và phòng trừ sâu bệnh hại, sử dụng thuốc BVTV an toàn.<br>" +
+        "• <b>Việc làm:</b> Làm việc tại công ty giống cây trồng, trạm khuyến nông, trang trại nông nghiệp, cửa hàng phân bón – thuốc BVTV hoặc làm chủ mô hình vườn.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
     }
 
 
@@ -1358,43 +1351,25 @@ function guiTinNhan() {
     /* =========================
        CÁC NGÀNH CNTT - MÁY TÍNH
     ========================= */
-
     else if(
-
         text.includes("công nghệ thông tin") ||
-
         text.includes("cntt") ||
-
         text.includes("máy tính") ||
-
         text.includes("tin học") ||
-
         text.includes("đồ họa") ||
-
         text.includes("quản trị mạng") ||
-
-        text.includes("lắp ráp máy tính")
-
+        text.includes("lắp ráp máy tính") ||
+        text.includes("có ngành máy tính")
     ) {
-
         traLoi =
-
-        "💻 <b>CÁC NGÀNH CÔNG NGHỆ THÔNG TIN & MÁY TÍNH CỦA TRƯỜNG</b><br><br>" +
-
-        "Trường hiện đang đào tạo các ngành, nghề thuộc khối <b>Công nghệ thông tin - Máy tính</b> bao gồm:<br><br>" +
-
-        "1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính:</b> Chẩn đoán, sửa chữa phần cứng, bảo trì và nâng cấp máy tính.<br>" +
-
-        "2️⃣ <b>Quản trị mạng máy tính:</b> Lắp đặt, cấu hình và quản trị hệ thống mạng (LAN/WAN), camera quan sát.<br>" +
-
-        "3️⃣ <b>Thiết kế đồ họa:</b> Thiết kế ấn phẩm, banner quảng cáo, xử lý hình ảnh truyền thông đa phương tiện.<br>" +
-
-        "4️⃣ <b>Tin học ứng dụng:</b> Ứng dụng phần mềm công nghệ thông tin, quản trị dữ liệu và văn phòng số.<br>" +
-
-        "5️⃣ <b>Tin học văn phòng:</b> Soạn thảo văn bản chuyên nghiệp, bảng tính thống kê dữ liệu.<br><br>" +
-
-        "👉 Bấm vào liên kết Đào tạo trên Website trường để xem chi tiết chương trình học!";
-
+        "💻 <b>DẠ CÓ BẠN NHÉ! KHOA CNTT ĐANG ĐÀO TẠO CÁC CHUYÊN NGÀNH MÁY TÍNH:</b><br><br>" +
+        "1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính:</b> Phần cứng, laptop, thiết bị văn phòng.<br>" +
+        "2️⃣ <b>Quản trị mạng máy tính:</b> Mạng LAN/Wi-Fi, hệ thống server, an ninh mạng, camera.<br>" +
+        "3️⃣ <b>Thiết kế đồ họa:</b> Photoshop, Illustrator, thiết kế banner, quảng cáo, in ấn.<br>" +
+        "4️⃣ <b>Tin học ứng dụng & Tin học văn phòng:</b> Cơ sở dữ liệu số, văn thư số.<br>" +
+        "• <b>Học phí & Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
     }
 
 
