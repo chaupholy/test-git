@@ -315,11 +315,11 @@
         return;
       }
 
-      // 13. Câu hỏi: Cơ hội việc làm sau tốt nghiệp
-      if (q.includes('việc làm') || q.includes('có việc') || q.includes('xin việc') || q.includes('ra trường')) {
+      // 13. Câu hỏi: Sau khi tốt nghiệp, học sinh được giới thiệu việc làm không?
+      if (q.includes('việc làm') || q.includes('có việc') || q.includes('xin việc') || q.includes('ra trường') || q.includes('giới thiệu việc')) {
         setTimeout(() => {
           appendMessage(`💼 <b>CƠ HỘI VIỆC LÀM</b><br><br>
-          Nhà trường phối hợp chặt chẽ với các doanh nghiệp để giới thiệu việc làm cho học sinh sau khi tốt nghiệp.`, 'bot');
+          Nhà trường phối hợp với các doanh nghiệp trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp.`, 'bot');
         }, 300);
         return;
       }
