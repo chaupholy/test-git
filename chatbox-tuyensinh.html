@@ -978,35 +978,9 @@
         return;
       }
 
-      // 1.3. Câu hỏi: Cơ hội / Vị trí việc làm khối Công nghệ thông tin - Máy tính
+      // Các nhóm ngành đào tạo của trường
+      // 1. Khối Công nghệ thông tin / Máy tính
       const isITQuery = q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('máy tính') || q.includes('tin học') || q.includes('đồ họa') || q.includes('quản trị mạng') || q.includes('lắp ráp máy tính');
-      const isJobQuery = q.includes('việc làm') || q.includes('cơ hội') || q.includes('vị trí') || q.includes('ra trường làm') || q.includes('làm gì') || q.includes('xin việc') || q.includes('làm ở đâu');
-
-      if (isITQuery && isJobQuery) {
-        setTimeout(() => {
-          appendMessage(`💼 <b>VỊ TRÍ VIỆC LÀM KHỐI CÔNG NGHỆ THÔNG TIN &amp; MÁY TÍNH</b><br><br>
-          Sau khi tốt nghiệp các ngành CNTT tại trường, học sinh có cơ hội việc làm rộng mở tại nhiều cơ quan, doanh nghiệp:<br><br>
-          🖥️ <b>1. Kỹ thuật sửa chữa, lắp ráp máy tính:</b><br>
-          • Kỹ thuật viên bảo trì, lắp ráp, cài đặt hệ thống máy tính tại các công ty, cơ quan.<br>
-          • Nhân viên kỹ thuật phần cứng tại cửa hàng máy tính, siêu thị điện máy, trung tâm bảo hành.<br>
-          • Tự mở cửa hàng kinh doanh, sửa chữa máy tính, laptop.<br><br>
-          🌐 <b>2. Quản trị mạng máy tính:</b><br>
-          • Nhân viên quản trị hệ thống mạng nội bộ (LAN/WAN), camera tại doanh nghiệp, trường học, bệnh viện.<br>
-          • Kỹ thuật viên IT Helpdesk hỗ trợ kỹ thuật máy tính người dùng.<br>
-          • Kỹ thuật viên lắp đặt, bảo trì hạ tầng mạng cho các công ty công nghệ, viễn thông.<br><br>
-          🎨 <b>3. Thiết kế đồ họa:</b><br>
-          • Chuyên viên thiết kế banner, poster, ấn phẩm quảng cáo, bao bì tại các xưởng in, công ty quảng cáo.<br>
-          • Nhân viên xử lý ảnh tại các studio ảnh viện, công ty truyền thông - sự kiện.<br>
-          • Nhận dự án thiết kế tự do (Freelancer) hoặc thiết kế nội dung đồ họa bán hàng online.<br><br>
-          📊 <b>4. Tin học ứng dụng &amp; Tin học văn phòng:</b><br>
-          • Nhân viên tin học, văn thư, nhập liệu và xử lý số liệu tại các cơ quan hành chính, doanh nghiệp.<br>
-          • Quản lý phần mềm nghiệp vụ, quản trị nội dung website đơn vị.<br><br>
-          🤝 <i>Nhà trường luôn phối hợp với các doanh nghiệp trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp!</i>`, 'bot');
-        }, 300);
-        return;
-      }
-
-      // 1.4. Câu hỏi: Các ngành Công nghệ thông tin / Máy tính của trường
       if (isITQuery) {
         setTimeout(() => {
           appendMessage(`💻 <b>DẠ CÓ BẠN NHÉ! KHOA CNTT ĐANG ĐÀO TẠO CÁC CHUYÊN NGÀNH MÁY TÍNH:</b><br><br>
@@ -1025,35 +999,8 @@
         return;
       }
 
-      // 1.5. Câu hỏi: Cơ hội / Vị trí việc làm khối Điện - Cơ khí - Ô tô
+      // 2. Khối Điện - Cơ khí - Ô tô
       const isEngQuery = (q.includes('ô tô') || q.includes('oto') || q.includes('cơ khí') || q.includes('điện') || q.includes('máy lạnh') || q.includes('điều hòa') || q.includes('cơ điện') || q.includes('điện lạnh')) && !q.includes('số điện thoại') && !q.includes('hồ sơ') && !q.includes('học phí') && !q.includes('thời gian');
-
-      if (isEngQuery && isJobQuery) {
-        setTimeout(() => {
-          appendMessage(`💼 <b>VỊ TRÍ VIỆC LÀM KHỐI KỸ THUẬT - ĐIỆN - CƠ KHÍ - Ô TÔ</b><br><br>
-          Sau khi tốt nghiệp các ngành Kỹ thuật - Điện - Cơ khí tại trường, học sinh có tay nghề vững vàng và cơ hội việc làm rộng mở:<br><br>
-          🚗 <b>1. Công nghệ ô tô:</b><br>
-          • Kỹ thuật viên bảo dưỡng, sửa chữa động cơ, khung gầm, hệ thống điện - điện tử tại các đại lý ô tô, garage, trạm đăng kiểm.<br>
-          • Cố vấn dịch vụ kỹ thuật, nhân viên chăm sóc và làm đẹp ô tô (detailing).<br>
-          • Kinh doanh phụ tùng, phụ kiện ô tô hoặc tự mở xưởng/garage ô tô.<br><br>
-          ❄️ <b>2. Kỹ thuật máy lạnh &amp; Điều hòa không khí (Điện lạnh):</b><br>
-          • Kỹ thuật viên lắp đặt, bảo trì, sửa chữa máy lạnh dân dụng, tủ lạnh tại các siêu thị điện máy, trung tâm bảo hành.<br>
-          • Kỹ thuật viên vận hành hệ thống thông gió, điều hòa không khí trung tâm (HVAC), kho lạnh tại tòa nhà, khách sạn, xí nghiệp chế biến.<br>
-          • Tự mở cơ sở dịch vụ sửa chữa và bảo dưỡng điện lạnh.<br><br>
-          ⚡ <b>3. Điện công nghiệp:</b><br>
-          • Kỹ thuật viên vận hành, bảo trì hệ thống điện, tủ điện phân phối và động cơ điện tại các nhà máy, xí nghiệp, khu công nghiệp.<br>
-          • Công nhân kỹ thuật thi công, lắp đặt hệ thống điện dân dụng và công nghiệp cho các công trình xây dựng.<br>
-          • Nhân viên kỹ thuật bảo trì điện tại các trạm biến áp, tòa nhà, resort.<br><br>
-          🚜 <b>4. Cơ điện nông thôn:</b><br>
-          • Thợ kỹ thuật bảo dưỡng, sửa chữa máy móc nông nghiệp (máy cày, máy gặt đập liên hợp, máy bơm, hệ thống tưới tự động).<br>
-          • Kỹ thuật viên cơ điện tại các trang trại nông nghiệp công nghệ cao, nhà máy chế biến nông sản, hợp tác xã.<br>
-          • Tự mở xưởng cơ khí, sửa chữa máy cơ điện nông thôn.<br><br>
-          🤝 <i>Nhà trường luôn liên kết với các doanh nghiệp, gara ô tô, xí nghiệp trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp!</i>`, 'bot');
-        }, 300);
-        return;
-      }
-
-      // 1.6. Câu hỏi: Các ngành Điện - Cơ khí - Ô tô của trường
       if (isEngQuery) {
         setTimeout(() => {
           appendMessage(`⚙️ <b>CÁC NGÀNH ĐIỆN - CƠ KHÍ - Ô TÔ CỦA TRƯỜNG</b><br><br>
@@ -1070,7 +1017,7 @@
         return;
       }
 
-      // 1.7. Câu hỏi: Cơ hội / Vị trí việc làm khối Kinh tế - Du lịch - Nông nghiệp
+      // 3. Khối Kinh tế - Du lịch - Nông nghiệp
       const isBizTourAgriQuery = (
         q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') ||
         q.includes('thương mại điện tử') || q.includes('tmdt') || q.includes('kế toán') ||
@@ -1078,36 +1025,6 @@
         q.includes('bảo vệ thực vật') || q.includes('cây trồng') || q.includes('lữ hành') ||
         q.includes('hướng dẫn viên')
       ) && !q.includes('hồ sơ') && !q.includes('học phí') && !q.includes('thời gian') && !q.includes('số điện thoại');
-
-      if (isBizTourAgriQuery && isJobQuery) {
-        setTimeout(() => {
-          appendMessage(`💼 <b>VỊ TRÍ VIỆC LÀM KHỐI KINH TẾ - DU LỊCH - NÔNG NGHIỆP</b><br><br>
-          Sau khi tốt nghiệp các ngành thuộc khối Kinh tế, Du lịch và Nông nghiệp tại trường, học sinh có cơ hội việc làm phong phú, đáp ứng nhu cầu thực tế của địa phương:<br><br>
-          🛒 <b>1. Thương mại điện tử:</b><br>
-          • Quản trị gian hàng trực tuyến trên sàn TMĐT (Shopee, TikTok Shop, Lazada).<br>
-          • Nhân viên Marketing số, quản trị nội dung fanpage, quảng cáo và livestream bán hàng.<br>
-          • Tự khởi nghiệp, kinh doanh online hoặc quản lý kinh doanh đa kênh.<br><br>
-          📑 <b>2. Kế toán doanh nghiệp:</b><br>
-          • Nhân viên kế toán nội bộ, kế toán kho, kế toán thuế, thủ quỹ tại các công ty, hợp tác xã, cơ sở sản xuất.<br>
-          • Thu ngân, nhân viên giao dịch tại các ngân hàng, chuỗi bán lẻ, siêu thị.<br><br>
-          🎒 <b>3. Hướng dẫn du lịch:</b><br>
-          • Hướng dẫn viên du lịch nội địa, thuyết minh viên tại các khu di tích, điểm du lịch, danh lam thắng cảnh ở An Giang và ĐBSCL.<br>
-          • Nhân viên điều hành tour, kinh doanh tour du lịch lữ hành.<br>
-          • Lễ tân, chăm sóc khách hàng tại các khách sạn, resort, homestay.<br><br>
-          ⚖️ <b>4. Pháp luật:</b><br>
-          • Cán bộ tư pháp - hộ tịch, văn phòng tại UBND xã, phường, thị trấn.<br>
-          • Thư ký, trợ lý pháp lý tại văn phòng luật sư, công chứng, thừa phát lại.<br>
-          • Chuyên viên pháp chế nội bộ, nhân sự tại các doanh nghiệp.<br><br>
-          🌾 <b>5. Trồng trọt và bảo vệ thực vật:</b><br>
-          • Kỹ thuật viên nông nghiệp tại các trang trại công nghệ cao, nông trường, hợp tác xã.<br>
-          • Nhân viên kỹ thuật, tư vấn bán hàng tại các công ty giống cây trồng, phân bón, thuốc BVTV.<br>
-          • Tự phát triển mô hình nông nghiệp sạch, hoa kiểng hoặc mở đại lý vật tư nông nghiệp.<br><br>
-          🤝 <i>Nhà trường luôn phối hợp với các doanh nghiệp, công ty du lịch, hợp tác xã trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp!</i>`, 'bot');
-        }, 300);
-        return;
-      }
-
-      // 1.8. Câu hỏi: Các ngành Kinh tế - Du lịch - Nông nghiệp của trường
       if (isBizTourAgriQuery) {
         setTimeout(() => {
           appendMessage(`📊 <b>CÁC NGÀNH KINH TẾ - DU LỊCH - NÔNG NGHIỆP CỦA TRƯỜNG</b><br><br>
