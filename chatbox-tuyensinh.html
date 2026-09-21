@@ -82,11 +82,11 @@
             <span class="text-[10px] text-gray-500 block mt-0.5">Để lại SĐT cán bộ gọi lại</span>
           </button>
 
-          <!-- 4. Học phí & Chính sách -->
-          <button onclick="sendQuickMessage('Chính sách học phí và nội trú')" 
+          <!-- 4. Chính sách & Hỗ trợ -->
+          <button onclick="sendQuickMessage('Chính sách và hỗ trợ')" 
                   class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl text-left hover:bg-indigo-100 transition">
-            <span class="font-bold">💰 Học phí & Nội trú</span>
-            <span class="text-[10px] text-gray-500 block mt-0.5">Miễn giảm & ký túc xá</span>
+            <span class="font-bold">💰 Chính sách & Hỗ trợ</span>
+            <span class="text-[10px] text-gray-500 block mt-0.5">Miễn học phí, KTX & trợ cấp</span>
           </button>
         </div>
       </div>
@@ -211,13 +211,47 @@
         return;
       }
 
-      // 4. Học phí & Chính sách nội trú
-      if (q.includes('học phí') || q.includes('nội trú') || q.includes('chính sách')) {
+      // 4. Tổng quan Chính sách và hỗ trợ (khi click menu hoặc hỏi chung)
+      if (q.includes('chính sách và hỗ trợ') || q.includes('chính sách & hỗ trợ') || q.includes('học phí và nội trú') || q === 'chính sách') {
         setTimeout(() => {
-          appendMessage(`<b>Chính sách ưu đãi:</b><br>
-          • <b>Miễn 100% học phí</b> học nghề cho học sinh tốt nghiệp THCS học tiếp trung cấp.<br>
-          • Hỗ trợ ký túc xá nội trú đầy đủ tiện nghi cho học sinh theo chế độ chính sách.<br>
-          • Học sinh có thể xem chi tiết trong <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-indigo-600 font-semibold underline">Sổ tay các nghề</a>.`, 'bot');
+          appendMessage(`<b>🎁 CHÍNH SÁCH VÀ HỖ TRỢ DÀNH CHO HỌC SINH:</b><br><br>
+          💰 <b>Học phí:</b> Học sinh tốt nghiệp THCS học trung cấp được <b>miễn hoàn toàn học phí</b> theo quy định của Nhà nước.<br><br>
+          🏠 <b>Ký túc xá:</b> Học sinh được bố trí ở <b>ký túc xá miễn phí</b>, đầy đủ tiện nghi sinh hoạt.<br><br>
+          🎁 <b>Chính sách hỗ trợ:</b> Học sinh thuộc diện chính sách được hưởng:<br>
+          • 🏠 Trợ cấp nội trú hàng tháng<br>
+          • 💵 Hỗ trợ chi phí ban đầu<br>
+          • 🚌 Hỗ trợ tiền xe.<br><br>
+          📖 Chi tiết xem thêm trong <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-indigo-600 font-semibold underline">Sổ tay các nghề</a>.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 5. Câu hỏi: Miễn phí học phí
+      if (q.includes('học phí') || q.includes('tiền học') || q.includes('miễn phí')) {
+        setTimeout(() => {
+          appendMessage(`💰 <b>CHÍNH SÁCH HỌC PHÍ</b><br><br>
+          🎓 Học sinh tốt nghiệp THCS học trung cấp được <b>miễn hoàn toàn học phí</b> theo quy định của Nhà nước.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 6. Câu hỏi: Ký túc xá / Nội trú
+      if (q.includes('ký túc xá') || q.includes('ktx') || q.includes('ở lại trường') || (q.includes('nội trú') && !q.includes('trợ cấp'))) {
+        setTimeout(() => {
+          appendMessage(`🏠 <b>KÝ TÚC XÁ - NỘI TRÚ</b><br><br>
+          Học sinh được bố trí ở <b>ký túc xá miễn phí</b>, đầy đủ tiện nghi sinh hoạt.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 7. Câu hỏi: Chính sách hỗ trợ / Trợ cấp
+      if (q.includes('chính sách hỗ trợ') || q.includes('hưởng chính sách') || q.includes('trợ cấp') || q.includes('tiền xe') || q.includes('chi phí ban đầu') || q.includes('hỗ trợ')) {
+        setTimeout(() => {
+          appendMessage(`🎁 <b>CHÍNH SÁCH HỖ TRỢ</b><br><br>
+          Học sinh thuộc diện chính sách được hưởng:<br><br>
+          🏠 Trợ cấp nội trú hàng tháng<br>
+          💵 Hỗ trợ chi phí ban đầu<br>
+          🚌 Hỗ trợ tiền xe.`, 'bot');
         }, 300);
         return;
       }
