@@ -231,28 +231,25 @@
 
       if (isHoiChung && !hasSpecificTopic) {
         setTimeout(() => {
-          appendMessage(`👋 <b>Dạ xin chào bạn! Cán bộ tuyển sinh Trường Trung cấp Dân tộc Nội trú An Giang rất vui được hỗ trợ bạn.</b><br><br>
-          Bạn đang quan tâm đến vấn đề nào, hãy đặt câu hỏi trong khung chat nhé! Nhà trường có các thông tin nổi bật:<br><br>
-          • 🎓 <b>Ngành đào tạo:</b> Ô tô, Máy lạnh, Điện, Máy tính, Đồ họa, Kế toán, Du lịch, Nông nghiệp...<br>
-          • 💰 <b>Học phí &amp; Ký túc xá:</b> Miễn 100% học phí THCS, KTX miễn phí, Trợ cấp nội trú<br>
-          • 📝 <b>Tuyển sinh:</b> Điều kiện xét tuyển học bạ (không thi tuyển), Lịch khai giảng, Cách nộp hồ sơ<br>
-          • 📚 <b>Chương trình 9+:</b> Vừa học nghề vừa học văn hóa THPT thi lấy bằng cấp 3<br>
-          • 📞 <b>Hotline tư vấn tuyển sinh:</b> <b>0983 498 091 (Cô Thuỷ)</b><br><br>
-          👉 <i>Bấm chọn nhanh chủ đề bạn muốn xem ngay dưới đây:</i>
-          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
-            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-indigo-200">
-              🎓 Các ngành đào tạo
+          appendMessage(`👋 <b>Chào bạn! Tuyển sinh Trường TC Dân tộc Nội trú An Giang xin nghe.</b><br><br>
+          • <b>Tuyển sinh:</b> Xét tuyển học bạ (không thi tuyển), nhận hồ sơ liên tục.<br>
+          • <b>Ưu đãi:</b> Miễn 100% học phí THCS, KTX miễn phí 100%, có trợ cấp nội trú.<br>
+          • <b>Hotline:</b> <b>0983 498 091</b> (Cô Thuỷ).<br><br>
+          👉 <i>Bạn vui lòng đặt câu hỏi hoặc bấm chọn nhanh bên dưới:</i>
+          <div class="mt-2 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
+              🎓 14 Ngành đào tạo
             </button>
-            <button onclick="sendQuickMessage('Học phí')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-emerald-200">
-              💰 Miễn 100% học phí &amp; KTX
+            <button onclick="sendQuickMessage('Học phí')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
+              💰 Miễn học phí &amp; KTX
             </button>
-            <button onclick="sendQuickMessage('Điều kiện tuyển sinh')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-amber-200">
+            <button onclick="sendQuickMessage('Điều kiện tuyển sinh')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-amber-200">
               📝 Điều kiện xét tuyển
             </button>
-            <button onclick="sendQuickMessage('Hệ 9+')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-purple-200">
-              📚 Học nghề + Cấp 3 (Hệ 9+)
+            <button onclick="sendQuickMessage('Hệ 9+')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-purple-200">
+              📚 Hệ 9+ (Học nghề + Cấp 3)
             </button>
-            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-[11px] font-semibold transition shadow-sm">
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
               📞 Hẹn cán bộ gọi lại
             </button>
           </div>`, 'bot');
@@ -272,24 +269,23 @@
 
       if (isYeuCauTuVan && !hasSpecificTopic) {
         setTimeout(() => {
-          appendMessage(`📢 <b>DẠ CÁN BỘ TUYỂN SINH SẴN SÀNG TƯ VẤN CHO BẠN NGAY!</b><br><br>
-          Bạn có thể chọn hình thức tư vấn thuận tiện nhất:<br><br>
-          💬 <b>1. Tư vấn trực tuyến tức thì:</b> Hãy gửi ngay câu hỏi hoặc chọn các nút bấm bên dưới, tôi sẽ giải đáp chi tiết ngay.<br><br>
-          📞 <b>2. Hotline tư vấn trực tiếp:</b> Gọi số <b>0983 498 091 (Cô Thuỷ)</b> để được hỗ trợ trực tiếp.<br><br>
-          📝 <b>3. Hẹn cán bộ gọi lại:</b> Bấm nút bên dưới để gửi số điện thoại, cán bộ tuyển sinh sẽ gọi lại tư vấn chọn ngành phù hợp cho bạn.<br><br>
-          👉 <i>Bấm chọn nhanh nhu cầu tư vấn của bạn:</i>
-          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
-            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-lg text-[11px] font-semibold transition shadow-sm">
+          appendMessage(`📢 <b>TƯ VẤN TUYỂN SINH TRƯỜNG TC DÂN TỘC NỘI TRÚ AN GIANG</b><br><br>
+          • <b>Hình thức:</b> Xét tuyển học bạ THCS/THPT (Không thi tuyển).<br>
+          • <b>Chính sách:</b> Miễn 100% học phí THCS, KTX miễn phí 100%, có trợ cấp nội trú.<br>
+          • <b>Hotline:</b> <b>0983 498 091</b> (Cô Thuỷ).<br><br>
+          👉 <i>Bạn cần tư vấn nội dung nào? Bấm chọn nhanh bên dưới hoặc gõ vào khung chat:</i>
+          <div class="mt-2 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
               📞 Hẹn cán bộ gọi lại
             </button>
-            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-indigo-200">
-              🎓 Tư vấn chọn ngành nghề
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
+              🎓 Tư vấn chọn ngành
             </button>
-            <button onclick="sendQuickMessage('Chính sách và hỗ trợ')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-emerald-200">
-              💰 Học phí &amp; Trợ cấp nội trú
+            <button onclick="sendQuickMessage('Chính sách và hỗ trợ')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
+              💰 Học phí &amp; Trợ cấp KTX
             </button>
-            <button onclick="sendQuickMessage('Cách nộp hồ sơ')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-amber-200">
-              📮 Hướng dẫn nộp hồ sơ
+            <button onclick="sendQuickMessage('Cách nộp hồ sơ')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-amber-200">
+              📮 Cách nộp hồ sơ
             </button>
           </div>`, 'bot');
         }, 300);
