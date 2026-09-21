@@ -216,34 +216,82 @@
       const q = query.toLowerCase();
 
       // 0. Kiểm tra chủ đề chuyên biệt
-      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('tuyển sinh') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật') || q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('điểm danh') || q.includes('lms') || q.includes('trực tuyến') || q.includes('đối tượng') || q.includes('điều kiện') || q.includes('khai giảng') || q.includes('nhập học') || q.includes('văn hóa') || q.includes('bằng cấp') || q.includes('biểu mẫu') || q.includes('sơ cấp') || q.includes('cơ sở vật chất') || q.includes('ngắn hạn') || q.includes('hệ 9+') || q.includes('9+') || q.includes('dưới 3 tháng') || q.includes('mẫu') || q.includes('văn bằng');
+      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật') || q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('điểm danh') || q.includes('lms') || q.includes('trực tuyến') || q.includes('đối tượng') || q.includes('điều kiện') || q.includes('khai giảng') || q.includes('nhập học') || q.includes('văn hóa') || q.includes('bằng cấp') || q.includes('biểu mẫu') || q.includes('sơ cấp') || q.includes('cơ sở vật chất') || q.includes('ngắn hạn') || q.includes('hệ 9+') || q.includes('9+') || q.includes('dưới 3 tháng') || q.includes('mẫu') || q.includes('văn bằng');
 
-      // 0.1. Khi người dùng nhắn: Có câu hỏi / Muốn hỏi
-      if (
-        (q.includes('có câu hỏi') || q.includes('muốn hỏi') || q === 'cho em hỏi' || q === 'cho tôi hỏi' || q === 'em muốn hỏi' || q === 'tôi muốn hỏi')
-        && !hasSpecificTopic
-      ) {
+      // 0.1. NHÓM 1: Lời chào & Lời ngỏ mở đầu (Chào bạn, Hello, Hi, Xin hỏi, Cho tôi hỏi, Tôi có câu hỏi...)
+      const isHoiChung = q.includes('xin hỏi') || q.includes('xin hoi') ||
+                         q.includes('cho tôi hỏi') || q.includes('cho toi hoi') ||
+                         q.includes('cho em hỏi') || q.includes('cho em hoi') ||
+                         q.includes('tôi có câu hỏi') || q.includes('toi co cau hoi') ||
+                         q.includes('em có câu hỏi') || q.includes('có câu hỏi') ||
+                         q.includes('muốn hỏi') || q.includes('muon hoi') ||
+                         q.includes('chào bạn') || q.includes('chao ban') ||
+                         q.includes('xin chào') || q.includes('xin chao') ||
+                         q.includes('hello') || q === 'hi' || q === 'chào' || q === 'chao';
+
+      if (isHoiChung && !hasSpecificTopic) {
         setTimeout(() => {
-          appendMessage(`💬 <b>Cảm ơn bạn! Bạn muốn hỏi về vấn đề gì?</b><br><br>
-          Bạn có thể hỏi tôi về:<br>
-          • 🎓 <b>Ngành đào tạo:</b> Ô tô, Máy lạnh, Điện, Máy tính, Đồ họa, Du lịch, Kế toán...<br>
-          • 💰 <b>Học phí &amp; Ký túc xá:</b> Miễn 100% học phí THCS, KTX miễn phí<br>
-          • 🎁 <b>Chính sách:</b> Trợ cấp nội trú, tiền xe, hỗ trợ chi phí ban đầu<br>
-          • 📝 <b>Hồ sơ:</b> Điều kiện xét tuyển, Lịch khai giảng, Cách nộp hồ sơ<br>
-          • 📚 <b>Hệ thống:</b> Thời khóa biểu, Điểm danh, Học LMS<br>
-          • 📧 <b>Liên hệ:</b> Email thầy/cô, Trưởng khoa, Ban Giám Hiệu<br><br>
-          <i>Vui lòng đặt câu hỏi trong khung chat để được hỗ trợ ngay nhé!</i>`, 'bot');
+          appendMessage(`👋 <b>Dạ xin chào bạn! Cán bộ tuyển sinh Trường Trung cấp Dân tộc Nội trú An Giang rất vui được hỗ trợ bạn.</b><br><br>
+          Bạn đang quan tâm đến vấn đề nào, hãy đặt câu hỏi trong khung chat nhé! Nhà trường có các thông tin nổi bật:<br><br>
+          • 🎓 <b>Ngành đào tạo:</b> Ô tô, Máy lạnh, Điện, Máy tính, Đồ họa, Kế toán, Du lịch, Nông nghiệp...<br>
+          • 💰 <b>Học phí &amp; Ký túc xá:</b> Miễn 100% học phí THCS, KTX miễn phí, Trợ cấp nội trú<br>
+          • 📝 <b>Tuyển sinh:</b> Điều kiện xét tuyển học bạ (không thi tuyển), Lịch khai giảng, Cách nộp hồ sơ<br>
+          • 📚 <b>Chương trình 9+:</b> Vừa học nghề vừa học văn hóa THPT thi lấy bằng cấp 3<br>
+          • 📞 <b>Hotline tư vấn tuyển sinh:</b> <b>0983 498 091 (Cô Thuỷ)</b><br><br>
+          👉 <i>Bấm chọn nhanh chủ đề bạn muốn xem ngay dưới đây:</i>
+          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-indigo-200">
+              🎓 Các ngành đào tạo
+            </button>
+            <button onclick="sendQuickMessage('Học phí')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-emerald-200">
+              💰 Miễn 100% học phí &amp; KTX
+            </button>
+            <button onclick="sendQuickMessage('Điều kiện tuyển sinh')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-amber-200">
+              📝 Điều kiện xét tuyển
+            </button>
+            <button onclick="sendQuickMessage('Hệ 9+')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-purple-200">
+              📚 Học nghề + Cấp 3 (Hệ 9+)
+            </button>
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-[11px] font-semibold transition shadow-sm">
+              📞 Hẹn cán bộ gọi lại
+            </button>
+          </div>`, 'bot');
         }, 300);
         return;
       }
 
-      // 0.2. Lời chào chung
-      if (
-        (q.includes('xin chào') || q.includes('chào') || q.includes('hello') || q === 'hi')
-        && !hasSpecificTopic
-      ) {
+      // 0.2. NHÓM 2: Yêu cầu tư vấn trực tiếp (Tư vấn, Xin được tư vấn, Cần tư vấn, Tư vấn tuyển sinh...)
+      const isYeuCauTuVan = q.includes('tư vấn') || q.includes('tu van') ||
+                            q.includes('từ vấn') || // xử lý gõ nhầm dấu
+                            q.includes('xin được tư vấn') || q.includes('xin duoc tu van') ||
+                            q.includes('cần tư vấn') || q.includes('can tu van') ||
+                            q.includes('muốn tư vấn') || q.includes('muon tu van') ||
+                            q.includes('nhờ tư vấn') || q.includes('nho tu van') ||
+                            q.includes('hỗ trợ tư vấn') || q.includes('ho tro tu van') ||
+                            q.includes('tư vấn giúp') || q.includes('tu van giup');
+
+      if (isYeuCauTuVan && !hasSpecificTopic) {
         setTimeout(() => {
-          appendMessage(`👋 <b>Chào bạn, cảm ơn bạn đã liên hệ, bạn có câu hỏi gì không?</b>`, 'bot');
+          appendMessage(`📢 <b>DẠ CÁN BỘ TUYỂN SINH SẴN SÀNG TƯ VẤN CHO BẠN NGAY!</b><br><br>
+          Bạn có thể chọn hình thức tư vấn thuận tiện nhất:<br><br>
+          💬 <b>1. Tư vấn trực tuyến tức thì:</b> Hãy gửi ngay câu hỏi hoặc chọn các nút bấm bên dưới, tôi sẽ giải đáp chi tiết ngay.<br><br>
+          📞 <b>2. Hotline tư vấn trực tiếp:</b> Gọi số <b>0983 498 091 (Cô Thuỷ)</b> để được hỗ trợ trực tiếp.<br><br>
+          📝 <b>3. Hẹn cán bộ gọi lại:</b> Bấm nút bên dưới để gửi số điện thoại, cán bộ tuyển sinh sẽ gọi lại tư vấn chọn ngành phù hợp cho bạn.<br><br>
+          👉 <i>Bấm chọn nhanh nhu cầu tư vấn của bạn:</i>
+          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-lg text-[11px] font-semibold transition shadow-sm">
+              📞 Hẹn cán bộ gọi lại
+            </button>
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-indigo-200">
+              🎓 Tư vấn chọn ngành nghề
+            </button>
+            <button onclick="sendQuickMessage('Chính sách và hỗ trợ')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-emerald-200">
+              💰 Học phí &amp; Trợ cấp nội trú
+            </button>
+            <button onclick="sendQuickMessage('Cách nộp hồ sơ')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border border-amber-200">
+              📮 Hướng dẫn nộp hồ sơ
+            </button>
+          </div>`, 'bot');
         }, 300);
         return;
       }

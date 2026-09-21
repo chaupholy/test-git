@@ -638,6 +638,12 @@ function hoiNhanh(noidung) {
 
 }
 
+function sendQuickMessage(noidung) {
+
+    hoiNhanh(noidung);
+
+}
+
 
 
 /* =========================
@@ -768,17 +774,24 @@ function guiTinNhan() {
        CÓ CÂU HỎI / BẮT ĐẦU HỎI
     ========================= */
 
+    /* =========================
+       CHÀO HỎI & LỜI MỞ ĐẦU ĐẶT CÂU HỎI
+    ========================= */
+
     if(
-        (text.includes("có câu hỏi") ||
-        text.includes("muốn hỏi") ||
-        text === "cho em hỏi" ||
-        text === "cho tôi hỏi" ||
-        text === "em muốn hỏi" ||
-        text === "tôi muốn hỏi") &&
+        (text.includes("xin hỏi") || text.includes("xin hoi") ||
+        text.includes("cho tôi hỏi") || text.includes("cho toi hoi") ||
+        text.includes("cho em hỏi") || text.includes("cho em hoi") ||
+        text.includes("tôi có câu hỏi") || text.includes("toi co cau hoi") ||
+        text.includes("em có câu hỏi") || text.includes("có câu hỏi") ||
+        text.includes("muốn hỏi") || text.includes("muon hoi") ||
+        text.includes("chào bạn") || text.includes("chao ban") ||
+        text.includes("xin chào") || text.includes("xin chao") ||
+        text.includes("hello") || text === "hi" || text === "chào" || text === "chao") &&
         !text.includes("thời khóa biểu") && !text.includes("tkb") && !text.includes("lịch học") &&
         !text.includes("điểm danh") && !text.includes("lms") && !text.includes("trực tuyến") &&
         !text.includes("ngành") && !text.includes("nghề") && !text.includes("học phí") &&
-        !text.includes("tuyển sinh") && !text.includes("hồ sơ") && !text.includes("liên hệ") &&
+        !text.includes("hồ sơ") && !text.includes("liên hệ") &&
         !text.includes("giáo viên") && !text.includes("thầy") && !text.includes("cô") &&
         !text.includes("địa chỉ") && !text.includes("đối tượng") && !text.includes("điều kiện") &&
         !text.includes("khai giảng") && !text.includes("nhập học") && !text.includes("văn hóa") &&
@@ -786,23 +799,56 @@ function guiTinNhan() {
         !text.includes("cơ sở vật chất") && !text.includes("ngắn hạn") && !text.includes("9+")
     ) {
         traLoi =
-        "💬 <b>Cảm ơn bạn, bạn muốn hỏi về vấn đề gì? Vui lòng đặt câu hỏi trong khung chat!</b>";
+        "👋 <b>Dạ xin chào bạn! Cán bộ tuyển sinh Trường Trung cấp Dân tộc Nội trú An Giang rất vui được hỗ trợ bạn.</b><br><br>" +
+        "Bạn đang quan tâm đến vấn đề nào, hãy đặt câu hỏi trong khung chat nhé! Nhà trường có các thông tin nổi bật:<br><br>" +
+        "• 🎓 <b>Ngành đào tạo:</b> Ô tô, Máy lạnh, Điện, Máy tính, Đồ họa, Kế toán, Du lịch, Nông nghiệp...<br>" +
+        "• 💰 <b>Học phí & Ký túc xá:</b> Miễn 100% học phí THCS, KTX miễn phí, Trợ cấp nội trú<br>" +
+        "• 📝 <b>Tuyển sinh:</b> Điều kiện xét tuyển học bạ (không thi tuyển), Lịch khai giảng, Cách nộp hồ sơ<br>" +
+        "• 📚 <b>Chương trình 9+:</b> Vừa học nghề vừa học văn hóa THPT thi lấy bằng cấp 3<br>" +
+        "• 📞 <b>Hotline tư vấn tuyển sinh:</b> <b>0983 498 091 (Cô Thuỷ)</b><br><br>" +
+        "👉 <i>Bấm chọn nhanh chủ đề bạn muốn xem ngay dưới đây:</i><br>" +
+        "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
+        "<button onclick=\"sendQuickMessage('Các ngành đào tạo')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>🎓 Các ngành đào tạo</button>" +
+        "<button onclick=\"sendQuickMessage('Học phí')\" style='padding:5px 10px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>💰 Miễn 100% học phí & KTX</button>" +
+        "<button onclick=\"sendQuickMessage('Điều kiện tuyển sinh')\" style='padding:5px 10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📝 Điều kiện xét tuyển</button>" +
+        "<button onclick=\"sendQuickMessage('Hệ 9+')\" style='padding:5px 10px; background:#faf5ff; color:#7e22ce; border:1px solid #e9d5ff; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📚 Học nghề + Cấp 3 (Hệ 9+)</button>" +
+        "</div>";
     }
 
-
-
     /* =========================
-       CHÀO
+       YÊU CẦU TƯ VẤN (TƯ VẤN, XIN ĐƯỢC TƯ VẤN, CẦN TƯ VẤN...)
     ========================= */
-
     else if(
-        text.includes("xin chào") ||
-        text === "chào" ||
-        text.includes("hello") ||
-        text.includes("hi")
+        (text.includes("tư vấn") || text.includes("tu van") ||
+        text.includes("từ vấn") ||
+        text.includes("xin được tư vấn") || text.includes("xin duoc tu van") ||
+        text.includes("cần tư vấn") || text.includes("can tu van") ||
+        text.includes("muốn tư vấn") || text.includes("muon tu van") ||
+        text.includes("nhờ tư vấn") || text.includes("nho tu van") ||
+        text.includes("hỗ trợ tư vấn") || text.includes("ho tro tu van") ||
+        text.includes("tư vấn giúp") || text.includes("tu van giup")) &&
+        !text.includes("thời khóa biểu") && !text.includes("tkb") && !text.includes("lịch học") &&
+        !text.includes("điểm danh") && !text.includes("lms") && !text.includes("trực tuyến") &&
+        !text.includes("ngành") && !text.includes("nghề") && !text.includes("học phí") &&
+        !text.includes("hồ sơ") && !text.includes("liên hệ") &&
+        !text.includes("giáo viên") && !text.includes("thầy") && !text.includes("cô") &&
+        !text.includes("địa chỉ") && !text.includes("đối tượng") && !text.includes("điều kiện") &&
+        !text.includes("khai giảng") && !text.includes("nhập học") && !text.includes("văn hóa") &&
+        !text.includes("bằng cấp") && !text.includes("biểu mẫu") && !text.includes("sơ cấp") &&
+        !text.includes("cơ sở vật chất") && !text.includes("ngắn hạn") && !text.includes("9+")
     ) {
         traLoi =
-        "👋 <b>Chào bạn, cảm ơn bạn đã liên hệ, bạn có câu hỏi gì không?</b>";
+        "📢 <b>DẠ CÁN BỘ TUYỂN SINH SẴN SÀNG TƯ VẤN CHO BẠN NGAY!</b><br><br>" +
+        "Bạn có thể chọn hình thức tư vấn thuận tiện nhất:<br><br>" +
+        "💬 <b>1. Tư vấn trực tuyến tức thì:</b> Hãy gửi ngay câu hỏi hoặc chọn các nút bấm bên dưới, tôi sẽ giải đáp chi tiết ngay.<br><br>" +
+        "📞 <b>2. Hotline tư vấn trực tiếp:</b> Gọi số <b>0983 498 091 (Cô Thuỷ)</b> để được hỗ trợ trực tiếp.<br><br>" +
+        "📝 <b>3. Hẹn cán bộ gọi lại:</b> Bấm nút bên dưới để gửi số điện thoại, cán bộ tuyển sinh sẽ gọi lại tư vấn chọn ngành phù hợp cho bạn.<br><br>" +
+        "👉 <i>Bấm chọn nhanh nhu cầu tư vấn của bạn:</i><br>" +
+        "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
+        "<button onclick=\"sendQuickMessage('Các ngành đào tạo')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>🎓 Tư vấn chọn ngành</button>" +
+        "<button onclick=\"sendQuickMessage('Chính sách và hỗ trợ')\" style='padding:5px 10px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>💰 Học phí & Trợ cấp</button>" +
+        "<button onclick=\"sendQuickMessage('Hồ sơ')\" style='padding:5px 10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📮 Hướng dẫn nộp hồ sơ</button>" +
+        "</div>";
     }
 
     /* =========================
