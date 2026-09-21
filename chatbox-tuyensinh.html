@@ -216,7 +216,7 @@
       const q = query.toLowerCase();
 
       // 0. Kiểm tra chủ đề chuyên biệt
-      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('tuyển sinh') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật') || q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('điểm danh') || q.includes('lms') || q.includes('trực tuyến');
+      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('tuyển sinh') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật') || q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('điểm danh') || q.includes('lms') || q.includes('trực tuyến') || q.includes('đối tượng') || q.includes('điều kiện') || q.includes('khai giảng') || q.includes('nhập học') || q.includes('văn hóa') || q.includes('bằng cấp') || q.includes('biểu mẫu') || q.includes('sơ cấp') || q.includes('cơ sở vật chất') || q.includes('ngắn hạn') || q.includes('hệ 9+') || q.includes('9+') || q.includes('dưới 3 tháng') || q.includes('mẫu') || q.includes('văn bằng');
 
       // 0.1. Khi người dùng nhắn: Có câu hỏi / Muốn hỏi
       if (
@@ -224,7 +224,15 @@
         && !hasSpecificTopic
       ) {
         setTimeout(() => {
-          appendMessage(`💬 <b>Cảm ơn bạn, bạn muốn hỏi về vấn đề gì? Vui lòng đặt câu hỏi trong khung chat!</b>`, 'bot');
+          appendMessage(`💬 <b>Cảm ơn bạn! Bạn muốn hỏi về vấn đề gì?</b><br><br>
+          Bạn có thể hỏi tôi về:<br>
+          • 🎓 <b>Ngành đào tạo:</b> Ô tô, Máy lạnh, Điện, Máy tính, Đồ họa, Du lịch, Kế toán...<br>
+          • 💰 <b>Học phí &amp; Ký túc xá:</b> Miễn 100% học phí THCS, KTX miễn phí<br>
+          • 🎁 <b>Chính sách:</b> Trợ cấp nội trú, tiền xe, hỗ trợ chi phí ban đầu<br>
+          • 📝 <b>Hồ sơ:</b> Điều kiện xét tuyển, Lịch khai giảng, Cách nộp hồ sơ<br>
+          • 📚 <b>Hệ thống:</b> Thời khóa biểu, Điểm danh, Học LMS<br>
+          • 📧 <b>Liên hệ:</b> Email thầy/cô, Trưởng khoa, Ban Giám Hiệu<br><br>
+          <i>Vui lòng đặt câu hỏi trong khung chat để được hỗ trợ ngay nhé!</i>`, 'bot');
         }, 300);
         return;
       }
@@ -370,7 +378,7 @@
       }
 
       // 1.1. Câu hỏi: Trường đào tạo những trình độ nào?
-      if (q.includes('trình độ') || q.includes('sơ cấp') || q.includes('thường xuyên') || q.includes('hệ đào tạo')) {
+      if (q.includes('trình độ đào tạo') || q.includes('các trình độ') || q.includes('hệ đào tạo') || (q.includes('trình độ') && !q.includes('văn hóa') && !q.includes('thcs') && !q.includes('thpt'))) {
         setTimeout(() => {
           appendMessage(`📚 <b>CÁC TRÌNH ĐỘ ĐÀO TẠO</b><br><br>
           Trường đào tạo các trình độ:<br>
@@ -895,13 +903,183 @@
       }
 
       // 7. Câu hỏi: Chính sách hỗ trợ / Trợ cấp
-      if (q.includes('chính sách hỗ trợ') || q.includes('hưởng chính sách') || q.includes('trợ cấp') || q.includes('tiền xe') || q.includes('chi phí ban đầu') || q.includes('hỗ trợ')) {
+      if (q.includes('chính sách hỗ trợ') || q.includes('hưởng chính sách') || q.includes('trợ cấp') || q.includes('tiền xe') || q.includes('chi phí ban đầu') || (q.includes('hỗ trợ') && !q.includes('hỗ trợ gì'))) {
         setTimeout(() => {
-          appendMessage(`🎁 <b>CHÍNH SÁCH HỖ TRỢ</b><br><br>
-          Học sinh thuộc diện chính sách được hưởng:<br><br>
-          🏠 Trợ cấp nội trú hàng tháng<br>
-          💵 Hỗ trợ chi phí ban đầu<br>
-          🚌 Hỗ trợ tiền xe.`, 'bot');
+          appendMessage(`🎁 <b>CHÍNH SÁCH HỖ TRỢ DÀNH CHO HỌC SINH</b><br><br>
+          Học sinh thuộc diện chính sách theo quy định Nhà nước được hưởng đầy đủ các chế độ:<br><br>
+          • 🏠 <b>Trợ cấp nội trú:</b> Hỗ trợ chi phí sinh hoạt hàng tháng theo chính sách học sinh nội trú.<br>
+          • 💵 <b>Hỗ trợ chi phí ban đầu:</b> Hỗ trợ tiền mua sắm đồ dùng cá nhân 1.000.000đ/khóa học.<br>
+          • 🚌 <b>Hỗ trợ tiền tàu xe:</b> Hỗ trợ tiền xe đi lại 2 lần/năm trong dịp lễ tết hoặc hè.<br>
+          • 🆓 <b>Ký túc xá:</b> Miễn phí 100% chỗ ở nội trú tại trường.<br><br>
+          📖 Chi tiết xem thêm trong <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-indigo-600 font-semibold underline">Sổ tay các nghề</a>.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 15. Câu hỏi: Đối tượng & Điều kiện tuyển sinh
+      if (
+        q.includes('đối tượng') || q.includes('doi tuong') ||
+        q.includes('điều kiện') || q.includes('dieu kien') ||
+        q.includes('ai được học') || q.includes('ai duoc hoc') ||
+        q.includes('độ tuổi') || q.includes('do tuoi') ||
+        (q.includes('tốt nghiệp') && (q.includes('thcs') || q.includes('thpt') || q.includes('lớp 9') || q.includes('cấp 2')))
+      ) {
+        setTimeout(() => {
+          appendMessage(`📋 <b>ĐỐI TƯỢNG & ĐIỀU KIỆN TUYỂN SINH</b><br><br>
+          Trường Trung cấp Dân tộc Nội trú An Giang tuyển sinh các đối tượng:<br><br>
+          • 🎓 <b>Trình độ văn hóa:</b> Học sinh đã tốt nghiệp THCS (lớp 9) hoặc tương đương; học sinh tốt nghiệp THPT hoặc chưa đỗ tốt nghiệp THPT.<br>
+          • 🎂 <b>Độ tuổi:</b> Từ 15 tuổi trở lên, có đủ sức khỏe theo học ngành nghề đã chọn.<br>
+          • 📝 <b>Hình thức tuyển:</b> <b>Xét tuyển học bạ</b> (Hoàn toàn KHÔNG THI TUYỂN).<br>
+          • 🌟 <b>Ưu tiên:</b> Học sinh là người dân tộc thiểu số, học sinh thuộc hộ nghèo, cận nghèo, vùng sâu vùng xa, vùng biên giới.<br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            👉 Đăng Ký Xét Tuyển Trực Tuyến
+          </a>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 16. Câu hỏi: Thời gian nhận hồ sơ & Lịch khai giảng
+      if (
+        q.includes('khi nào nhận hồ sơ') || q.includes('thời gian nhận hồ sơ') ||
+        q.includes('hạn nộp') || q.includes('han nop') ||
+        q.includes('lịch khai giảng') || q.includes('lich khai giang') ||
+        q.includes('khi nào khai giảng') || q.includes('khi nào nhập học') ||
+        q.includes('thời gian nhập học') || q.includes('khi nào học') ||
+        q.includes('thời gian tuyển sinh') || q.includes('đợt tuyển sinh')
+      ) {
+        setTimeout(() => {
+          appendMessage(`📅 <b>THỜI GIAN NHẬN HỒ SƠ & LỊCH KHAI GIẢNG</b><br><br>
+          • 📝 <b>Thời gian nhận hồ sơ:</b> Tiếp nhận hồ sơ <b>liên tục trong năm</b>. Đợt cao điểm từ tháng <b>4 đến tháng 11</b> hàng năm.<br><br>
+          • 🎉 <b>Lịch khai giảng:</b><br>
+          - <b>Đợt chính:</b> Vào tháng 9 và tháng 10 hàng năm.<br>
+          - <b>Các đợt bổ sung:</b> Mở lớp linh hoạt theo từng ngành nghề khi đủ số lượng học viên.<br><br>
+          💡 <i>Bạn nên nộp hồ sơ sớm để được ưu tiên sắp xếp Ký túc xá miễn phí và kịp thời hoàn tất thủ tục nhận trợ cấp chính sách nội trú!</i><br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            👉 Nộp Hồ Sơ Giữ Chỗ Sớm
+          </a>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 17. Câu hỏi: Phương thức & Cách nộp hồ sơ
+      if (
+        q.includes('nộp hồ sơ ở đâu') || q.includes('cách nộp hồ sơ') ||
+        q.includes('phương thức nộp') || q.includes('phuong thuc nop') ||
+        q.includes('cách đăng ký') || q.includes('hướng dẫn nộp') ||
+        q.includes('nop ho so o dau') || q.includes('cach nop ho so')
+      ) {
+        setTimeout(() => {
+          appendMessage(`📮 <b>PHƯƠNG THỨC & CÁCH NỘP HỒ SƠ</b><br><br>
+          Bạn có thể lựa chọn 1 trong 3 hình thức nộp hồ sơ sau:<br><br>
+          • 🌐 <b>Cách 1 - Đăng ký Online:</b> Điền hồ sơ xét tuyển trực tuyến tại Cổng Tuyển sinh:<br>
+          👉 <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 font-bold underline">https://tuyensinh.dtntag.edu.vn/tuyen-sinh</a><br><br>
+          • 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Đến nộp tại Văn phòng Tuyển sinh (Phòng QLHS & GTVL hoặc Phòng Đào tạo) tại <b>Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang</b>.<br><br>
+          • 📦 <b>Cách 3 - Gửi qua bưu điện:</b> Gửi chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (Hotline: 0983 498 091 - Cô Thuỷ)</i>.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 18. Câu hỏi: Chương trình văn hóa THPT hệ 9+ (Vừa học nghề vừa học cấp 3)
+      if (
+        q.includes('văn hóa') || q.includes('van hoa') ||
+        q.includes('hệ 9+') || q.includes('he 9+') || q.includes('9+') ||
+        q.includes('vừa học nghề vừa học') || q.includes('học cấp 3') ||
+        q.includes('học thpt') || q.includes('bằng cấp 3') || q.includes('văn hóa thpt')
+      ) {
+        setTimeout(() => {
+          appendMessage(`📚 <b>CHƯƠNG TRÌNH VĂN HÓA THPT (HỆ 9+)</b><br><br>
+          Mô hình dành riêng cho học sinh <b>tốt nghiệp THCS (lớp 9)</b>:<br><br>
+          • 🎓 <b>Đào tạo kép song song:</b> Học sinh vừa học nghề Trung cấp chính quy (<b>miễn 100% học phí nghề</b>), vừa học 7 môn văn hóa THPT (chương trình GDTX cấp THPT).<br><br>
+          • ⏱️ <b>Thời gian học:</b> 3 năm (vừa hoàn thành chương trình văn hóa cấp 3 vừa thành thạo tay nghề).<br><br>
+          • 📜 <b>Quyền lợi sau tốt nghiệp:</b><br>
+          - Nhận <b>Bằng Trung cấp chính quy</b>.<br>
+          - Dự thi tốt nghiệp để nhận <b>Bằng tốt nghiệp THPT</b>.<br>
+          - Tiết kiệm thời gian, có thể đi làm ngay với mức lương hấp dẫn hoặc <b>liên thông thẳng lên Cao đẳng, Đại học</b>!`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 19. Câu hỏi: Bằng cấp sau tốt nghiệp & Giá trị văn bằng
+      if (
+        q.includes('bằng cấp') || q.includes('bang cap') ||
+        q.includes('văn bằng') || q.includes('van bang') ||
+        q.includes('bằng tốt nghiệp') || q.includes('bang tot nghiep') ||
+        q.includes('giá trị bằng') || q.includes('gia tri bang') ||
+        q.includes('bằng gì') || q.includes('phôi bằng')
+      ) {
+        setTimeout(() => {
+          appendMessage(`📜 <b>BẰNG CẤP TỐT NGHIỆP & GIÁ TRỊ VĂN BẰNG</b><br><br>
+          • 🎓 <b>Văn bằng được cấp:</b> Hoàn thành khóa học, học sinh được cấp <b>BẰNG TRUNG CẤP CHÍNH QUY</b> theo phôi bằng chuẩn quốc gia của Bộ Lao động - Thương binh & Xã hội / Bộ GD&ĐT.<br><br>
+          • 🌐 <b>Giá trị pháp lý & cơ hội:</b><br>
+          - Có giá trị lưu hành và công nhận trên <b>toàn quốc</b>.<br>
+          - Đủ điều kiện đăng ký thi tuyển công chức, viên chức vào cơ quan nhà nước.<br>
+          - Được các doanh nghiệp trong nước và quốc tế tiếp nhận làm việc đúng tay nghề.<br>
+          - Đủ điều kiện <b>học liên thông lên trình độ Cao đẳng, Đại học</b> theo quy định.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 20. Câu hỏi: Đào tạo Sơ cấp & Khóa học ngắn hạn dưới 3 tháng
+      if (
+        (q.includes('sơ cấp') && !q.includes('trình độ')) ||
+        q.includes('ngắn hạn') || q.includes('ngan han') ||
+        q.includes('dưới 3 tháng') || q.includes('duoi 3 thang') ||
+        q.includes('lớp sơ cấp') || q.includes('khóa học ngắn')
+      ) {
+        setTimeout(() => {
+          appendMessage(`⏱️ <b>ĐÀO TẠO SƠ CẤP & KHÓA NGẮN HẠN (&lt; 3 THÁNG)</b><br><br>
+          Nhà trường thường xuyên mở các lớp đào tạo nghề ngắn hạn thực hành thực tế:<br><br>
+          • 🛵 <b>Sửa chữa xe gắn máy</b><br>
+          • ⚡ <b>Kỹ thuật điện dân dụng & Điện công nghiệp</b><br>
+          • 💻 <b>Tin học văn phòng & Ứng dụng CNTT cơ bản</b><br>
+          • ❄️ <b>Kỹ thuật sửa chữa Máy lạnh & Tủ lạnh</b><br>
+          • 🧵 <b>Kỹ thuật may công nghiệp & May dân dụng</b><br>
+          • 🌾 <b>Kỹ thuật trồng trọt nông nghiệp sạch</b><br><br>
+          🎯 <b>Ưu điểm:</b> Thời gian học nhanh, 90% thực hành tại xưởng, cấp <b>Chứng chỉ Sơ cấp / Chứng chỉ đào tạo nghề</b> có giá trị hành nghề toàn quốc.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 21. Câu hỏi: Tải biểu mẫu hồ sơ tuyển sinh & học tập
+      if (
+        q.includes('tải biểu mẫu') || q.includes('tai bieu mau') ||
+        q.includes('biểu mẫu') || q.includes('bieu mau') ||
+        q.includes('mẫu đơn') || q.includes('mau don') ||
+        q.includes('mẫu hồ sơ') || q.includes('mau ho so') ||
+        q.includes('phiếu đăng ký') || q.includes('phieu dang ky') ||
+        q.includes('tải hồ sơ') || q.includes('tai ho so')
+      ) {
+        setTimeout(() => {
+          appendMessage(`📁 <b>TẢI BIỂU MẪU HỒ SƠ TUYỂN SINH & HỌC TẬP</b><br><br>
+          Bạn có thể tải trực tiếp các biểu mẫu chính thức tại trang Tiện ích của nhà trường:<br><br>
+          👉 <a href="https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so" target="_blank" class="text-indigo-600 font-bold underline">https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so</a><br><br>
+          <b>Các biểu mẫu phổ biến:</b><br>
+          • 📝 Phiếu đăng ký dự tuyển học nghề<br>
+          • 📄 Bản cam kết của phụ huynh và học sinh<br>
+          • 🏠 Đơn xin ở Ký túc xá nội trú<br>
+          • 💵 Đơn xin miễn giảm học phí & Đơn hưởng trợ cấp nội trú/xã hội<br><br>
+          <a href="https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            📥 Tải Biểu Mẫu Hồ Sơ Ngay ↗
+          </a>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 22. Câu hỏi: Cơ sở vật chất, Xưởng thực hành & Môi trường KTX
+      if (
+        q.includes('cơ sở vật chất') || q.includes('co so vat chat') ||
+        q.includes('môi trường') || q.includes('moi truong') ||
+        q.includes('trang thiết bị') || q.includes('phòng học') ||
+        q.includes('khuôn viên') || q.includes('sân chơi') ||
+        q.includes('tiện nghi')
+      ) {
+        setTimeout(() => {
+          appendMessage(`🏫 <b>CƠ SỞ VẬT CHẤT & MÔI TRƯỜNG HỌC TẬP</b><br><br>
+          Trường Trung cấp Dân tộc Nội trú An Giang sở hữu khuôn viên rộng rãi, thoáng mát cùng trang thiết bị học tập hiện đại:<br><br>
+          • 🔧 <b>Hệ thống xưởng thực hành:</b> Đầy đủ xưởng Công nghệ ô tô, xưởng Cơ điện lạnh, xưởng Điện công nghiệp với máy móc đồng bộ.<br>
+          • 💻 <b>Phòng thực hành máy tính:</b> Nhiều phòng máy tính cấu hình cao kết nối mạng internet cáp quang phục vụ học CNTT, Đồ họa, TMĐT.<br>
+          • 🏠 <b>Ký túc xá nội trú:</b> Khang trang, sạch sẽ, miễn phí 100% chỗ ở cho học sinh ở xa.<br>
+          • ⚽ <b>Khu rèn luyện thể thao:</b> Sân bóng đá mini, bóng chuyền, sân chơi thể thao và các câu lạc bộ văn hóa nghệ thuật sôi nổi.`, 'bot');
         }, 300);
         return;
       }
@@ -910,11 +1088,14 @@
       if (q.includes('hồ sơ') || q.includes('giấy tờ') || q.includes('cần chuẩn bị')) {
         setTimeout(() => {
           appendMessage(`📄 <b>HỒ SƠ ĐĂNG KÝ TUYỂN SINH</b><br><br>
-          📝 Phiếu đăng ký dự tuyển<br>
-          📋 Bản sao giấy khai sinh<br>
-          🎓 Bản sao bằng tốt nghiệp<br>
-          📸 Ảnh 4×6<br>
-          📌 Giấy tờ ưu tiên (nếu có).`, 'bot');
+          Hồ sơ tuyển sinh cần chuẩn bị bao gồm:<br><br>
+          • 📝 Phiếu đăng ký dự tuyển (theo mẫu của trường)<br>
+          • 📋 Bản sao bằng tốt nghiệp THCS/THPT (hoặc giấy chứng nhận tốt nghiệp tạm thời)<br>
+          • 📘 Bản sao học bạ THCS/THPT<br>
+          • 📑 Bản sao giấy khai sinh & Căn cước công dân (CCCD)<br>
+          • 📸 4 ảnh 4×6 (chụp không quá 6 tháng)<br>
+          • 📌 Giấy tờ xác nhận đối tượng ưu tiên, chế độ chính sách (nếu có).<br><br>
+          📁 <a href="https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so" target="_blank" class="text-indigo-600 underline font-semibold">Tải biểu mẫu hồ sơ tuyển sinh tại đây</a>`, 'bot');
         }, 300);
         return;
       }
@@ -976,7 +1157,14 @@
 
       // Trả lời mặc định
       setTimeout(() => {
-        appendMessage(`Cảm ơn bạn! Bạn có thể xem ngay <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-indigo-600 underline font-semibold">Sổ tay các nghề</a> hoặc truy cập <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 underline font-semibold">Cổng Đăng Ký Online</a> nhé!`, 'bot');
+        appendMessage(`🤔 Cảm ơn bạn! Để tôi hỗ trợ tốt nhất, bạn có thể tham khảo hoặc đặt câu hỏi về các chủ đề sau:<br><br>
+        • 🎓 <b>Ngành đào tạo:</b> Ô tô, Điện lạnh, Điện công nghiệp, Máy tính, Đồ họa, Kế toán, Du lịch, Nông nghiệp...<br>
+        • 📋 <b>Tuyển sinh:</b> Điều kiện xét tuyển, Lịch khai giảng, Cách nộp hồ sơ<br>
+        • 💰 <b>Học phí & Chính sách:</b> Miễn 100% học phí THCS, KTX miễn phí, Trợ cấp nội trú<br>
+        • 📚 <b>Hệ thống học tập:</b> Thời khóa biểu, Điểm danh online, Học trực tuyến LMS<br>
+        • 📁 <b>Biểu mẫu:</b> Tải biểu mẫu hồ sơ tuyển sinh & nội trú<br>
+        • 📧 <b>Liên hệ:</b> Tra cứu email cán bộ, giáo viên, BGH nhà trường<br><br>
+        📖 Hoặc bạn có thể xem <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-indigo-600 underline font-semibold">Sổ tay các nghề lật online</a> hoặc vào <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 underline font-semibold">Cổng Đăng Ký Online</a> nhé!`, 'bot');
       }, 300);
     }
 

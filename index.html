@@ -780,7 +780,10 @@ function guiTinNhan() {
         !text.includes("ngành") && !text.includes("nghề") && !text.includes("học phí") &&
         !text.includes("tuyển sinh") && !text.includes("hồ sơ") && !text.includes("liên hệ") &&
         !text.includes("giáo viên") && !text.includes("thầy") && !text.includes("cô") &&
-        !text.includes("địa chỉ")
+        !text.includes("địa chỉ") && !text.includes("đối tượng") && !text.includes("điều kiện") &&
+        !text.includes("khai giảng") && !text.includes("nhập học") && !text.includes("văn hóa") &&
+        !text.includes("bằng cấp") && !text.includes("biểu mẫu") && !text.includes("sơ cấp") &&
+        !text.includes("cơ sở vật chất") && !text.includes("ngắn hạn") && !text.includes("9+")
     ) {
         traLoi =
         "💬 <b>Cảm ơn bạn, bạn muốn hỏi về vấn đề gì? Vui lòng đặt câu hỏi trong khung chat!</b>";
@@ -1769,6 +1772,312 @@ function guiTinNhan() {
 
 
     /* =========================
+       ĐỐI TƯỢNG & ĐIỀU KIỆN TUYỂN SINH
+    ========================= */
+
+    else if(
+
+        text.includes("đối tượng") || text.includes("doi tuong") ||
+
+        text.includes("điều kiện") || text.includes("dieu kien") ||
+
+        text.includes("ai được học") || text.includes("ai duoc hoc") ||
+
+        text.includes("độ tuổi") || text.includes("do tuoi") ||
+
+        (text.includes("tốt nghiệp") && (text.includes("thcs") || text.includes("thpt") || text.includes("lớp 9") || text.includes("cấp 2")))
+
+    ) {
+
+        traLoi =
+
+        "📋 <b>ĐỐI TƯỢNG & ĐIỀU KIỆN TUYỂN SINH</b><br><br>" +
+
+        "Trường Trung cấp Dân tộc Nội trú An Giang tuyển sinh các đối tượng:<br><br>" +
+
+        "• 🎓 <b>Trình độ văn hóa:</b> Tốt nghiệp THCS (lớp 9) trở lên hoặc tương đương; tốt nghiệp THPT hoặc chưa đỗ tốt nghiệp THPT.<br>" +
+
+        "• 🎂 <b>Độ tuổi:</b> Từ 15 tuổi trở lên, đủ sức khỏe theo học nghề.<br>" +
+
+        "• 📝 <b>Hình thức:</b> <b>Xét tuyển học bạ</b> (Hoàn toàn KHÔNG THI TUYỂN).<br>" +
+
+        "• 🌟 <b>Ưu tiên:</b> Con em đồng bào dân tộc thiểu số, học sinh diện chính sách, hộ nghèo, vùng sâu vùng xa.<br><br>" +
+
+        "👉 Đăng ký trực tuyến tại: <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'><b>https://tuyensinh.dtntag.edu.vn/tuyen-sinh</b></a>";
+
+    }
+
+
+
+    /* =========================
+       THỜI GIAN NHẬN HỒ SƠ & LỊCH KHAI GIẢNG
+    ========================= */
+
+    else if(
+
+        text.includes("khi nào nhận hồ sơ") || text.includes("thời gian nhận hồ sơ") ||
+
+        text.includes("hạn nộp") || text.includes("han nop") ||
+
+        text.includes("lịch khai giảng") || text.includes("lich khai giang") ||
+
+        text.includes("khi nào khai giảng") || text.includes("khi nào nhập học") ||
+
+        text.includes("thời gian nhập học") || text.includes("khi nào học") ||
+
+        text.includes("thời gian tuyển sinh") || text.includes("đợt tuyển sinh")
+
+    ) {
+
+        traLoi =
+
+        "📅 <b>THỜI GIAN NHẬN HỒ SƠ & LỊCH KHAI GIẢNG</b><br><br>" +
+
+        "• 📝 <b>Thời gian nhận hồ sơ:</b> Nhà trường nhận hồ sơ <b>liên tục trong năm</b>, cao điểm từ tháng <b>4 đến tháng 11</b>.<br><br>" +
+
+        "• 🎉 <b>Lịch khai giảng:</b><br>" +
+
+        "- Đợt chính: Tháng 9 và tháng 10 hàng năm.<br>" +
+
+        "- Các đợt bổ sung: Khai giảng linh hoạt khi đủ số lượng học viên.<br><br>" +
+
+        "💡 <i>Nên nộp hồ sơ sớm để được ưu tiên bố trí Ký túc xá miễn phí và hoàn tất thủ tục trợ cấp nội trú!</i><br><br>" +
+
+        "👉 Đăng ký giữ chỗ: <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'><b>https://tuyensinh.dtntag.edu.vn/tuyen-sinh</b></a>";
+
+    }
+
+
+
+    /* =========================
+       PHƯƠNG THỨC & CÁCH NỘP HỒ SƠ
+    ========================= */
+
+    else if(
+
+        text.includes("nộp hồ sơ ở đâu") || text.includes("cách nộp hồ sơ") ||
+
+        text.includes("phương thức nộp") || text.includes("phuong thuc nop") ||
+
+        text.includes("cách đăng ký") || text.includes("hướng dẫn nộp") ||
+
+        text.includes("nop ho so o dau") || text.includes("cach nop ho so")
+
+    ) {
+
+        traLoi =
+
+        "📮 <b>PHƯƠNG THỨC & CÁCH NỘP HỒ SƠ</b><br><br>" +
+
+        "Bạn có thể chọn 1 trong 3 hình thức nộp hồ sơ rất thuận tiện sau:<br><br>" +
+
+        "• 🌐 <b>Cách 1 - Đăng ký Online:</b> Đăng ký qua Cổng tuyển sinh trực tuyến:<br>" +
+
+        "👉 <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'><b>https://tuyensinh.dtntag.edu.vn/tuyen-sinh</b></a><br><br>" +
+
+        "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Đến Văn phòng Tuyển sinh trường tại <b>Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang</b>.<br><br>" +
+
+        "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (SĐT: 0983 498 091 - Cô Thuỷ)</i>.";
+
+    }
+
+
+
+    /* =========================
+       CHƯƠNG TRÌNH VĂN HÓA THPT (HỆ 9+)
+    ========================= */
+
+    else if(
+
+        text.includes("văn hóa") || text.includes("van hoa") ||
+
+        text.includes("hệ 9+") || text.includes("he 9+") || text.includes("9+") ||
+
+        text.includes("vừa học nghề vừa học") || text.includes("học cấp 3") ||
+
+        text.includes("học thpt") || text.includes("bằng cấp 3") || text.includes("văn hóa thpt")
+
+    ) {
+
+        traLoi =
+
+        "📚 <b>CHƯƠNG TRÌNH VĂN HÓA THPT (HỆ 9+)</b><br><br>" +
+
+        "Chương trình dành riêng cho học sinh <b>tốt nghiệp THCS (lớp 9)</b>:<br><br>" +
+
+        "• 🎓 <b>Mô hình kép:</b> Vừa học nghề Trung cấp chính quy (<b>miễn 100% học phí nghề</b>), vừa học văn hóa THPT (chương trình GDTX).<br><br>" +
+
+        "• ⏱️ <b>Thời gian học:</b> 3 năm.<br><br>" +
+
+        "• 📜 <b>Quyền lợi sau tốt nghiệp:</b><br>" +
+
+        "- Nhận <b>Bằng Trung cấp nghề chính quy</b>.<br>" +
+
+        "- Nhận <b>Bằng tốt nghiệp THPT</b> sau kỳ thi tốt nghiệp quốc gia.<br>" +
+
+        "- Đủ điều kiện đi làm ngay hoặc <b>liên thông thẳng lên Cao đẳng, Đại học</b>!";
+
+    }
+
+
+
+    /* =========================
+       BẰNG CẤP & GIÁ TRỊ VĂN BẰNG
+    ========================= */
+
+    else if(
+
+        text.includes("bằng cấp") || text.includes("bang cap") ||
+
+        text.includes("văn bằng") || text.includes("van bang") ||
+
+        text.includes("bằng tốt nghiệp") || text.includes("bang tot nghiep") ||
+
+        text.includes("giá trị bằng") || text.includes("gia tri bang") ||
+
+        text.includes("bằng gì") || text.includes("phôi bằng")
+
+    ) {
+
+        traLoi =
+
+        "📜 <b>BẰNG CẤP SAU TỐT NGHIỆP & GIÁ TRỊ VĂN BẰNG</b><br><br>" +
+
+        "• 🎓 <b>Văn bằng được cấp:</b> Tốt nghiệp được cấp <b>BẰNG TRUNG CẤP CHÍNH QUY</b> theo quy định quốc gia.<br><br>" +
+
+        "• 🌐 <b>Giá trị pháp lý:</b><br>" +
+
+        "- Có giá trị lưu hành và công nhận trên <b>toàn quốc</b>.<br>" +
+
+        "- Đủ điều kiện dự thi công chức, viên chức vào cơ quan nhà nước.<br>" +
+
+        "- Được các doanh nghiệp ưu tiên tuyển dụng làm việc.<br>" +
+
+        "- Đủ điều kiện <b>học liên thông lên Cao đẳng, Đại học</b> theo quy định.";
+
+    }
+
+
+
+    /* =========================
+       ĐÀO TẠO SƠ CẤP & KHÓA NGẮN HẠN (< 3 THÁNG)
+    ========================= */
+
+    else if(
+
+        (text.includes("sơ cấp") && !text.includes("trình độ")) ||
+
+        text.includes("ngắn hạn") || text.includes("ngan han") ||
+
+        text.includes("dưới 3 tháng") || text.includes("duoi 3 thang") ||
+
+        text.includes("lớp sơ cấp") || text.includes("khóa học ngắn")
+
+    ) {
+
+        traLoi =
+
+        "⏱️ <b>ĐÀO TẠO SƠ CẤP & KHÓA NGẮN HẠN (&lt; 3 THÁNG)</b><br><br>" +
+
+        "Nhà trường thường xuyên mở các lớp đào tạo nghề ngắn hạn thực tế:<br><br>" +
+
+        "• 🛵 Sửa chữa xe gắn máy<br>" +
+
+        "• ⚡ Kỹ thuật điện dân dụng & Điện công nghiệp<br>" +
+
+        "• 💻 Tin học văn phòng & Ứng dụng CNTT cơ bản<br>" +
+
+        "• ❄️ Sửa chữa Máy lạnh & Tủ lạnh<br>" +
+
+        "• 🧵 May công nghiệp & May dân dụng<br>" +
+
+        "• 🌾 Kỹ thuật trồng trọt nông nghiệp sạch<br><br>" +
+
+        "🎯 Thực hành 90%, cấp <b>Chứng chỉ Sơ cấp / Chứng chỉ đào tạo nghề</b> có giá trị toàn quốc.";
+
+    }
+
+
+
+    /* =========================
+       TẢI BIỂU MẪU HỒ SƠ
+    ========================= */
+
+    else if(
+
+        text.includes("tải biểu mẫu") || text.includes("tai bieu mau") ||
+
+        text.includes("biểu mẫu") || text.includes("bieu mau") ||
+
+        text.includes("mẫu đơn") || text.includes("mau don") ||
+
+        text.includes("mẫu hồ sơ") || text.includes("mau ho so") ||
+
+        text.includes("phiếu đăng ký") || text.includes("phieu dang ky") ||
+
+        text.includes("tải hồ sơ") || text.includes("tai ho so")
+
+    ) {
+
+        traLoi =
+
+        "📁 <b>TẢI BIỂU MẪU HỒ SƠ TUYỂN SINH & HỌC TẬP</b><br><br>" +
+
+        "Bạn có thể tải trực tiếp các biểu mẫu chính thức tại trang Tiện ích của nhà trường:<br><br>" +
+
+        "👉 <a href='https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so' target='_blank'><b>https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so</b></a><br><br>" +
+
+        "<b>Các biểu mẫu phổ biến:</b><br>" +
+
+        "• 📝 Phiếu đăng ký dự tuyển học nghề<br>" +
+
+        "• 📄 Bản cam kết của phụ huynh học sinh<br>" +
+
+        "• 🏠 Đơn xin ở Ký túc xá nội trú<br>" +
+
+        "• 💵 Đơn miễn giảm học phí & Đơn trợ cấp nội trú/xã hội";
+
+    }
+
+
+
+    /* =========================
+       CƠ SỞ VẬT CHẤT & KÝ TÚC XÁ
+    ========================= */
+
+    else if(
+
+        text.includes("cơ sở vật chất") || text.includes("co so vat chat") ||
+
+        text.includes("môi trường") || text.includes("moi truong") ||
+
+        text.includes("trang thiết bị") || text.includes("phòng học") ||
+
+        text.includes("khuôn viên") || text.includes("sân chơi") ||
+
+        text.includes("tiện nghi")
+
+    ) {
+
+        traLoi =
+
+        "🏫 <b>CƠ SỞ VẬT CHẤT & MÔI TRƯỜNG HỌC TẬP</b><br><br>" +
+
+        "Trường Trung cấp Dân tộc Nội trú An Giang sở hữu khuôn viên rộng rãi, xanh sạch đẹp cùng trang thiết bị hiện đại:<br><br>" +
+
+        "• 🔧 <b>Xưởng thực hành:</b> Đầy đủ xưởng Ô tô, Điện - Điện lạnh, Cơ khí chế tạo máy móc hiện đại.<br>" +
+
+        "• 💻 <b>Phòng máy tính:</b> Nhiều phòng máy tính cấu hình cao kết nối mạng internet cáp quang.<br>" +
+
+        "• 🏠 <b>Ký túc xá nội trú:</b> Khang trang, sạch sẽ, miễn phí 100% chỗ ở cho học sinh ở xa.<br>" +
+
+        "• ⚽ <b>Khu thể thao:</b> Sân bóng đá mini, bóng chuyền và các câu lạc bộ văn hóa thể thao.";
+
+    }
+
+
+
+    /* =========================
        HỒ SƠ
     ========================= */
 
@@ -2010,23 +2319,29 @@ function guiTinNhan() {
 
         "Bạn có thể hỏi tôi về:<br><br>" +
 
-        "🎓 Ngành đào tạo<br>" +
+        "🎓 Ngành đào tạo (Ô tô, Điện lạnh, Máy tính, Du lịch, Kế toán...)<br>" +
 
-        "📝 Điều kiện tuyển sinh<br>" +
+        "📝 Điều kiện tuyển sinh & Lịch khai giảng<br>" +
 
-        "💰 Miễn học phí<br>" +
+        "📮 Cách nộp hồ sơ (Online / Trực tiếp)<br>" +
 
-        "🏠 Ký túc xá<br>" +
+        "📚 Chương trình văn hóa THPT (Hệ 9+)<br>" +
 
-        "🎁 Chính sách hỗ trợ<br>" +
+        "📜 Bằng cấp & Cơ hội việc làm<br>" +
 
-        "📄 Hồ sơ tuyển sinh<br>" +
+        "💰 Miễn 100% học phí & Ký túc xá miễn phí<br>" +
 
-        "💼 Việc làm<br>" +
+        "🎁 Trợ cấp nội trú & Chính sách hỗ trợ<br>" +
 
-        "🎓 Liên thông<br>" +
+        "⏱️ Khóa học sơ cấp & Ngắn hạn &lt; 3 tháng<br>" +
 
-        "📞 Thông tin liên hệ.";
+        "📁 Tải biểu mẫu hồ sơ tuyển sinh<br>" +
+
+        "🏫 Cơ sở vật chất trường<br>" +
+
+        "💻 Hệ thống học tập (TKB, Điểm danh, LMS)<br>" +
+
+        "📧 Tra cứu email giáo viên & Cán bộ";
 
     }
 
