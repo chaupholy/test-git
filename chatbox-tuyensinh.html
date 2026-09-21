@@ -61,7 +61,7 @@
           </a>
 
           <!-- 3. Form Đăng ký tư vấn nhanh qua Sheet -->
-          <button onclick="sendQuickMessage('Nhận tư vấn nhanh')" 
+          <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" 
                   class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl text-left hover:bg-indigo-100 transition">
             <span class="font-bold">📞 Hẹn gọi tư vấn</span>
             <span class="text-[10px] text-gray-500 block mt-0.5">Để lại SĐT cán bộ gọi lại</span>
@@ -174,7 +174,7 @@
       }
 
       // 3. Form để lại thông tin gọi lại (ghi vào Google Sheet)
-      if (q.includes('tư vấn') || q.includes('hẹn') || q.includes('liên hệ')) {
+      if (q.includes('hẹn gọi') || q.includes('nhận tư vấn nhanh') || q.includes('để lại sđt') || q.includes('để lại số') || q.includes('gọi lại')) {
         setTimeout(() => {
           const formHTML = `
             <div class="font-semibold text-indigo-700 mb-1">📞 Hẹn Cán Bộ Tư Vấn Gọi Lại</div>
@@ -193,6 +193,19 @@
             </form>
           `;
           appendMessage(formHTML, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 3.1. Câu hỏi: Tôi muốn liên hệ để tư vấn như thế nào?
+      if (q.includes('liên hệ') || q.includes('tư vấn như thế nào') || q.includes('cách liên hệ') || q.includes('số điện thoại') || q.includes('hotline') || q.includes('cô thuỷ') || q.includes('gọi điện')) {
+        setTimeout(() => {
+          appendMessage(`📞 <b>LIÊN HỆ TƯ VẤN TUYỂN SINH</b><br><br>
+          Liên hệ số điện thoại: <b>0983 498 091 (Cô Thuỷ)</b><br><br>
+          Hoặc em có thể bấm nút bên dưới để hẹn cán bộ gọi lại hỗ trợ:<br><br>
+          <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg font-semibold transition text-xs shadow-sm">
+            📞 Hẹn Gọi Tư Vấn
+          </button>`, 'bot');
         }, 300);
         return;
       }
@@ -300,10 +313,10 @@
         return;
       }
 
-      // 14. Câu hỏi: Địa chỉ & Hotline tư vấn
-      if (q.includes('địa chỉ') || q.includes('ở đâu') || q.includes('trường nằm') || q.includes('hotline') || q.includes('điện thoại') || q.includes('cô thuỷ')) {
+      // 14. Câu hỏi: Địa chỉ nhà trường
+      if (q.includes('địa chỉ') || q.includes('ở đâu') || q.includes('trường nằm') || q.includes('vị trí')) {
         setTimeout(() => {
-          appendMessage(`📍 <b>ĐỊA CHỈ & LIÊN HỆ NHÀ TRƯỜNG</b><br><br>
+          appendMessage(`📍 <b>ĐỊA CHỈ NHÀ TRƯỜNG</b><br><br>
           🏫 <b>Địa chỉ:</b> Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang.<br><br>
           📞 <b>Hotline tư vấn tuyển sinh:</b> 0983 498 091 (Cô Thuỷ).`, 'bot');
         }, 300);
