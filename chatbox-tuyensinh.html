@@ -170,6 +170,22 @@
         return;
       }
 
+      // 1.1. Câu hỏi: Trường đào tạo những trình độ nào?
+      if (q.includes('trình độ') || q.includes('sơ cấp') || q.includes('thường xuyên') || q.includes('hệ đào tạo')) {
+        setTimeout(() => {
+          appendMessage(`📚 <b>CÁC TRÌNH ĐỘ ĐÀO TẠO</b><br><br>
+          Trường đào tạo các trình độ:<br>
+          • 🎓 <b>Trung cấp</b><br>
+          • 📘 <b>Sơ cấp</b><br>
+          • ⏱️ <b>Đào tạo thường xuyên &lt; 3 tháng</b>.<br><br>
+          Xem chương trình chi tiết tại Mục Đào tạo trên Website trường:<br><br>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            👉 Xem Mục Đào Tạo Website Trường
+          </a>`, 'bot');
+        }, 300);
+        return;
+      }
+
       // 2. Các ngành, nghề đang đào tạo
       if (q.includes('sổ tay') || q.includes('nghề') || q.includes('ngành') || q.includes('đang đào tạo') || q.includes('học gì')) {
         setTimeout(() => {
