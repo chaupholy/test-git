@@ -151,7 +151,7 @@
       // 0. Lời chào & Bắt đầu câu hỏi
       if (
         (q.includes('xin chào') || q.includes('chào') || q.includes('hello') || q === 'hi' || q.includes('có câu hỏi') || q === 'cho em hỏi' || q === 'cho tôi hỏi')
-        && !q.includes('học phí') && !q.includes('ngành') && !q.includes('nghề') && !q.includes('ký túc xá') && !q.includes('hồ sơ') && !q.includes('liên hệ') && !q.includes('thời gian') && !q.includes('thực hành') && !q.includes('tuyển sinh') && !q.includes('lĩnh vực') && !q.includes('trình độ')
+        && !q.includes('học phí') && !q.includes('ngành') && !q.includes('nghề') && !q.includes('ký túc xá') && !q.includes('hồ sơ') && !q.includes('liên hệ') && !q.includes('thời gian') && !q.includes('thực hành') && !q.includes('tuyển sinh') && !q.includes('lĩnh vực') && !q.includes('trình độ') && !q.includes('máy tính') && !q.includes('công nghệ thông tin') && !q.includes('cntt') && !q.includes('việc làm')
       ) {
         setTimeout(() => {
           appendMessage(`👋 <b>Chào bạn, cảm ơn bạn đã liên hệ, bạn có câu hỏi gì không?</b>`, 'bot');
@@ -216,6 +216,52 @@
           • Trồng trọt và bảo vệ thực vật<br><br>
           <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
             👉 Xem Chi Tiết Mục Đào Tạo Website Trường
+          </a><br><br>
+          📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 1.3. Câu hỏi: Cơ hội / Vị trí việc làm khối Công nghệ thông tin - Máy tính
+      const isITQuery = q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('máy tính') || q.includes('tin học') || q.includes('đồ họa') || q.includes('quản trị mạng') || q.includes('lắp ráp máy tính');
+      const isJobQuery = q.includes('việc làm') || q.includes('cơ hội') || q.includes('vị trí') || q.includes('ra trường làm') || q.includes('làm gì') || q.includes('xin việc') || q.includes('làm ở đâu');
+
+      if (isITQuery && isJobQuery) {
+        setTimeout(() => {
+          appendMessage(`💼 <b>VỊ TRÍ VIỆC LÀM KHỐI CÔNG NGHỆ THÔNG TIN &amp; MÁY TÍNH</b><br><br>
+          Sau khi tốt nghiệp các ngành CNTT tại trường, học sinh có cơ hội việc làm rộng mở tại nhiều cơ quan, doanh nghiệp:<br><br>
+          🖥️ <b>1. Kỹ thuật sửa chữa, lắp ráp máy tính:</b><br>
+          • Kỹ thuật viên bảo trì, lắp ráp, cài đặt hệ thống máy tính tại các công ty, cơ quan.<br>
+          • Nhân viên kỹ thuật phần cứng tại cửa hàng máy tính, siêu thị điện máy, trung tâm bảo hành.<br>
+          • Tự mở cửa hàng kinh doanh, sửa chữa máy tính, laptop.<br><br>
+          🌐 <b>2. Quản trị mạng máy tính:</b><br>
+          • Nhân viên quản trị hệ thống mạng nội bộ (LAN/WAN), camera tại doanh nghiệp, trường học, bệnh viện.<br>
+          • Kỹ thuật viên IT Helpdesk hỗ trợ kỹ thuật máy tính người dùng.<br>
+          • Kỹ thuật viên lắp đặt, bảo trì hạ tầng mạng cho các công ty công nghệ, viễn thông.<br><br>
+          🎨 <b>3. Thiết kế đồ họa:</b><br>
+          • Chuyên viên thiết kế banner, poster, ấn phẩm quảng cáo, bao bì tại các xưởng in, công ty quảng cáo.<br>
+          • Nhân viên xử lý ảnh tại các studio ảnh viện, công ty truyền thông - sự kiện.<br>
+          • Nhận dự án thiết kế tự do (Freelancer) hoặc thiết kế nội dung đồ họa bán hàng online.<br><br>
+          📊 <b>4. Tin học ứng dụng &amp; Tin học văn phòng:</b><br>
+          • Nhân viên tin học, văn thư, nhập liệu và xử lý số liệu tại các cơ quan hành chính, doanh nghiệp.<br>
+          • Quản lý phần mềm nghiệp vụ, quản trị nội dung website đơn vị.<br><br>
+          🤝 <i>Nhà trường luôn phối hợp với các doanh nghiệp trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp!</i>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 1.4. Câu hỏi: Các ngành Công nghệ thông tin / Máy tính của trường
+      if (isITQuery) {
+        setTimeout(() => {
+          appendMessage(`💻 <b>CÁC NGÀNH CÔNG NGHỆ THÔNG TIN &amp; MÁY TÍNH CỦA TRƯỜNG</b><br><br>
+          Trường hiện đang đào tạo các ngành, nghề thuộc khối <b>Công nghệ thông tin - Máy tính</b> bao gồm:<br><br>
+          1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính:</b> Chẩn đoán, sửa chữa phần cứng, bảo trì và nâng cấp máy tính.<br>
+          2️⃣ <b>Quản trị mạng máy tính:</b> Lắp đặt, cấu hình và quản trị hệ thống mạng (LAN/WAN), camera quan sát.<br>
+          3️⃣ <b>Thiết kế đồ họa:</b> Thiết kế ấn phẩm, banner quảng cáo, xử lý hình ảnh truyền thông đa phương tiện.<br>
+          4️⃣ <b>Tin học ứng dụng:</b> Ứng dụng phần mềm công nghệ thông tin, quản trị dữ liệu và văn phòng số.<br>
+          5️⃣ <b>Tin học văn phòng:</b> Soạn thảo văn bản chuyên nghiệp, bảng tính thống kê dữ liệu.<br><br>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            👉 Xem Chi Tiết Chương Trình Đào Tạo
           </a><br><br>
           📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
         }, 300);
