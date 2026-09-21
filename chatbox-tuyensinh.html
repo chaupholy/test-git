@@ -7,11 +7,10 @@
   <!-- Thư viện Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body style="background: transparent !important; margin: 0; padding: 0; overflow: hidden;">
 
   <!-- ================= BẮT ĐẦU CHATBOX WIDGET ================= -->
-  <aside id="admissions-chat-container" class="fixed bottom-5 right-5 z-50 font-sans">
-    
+<aside id="admissions-chat-container" class="fixed bottom-2 right-2 z-50 font-sans">
     <!-- Nút tròn bật/tắt chatbox -->
     <button id="chat-toggle-btn" onclick="toggleChat()" class="relative flex items-center justify-center w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg transition-transform transform hover:scale-105">
       <svg id="chat-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -23,7 +22,7 @@
     </button>
 
     <!-- Khung cửa sổ Chat -->
-    <div id="chat-box" class="hidden absolute bottom-16 right-0 w-[360px] sm:w-[390px] h-[540px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-100">
+    <div id="chat-box" class="hidden absolute bottom-16 right-0 w-[360px] sm:w-[380px] h-[520px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-100">
       
       <!-- Tiêu đề Chatbox -->
       <div class="bg-indigo-600 text-white px-4 py-3 flex items-center justify-between shadow">
