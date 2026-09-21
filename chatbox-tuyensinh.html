@@ -151,7 +151,7 @@
       // 0. Lời chào & Bắt đầu câu hỏi
       if (
         (q.includes('xin chào') || q.includes('chào') || q.includes('hello') || q === 'hi' || q.includes('có câu hỏi') || q === 'cho em hỏi' || q === 'cho tôi hỏi')
-        && !q.includes('học phí') && !q.includes('ngành') && !q.includes('nghề') && !q.includes('ký túc xá') && !q.includes('hồ sơ') && !q.includes('liên hệ') && !q.includes('thời gian') && !q.includes('thực hành') && !q.includes('tuyển sinh') && !q.includes('lĩnh vực') && !q.includes('trình độ') && !q.includes('máy tính') && !q.includes('công nghệ thông tin') && !q.includes('cntt') && !q.includes('việc làm') && !q.includes('ô tô') && !q.includes('cơ khí') && !q.includes('điện')
+        && !q.includes('học phí') && !q.includes('ngành') && !q.includes('nghề') && !q.includes('ký túc xá') && !q.includes('hồ sơ') && !q.includes('liên hệ') && !q.includes('thời gian') && !q.includes('thực hành') && !q.includes('tuyển sinh') && !q.includes('lĩnh vực') && !q.includes('trình độ') && !q.includes('máy tính') && !q.includes('công nghệ thông tin') && !q.includes('cntt') && !q.includes('việc làm') && !q.includes('ô tô') && !q.includes('cơ khí') && !q.includes('điện') && !q.includes('kinh tế') && !q.includes('du lịch') && !q.includes('nông nghiệp') && !q.includes('kế toán') && !q.includes('thương mại điện tử') && !q.includes('pháp luật')
       ) {
         setTimeout(() => {
           appendMessage(`👋 <b>Chào bạn, cảm ơn bạn đã liên hệ, bạn có câu hỏi gì không?</b>`, 'bot');
@@ -305,6 +305,61 @@
           2️⃣ <b>Kỹ thuật máy lạnh &amp; Điều hòa không khí:</b> Thực hành lắp đặt, sửa chữa, bảo trì máy lạnh dân dụng, điều hòa không khí và kho lạnh công nghiệp.<br>
           3️⃣ <b>Điện công nghiệp:</b> Lắp đặt, vận hành, bảo trì tủ điện điều khiển, động cơ điện, hệ thống cung cấp điện nhà xưởng và xí nghiệp.<br>
           4️⃣ <b>Cơ điện nông thôn:</b> Vận hành, bảo dưỡng, sửa chữa máy móc thiết bị nông nghiệp và cơ điện phục vụ cơ giới hóa nông thôn.<br><br>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            👉 Xem Chi Tiết Chương Trình Đào Tạo
+          </a><br><br>
+          📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 1.7. Câu hỏi: Cơ hội / Vị trí việc làm khối Kinh tế - Du lịch - Nông nghiệp
+      const isBizTourAgriQuery = (
+        q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') ||
+        q.includes('thương mại điện tử') || q.includes('tmdt') || q.includes('kế toán') ||
+        q.includes('pháp luật') || q.includes('luật') || q.includes('trồng trọt') ||
+        q.includes('bảo vệ thực vật') || q.includes('cây trồng') || q.includes('lữ hành') ||
+        q.includes('hướng dẫn viên')
+      ) && !q.includes('hồ sơ') && !q.includes('học phí') && !q.includes('thời gian') && !q.includes('số điện thoại');
+
+      if (isBizTourAgriQuery && isJobQuery) {
+        setTimeout(() => {
+          appendMessage(`💼 <b>VỊ TRÍ VIỆC LÀM KHỐI KINH TẾ - DU LỊCH - NÔNG NGHIỆP</b><br><br>
+          Sau khi tốt nghiệp các ngành thuộc khối Kinh tế, Du lịch và Nông nghiệp tại trường, học sinh có cơ hội việc làm phong phú, đáp ứng nhu cầu thực tế của địa phương:<br><br>
+          🛒 <b>1. Thương mại điện tử:</b><br>
+          • Quản trị gian hàng trực tuyến trên sàn TMĐT (Shopee, TikTok Shop, Lazada).<br>
+          • Nhân viên Marketing số, quản trị nội dung fanpage, quảng cáo và livestream bán hàng.<br>
+          • Tự khởi nghiệp, kinh doanh online hoặc quản lý kinh doanh đa kênh.<br><br>
+          📑 <b>2. Kế toán doanh nghiệp:</b><br>
+          • Nhân viên kế toán nội bộ, kế toán kho, kế toán thuế, thủ quỹ tại các công ty, hợp tác xã, cơ sở sản xuất.<br>
+          • Thu ngân, nhân viên giao dịch tại các ngân hàng, chuỗi bán lẻ, siêu thị.<br><br>
+          🎒 <b>3. Hướng dẫn du lịch:</b><br>
+          • Hướng dẫn viên du lịch nội địa, thuyết minh viên tại các khu di tích, điểm du lịch, danh lam thắng cảnh ở An Giang và ĐBSCL.<br>
+          • Nhân viên điều hành tour, kinh doanh tour du lịch lữ hành.<br>
+          • Lễ tân, chăm sóc khách hàng tại các khách sạn, resort, homestay.<br><br>
+          ⚖️ <b>4. Pháp luật:</b><br>
+          • Cán bộ tư pháp - hộ tịch, văn phòng tại UBND xã, phường, thị trấn.<br>
+          • Thư ký, trợ lý pháp lý tại văn phòng luật sư, công chứng, thừa phát lại.<br>
+          • Chuyên viên pháp chế nội bộ, nhân sự tại các doanh nghiệp.<br><br>
+          🌾 <b>5. Trồng trọt và bảo vệ thực vật:</b><br>
+          • Kỹ thuật viên nông nghiệp tại các trang trại công nghệ cao, nông trường, hợp tác xã.<br>
+          • Nhân viên kỹ thuật, tư vấn bán hàng tại các công ty giống cây trồng, phân bón, thuốc BVTV.<br>
+          • Tự phát triển mô hình nông nghiệp sạch, hoa kiểng hoặc mở đại lý vật tư nông nghiệp.<br><br>
+          🤝 <i>Nhà trường luôn phối hợp với các doanh nghiệp, công ty du lịch, hợp tác xã trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp!</i>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 1.8. Câu hỏi: Các ngành Kinh tế - Du lịch - Nông nghiệp của trường
+      if (isBizTourAgriQuery) {
+        setTimeout(() => {
+          appendMessage(`📊 <b>CÁC NGÀNH KINH TẾ - DU LỊCH - NÔNG NGHIỆP CỦA TRƯỜNG</b><br><br>
+          Trường hiện đang đào tạo các ngành nghề mũi nhọn thuộc khối <b>Kinh tế - Du lịch - Nông nghiệp</b> bao gồm:<br><br>
+          🛒 1️⃣ <b>Thương mại điện tử:</b> Tiếp thị trực tuyến (Digital Marketing), kinh doanh trên sàn TMĐT, quản trị bán hàng đa kênh số.<br>
+          📑 2️⃣ <b>Kế toán doanh nghiệp:</b> Nghiệp vụ kế toán, khai báo thuế điện tử, lập báo cáo tài chính và sử dụng phần mềm kế toán chuyên nghiệp.<br>
+          🎒 3️⃣ <b>Hướng dẫn du lịch:</b> Kỹ năng thuyết minh, dẫn tour du lịch nội địa, thiết kế tour, nghiệp vụ lữ hành và khách sạn.<br>
+          ⚖️ 4️⃣ <b>Pháp luật:</b> Kiến thức pháp lý, nghiệp vụ hành chính - tư pháp, công tác văn phòng công chứng và tư vấn cơ sở.<br>
+          🌾 5️⃣ <b>Trồng trọt và bảo vệ thực vật:</b> Kỹ thuật canh tác VietGAP, chẩn đoán phòng trừ sâu bệnh, ứng dụng nông nghiệp công nghệ cao.<br><br>
           <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
             👉 Xem Chi Tiết Chương Trình Đào Tạo
           </a><br><br>

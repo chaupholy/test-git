@@ -1016,6 +1016,102 @@ function guiTinNhan() {
 
 
     /* =========================
+       VIỆC LÀM KHỐI KINH TẾ - DU LỊCH - NÔNG NGHIỆP
+    ========================= */
+
+    else if(
+
+        (text.includes("kinh tế") || text.includes("du lịch") || text.includes("nông nghiệp") || text.includes("thương mại điện tử") || text.includes("tmdt") || text.includes("kế toán") || text.includes("pháp luật") || text.includes("luật") || text.includes("trồng trọt") || text.includes("bảo vệ thực vật") || text.includes("cây trồng") || text.includes("lữ hành") || text.includes("hướng dẫn viên")) &&
+
+        (text.includes("việc làm") || text.includes("cơ hội") || text.includes("vị trí") || text.includes("ra trường làm") || text.includes("làm gì") || text.includes("xin việc") || text.includes("làm ở đâu"))
+
+    ) {
+
+        traLoi =
+
+        "💼 <b>VỊ TRÍ VIỆC LÀM KHỐI KINH TẾ - DU LỊCH - NÔNG NGHIỆP</b><br><br>" +
+
+        "Sau khi tốt nghiệp các ngành khối Kinh tế, Du lịch, Nông nghiệp tại trường, học sinh có cơ hội việc làm phong phú:<br><br>" +
+
+        "🛒 <b>1. Thương mại điện tử:</b><br>" +
+
+        "• Quản trị gian hàng trực tuyến trên sàn TMĐT (Shopee, TikTok Shop, Lazada).<br>" +
+
+        "• Marketing số, quản trị fanpage, quảng cáo và livestream bán hàng.<br>" +
+
+        "• Tự khởi nghiệp, kinh doanh online.<br><br>" +
+
+        "📑 <b>2. Kế toán doanh nghiệp:</b><br>" +
+
+        "• Nhân viên kế toán nội bộ, kế toán kho, kế toán thuế tại các công ty, hợp tác xã.<br>" +
+
+        "• Thu ngân, nhân viên giao dịch tại ngân hàng, siêu thị.<br><br>" +
+
+        "🎒 <b>3. Hướng dẫn du lịch:</b><br>" +
+
+        "• Hướng dẫn viên du lịch nội địa, thuyết minh viên tại các khu di tích, điểm du lịch ĐBSCL.<br>" +
+
+        "• Điều hành tour, kinh doanh tour du lịch lữ hành.<br>" +
+
+        "• Lễ tân, chăm sóc khách hàng tại các khách sạn, resort, homestay.<br><br>" +
+
+        "⚖️ <b>4. Pháp luật:</b><br>" +
+
+        "• Cán bộ tư pháp - hộ tịch, văn phòng tại UBND xã, phường.<br>" +
+
+        "• Thư ký, trợ lý pháp lý tại văn phòng luật sư, công chứng.<br>" +
+
+        "• Chuyên viên pháp chế, nhân sự tại doanh nghiệp.<br><br>" +
+
+        "🌾 <b>5. Trồng trọt và bảo vệ thực vật:</b><br>" +
+
+        "• Kỹ thuật viên tại các trang trại công nghệ cao, nông trường, hợp tác xã.<br>" +
+
+        "• Tư vấn bán hàng tại công ty giống cây trồng, phân bón, thuốc BVTV.<br>" +
+
+        "• Tự phát triển mô hình nông nghiệp sạch hoặc kinh doanh vật tư nông nghiệp.<br><br>" +
+
+        "🤝 <i>Nhà trường luôn phối hợp với các doanh nghiệp trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp!</i>";
+
+    }
+
+
+
+    /* =========================
+       CÁC NGÀNH KINH TẾ - DU LỊCH - NÔNG NGHIỆP
+    ========================= */
+
+    else if(
+
+        (text.includes("kinh tế") || text.includes("du lịch") || text.includes("nông nghiệp") || text.includes("thương mại điện tử") || text.includes("tmdt") || text.includes("kế toán") || text.includes("pháp luật") || text.includes("luật") || text.includes("trồng trọt") || text.includes("bảo vệ thực vật") || text.includes("cây trồng") || text.includes("lữ hành") || text.includes("hướng dẫn viên")) &&
+
+        !text.includes("số điện thoại")
+
+    ) {
+
+        traLoi =
+
+        "📊 <b>CÁC NGÀNH KINH TẾ - DU LỊCH - NÔNG NGHIỆP CỦA TRƯỜNG</b><br><br>" +
+
+        "Trường hiện đang đào tạo các ngành nghề mũi nhọn thuộc khối <b>Kinh tế - Du lịch - Nông nghiệp</b> bao gồm:<br><br>" +
+
+        "🛒 1️⃣ <b>Thương mại điện tử:</b> Tiếp thị số, kinh doanh trên sàn TMĐT, quản trị bán hàng online.<br>" +
+
+        "📑 2️⃣ <b>Kế toán doanh nghiệp:</b> Nghiệp vụ kế toán, khai thuế điện tử, báo cáo tài chính phần mềm.<br>" +
+
+        "🎒 3️⃣ <b>Hướng dẫn du lịch:</b> Kỹ năng thuyết minh, dẫn tour, nghiệp vụ lữ hành và khách sạn.<br>" +
+
+        "⚖️ 4️⃣ <b>Pháp luật:</b> Kiến thức pháp lý, hành chính - tư pháp, văn phòng công chứng và tư vấn cơ sở.<br>" +
+
+        "🌾 5️⃣ <b>Trồng trọt và bảo vệ thực vật:</b> Kỹ thuật canh tác VietGAP, chẩn đoán phòng trừ sâu bệnh, nông nghiệp công nghệ cao.<br><br>" +
+
+        "👉 Bấm vào liên kết Đào tạo trên Website trường để xem chi tiết chương trình học!";
+
+    }
+
+
+
+    /* =========================
        NGÀNH ĐÀO TẠO
     ========================= */
 
