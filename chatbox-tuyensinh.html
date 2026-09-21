@@ -435,6 +435,19 @@
           canonical: ' thời khóa biểu tkb lịch học điểm danh lms trực tuyến ',
           triggers: ['thoi khoa bieu', 'thoikhoabieu', 'tkb', 'lich hoc', 'diem danh', 'diemdanh', 'lms', 'hoc truc tuyen'],
           fuzzyWords: ['thoikhoabieu', 'diemdanh']
+        },
+        {
+          canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
+          triggers: [
+            'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
+            'bye', 'byebye', 'bye bye', 'bai bai', 'baibai', 'goodbye', 'good bye',
+            'minh ngung nhe', 'minh ngung nha', 'ngung nhe', 'ngung nha', 'ngung thoi', 'ngung tai day', 'ngung o day',
+            'dung nhe', 'dung nha', 'dung o day', 'dung tai day', 'dung cuoc tro chuyen',
+            'thoi nhe', 'thoi nha', 'thoi chao nhe', 'nghi nhe', 'nghi nha',
+            'chia tay', 'chiatay', 'chia tay nhe', 'chia tay nha',
+            'hen gap lai', 'hengaplai', 'chao tam biet', 'see you'
+          ],
+          fuzzyWords: ['tambiet', 'byebye', 'chiatay', 'baibai']
         }
       ];
 
@@ -470,6 +483,84 @@
 
       // 0. Kiểm tra chủ đề chuyên biệt
       const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật') || q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('điểm danh') || q.includes('lms') || q.includes('trực tuyến') || q.includes('đối tượng') || q.includes('điều kiện') || q.includes('khai giảng') || q.includes('nhập học') || q.includes('văn hóa') || q.includes('bằng cấp') || q.includes('biểu mẫu') || q.includes('sơ cấp') || q.includes('cơ sở vật chất') || q.includes('ngắn hạn') || q.includes('hệ 9+') || q.includes('9+') || q.includes('dưới 3 tháng') || q.includes('mẫu') || q.includes('văn bằng');
+
+      // 0.0. NHÓM: Tạm biệt & Kết thúc cuộc trò chuyện (Tạm biệt, Tạm biẹt, Bye bye, Mình ngưng nhé, Chia tay, Hẹn gặp lại...)
+      const isFarewell = (
+        q.includes('tạm biệt') || q.includes('tam biet') || q.includes('tam biẹt') || q.includes('tambiet') ||
+        q.includes('bye bye') || q.includes('byebye') || q.includes('bai bai') || q.includes('baibai') ||
+        /\bbye\b/i.test(query) || /\bbai\b/i.test(query) ||
+        q.includes('mình ngưng nhé') || q.includes('minh ngung nhe') ||
+        q.includes('mình ngưng nha') || q.includes('minh ngung nha') ||
+        q.includes('ngưng nhé') || q.includes('ngung nhe') ||
+        q.includes('ngưng nha') || q.includes('ngung nha') ||
+        q.includes('ngưng thôi') || q.includes('ngung thoi') ||
+        q.includes('ngưng tại đây') || q.includes('ngung tai day') ||
+        q.includes('ngưng ở đây') || q.includes('ngung o day') ||
+        q.includes('dừng nhé') || q.includes('dung nhe') ||
+        q.includes('dừng lại nhé') || q.includes('dung lai nhe') ||
+        q.includes('thôi nhé') || q.includes('thoi nhe') ||
+        q.includes('thôi nha') || q.includes('thoi nha') ||
+        q.includes('thôi chào nhé') || q.includes('thoi chao nhe') ||
+        q.includes('nghỉ nhé') || q.includes('nghi nhe') ||
+        q.includes('chia tay') || q.includes('chiatay') ||
+        q.includes('hẹn gặp lại') || q.includes('hen gap lai') ||
+        q.includes('chào tạm biệt') || q.includes('chao tam biet') ||
+        q.includes('goodbye') || q.includes('good bye') ||
+        q.includes('see you')
+      ) && !q.includes('học phí') && !q.includes('thời khóa biểu');
+
+      if (isFarewell) {
+        setTimeout(() => {
+          appendMessage(`👋 <b>CẢM ƠN VÀ TẠM BIỆT BẠN!</b><br><br>
+          Rất vui vì đã được đồng hành và chia sẻ thông tin tuyển sinh cùng bạn hôm nay.<br><br>
+          Chúc bạn luôn nhiều niềm vui, dồi dào sức khỏe, học tập thật tốt và sớm chọn được ngành nghề tương lai phù hợp nhất!<br><br>
+          📌 <b>Khi cần hỗ trợ thêm thông tin bất cứ lúc nào, bạn có thể:</b><br>
+          • 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thuỷ)<br>
+          • 🌐 <b>Website nhà trường:</b> <a href="https://dtntag.edu.vn" target="_blank" class="text-indigo-600 underline">dtntag.edu.vn</a><br>
+          • 📝 <b>Cổng nộp hồ sơ xét tuyển:</b> <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 underline font-semibold">tuyensinh.dtntag.edu.vn</a><br><br>
+          <i>Trường Trung cấp Dân tộc Nội trú An Giang luôn sẵn sàng chào đón bạn! Hẹn gặp lại bạn nhé! ✨</i>
+          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
+              📞 Hẹn cán bộ gọi lại
+            </button>
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
+              🎓 14 Ngành đào tạo
+            </button>
+            <button onclick="sendQuickMessage('Học phí')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
+              💰 Miễn học phí &amp; KTX
+            </button>
+          </div>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 0.05. NHÓM: Lời cảm ơn (Cảm ơn, Cam on, Thank you, Cám ơn...)
+      const isCamOn = (
+        q.includes('cảm ơn') || q.includes('cam on') ||
+        q.includes('cám ơn') || q.includes('cam ơn') ||
+        q.includes('thank you') || q.includes('thanks') ||
+        /\btks\b/i.test(query)
+      ) && !hasSpecificTopic && !isFarewell;
+
+      if (isCamOn) {
+        setTimeout(() => {
+          appendMessage(`😊 <b>DẠ KHÔNG CÓ CHI Ạ!</b><br><br>
+          Rất vui được hỗ trợ và đồng hành cùng bạn. Chúc bạn một ngày tràn đầy năng lượng và học tập thật tốt!<br><br>
+          Nếu có bất kỳ câu hỏi nào về <b>ngành nghề</b>, <b>chính sách miễn 100% học phí</b> hay <b>ký túc xá nội trú</b>, bạn cứ nhắn cho Cán bộ tư vấn bất kỳ lúc nào nhé! ✨
+          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
+              🎓 14 Ngành đào tạo
+            </button>
+            <button onclick="sendQuickMessage('Học phí')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
+              💰 Miễn học phí &amp; KTX
+            </button>
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
+              📞 Hẹn cán bộ gọi lại
+            </button>
+          </div>`, 'bot');
+        }, 300);
+        return;
+      }
 
       // 0.1. NHÓM 1: Lời chào & Lời ngỏ mở đầu (Chào bạn, Hello, Hi, Xin hỏi, Cho tôi hỏi, Tôi có câu hỏi...)
       const isHoiChung = q.includes('xin hỏi') || q.includes('xin hoi') ||

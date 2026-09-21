@@ -651,11 +651,16 @@ function sendQuickMessage(noidung) {
 ========================= */
 
 var currentTypingTimerIndex = null;
+var currentTypingResolveIndex = null;
 
 function stopTypingIndex() {
     if (currentTypingTimerIndex) {
         clearTimeout(currentTypingTimerIndex);
         currentTypingTimerIndex = null;
+    }
+    if (currentTypingResolveIndex) {
+        currentTypingResolveIndex();
+        currentTypingResolveIndex = null;
     }
 }
 
@@ -685,12 +690,15 @@ function typeWriterEffectIndex(container, html, scrollContainer) {
     var stepSize = len > 700 ? 2 : 1;
     var speed = 22;
 
+    currentTypingResolveIndex = function() {
+        container.innerHTML = html;
+        if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    };
+
     container.style.cursor = 'pointer';
     container.title = 'Bấm vào để hiển thị ngay';
     container.onclick = function() {
         stopTypingIndex();
-        container.innerHTML = html;
-        if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
     };
 
     function step() {
@@ -943,6 +951,19 @@ function expandNormalizedQuery(rawText) {
             canonical: ' thời khóa biểu tkb lịch học điểm danh lms trực tuyến ',
             triggers: ['thoi khoa bieu', 'thoikhoabieu', 'tkb', 'lich hoc', 'diem danh', 'diemdanh', 'lms', 'hoc truc tuyen'],
             fuzzyWords: ['thoikhoabieu', 'diemdanh']
+        },
+        {
+            canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
+            triggers: [
+                'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
+                'bye', 'byebye', 'bye bye', 'bai bai', 'baibai', 'goodbye', 'good bye',
+                'minh ngung nhe', 'minh ngung nha', 'ngung nhe', 'ngung nha', 'ngung thoi', 'ngung tai day', 'ngung o day',
+                'dung nhe', 'dung nha', 'dung o day', 'dung tai day', 'dung cuoc tro chuyen',
+                'thoi nhe', 'thoi nha', 'thoi chao nhe', 'nghi nhe', 'nghi nha',
+                'chia tay', 'chiatay', 'chia tay nhe', 'chia tay nha',
+                'hen gap lai', 'hengaplai', 'chao tam biet', 'see you'
+            ],
+            fuzzyWords: ['tambiet', 'byebye', 'chiatay', 'baibai']
         }
     ];
 
@@ -1013,10 +1034,77 @@ function guiTinNhan() {
     ========================= */
 
     /* =========================
+       TẠM BIỆT & KẾT THÚC TRÒ CHUYỆN (TẠM BIỆT, TẠM BIẸT, BYE BYE, MÌNH NGƯNG NHÉ, CHIA TAY...)
+    ========================= */
+    if (
+        text.includes("tạm biệt") || text.includes("tam biet") || text.includes("tam biẹt") || text.includes("tambiet") ||
+        text.includes("bye bye") || text.includes("byebye") || text.includes("bai bai") || text.includes("baibai") ||
+        /\bbye\b/i.test(cauhoi) || /\bbai\b/i.test(cauhoi) ||
+        text.includes("mình ngưng nhé") || text.includes("minh ngung nhe") ||
+        text.includes("mình ngưng nha") || text.includes("minh ngung nha") ||
+        text.includes("ngưng nhé") || text.includes("ngung nhe") ||
+        text.includes("ngưng nha") || text.includes("ngung nha") ||
+        text.includes("ngưng thôi") || text.includes("ngung thoi") ||
+        text.includes("ngưng tại đây") || text.includes("ngung tai day") ||
+        text.includes("ngưng ở đây") || text.includes("ngung o day") ||
+        text.includes("dừng nhé") || text.includes("dung nhe") ||
+        text.includes("dừng lại nhé") || text.includes("dung lai nhe") ||
+        text.includes("thôi nhé") || text.includes("thoi nhe") ||
+        text.includes("thôi nha") || text.includes("thoi nha") ||
+        text.includes("thôi chào nhé") || text.includes("thoi chao nhe") ||
+        text.includes("nghỉ nhé") || text.includes("nghi nhe") ||
+        text.includes("chia tay") || text.includes("chiatay") ||
+        text.includes("hẹn gặp lại") || text.includes("hen gap lai") ||
+        text.includes("chào tạm biệt") || text.includes("chao tam biet") ||
+        text.includes("goodbye") || text.includes("good bye") ||
+        text.includes("see you")
+    ) {
+        traLoi =
+        "👋 <b>CẢM ƠN VÀ TẠM BIỆT BẠN!</b><br><br>" +
+        "Rất vui vì đã được trao đổi và chia sẻ thông tin tuyển sinh cùng bạn hôm nay.<br><br>" +
+        "Chúc bạn luôn nhiều niềm vui, dồi dào sức khỏe, học tập thật tốt và sớm chọn được ngành nghề tương lai phù hợp nhất!<br><br>" +
+        "📌 <b>Khi cần hỗ trợ thêm thông tin bất cứ lúc nào, bạn có thể:</b><br>" +
+        "• 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thuỷ)<br>" +
+        "• 🌐 <b>Website nhà trường:</b> <a href='https://dtntag.edu.vn' target='_blank'>dtntag.edu.vn</a><br>" +
+        "• 📝 <b>Cổng nộp hồ sơ xét tuyển:</b> <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'>tuyensinh.dtntag.edu.vn</a><br><br>" +
+        "<i>Trường Trung cấp Dân tộc Nội trú An Giang luôn sẵn sàng chào đón bạn! Hẹn gặp lại bạn nhé! ✨</i><br><br>" +
+        "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
+        "<button onclick=\"sendQuickMessage('Các ngành đào tạo')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>🎓 14 Ngành đào tạo</button>" +
+        "<button onclick=\"sendQuickMessage('Chính sách và hỗ trợ')\" style='padding:5px 10px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>💰 Miễn học phí & KTX</button>" +
+        "<button onclick=\"sendQuickMessage('Hồ sơ')\" style='padding:5px 10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📮 Hướng dẫn nộp hồ sơ</button>" +
+        "</div>";
+    }
+
+    /* =========================
+       LỜI CẢM ƠN (CẢM ƠN, CAM ON, THANK YOU...)
+    ========================= */
+    else if (
+        (text.includes("cảm ơn") || text.includes("cam on") ||
+        text.includes("cám ơn") || text.includes("cam ơn") ||
+        text.includes("thank you") || text.includes("thanks") ||
+        /\btks\b/i.test(cauhoi)) &&
+        !text.includes("thời khóa biểu") && !text.includes("tkb") && !text.includes("lịch học") &&
+        !text.includes("điểm danh") && !text.includes("lms") && !text.includes("trực tuyến") &&
+        !text.includes("ngành") && !text.includes("nghề") && !text.includes("học phí") &&
+        !text.includes("hồ sơ") && !text.includes("liên hệ") &&
+        !text.includes("địa chỉ") && !text.includes("đối tượng") && !text.includes("điều kiện")
+    ) {
+        traLoi =
+        "😊 <b>DẠ KHÔNG CÓ CHI Ạ!</b><br><br>" +
+        "Rất vui được hỗ trợ và đồng hành cùng bạn. Chúc bạn một ngày tràn đầy năng lượng và học tập thật tốt!<br><br>" +
+        "Nếu có bất kỳ câu hỏi nào về <b>ngành nghề</b>, <b>chính sách miễn 100% học phí</b> hay <b>ký túc xá nội trú</b>, bạn cứ nhắn cho Cán bộ tư vấn bất kỳ lúc nào nhé! ✨<br><br>" +
+        "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
+        "<button onclick=\"sendQuickMessage('Các ngành đào tạo')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>🎓 14 Ngành đào tạo</button>" +
+        "<button onclick=\"sendQuickMessage('Chính sách và hỗ trợ')\" style='padding:5px 10px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>💰 Miễn học phí & KTX</button>" +
+        "<button onclick=\"sendQuickMessage('Hồ sơ')\" style='padding:5px 10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📮 Hướng dẫn nộp hồ sơ</button>" +
+        "</div>";
+    }
+
+    /* =========================
        CHÀO HỎI & LỜI MỞ ĐẦU ĐẶT CÂU HỎI
     ========================= */
 
-    if(
+    else if(
         (text.includes("xin hỏi") || text.includes("xin hoi") ||
         text.includes("cho tôi hỏi") || text.includes("cho toi hoi") ||
         text.includes("cho em hỏi") || text.includes("cho em hoi") ||
