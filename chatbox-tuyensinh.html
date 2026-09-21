@@ -24,7 +24,7 @@
     
 
     <!-- Khung cửa sổ Chat -->
-    <div id="chat-box" class="hidden absolute bottom-16 right-0 w-[360px] sm:w-[380px] h-[520px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-100">
+    <div id="chat-box" class="hidden absolute bottom-16 right-0 w-[calc(100vw-20px)] sm:w-[380px] max-w-[380px] h-[calc(100vh-90px)] sm:h-[520px] max-h-[560px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-100">
       
       <!-- Tiêu đề Chatbox -->
       <div class="bg-indigo-600 text-white px-4 py-3 flex items-center justify-between shadow">
@@ -116,10 +116,29 @@
       const iconOpen = document.getElementById('chat-icon-open');
       const iconClose = document.getElementById('chat-icon-close');
       
+      const willOpen = box.classList.contains('hidden');
       box.classList.toggle('hidden');
       iconOpen.classList.toggle('hidden');
       iconClose.classList.toggle('hidden');
+
+      // Gửi tín hiệu thông báo trạng thái mở/đóng ra trang web cha để điều chỉnh kích thước iframe
+      try {
+        window.parent.postMessage({
+          type: 'TOGGLE_ADMISSIONS_CHAT',
+          isOpen: willOpen
+        }, '*');
+      } catch (e) {}
     }
+
+    // Khi trang tải xong, gửi tín hiệu ban đầu là đóng
+    window.addEventListener('DOMContentLoaded', function() {
+      try {
+        window.parent.postMessage({
+          type: 'TOGGLE_ADMISSIONS_CHAT',
+          isOpen: false
+        }, '*');
+      } catch (e) {}
+    });
 
     function sendMessage() {
       const input = document.getElementById('chat-input');
