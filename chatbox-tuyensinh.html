@@ -96,6 +96,71 @@
   <script>
     const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxZiikLptQw8DRS2vHunU2HbWVjKDwM9ckuxMo2ae6bmEr19RYxpwVNswjliQvpBVrmJA/exec';
 
+    // Danh bạ cán bộ, giáo viên, lãnh đạo nhà trường từ dtntag.edu.vn
+    const CAN_BO_LIST = [
+      // Ban Giám Hiệu
+      { name: 'ThS. Cao Văn Thích', role: 'Hiệu trưởng, Bí thư Đảng ủy', dept: 'Ban Giám Hiệu', email: 'tcndantocnoitru_thich@angiang.edu.vn', keywords: ['cao văn thích', 'thầy thích', 'hiệu trưởng', 'bgh'] },
+      { name: 'CN. Lê Minh Nhựt', role: 'Phó Hiệu trưởng', dept: 'Ban Giám Hiệu', email: 'tcndantocnoitru_nhut@angiang.edu.vn', keywords: ['lê minh nhựt', 'minh nhựt', 'thầy nhựt', 'phó hiệu trưởng nhựt'] },
+      { name: 'CN. Nguyễn Thị Khánh Bằng', role: 'Phó Hiệu trưởng', dept: 'Ban Giám Hiệu', email: 'tcndantocnoitru_bang@angiang.edu.vn', keywords: ['nguyễn thị khánh bằng', 'khánh bằng', 'cô bằng', 'phó hiệu trưởng bằng'] },
+
+      // Phòng Đào tạo
+      { name: 'Thầy Phạm Chí Danh', role: 'Trưởng phòng Đào tạo', dept: 'Phòng Đào tạo', email: 'tcndantocnoitru_danh@angiang.edu.vn', keywords: ['phạm chí danh', 'chí danh', 'thầy danh', 'trưởng phòng đào tạo'] },
+      { name: 'Thầy Phạm Trần Quân', role: 'Phó Trưởng phòng Đào tạo', dept: 'Phòng Đào tạo', email: 'tcndantocnoitru_quan@angiang.edu.vn', keywords: ['phạm trần quân', 'trần quân', 'thầy quân'] },
+      { name: 'Cô Trần Thị Phương', role: 'Chuyên viên Phòng Đào tạo', dept: 'Phòng Đào tạo', email: 'tcndantocnoitru_phuong@angiang.edu.vn', keywords: ['trần thị phương', 'cô phương'] },
+      { name: 'Cô Thị Mỹ Nhung', role: 'Chuyên viên Phòng Đào tạo', dept: 'Phòng Đào tạo', email: 'tcndantocnoitru_nhung@angiang.edu.vn', keywords: ['thị mỹ nhung', 'mỹ nhung', 'cô nhung'] },
+      { name: 'Cô Khưu Mỹ Trinh', role: 'Nhân viên Phòng Đào tạo', dept: 'Phòng Đào tạo', email: 'tcndantocnoitru_trinh@angiang.edu.vn', keywords: ['khưu mỹ trinh', 'mỹ trinh', 'cô trinh'] },
+
+      // Phòng Tổng hợp - Tài chính - Thiết bị
+      { name: 'Cô Võ Thị Thu', role: 'Trưởng phòng TH - TC - TB', dept: 'Phòng Tổng hợp - Tài chính - Thiết bị', email: 'tcndantocnoitru_thu@angiang.edu.vn', keywords: ['võ thị thu', 'cô thu', 'trưởng phòng tài chính', 'trưởng phòng tổng hợp'] },
+      { name: 'Thầy Chau Chhane', role: 'Phó Trưởng phòng TH - TC - TB', dept: 'Phòng Tổng hợp - Tài chính - Thiết bị', email: 'tcndantocnoitru_chhane@angiang.edu.vn', keywords: ['chau chhane', 'thầy chhane'] },
+      { name: 'Cô Néang Cung Chanh Đa', role: 'Chuyên viên TH-TC-TB', dept: 'Phòng Tổng hợp - Tài chính - Thiết bị', email: 'tcndantocnoitru_da@angiang.edu.vn', keywords: ['chanh đa', 'cô đa'] },
+      { name: 'Cô Hoa Thị Trúc Giang', role: 'Chuyên viên TH-TC-TB', dept: 'Phòng Tổng hợp - Tài chính - Thiết bị', email: 'tcndantocnoitru_giang@angiang.edu.vn', keywords: ['trúc giang', 'cô giang'] },
+      { name: 'Cô Chau Kim Siên', role: 'Thủ quỹ', dept: 'Phòng Tổng hợp - Tài chính - Thiết bị', email: 'tcndantocnoitru_sien@angiang.edu.vn', keywords: ['kim siên', 'cô siên', 'thủ quỹ'] },
+      { name: 'Cô Huỳnh Thanh Thùy', role: 'Văn thư', dept: 'Phòng Tổng hợp - Tài chính - Thiết bị', email: 'tcndantocnoitru_thuy@angiang.edu.vn', keywords: ['thanh thùy', 'văn thư thùy'] },
+      { name: 'Thầy Phạm Thanh Sang', role: 'Văn thư', dept: 'Phòng Tổng hợp - Tài chính - Thiết bị', email: 'tcndantocnoitru_sang@angiang.edu.vn', keywords: ['thanh sang', 'thầy sang'] },
+
+      // Phòng Công tác Học sinh - Quan hệ Doanh nghiệp (QLHS & GTVL)
+      { name: 'Cô Nguyễn Thị Thúy', role: 'Phó Trưởng phòng QLHS & GTVL', dept: 'Phòng QLHS & GTVL', email: 'tcndantocnoitru_thuy@angiang.edu.vn', keywords: ['nguyễn thị thúy', 'cô thúy', 'quản lý học sinh'] },
+      { name: 'Thầy Chí Sóc Hoanh', role: 'Nhân viên QLHS & GTVL', dept: 'Phòng QLHS & GTVL', email: 'tcndantocnoitru_hoanh@angiang.edu.vn', keywords: ['chí sóc hoanh', 'sóc hoanh', 'thầy hoanh'] },
+      { name: 'Cô Phạm Thị Kim Ngọc', role: 'Nhân viên QLHS & GTVL', dept: 'Phòng QLHS & GTVL', email: 'tcndantocnoitru_ngoc@angiang.edu.vn', keywords: ['phạm thị kim ngọc', 'kim ngọc', 'cô ngọc'] },
+      { name: 'Thầy Lê Văn Thịnh', role: 'Nhân viên QLHS & GTVL', dept: 'Phòng QLHS & GTVL', email: 'tcndantocnoitru_thinh@angiang.edu.vn', keywords: ['lê văn thịnh', 'thầy thịnh'] },
+      { name: 'Cô Kim Lý Mai', role: 'Nhân viên QLHS & GTVL', dept: 'Phòng QLHS & GTVL', email: 'tcndantocnoitru_mai@angiang.edu.vn', keywords: ['kim lý mai', 'lý mai', 'cô mai'] },
+      { name: 'Thầy Chau Sóc Nây', role: 'Nhân viên QLHS & GTVL', dept: 'Phòng QLHS & GTVL', email: 'tcndantocnoitru_nay@angiang.edu.vn', keywords: ['chau sóc nây', 'sóc nây', 'thầy nây'] },
+
+      // Khoa Công nghệ thông tin
+      { name: 'Thầy Nguyễn Lin Ka', role: 'Trưởng Khoa Công nghệ thông tin', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_ka@angiang.edu.vn', keywords: ['nguyễn lin ka', 'lin ka', 'thầy ka', 'trưởng khoa cntt', 'trưởng khoa công nghệ thông tin', 'trưởng khoa máy tính'] },
+      { name: 'Thầy Chau Pho Ly', role: 'Phó Trưởng Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_ly@angiang.edu.vn', keywords: ['chau pho ly', 'pho ly', 'thầy ly', 'phó khoa cntt'] },
+      { name: 'Thầy Phạm Vĩnh Lộc', role: 'Phó Trưởng Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_loc@angiang.edu.vn', keywords: ['phạm vĩnh lộc', 'vĩnh lộc', 'thầy lộc', 'phó khoa cntt'] },
+      { name: 'Thầy Dương Văn Phim', role: 'Giáo viên Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_phim@angiang.edu.vn', keywords: ['dương văn phim', 'thầy phim'] },
+      { name: 'Thầy Chau Sonh', role: 'Giáo viên Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_sonh@angiang.edu.vn', keywords: ['chau sonh', 'thầy sonh'] },
+      { name: 'Cô Phạm Thị Mộng Điềm', role: 'Giáo viên Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_diem@angiang.edu.vn', keywords: ['mộng điềm', 'cô điềm'] },
+      { name: 'Thầy Chau Đặng Trung Hưng', role: 'Giáo viên Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_hung@angiang.edu.vn', keywords: ['trung hưng', 'thầy hưng'] },
+      { name: 'Cô Trần Thị Ngọc Huyền', role: 'Giáo viên Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_huyen@angiang.edu.vn', keywords: ['ngọc huyền', 'cô huyền'] },
+      { name: 'Cô Néang Onl', role: 'Giáo viên Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_onl@angiang.edu.vn', keywords: ['néang onl', 'cô onl'] },
+      { name: 'Thầy Chau Roth Tha', role: 'Cán sự Khoa CNTT', dept: 'Khoa Công nghệ thông tin', email: 'tcndantocnoitru_tha@angiang.edu.vn', keywords: ['roth tha', 'thầy tha'] },
+
+      // Khoa Cơ điện – Nông nghiệp
+      { name: 'Thầy Phan Đại Nghĩa', role: 'Trưởng Khoa Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_nghia@angiang.edu.vn', keywords: ['phan đại nghĩa', 'đại nghĩa', 'thầy nghĩa', 'trưởng khoa cơ điện', 'trưởng khoa nông nghiệp'] },
+      { name: 'Thầy Huỳnh Tuấn Phong', role: 'Phó Trưởng Khoa Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_phong@angiang.edu.vn', keywords: ['huỳnh tuấn phong', 'tuấn phong', 'thầy phong'] },
+      { name: 'Cô Nguyễn Thị Mỹ Khuyên', role: 'Phó Trưởng Khoa Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_khuyen@angiang.edu.vn', keywords: ['nguyễn thị mỹ khuyên', 'mỹ khuyên', 'cô khuyên'] },
+      { name: 'Thầy Dương Văn Ngọ', role: 'Giáo viên Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_ngo@angiang.edu.vn', keywords: ['dương văn ngọ', 'thầy ngọ'] },
+      { name: 'Thầy Nguyễn Chí Hiếu', role: 'Giáo viên Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_chihieu@angiang.edu.vn', keywords: ['nguyễn chí hiếu', 'chí hiếu', 'thầy chí hiếu'] },
+      { name: 'Thầy Nguyễn Trung Hiếu', role: 'Giáo viên Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_trunghieu@angiang.edu.vn', keywords: ['nguyễn trung hiếu', 'trung hiếu', 'thầy trung hiếu'] },
+      { name: 'Cô Phan Thị Hồng Phúc', role: 'Giáo viên Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_phuc@angiang.edu.vn', keywords: ['phan thị hồng phúc', 'hồng phúc', 'cô phúc'] },
+      { name: 'Thầy Lê Tiến Việt', role: 'Giáo viên Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_viet@angiang.edu.vn', keywords: ['lê tiến việt', 'tiến việt', 'thầy tiến việt'] },
+      { name: 'Thầy Chau Sát', role: 'Giáo viên Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_sat@angiang.edu.vn', keywords: ['chau sát', 'thầy sát'] },
+      { name: 'Cô Néang Sa Vinh', role: 'Giáo viên Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_vinh@angiang.edu.vn', keywords: ['néang sa vinh', 'sa vinh', 'cô sa vinh'] },
+      { name: 'Thầy Nguyễn Trí Tuệ', role: 'Giáo viên Cơ điện – Nông nghiệp', dept: 'Khoa Cơ điện – Nông nghiệp', email: 'tcndantocnoitru_tue@angiang.edu.vn', keywords: ['nguyễn trí tuệ', 'trí tuệ', 'thầy tuệ'] },
+
+      // Khoa Kinh tế – Luật – Du lịch
+      { name: 'Thầy Trần Quang Long', role: 'Trưởng Khoa Kinh tế – Luật – Du lịch', dept: 'Khoa Kinh tế – Luật – Du lịch', email: 'tcndantocnoitru_long@angiang.edu.vn', keywords: ['trần quang long', 'quang long', 'thầy long', 'trưởng khoa kinh tế', 'trưởng khoa du lịch', 'trưởng khoa luật'] },
+      { name: 'Cô Phạm Thị Lai', role: 'Giáo viên Kinh tế – Luật – Du lịch', dept: 'Khoa Kinh tế – Luật – Du lịch', email: 'tcndantocnoitru_lai@angiang.edu.vn', keywords: ['phạm thị lai', 'cô lai'] },
+      { name: 'Cô Neáng Xuân KimLa', role: 'Giáo viên Kinh tế – Luật – Du lịch', dept: 'Khoa Kinh tế – Luật – Du lịch', email: 'tcndantocnoitru_la@angiang.edu.vn', keywords: ['neáng xuân kimla', 'kimla', 'cô kim la'] },
+      { name: 'Thầy Chau Việt', role: 'Giáo viên Kinh tế – Luật – Du lịch', dept: 'Khoa Kinh tế – Luật – Du lịch', email: 'tcndantocnoitru_viet@angiang.edu.vn', keywords: ['chau việt', 'thầy chau việt'] },
+      { name: 'Cô Châu Thị Tú Khuê', role: 'Giáo viên Kinh tế – Luật – Du lịch', dept: 'Khoa Kinh tế – Luật – Du lịch', email: 'tcndantocnoitru_khue@angiang.edu.vn', keywords: ['châu thị tú khuê', 'tú khuê', 'cô khuê'] },
+      { name: 'Cô Dương Kim Thoa', role: 'Giáo viên Kinh tế – Luật – Du lịch', dept: 'Khoa Kinh tế – Luật – Du lịch', email: 'tcndantocnoitru_thoa@angiang.edu.vn', keywords: ['dương kim thoa', 'kim thoa', 'cô thoa'] }
+    ];
+
     function dongChat() {
       try {
         window.parent.postMessage({
@@ -171,6 +236,54 @@
           appendMessage(`👋 <b>Chào bạn, cảm ơn bạn đã liên hệ, bạn có câu hỏi gì không?</b>`, 'bot');
         }, 300);
         return;
+      }
+
+      // 0.3. Tra cứu Cán bộ, Giáo viên, Trưởng phòng, Trưởng khoa, Ban Giám Hiệu & Email
+      const isStaffQuery = q.includes('giáo viên') || q.includes('cán bộ') || q.includes('trưởng phòng') || q.includes('trưởng khoa') || q.includes('hiệu trưởng') || q.includes('ban giám hiệu') || q.includes('bgh') || q.includes('email') || q.includes('thầy') || q.includes('cô');
+
+      if (isStaffQuery && !q.includes('cô thuỷ') && !q.includes('cô thủy')) {
+        // Tìm đích danh cán bộ / giáo viên theo tên hoặc từ khóa
+        const matchedPerson = CAN_BO_LIST.find(p => {
+          const nameLower = p.name.toLowerCase();
+          return q.includes(nameLower) || p.keywords.some(k => q.includes(k));
+        });
+
+        if (matchedPerson) {
+          setTimeout(() => {
+            appendMessage(`📧 <b>THÔNG TIN LIÊN HỆ CÁN BỘ / GIÁO VIÊN</b><br><br>
+            Hãy liên hệ với thầy/cô hoặc cán bộ qua email chính thức của trường từ trang website <b>dtntag.edu.vn</b>:<br><br>
+            👤 <b>Họ và tên:</b> ${matchedPerson.name}<br>
+            📌 <b>Chức vụ:</b> ${matchedPerson.role}<br>
+            🏢 <b>Đơn vị:</b> ${matchedPerson.dept}<br>
+            ✉️ <b>Email:</b> <a href="mailto:${matchedPerson.email}" class="text-indigo-600 font-bold underline">${matchedPerson.email}</a><br><br>
+            <a href="mailto:${matchedPerson.email}" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+              ✉️ Gửi Email Cho Người Này
+            </a>`, 'bot');
+          }, 300);
+          return;
+        }
+
+        // Nếu hỏi chung chung về giáo viên, cán bộ quản lý, vị trí trưởng phòng/khoa
+        if (q.includes('giáo viên') || q.includes('cán bộ') || q.includes('trưởng phòng') || q.includes('trưởng khoa') || q.includes('hiệu trưởng') || q.includes('ban giám hiệu') || q.includes('email')) {
+          setTimeout(() => {
+            appendMessage(`📧 <b>LIÊN HỆ CÁN BỘ QUẢN LÝ &amp; GIÁO VIÊN</b><br><br>
+            Hãy liên hệ với thầy/cô hoặc cán bộ quản lý qua <b>email chính thức</b> từ trang website trường <b>dtntag.edu.vn</b>.<br><br>
+            <b>Danh bạ các vị trí lãnh đạo, Trưởng phòng &amp; Trưởng khoa:</b><br><br>
+            🏛️ <b>Ban Giám Hiệu:</b><br>
+            • ThS. <b>Cao Văn Thích</b> (Hiệu trưởng): <code>tcndantocnoitru_thich@angiang.edu.vn</code><br>
+            • CN. <b>Lê Minh Nhựt</b> (Phó Hiệu trưởng): <code>tcndantocnoitru_nhut@angiang.edu.vn</code><br>
+            • CN. <b>Nguyễn Thị Khánh Bằng</b> (Phó Hiệu trưởng): <code>tcndantocnoitru_bang@angiang.edu.vn</code><br><br>
+            🏢 <b>Trưởng các Phòng / Khoa:</b><br>
+            • Thầy <b>Nguyễn Lin Ka</b> (Trưởng Khoa CNTT): <code>tcndantocnoitru_ka@angiang.edu.vn</code><br>
+            • Thầy <b>Phan Đại Nghĩa</b> (Trưởng Khoa Cơ điện – Nông nghiệp): <code>tcndantocnoitru_nghia@angiang.edu.vn</code><br>
+            • Thầy <b>Trần Quang Long</b> (Trưởng Khoa Kinh tế – Luật – Du lịch): <code>tcndantocnoitru_long@angiang.edu.vn</code><br>
+            • Thầy <b>Phạm Chí Danh</b> (Trưởng Phòng Đào tạo): <code>tcndantocnoitru_danh@angiang.edu.vn</code><br>
+            • Cô <b>Võ Thị Thu</b> (Trưởng Phòng Tổng hợp - Tài chính - TB): <code>tcndantocnoitru_thu@angiang.edu.vn</code><br>
+            • Cô <b>Nguyễn Thị Thúy</b> (Phó Trưởng Phòng QLHS &amp; GTVL): <code>tcndantocnoitru_thuy@angiang.edu.vn</code><br><br>
+            💡 <i>Bạn có thể gõ tên cụ thể (Ví dụ: "email thầy Ka", "email thầy Danh", "email thầy Thích"...) để lấy email chính xác của từng người muốn tìm nhé!</i>`, 'bot');
+          }, 300);
+          return;
+        }
       }
 
       // 1. Phản hồi yêu cầu Đăng ký online
