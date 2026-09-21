@@ -830,6 +830,249 @@ function guiTinNhan() {
 
 
     /* =========================
+       1. CÔNG NGHỆ Ô TÔ
+    ========================= */
+    else if(
+        (text.includes("ô tô") || text.includes("oto")) &&
+        !text.includes("số điện thoại") && !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "🚗 <b>NGÀNH CÔNG NGHỆ Ô TÔ</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Thực hành chuyên sâu về bảo dưỡng, chẩn đoán lỗi, sửa chữa động cơ xăng & diesel, hệ thống khung gầm, hệ thống truyền lực, hệ thống điện - điện tử ô tô hiện đại và điều hòa ô tô.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Kỹ thuật viên bảo dưỡng, sửa chữa ô tô tại các hãng xe lớn (Toyota, Hyundai, Ford, Kia...), garage tư nhân, trạm đăng kiểm.<br>" +
+        "- Cố vấn dịch vụ kỹ thuật, nhân viên chăm sóc và làm đẹp ô tô (detailing).<br>" +
+        "- Nhân viên kinh doanh phụ tùng, phụ kiện ô tô hoặc tự mở xưởng/garage ô tô.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       2. KỸ THUẬT MÁY LẠNH & ĐIỀU HÒA KHÔNG KHÍ
+    ========================= */
+    else if(
+        (text.includes("máy lạnh") || text.includes("điều hòa") || text.includes("điện lạnh") || text.includes("nhiệt lạnh")) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "❄️ <b>NGÀNH KỸ THUẬT MÁY LẠNH & ĐIỀU HÒA KHÔNG KHÍ (ĐIỆN LẠNH)</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Lắp đặt, vận hành, bảo dưỡng và sửa chữa máy lạnh dân dụng, tủ lạnh, máy giặt, điều hòa trung tâm (VRV, Chiller), hệ thống thông gió và kho lạnh công nghiệp.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Kỹ thuật viên lắp đặt, sửa chữa tại siêu thị điện máy (Điện Máy Xanh, Nguyễn Kim...), trung tâm bảo hành hãng (Daikin, Panasonic, LG...).<br>" +
+        "- Kỹ thuật viên vận hành hệ thống thông gió, điều hòa không khí trung tâm (HVAC), kho lạnh tại tòa nhà cao ốc, khách sạn, xí nghiệp chế biến.<br>" +
+        "- Tự mở cơ sở dịch vụ sửa chữa và bảo dưỡng điện lạnh dân dụng.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       3. ĐIỆN CÔNG NGHIỆP
+    ========================= */
+    else if(
+        (text.includes("điện công nghiệp") || (text.includes("ngành điện") && !text.includes("điện lạnh") && !text.includes("cơ điện") && !text.includes("ô tô"))) &&
+        !text.includes("số điện thoại") && !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "⚡ <b>NGÀNH ĐIỆN CÔNG NGHIỆP</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Lắp đặt, vận hành, bảo trì mạng hạ thế, tủ điện phân phối, tủ điều khiển công nghiệp, động cơ điện, biến tần, mạch tự động hóa và an toàn điện nhà xưởng.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Kỹ thuật viên bảo trì hệ thống điện, máy điện tại các khu công nghiệp, xí nghiệp, nhà máy sản xuất.<br>" +
+        "- Thợ điện thi công lắp đặt hệ thống điện công trình, dân dụng và công nghiệp.<br>" +
+        "- Nhân viên kỹ thuật vận hành trạm biến áp, tòa nhà, resort, khách sạn.<br>" +
+        "- Tự nhận thầu thi công điện nước dân dụng và công nghiệp.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       4. CƠ ĐIỆN NÔNG THÔN
+    ========================= */
+    else if(
+        (text.includes("cơ điện") || text.includes("máy nông nghiệp")) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "🚜 <b>NGÀNH CƠ ĐIỆN NÔNG THÔN</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Lắp đặt, vận hành, bảo dưỡng, sửa chữa máy cơ khí nông nghiệp (máy cày, máy gặt đập liên hợp, máy xới đất, máy bơm nước); kỹ thuật hàn điện, hàn hơi, gia công cơ khí; hệ thống tưới tiêu tự động.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Thợ kỹ thuật sửa chữa máy móc nông nghiệp tại các hợp tác xã, trạm cơ giới hóa nông nghiệp.<br>" +
+        "- Kỹ thuật viên bảo trì máy tại các trang trại nông nghiệp công nghệ cao, nhà máy xay xát, chế biến lúa gạo, nông sản.<br>" +
+        "- Tự mở xưởng sửa chữa máy móc cơ điện và gia công cơ khí nông thôn.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       5. KỸ THUẬT SỬA CHỮA, LẮP RÁP MÁY TÍNH
+    ========================= */
+    else if(
+        (text.includes("lắp ráp máy tính") || text.includes("sửa chữa máy tính") || text.includes("sửa laptop") || (text.includes("phần cứng") && text.includes("máy tính"))) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "🖥️ <b>NGÀNH KỸ THUẬT SỬA CHỮA, LẮP RÁP MÁY TÍNH</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Tháo lắp, thay thế và sửa chữa linh kiện phần cứng (mainboard, CPU, RAM, ổ cứng, nguồn...); cài đặt hệ điều hành, phần mềm ứng dụng; chẩn đoán và khắc phục sự cố máy tính, laptop, thiết bị ngoại vi (máy in, máy scan).<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Kỹ thuật viên bảo trì, sửa chữa máy tính tại các công ty tin học, chuỗi siêu thị công nghệ (FPT Shop, Thế Giới Di Động...), trung tâm bảo hành.<br>" +
+        "- Kỹ thuật viên IT Helpdesk hỗ trợ kỹ thuật máy tính tại các cơ quan, trường học, doanh nghiệp.<br>" +
+        "- Tự mở cửa hàng kinh doanh, sửa chữa máy tính, laptop và thiết bị văn phòng.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       6. QUẢN TRỊ MẠNG MÁY TÍNH
+    ========================= */
+    else if(
+        (text.includes("quản trị mạng") || text.includes("mạng máy tính") || text.includes("mạng lan")) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "🌐 <b>NGÀNH QUẢN TRỊ MẠNG MÁY TÍNH</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Thiết kế, lắp đặt hệ thống mạng LAN, Wi-Fi; cấu hình Router, Switch; cài đặt quản trị Server (Windows/Linux), chia sẻ tài nguyên, bảo mật hệ thống mạng và thi công hệ thống camera giám sát.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Nhân viên quản trị hệ thống mạng tại các doanh nghiệp, ngân hàng, trường học, bệnh viện, cơ quan hành chính.<br>" +
+        "- Kỹ thuật viên triển khai hạ tầng mạng cho các nhà mạng viễn thông (VNPT, Viettel, FPT Telecom).<br>" +
+        "- Nhân viên kỹ thuật IT chuyên trách camera giám sát và an toàn mạng.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       7. THIẾT KẾ ĐỒ HỌA
+    ========================= */
+    else if(
+        (text.includes("thiết kế đồ họa") || text.includes("đồ họa") || text.includes("photoshop") || text.includes("illustrator")) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "🎨 <b>NGÀNH THIẾT KẾ ĐỒ HỌA</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Thành thạo các phần mềm đồ họa chuyên nghiệp (Photoshop, Illustrator, CorelDRAW); tư duy mỹ thuật, bố cục, màu sắc; thiết kế logo, banner, poster, ấn phẩm quảng cáo, bao bì sản phẩm và xử lý ảnh nghệ thuật.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Chuyên viên thiết kế tại các xưởng in ấn, công ty quảng cáo, truyền thông, sự kiện.<br>" +
+        "- Nhân viên xử lý ảnh tại các studio ảnh cưới, studio nghệ thuật.<br>" +
+        "- Nhân viên thiết kế hình ảnh, banner cho các shop bán hàng online, fanpage, sàn TMĐT.<br>" +
+        "- Nhận các dự án thiết kế tự do (Freelancer).<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       8. TIN HỌC ỨNG DỤNG
+    ========================= */
+    else if(
+        text.includes("tin học ứng dụng") &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "💻 <b>NGÀNH TIN HỌC ỨNG DỤNG</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Lập trình cơ bản, xây dựng và quản trị cơ sở dữ liệu số; khai thác các phần mềm ứng dụng chuyên ngành; thiết kế và quản trị website cơ bản; ứng dụng công nghệ thông tin trong quản lý doanh nghiệp.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Nhân viên tin học, quản trị website và cổng thông tin điện tử tại cơ quan, doanh nghiệp.<br>" +
+        "- Kỹ thuật viên xử lý dữ liệu, vận hành phần mềm nghiệp vụ số.<br>" +
+        "- Nhân viên hỗ trợ chuyển đổi số, nhập liệu và xử lý thông tin tại các đơn vị.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       9. TIN HỌC VĂN PHÒNG
+    ========================= */
+    else if(
+        text.includes("tin học văn phòng") &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "📋 <b>NGÀNH TIN HỌC VĂN PHÒNG</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Kỹ năng soạn thảo văn bản hành chính quy chuẩn nhà nước (Word); phân tích và xử lý số liệu bảng tính nâng cao (Excel); thiết kế bài thuyết trình số (PowerPoint); quản lý văn thư điện tử và lưu trữ đám mây.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Nhân viên văn thư, thư ký, trợ lý văn phòng tại các cơ quan nhà nước, trường học, doanh nghiệp.<br>" +
+        "- Nhân viên nhập liệu, tổng hợp báo cáo và xử lý số liệu hành chính - nhân sự.<br>" +
+        "- Nhân viên lễ tân, nhân viên văn phòng tại các đơn vị hành chính sự nghiệp.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       10. THƯƠNG MẠI ĐIỆN TỬ
+    ========================= */
+    else if(
+        (text.includes("thương mại điện tử") || text.includes("tmdt") || text.includes("bán hàng online") || text.includes("marketing online") || text.includes("digital marketing")) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "🛒 <b>NGÀNH THƯƠNG MẠI ĐIỆN TỬ</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Xây dựng và quản trị gian hàng sàn TMĐT (Shopee, TikTok Shop, Lazada); tiếp thị số (Digital Marketing), chạy quảng cáo trực tuyến; kỹ thuật quay dựng video ngắn, livestream bán hàng; quản lý đơn hàng đa kênh.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Chuyên viên vận hành sàn TMĐT, quản lý shop online cho doanh nghiệp, cơ sở kinh doanh.<br>" +
+        "- Nhân viên Marketing số, sáng tạo nội dung, quản trị fanpage mạng xã hội.<br>" +
+        "- Nhân viên livestream bán hàng, chăm sóc khách hàng trực tuyến.<br>" +
+        "- Tự khởi nghiệp kinh doanh trực tuyến hoặc mở dịch vụ marketing đa kênh.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       11. KẾ TOÁN DOANH NGHIỆP
+    ========================= */
+    else if(
+        text.includes("kế toán") &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "📑 <b>NGÀNH KẾ TOÁN DOANH NGHIỆP</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Nghiệp vụ kế toán kho, kế toán tiền lương, kế toán bán hàng; xuất hóa đơn điện tử, kê khai các loại thuế (GTGT, TNCN, TNDN); sử dụng thành thạo phần mềm kế toán MISA; lập báo cáo tài chính.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Nhân viên kế toán nội bộ, kế toán kho, kế toán thuế tại các công ty, hợp tác xã, doanh nghiệp tư nhân.<br>" +
+        "- Thu ngân, giao dịch viên tại các siêu thị, ngân hàng, chuỗi bán lẻ.<br>" +
+        "- Nhân viên kiểm kê hàng hóa, thủ quỹ tài chính.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       12. HƯỚNG DẪN DU LỊCH
+    ========================= */
+    else if(
+        (text.includes("hướng dẫn du lịch") || text.includes("hướng dẫn viên") || text.includes("lữ hành") || (text.includes("du lịch") && !text.includes("kinh tế") && !text.includes("nông nghiệp"))) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "🎒 <b>NGÀNH HƯỚNG DẪN DU LỊCH</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Nghiệp vụ hướng dẫn viên du lịch nội địa, kỹ năng thuyết minh tuyến điểm; thiết kế, định giá và điều hành tour du lịch; tâm lý du khách; nghiệp vụ lễ tân khách sạn, nhà hàng.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Hướng dẫn viên du lịch nội địa, thuyết minh viên tại các khu di tích lịch sử, danh lam thắng cảnh, khu du lịch sinh thái tại An Giang và ĐBSCL.<br>" +
+        "- Nhân viên điều hành tour, bán tour (sales tour) tại các công ty lữ hành.<br>" +
+        "- Nhân viên lễ tân, quan hệ khách hàng tại khách sạn, resort, homestay.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       13. PHÁP LUẬT
+    ========================= */
+    else if(
+        (text.includes("pháp luật") || text.includes("ngành luật") || text.includes("học luật")) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "⚖️ <b>NGÀNH PHÁP LUẬT</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Kiến thức pháp luật Dân sự, Hình sự, Đất đai, Hôn nhân gia đình, Lao động; kỹ năng soạn thảo văn bản pháp quy, hợp đồng kinh tế; thủ tục hành chính, công tác chứng thực, hộ tịch; tư vấn pháp luật cơ sở.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Cán bộ tư pháp - hộ tịch, cán bộ văn phòng tại UBND xã, phường, thị trấn.<br>" +
+        "- Thư ký, trợ lý pháp lý tại các văn phòng luật sư, công chứng, thừa phát lại.<br>" +
+        "- Chuyên viên pháp chế nội bộ, quản lý hợp đồng và nhân sự tại các doanh nghiệp tư nhân.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+    /* =========================
+       14. TRỒNG TRỌT VÀ BẢO VỆ THỰC VẬT
+    ========================= */
+    else if(
+        (text.includes("trồng trọt") || text.includes("bảo vệ thực vật") || text.includes("bvtv") || text.includes("cây trồng") || (text.includes("nông nghiệp") && !text.includes("kinh tế") && !text.includes("du lịch") && !text.includes("cơ điện"))) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian")
+    ) {
+        traLoi =
+        "🌾 <b>NGÀNH TRỒNG TRỌT VÀ BẢO VỆ THỰC VẬT</b><br><br>" +
+        "• <b>Nội dung đào tạo:</b> Kỹ thuật nhân giống, trồng trọt và chăm sóc các loại cây trồng chủ lực (lúa, cây ăn quả, rau màu); nhận biết và phòng trừ sâu bệnh hại theo tiêu chuẩn VietGAP; sử dụng phân bón, thuốc BVTV an toàn; ứng dụng công nghệ tưới nhỏ giọt, nhà màng công nghệ cao.<br><br>" +
+        "• <b>Vị trí việc làm sau khi ra trường:</b><br>" +
+        "- Kỹ thuật viên nông nghiệp tại các trang trại, nông trường công nghệ cao, hợp tác xã nông nghiệp.<br>" +
+        "- Nhân viên kỹ thuật, tư vấn bán hàng tại các công ty sản xuất giống cây trồng, phân bón, thuốc BVTV.<br>" +
+        "- Tự làm chủ mô hình nông nghiệp sinh thái, trồng trọt hữu cơ hoặc mở đại lý kinh doanh vật tư nông nghiệp.<br><br>" +
+        "👉 Bấm vào mục Đào tạo trên Website trường để xem chi tiết chương trình học!";
+    }
+
+
+
+    /* =========================
        VIỆC LÀM KHỐI CNTT - MÁY TÍNH
     ========================= */
 
