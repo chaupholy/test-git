@@ -1054,6 +1054,200 @@ function guiTinNhan() {
 
 
 
+    /* ========================================================
+       CÂU HỎI VỊ TRÍ VIỆC LÀM & LÀM VIỆC Ở ĐÂU TỪNG NGÀNH
+    ======================================================== */
+    else if(
+        (text.includes("làm việc ở đâu") || text.includes("lam viec o dau") ||
+        text.includes("làm ở đâu") || text.includes("lam o dau") ||
+        text.includes("việc làm") || text.includes("viec lam") ||
+        text.includes("ra trường làm") || text.includes("ra truong lam") ||
+        text.includes("ra làm gì") || text.includes("ra lam gi") ||
+        text.includes("học xong làm") || text.includes("hoc xong lam") ||
+        text.includes("vị trí việc làm") || text.includes("vi tri viec lam") ||
+        text.includes("cơ hội việc làm") || text.includes("co hoi viec lam") ||
+        text.includes("xin việc") || text.includes("xin viec") ||
+        text.includes("giới thiệu việc làm") || text.includes("gioi thieu viec lam") ||
+        text.includes("có việc làm không") || text.includes("co viec lam khong")) &&
+        !text.includes("học phí") && !text.includes("hồ sơ") && !text.includes("thời gian") && !text.includes("số điện thoại")
+    ) {
+        // 1. Ô tô
+        if(text.includes("ô tô") || text.includes("oto")) {
+            traLoi =
+            "🚗 <b>Nghề Công nghệ ô tô có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Hãng xe & Showroom:</b> Kỹ thuật viên bảo dưỡng, chẩn đoán, sửa chữa tại các đại lý xe lớn (Toyota, Hyundai, Thaco, Ford, Kia...).<br>" +
+            "• <b>Garage & Trạm dịch vụ:</b> Thợ máy gầm, điện lạnh ô tô tại các garage tư nhân, trung tâm chăm sóc ô tô (detailing), trạm đăng kiểm cơ giới.<br>" +
+            "• <b>Cố vấn & Kinh doanh:</b> Nhân viên tư vấn dịch vụ kỹ thuật, nhân viên kinh doanh phụ tùng phụ kiện ô tô.<br>" +
+            "• <b>Tự làm chủ:</b> Mở tiệm sửa chữa, garage ô tô hoặc xưởng đồng sơn riêng.<br>" +
+            "🤝 <i>Nhà trường ký kết hợp tác giới thiệu việc làm 100% tại các hãng xe và xưởng bảo dưỡng lớn.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 2. Máy lạnh & ĐHKK
+        else if(text.includes("máy lạnh") || text.includes("điều hòa") || text.includes("điện lạnh") || text.includes("nhiệt lạnh")) {
+            traLoi =
+            "❄️ <b>Nghề Kỹ thuật máy lạnh & Điều hòa không khí có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Trung tâm bảo hành & Siêu thị:</b> Kỹ thuật viên lắp đặt, sửa chữa tại Điện Máy Xanh, Chợ Lớn, các trung tâm bảo hành hãng (Daikin, Panasonic, Toshiba, LG...).<br>" +
+            "• <b>Tòa nhà, khách sạn & Bệnh viện:</b> Kỹ thuật viên vận hành hệ thống máy lạnh trung tâm (Chiller, VRV), hệ thống thông gió tòa nhà cao tầng, resort.<br>" +
+            "• <b>Công ty thủy hải sản:</b> Kỹ thuật viên vận hành kho lạnh, hệ thống cấp đông tại các xí nghiệp chế biến xuất khẩu cá tra, tôm đông lạnh.<br>" +
+            "• <b>Tự làm chủ:</b> Mở cửa hàng kinh doanh, lắp đặt và sửa chữa điện lạnh dân dụng.<br>" +
+            "🤝 <i>Nhà trường hợp tác với các siêu thị điện máy và công ty cơ điện lạnh giới thiệu việc làm ngay sau khi tốt nghiệp.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 3. Cơ điện nông thôn
+        else if(text.includes("cơ điện") || text.includes("máy nông nghiệp")) {
+            traLoi =
+            "🚜 <b>Nghề Cơ điện nông thôn có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Nông trường & Hợp tác xã:</b> Kỹ thuật viên bảo trì, vận hành máy cày, máy gặt đập liên hợp, máy bay phun thuốc (drone nông nghiệp).<br>" +
+            "• <b>Nhà máy xay xát & Chế biến:</b> Thợ kỹ thuật bảo dưỡng dây chuyền chế biến lúa gạo, nông sản xuất khẩu.<br>" +
+            "• <b>Xưởng cơ khí:</b> Thợ gia công kim loại, hàn cắt kết cấu thép, nhà màng công nghệ cao.<br>" +
+            "• <b>Tự làm chủ:</b> Mở xưởng sửa chữa máy nông nghiệp hoặc đại lý kinh doanh phụ tùng tại địa phương.<br>" +
+            "🤝 <i>Nhu cầu tuyển dụng thợ cơ điện nông nghiệp tại ĐBSCL rất cao với mức lương hấp dẫn.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 4. Điện công nghiệp
+        else if(text.includes("điện công nghiệp") || text.includes("ngành điện") || text.includes("nghề điện") || text.includes("học điện")) {
+            traLoi =
+            "⚡ <b>Nghề Điện công nghiệp có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Nhà máy & Khu công nghiệp:</b> Kỹ thuật viên bảo trì hệ thống điện máy, tủ điện phân phối tại các xí nghiệp, khu công nghiệp ở An Giang, Bình Dương, Long An.<br>" +
+            "• <b>Tòa nhà, khách sạn & Resort:</b> Nhân viên kỹ thuật quản lý trạm biến áp, mạng lưới điện dự phòng.<br>" +
+            "• <b>Công trình xây lắp điện:</b> Thợ điện thi công hệ thống điện cơ điện (M&E) nhà xưởng và dân dụng.<br>" +
+            "• <b>Tự thầu công trình:</b> Nhận thầu thi công, lắp đặt hệ thống điện - nước công trình.<br>" +
+            "🤝 <i>Nhà trường liên kết cung ứng nhân lực cho các khu công nghiệp với thu nhập ổn định.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 5. Sửa chữa, lắp ráp máy tính
+        else if(text.includes("sửa chữa máy tính") || text.includes("lắp ráp máy tính") || text.includes("sửa laptop") || (text.includes("phần cứng") && text.includes("máy tính"))) {
+            traLoi =
+            "🖥️ <b>Nghề Kỹ thuật sửa chữa, lắp ráp máy tính có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Siêu thị & Cửa hàng tin học:</b> Kỹ thuật viên phần cứng tại FPT Shop, Thế Giới Di Động, Phong Vũ, các cửa hàng máy tính laptop.<br>" +
+            "• <b>Bộ phận IT doanh nghiệp/cơ quan:</b> Nhân viên IT Helpdesk hỗ trợ kỹ thuật máy tính, máy in, máy chiếu tại trường học, bệnh viện, UBND, ngân hàng.<br>" +
+            "• <b>Trung tâm bảo hành:</b> Kỹ thuật viên thay thế linh kiện, chẩn đoán sự cố thiết bị số.<br>" +
+            "• <b>Tự làm chủ:</b> Mở cửa hàng kinh doanh, sửa chữa máy tính, laptop, camera tại nhà.<br>" +
+            "🤝 <i>Nhà trường hỗ trợ kết nối thực tập và việc làm tại các doanh nghiệp tin học hàng đầu.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 6. Quản trị mạng máy tính
+        else if(text.includes("quản trị mạng") || text.includes("mạng máy tính") || text.includes("mạng lan")) {
+            traLoi =
+            "🌐 <b>Nghề Quản trị mạng máy tính có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Doanh nghiệp & Cơ quan hành chính:</b> Quản trị viên hệ thống mạng LAN/WAN, cấu hình server, bảo mật dữ liệu nội bộ.<br>" +
+            "• <b>Nhà mạng viễn thông:</b> Kỹ thuật viên hạ tầng mạng, đường truyền tại VNPT, Viettel, FPT Telecom.<br>" +
+            "• <b>Công ty an ninh giám sát:</b> Kỹ thuật viên thi công lắp đặt và quản trị hệ thống camera giám sát, nhà thông minh.<br>" +
+            "🤝 <i>Cơ hội việc làm rộng mở tại các tổ chức, ngân hàng, trường học và doanh nghiệp.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 7. Thiết kế đồ họa
+        else if(text.includes("thiết kế đồ họa") || text.includes("đồ họa") || text.includes("photoshop") || text.includes("illustrator")) {
+            traLoi =
+            "🎨 <b>Nghề Thiết kế đồ họa có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Công ty quảng cáo & In ấn:</b> Chuyên viên thiết kế banner, poster, bảng hiệu, bao bì, nhận diện thương hiệu tại các xưởng in, công ty truyền thông - sự kiện.<br>" +
+            "• <b>Studio ảnh nghệ thuật:</b> Nhân viên xử lý ảnh, phục hồi ảnh tại các studio cưới, viện ảnh nghệ thuật.<br>" +
+            "• <b>Doanh nghiệp TMĐT:</b> Thiết kế hình ảnh sản phẩm, banner bán hàng cho các shop online, fanpage bán hàng.<br>" +
+            "• <b>Freelancer:</b> Nhận các dự án thiết kế trực tuyến tự do tại nhà với thu nhập linh hoạt.<br>" +
+            "🤝 <i>Nhà trường đào tạo thành thạo thực hành Photoshop, Illustrator, CorelDRAW đáp ứng ngay yêu cầu công việc.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 8. Tin học ứng dụng & Tin học văn phòng
+        else if(text.includes("tin học ứng dụng") || text.includes("tin học văn phòng")) {
+            traLoi =
+            "📋 <b>Nghề Tin học ứng dụng & Tin học văn phòng có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Cơ quan hành chính Nhà nước:</b> Cán bộ văn thư, nhân viên một cửa, nhập liệu và xử lý số liệu tại UBND xã/phường, trường học, bệnh viện.<br>" +
+            "• <b>Doanh nghiệp:</b> Thư ký văn phòng, nhân viên kế toán nội bộ, tổng hợp báo cáo nhân sự - hành chính.<br>" +
+            "• <b>Quản trị nội dung số:</b> Quản trị website, fanpage và cổng thông tin điện tử của cơ quan, doanh nghiệp.<br>" +
+            "🤝 <i>Chương trình đào tạo sát với nhu cầu chuyển đổi số và công tác văn phòng hiện đại.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 9. Khối Công nghệ thông tin / Máy tính chung
+        else if(text.includes("công nghệ thông tin") || text.includes("cntt") || text.includes("máy tính") || text.includes("tin học")) {
+            traLoi =
+            "💼 <b>VỊ TRÍ VIỆC LÀM KHỐI CÔNG NGHỆ THÔNG TIN & MÁY TÍNH</b><br><br>" +
+            "Sau khi tốt nghiệp các ngành CNTT tại trường, học sinh có cơ hội việc làm rộng mở tại nhiều cơ quan, doanh nghiệp:<br><br>" +
+            "🖥️ <b>1. Kỹ thuật sửa chữa, lắp ráp máy tính:</b> Kỹ thuật viên phần cứng tại FPT Shop, Thế Giới Di Động, IT Helpdesk doanh nghiệp.<br>" +
+            "🌐 <b>2. Quản trị mạng máy tính:</b> Quản trị hệ thống mạng LAN/WAN, server, camera an ninh tại cơ quan, trường học, bệnh viện.<br>" +
+            "🎨 <b>3. Thiết kế đồ họa:</b> Thiết kế banner, poster, ấn phẩm quảng cáo tại xưởng in, công ty truyền thông hoặc Freelancer.<br>" +
+            "📊 <b>4. Tin học ứng dụng & Văn phòng:</b> Cán bộ văn thư, xử lý số liệu, quản trị phần mềm và website đơn vị.<br><br>" +
+            "🤝 <i>Nhà trường luôn phối hợp với các doanh nghiệp trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp!</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 10. Thương mại điện tử
+        else if(text.includes("thương mại điện tử") || text.includes("tmdt") || text.includes("bán hàng online") || text.includes("marketing")) {
+            traLoi =
+            "🛒 <b>Nghề Thương mại điện tử có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Doanh nghiệp & Cơ sở kinh doanh:</b> Chuyên viên vận hành gian hàng trên sàn TMĐT (Shopee, TikTok Shop, Lazada).<br>" +
+            "• <b>Công ty tiếp thị số:</b> Nhân viên Digital Marketing, chạy quảng cáo Facebook/TikTok/Google, sáng tạo nội dung video ngắn.<br>" +
+            "• <b>Livestream & Chăm sóc khách hàng:</b> Nhân viên livestream bán hàng, quản lý đơn hàng đa kênh trực tuyến.<br>" +
+            "• <b>Tự khởi nghiệp:</b> Kinh doanh online các mặt hàng nông đặc sản, thời trang, đồ gia dụng.<br>" +
+            "🤝 <i>Ngành nghề xu hướng với nhu cầu nhân lực số bùng nổ hiện nay.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 11. Kế toán doanh nghiệp
+        else if(text.includes("kế toán")) {
+            traLoi =
+            "📑 <b>Nghề Kế toán doanh nghiệp có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Doanh nghiệp, công ty, hợp tác xã:</b> Kế toán viên nội bộ, kế toán kho, kế toán tiền lương, kế toán thanh toán, kế toán bán hàng.<br>" +
+            "• <b>Đại lý thuế & Dịch vụ kế toán:</b> Nhân viên kê khai thuế điện tử (GTGT, TNCN, TNDN), lập báo cáo tài chính trên phần mềm MISA.<br>" +
+            "• <b>Siêu thị & Ngân hàng:</b> Nhân viên thu ngân, thủ quỹ, nhân viên giao dịch tại hệ thống bán lẻ, chuỗi tiện lợi.<br>" +
+            "🤝 <i>Nhà trường giới thiệu thực tập và việc làm kế toán tại các công ty, hợp tác xã trên địa bàn.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 12. Hướng dẫn du lịch
+        else if(text.includes("du lịch") || text.includes("hướng dẫn viên") || text.includes("lữ hành")) {
+            traLoi =
+            "🎒 <b>Nghề Hướng dẫn du lịch có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Công ty lữ hành & Du lịch:</b> Hướng dẫn viên du lịch nội địa dẫn tour tham quan tại An Giang, ĐBSCL và toàn quốc.<br>" +
+            "• <b>Khu du lịch & Danh lam thắng cảnh:</b> Thuyết minh viên tại Miếu Bà Chúa Xứ Núi Sam, Rừng tràm Trà Sư, Đồi Tức Dụp, Núi Cấm, các bảo tàng di tích.<br>" +
+            "• <b>Khách sạn & Resort:</b> Nhân viên lễ tân, nhân viên điều hành tour, quan hệ khách hàng.<br>" +
+            "🤝 <i>Ngành mũi nhọn tại An Giang với thị trường du lịch tâm linh, sinh thái phát triển mạnh mẽ.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 13. Pháp luật
+        else if(text.includes("pháp luật") || text.includes("luật")) {
+            traLoi =
+            "⚖️ <b>Nghề Pháp luật có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>UBND cấp xã, phường, thị trấn:</b> Cán bộ Tư pháp – Hộ tịch, cán bộ văn phòng, hòa giải viên cơ sở.<br>" +
+            "• <b>Văn phòng Luật & Công chứng:</b> Thư ký, trợ lý hồ sơ tại các văn phòng luật sư, công chứng, thừa phát lại.<br>" +
+            "• <b>Doanh nghiệp tư nhân:</b> Chuyên viên pháp chế, quản lý hợp đồng kinh tế và hồ sơ lao động.<br>" +
+            "🤝 <i>Chương trình đào tạo thực tiễn, giúp học sinh nắm vững thủ tục hành chính và pháp luật ứng dụng.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 14. Trồng trọt & Bảo vệ thực vật
+        else if(text.includes("trồng trọt") || text.includes("bảo vệ thực vật") || text.includes("bvtv") || text.includes("cây trồng") || text.includes("nông nghiệp")) {
+            traLoi =
+            "🌱 <b>Nghề Trồng trọt và bảo vệ thực vật có vị trí việc làm cụ thể tại:</b><br><br>" +
+            "• <b>Công ty giống & Nông dược:</b> Kỹ thuật viên chuyển giao kỹ thuật, nhân viên kinh doanh giống cây trồng, phân bón, thuốc BVTV (Tập đoàn Lộc Trời, Tân Thành...).<br>" +
+            "• <b>Trang trại & Hợp tác xã nông nghiệp:</b> Kỹ thuật viên quản lý vùng trồng nông nghiệp công nghệ cao, nhà màng, cây ăn trái tiêu chuẩn VietGAP.<br>" +
+            "• <b>Cơ quan khuyến nông:</b> Cán bộ kỹ thuật tại các Trạm Khuyến nông, Trạm Trồng trọt và BVTV huyện/thị xã.<br>" +
+            "• <b>Tự làm chủ:</b> Mở đại lý kinh doanh vật tư nông nghiệp hoặc làm chủ mô hình vườn, trang trại sạch.<br>" +
+            "🤝 <i>Nhà trường liên kết chặt chẽ với các doanh nghiệp nông nghiệp hàng đầu tại ĐBSCL.</i><br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px; margin-left:5px;'>📖 Chi Tiết Ngành</a>";
+        }
+        // 15. Cơ hội việc làm chung của trường (thực hành 75% - 80%)
+        else {
+            traLoi =
+            "💼 <b>CƠ HỘI VIỆC LÀM KHI HỌC TẠI TRƯỜNG</b><br><br>" +
+            "• <b>Cam kết 100% giới thiệu việc làm:</b> Nhà trường đã ký kết hợp tác cung ứng nhân lực với hơn 50+ doanh nghiệp lớn tại An Giang, Cần Thơ, Bình Dương, Long An, TP.HCM.<br>" +
+            "• <b>Thực hành thực tế:</b> Thời lượng thực hành lên đến <b>75% - 80%</b>, học sinh được thực tập hưởng lương tại các nhà máy, xí nghiệp ngay trong khóa học.<br>" +
+            "• <b>Mức lương khởi điểm:</b> Từ <b>7.000.000đ – 15.000.000đ/tháng</b> tùy ngành nghề.<br>" +
+            "• <b>Liên thông:</b> Có thể học liên thông lên Cao đẳng, Đại học ngay sau khi tốt nghiệp.<br><br>" +
+            "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-top:6px;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+            "<button onclick=\"sendQuickMessage('Hẹn gọi tư vấn')\" style='padding:6px 12px; background:#f3f4f6; color:#374151; border:1px solid #d1d5db; border-radius:8px; font-size:12px; cursor:pointer; font-weight:bold; margin-left:5px;'>📞 Hẹn Cán Bộ Gọi Lại</button>";
+        }
+    }
+
     /* =========================
        1. CÔNG NGHỆ Ô TÔ
     ========================= */
