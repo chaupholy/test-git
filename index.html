@@ -41,25 +41,41 @@ body {
 
     bottom: 25px;
 
-    width: 65px;
-
-    height: 65px;
+    padding: 12px 22px;
 
     border: none;
 
-    border-radius: 50%;
+    border-radius: 30px;
 
     background: #e91e63;
 
     color: white;
 
-    font-size: 28px;
+    font-size: 16px;
+
+    font-weight: bold;
 
     cursor: pointer;
 
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 
     z-index: 999;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: transform 0.2s, background 0.2s;
+
+}
+
+#nutChat:hover {
+
+    background: #d81557;
+
+    transform: scale(1.05);
 
 }
 
@@ -334,7 +350,7 @@ body {
 
 <button id="nutChat" onclick="moChat()">
 
-💬
+💬 Chatbox
 
 </button>
 
@@ -787,57 +803,17 @@ function guiTinNhan() {
     }
 
     /* =========================
-       TRA CỨU CÁN BỘ, GIÁO VIÊN, TRƯỞNG PHÒNG, TRƯỞNG KHOA
-    ========================= */
-    else if(
-        (text.includes("giáo viên") || text.includes("cán bộ") || text.includes("trưởng phòng") || text.includes("trưởng khoa") || text.includes("hiệu trưởng") || text.includes("ban giám hiệu") || text.includes("bgh") || text.includes("email") || text.includes("thầy") || text.includes("cô")) &&
-        !text.includes("cô thuỷ") && !text.includes("cô thủy")
-    ) {
-        var matched = CAN_BO_LIST.find(function(p) {
-            var n = p.name.toLowerCase();
-            return text.includes(n) || p.keywords.some(function(k) { return text.includes(k); });
-        });
-
-        if(matched) {
-            traLoi =
-            "📧 <b>THÔNG TIN LIÊN HỆ CÁN BỘ / GIÁO VIÊN</b><br><br>" +
-            "Hãy liên hệ với thầy/cô hoặc cán bộ qua email chính thức của trường từ trang website <b>dtntag.edu.vn</b>:<br><br>" +
-            "👤 <b>Họ và tên:</b> " + matched.name + "<br>" +
-            "📌 <b>Chức vụ:</b> " + matched.role + "<br>" +
-            "🏢 <b>Đơn vị:</b> " + matched.dept + "<br>" +
-            "✉️ <b>Email:</b> <a href='mailto:" + matched.email + "'>" + matched.email + "</a>";
-        } else if(text.includes("giáo viên") || text.includes("cán bộ") || text.includes("trưởng phòng") || text.includes("trưởng khoa") || text.includes("hiệu trưởng") || text.includes("ban giám hiệu") || text.includes("bgh") || text.includes("email")) {
-            traLoi =
-            "📧 <b>LIÊN HỆ CÁN BỘ QUẢN LÝ & GIÁO VIÊN</b><br><br>" +
-            "Hãy liên hệ với thầy/cô hoặc cán bộ quản lý qua <b>email chính thức</b> từ trang website trường <b>dtntag.edu.vn</b>.<br><br>" +
-            "<b>Danh bạ một số vị trí lãnh đạo, Trưởng phòng & Trưởng khoa:</b><br><br>" +
-            "🏛️ <b>Ban Giám Hiệu:</b><br>" +
-            "• ThS. <b>Cao Văn Thích</b> (Hiệu trưởng): tcndantocnoitru_thich@angiang.edu.vn<br>" +
-            "• CN. <b>Lê Minh Nhựt</b> (Phó Hiệu trưởng): tcndantocnoitru_nhut@angiang.edu.vn<br>" +
-            "• CN. <b>Nguyễn Thị Khánh Bằng</b> (Phó Hiệu trưởng): tcndantocnoitru_bang@angiang.edu.vn<br><br>" +
-            "🏢 <b>Trưởng các Phòng / Khoa:</b><br>" +
-            "• Thầy <b>Nguyễn Lin Ka</b> (Trưởng Khoa CNTT): tcndantocnoitru_ka@angiang.edu.vn<br>" +
-            "• Thầy <b>Phan Đại Nghĩa</b> (Trưởng Khoa Cơ điện – Nông nghiệp): tcndantocnoitru_nghia@angiang.edu.vn<br>" +
-            "• Thầy <b>Trần Quang Long</b> (Trưởng Khoa Kinh tế – Luật – Du lịch): tcndantocnoitru_long@angiang.edu.vn<br>" +
-            "• Thầy <b>Phạm Chí Danh</b> (Trưởng Phòng Đào tạo): tcndantocnoitru_danh@angiang.edu.vn<br>" +
-            "• Cô <b>Võ Thị Thu</b> (Trưởng Phòng TH - TC - TB): tcndantocnoitru_thu@angiang.edu.vn<br>" +
-            "• Cô <b>Nguyễn Thị Thúy</b> (Phó Trưởng Phòng QLHS & GTVL): tcndantocnoitru_thuy@angiang.edu.vn<br><br>" +
-            "💡 <i>Bạn có thể gõ: <b>'email [Tên thầy/cô]'</b> (ví dụ: email thầy Ka, email thầy Danh...) để lấy email chính xác của từng người muốn tìm nhé!</i>";
-        }
-    }
-
-    /* =========================
        HỆ THỐNG HỌC TẬP (THỜI KHÓA BIỂU, ĐIỂM DANH, LMS)
     ========================= */
     else if(
-        text.includes("thời khóa biểu") || text.includes("tkb") || text.includes("lịch học") || text.includes("lịch giảng dạy") ||
-        text.includes("điểm danh") || text.includes("diem danh") ||
-        text.includes("lms") || text.includes("học trực tuyến") || text.includes("hệ thống học tập")
+        text.includes("thời khóa biểu") || text.includes("thời khoá biểu") || text.includes("thoi khoa bieu") || text.includes("thoi khoá bieu") || text.includes("thời khóa") || text.includes("thời khoá") || text.includes("thoi khoa") || text.includes("tkb") || text.includes("lịch học") || text.includes("lich hoc") || text.includes("lịch giảng dạy") || text.includes("lich giang day") ||
+        text.includes("điểm danh") || text.includes("diem danh") || text.includes("diemdanh") ||
+        text.includes("lms") || text.includes("học trực tuyến") || text.includes("hoc truc tuyen") || text.includes("bài giảng điện tử") || text.includes("bai giang dien tu") || text.includes("hệ thống học tập") || text.includes("he thong hoc tap")
     ) {
-        var isTkb = text.includes("thời khóa biểu") || text.includes("tkb") || text.includes("lịch học") || text.includes("lịch giảng dạy");
-        var isDiemDanh = text.includes("điểm danh") || text.includes("diem danh");
-        var isLms = text.includes("lms") || text.includes("học trực tuyến");
-        var isTongHop = (isTkb && isDiemDanh) || (isTkb && isLms) || (isDiemDanh && isLms) || text.includes("hệ thống học tập") || text.includes("vào địa chỉ nào") || text.includes("địa chỉ nào");
+        var isTkb = text.includes("thời khóa biểu") || text.includes("thời khoá biểu") || text.includes("thoi khoa bieu") || text.includes("thoi khoá bieu") || text.includes("thời khóa") || text.includes("thời khoá") || text.includes("thoi khoa") || text.includes("tkb") || text.includes("lịch học") || text.includes("lich hoc") || text.includes("lịch giảng dạy") || text.includes("lich giang day");
+        var isDiemDanh = text.includes("điểm danh") || text.includes("diem danh") || text.includes("diemdanh");
+        var isLms = text.includes("lms") || text.includes("học trực tuyến") || text.includes("hoc truc tuyen") || text.includes("bài giảng điện tử") || text.includes("bai giang dien tu");
+        var isTongHop = (isTkb && isDiemDanh) || (isTkb && isLms) || (isDiemDanh && isLms) || text.includes("hệ thống học tập") || text.includes("he thong hoc tap") || text.includes("vào địa chỉ nào") || text.includes("địa chỉ nào") || text.includes("dia chi nao");
 
         if(isTongHop) {
             traLoi =
@@ -874,6 +850,46 @@ function guiTinNhan() {
             "Để vào hệ thống LMS học trực tuyến, xem bài giảng điện tử và làm bài tập, bạn truy cập tại:<br><br>" +
             "👉 <a href='https://lms.dtntag.edu.vn/' target='_blank'><b>https://lms.dtntag.edu.vn/</b></a><br><br>" +
             "💡 <i>Học sinh đăng nhập bằng tài khoản (User/Password) do nhà trường cấp để vào lớp học nhé! Hoặc trên website <a href='https://dtntag.edu.vn' target='_blank'>dtntag.edu.vn</a> &rarr; chọn menu <b>'HỆ THỐNG HỌC TẬP'</b> &rarr; <b>'LMS'</b>.</i>";
+        }
+    }
+
+    /* =========================
+       TRA CỨU CÁN BỘ, GIÁO VIÊN, TRƯỞNG PHÒNG, TRƯỞNG KHOA
+    ========================= */
+    else if(
+        (text.includes("giáo viên") || text.includes("cán bộ") || text.includes("trưởng phòng") || text.includes("trưởng khoa") || text.includes("hiệu trưởng") || text.includes("ban giám hiệu") || text.includes("bgh") || text.includes("email") || text.includes("thầy") || text.includes("cô")) &&
+        !text.includes("cô thuỷ") && !text.includes("cô thủy")
+    ) {
+        var matched = CAN_BO_LIST.find(function(p) {
+            var n = p.name.toLowerCase();
+            return text.includes(n) || p.keywords.some(function(k) { return text.includes(k); });
+        });
+
+        if(matched) {
+            traLoi =
+            "📧 <b>THÔNG TIN LIÊN HỆ CÁN BỘ / GIÁO VIÊN</b><br><br>" +
+            "Hãy liên hệ với thầy/cô hoặc cán bộ qua email chính thức của trường từ trang website <b>dtntag.edu.vn</b>:<br><br>" +
+            "👤 <b>Họ và tên:</b> " + matched.name + "<br>" +
+            "📌 <b>Chức vụ:</b> " + matched.role + "<br>" +
+            "🏢 <b>Đơn vị:</b> " + matched.dept + "<br>" +
+            "✉️ <b>Email:</b> <a href='mailto:" + matched.email + "'>" + matched.email + "</a>";
+        } else if(text.includes("giáo viên") || text.includes("cán bộ") || text.includes("trưởng phòng") || text.includes("trưởng khoa") || text.includes("hiệu trưởng") || text.includes("ban giám hiệu") || text.includes("bgh") || text.includes("email")) {
+            traLoi =
+            "📧 <b>LIÊN HỆ CÁN BỘ QUẢN LÝ & GIÁO VIÊN</b><br><br>" +
+            "Hãy liên hệ với thầy/cô hoặc cán bộ quản lý qua <b>email chính thức</b> từ trang website trường <b>dtntag.edu.vn</b>.<br><br>" +
+            "<b>Danh bạ một số vị trí lãnh đạo, Trưởng phòng & Trưởng khoa:</b><br><br>" +
+            "🏛️ <b>Ban Giám Hiệu:</b><br>" +
+            "• ThS. <b>Cao Văn Thích</b> (Hiệu trưởng): tcndantocnoitru_thich@angiang.edu.vn<br>" +
+            "• CN. <b>Lê Minh Nhựt</b> (Phó Hiệu trưởng): tcndantocnoitru_nhut@angiang.edu.vn<br>" +
+            "• CN. <b>Nguyễn Thị Khánh Bằng</b> (Phó Hiệu trưởng): tcndantocnoitru_bang@angiang.edu.vn<br><br>" +
+            "🏢 <b>Trưởng các Phòng / Khoa:</b><br>" +
+            "• Thầy <b>Nguyễn Lin Ka</b> (Trưởng Khoa CNTT): tcndantocnoitru_ka@angiang.edu.vn<br>" +
+            "• Thầy <b>Phan Đại Nghĩa</b> (Trưởng Khoa Cơ điện – Nông nghiệp): tcndantocnoitru_nghia@angiang.edu.vn<br>" +
+            "• Thầy <b>Trần Quang Long</b> (Trưởng Khoa Kinh tế – Luật – Du lịch): tcndantocnoitru_long@angiang.edu.vn<br>" +
+            "• Thầy <b>Phạm Chí Danh</b> (Trưởng Phòng Đào tạo): tcndantocnoitru_danh@angiang.edu.vn<br>" +
+            "• Cô <b>Võ Thị Thu</b> (Trưởng Phòng TH - TC - TB): tcndantocnoitru_thu@angiang.edu.vn<br>" +
+            "• Cô <b>Nguyễn Thị Thúy</b> (Phó Trưởng Phòng QLHS & GTVL): tcndantocnoitru_thuy@angiang.edu.vn<br><br>" +
+            "💡 <i>Bạn có thể gõ: <b>'email [Tên thầy/cô]'</b> (ví dụ: email thầy Ka, email thầy Danh...) để lấy email chính xác của từng người muốn tìm nhé!</i>";
         }
     }
 
