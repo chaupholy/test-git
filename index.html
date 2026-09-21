@@ -647,27 +647,89 @@ function sendQuickMessage(noidung) {
 
 
 /* =========================
-   HIỂN THỊ TIN NHẮN
+   HIỂN THỊ TIN NHẮN & HIỆU ỨNG GÕ CHỮ (TYPEWRITER)
 ========================= */
 
+var currentTypingTimerIndex = null;
+
+function stopTypingIndex() {
+    if (currentTypingTimerIndex) {
+        clearTimeout(currentTypingTimerIndex);
+        currentTypingTimerIndex = null;
+    }
+}
+
+function showTypingIndicatorIndex() {
+    removeTypingIndicatorIndex();
+    var khungChat = document.getElementById("noidung");
+    if (!khungChat) return;
+    var ind = document.createElement("div");
+    ind.id = "typingIndicatorIndex";
+    ind.className = "bot";
+    ind.style.fontStyle = "italic";
+    ind.style.color = "#6366f1";
+    ind.innerHTML = "💬 <i>Cán bộ đang soạn câu trả lời...</i>";
+    khungChat.appendChild(ind);
+    khungChat.scrollTop = khungChat.scrollHeight;
+}
+
+function removeTypingIndicatorIndex() {
+    var ind = document.getElementById("typingIndicatorIndex");
+    if (ind) ind.remove();
+}
+
+function typeWriterEffectIndex(container, html, scrollContainer) {
+    var i = 0;
+    var len = html.length;
+    var stepSize = len > 500 ? 5 : (len > 250 ? 3 : 2);
+    var speed = 10;
+
+    function step() {
+        if (i < len) {
+            if (html.charAt(i) === '<') {
+                var closeTag = html.indexOf('>', i);
+                i = (closeTag !== -1) ? closeTag + 1 : i + 1;
+            } else if (html.charAt(i) === '&') {
+                var closeEntity = html.indexOf(';', i);
+                i = (closeEntity !== -1 && closeEntity - i < 10) ? closeEntity + 1 : i + 1;
+            } else {
+                i += stepSize;
+                if (i > len) i = len;
+            }
+
+            container.innerHTML = html.substring(0, i) + '<span style="display:inline-block;width:2px;height:12px;background:#4f46e5;vertical-align:middle;margin-left:2px;"></span>';
+            if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
+            currentTypingTimerIndex = setTimeout(step, speed);
+        } else {
+            container.innerHTML = html;
+            currentTypingTimerIndex = null;
+            if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        }
+    }
+
+    step();
+}
+
 function themTinNhan(noidung, loai) {
+    var khungChat = document.getElementById("noidung");
+    if (!khungChat) return;
 
-    var khungChat =
-    document.getElementById("noidung");
+    if (loai === "user") {
+        var userDiv = document.createElement("div");
+        userDiv.className = "user";
+        userDiv.innerHTML = noidung;
+        khungChat.appendChild(userDiv);
+        khungChat.scrollTop = khungChat.scrollHeight;
+        showTypingIndicatorIndex();
+    } else {
+        removeTypingIndicatorIndex();
+        stopTypingIndex();
 
-
-    khungChat.innerHTML +=
-
-    '<div class="' + loai + '">' +
-
-    noidung +
-
-    '</div>';
-
-
-    khungChat.scrollTop =
-    khungChat.scrollHeight;
-
+        var botDiv = document.createElement("div");
+        botDiv.className = "bot";
+        khungChat.appendChild(botDiv);
+        typeWriterEffectIndex(botDiv, noidung, khungChat);
+    }
 }
 
 
