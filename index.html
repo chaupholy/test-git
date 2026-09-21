@@ -740,6 +740,173 @@ var CAN_BO_LIST = [
 ];
 
 /* =========================
+   CHUẨN HÓA TIẾNG VIỆT & XỬ LÝ LỖI GÕ PHÍM / KHÔNG DẤU / SAI DẤU
+========================= */
+function removeVietnameseTones(str) {
+    if (!str) return '';
+    var s = str.toLowerCase();
+    s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    s = s.replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, "a");
+    s = s.replace(/[èéẹẻẽêềếệểễ]/g, "e");
+    s = s.replace(/[ìíịỉĩ]/g, "i");
+    s = s.replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, "o");
+    s = s.replace(/[ùúụủũưừứựửữ]/g, "u");
+    s = s.replace(/[ỳýỵỷỹ]/g, "y");
+    s = s.replace(/[đĐ]/g, "d");
+    return s.trim();
+}
+
+function levenshtein(a, b) {
+    if (a === b) return 0;
+    if (!a.length) return b.length;
+    if (!b.length) return a.length;
+    var matrix = [];
+    for (var i = 0; i <= b.length; i++) matrix[i] = [i];
+    for (var j = 0; j <= a.length; j++) matrix[0][j] = j;
+    for (var i = 1; i <= b.length; i++) {
+        for (var j = 1; j <= a.length; j++) {
+            if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j - 1] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j] + 1
+                );
+            }
+        }
+    }
+    return matrix[b.length][a.length];
+}
+
+function expandNormalizedQuery(rawText) {
+    var qRaw = (rawText || '').toLowerCase();
+    var qNorm = removeVietnameseTones(qRaw);
+    var qClean = qNorm.replace(/[\s\-_.,?!;:'"()]+/g, '');
+    var words = qNorm.split(/\s+/).filter(Boolean);
+
+    var expanded = qRaw + ' ' + qNorm + ' ' + qClean;
+
+    var mappings = [
+        {
+            canonical: ' máy lạnh điều hòa điện lạnh nhiệt lạnh ',
+            triggers: ['dien lanh', 'dienlanh', 'may lanh', 'maylanh', 'dieu hoa', 'dieuhoa', 'nhiet lanh', 'nhietlanh', 'chiller', 'vrv'],
+            fuzzyWords: ['dienlanh', 'maylanh']
+        },
+        {
+            canonical: ' ô tô oto xe hơi ',
+            triggers: ['o to', 'oto', 'xe hoi', 'xehoi', 'dong co', 'gara', 'garage'],
+            fuzzyWords: ['oto']
+        },
+        {
+            canonical: ' máy tính công nghệ thông tin cntt tin học ',
+            triggers: ['may tinh', 'maytinh', 'cong nghe thong tin', 'cntt', 'it', 'tin hoc', 'tinhoc', 'sua may tinh', 'lap rap', 'laptop', 'vi tinh'],
+            fuzzyWords: ['maytinh', 'tinhoc']
+        },
+        {
+            canonical: ' điện công nghiệp ngành điện nghề điện học điện ',
+            triggers: ['dien cong nghiep', 'diencongnghiep', 'nganh dien', 'nghe dien', 'hoc dien', 'dien dan dung', 'tu dien'],
+            fuzzyWords: ['diencongnghiep']
+        },
+        {
+            canonical: ' cơ điện nông thôn cơ điện máy nông nghiệp ',
+            triggers: ['co dien', 'codien', 'co dien nong thon', 'may nong nghiep', 'may cay', 'may gat'],
+            fuzzyWords: ['codien']
+        },
+        {
+            canonical: ' quản trị mạng mạng máy tính mạng lan server ',
+            triggers: ['quan tri mang', 'quantrimang', 'mang may tinh', 'mang lan', 'server', 'wifi', 'camera'],
+            fuzzyWords: ['quantrimang']
+        },
+        {
+            canonical: ' thiết kế đồ họa đồ họa photoshop illustrator ',
+            triggers: ['thiet ke do hoa', 'thietkedohoa', 'do hoa', 'dohoa', 'photoshop', 'illustrator', 'corel'],
+            fuzzyWords: ['dohoa']
+        },
+        {
+            canonical: ' tin học ứng dụng tin học văn phòng văn thư ',
+            triggers: ['tin hoc ung dung', 'tin hoc van phong', 'van thu', 'nhap lieu'],
+            fuzzyWords: []
+        },
+        {
+            canonical: ' thương mại điện tử tmdt bán hàng online digital marketing ',
+            triggers: ['thuong mai dien tu', 'thuongmaidientu', 'tmdt', 'shopee', 'tiktok', 'ban hang online', 'marketing', 'livestream'],
+            fuzzyWords: ['thuongmaidientu']
+        },
+        {
+            canonical: ' kế toán doanh nghiệp kế toán khai thuế misa ',
+            triggers: ['ke toan', 'ketoan', 'thu quy', 'thu ngan', 'khai thue', 'misa', 'bao cao tai chinh'],
+            fuzzyWords: ['ketoan']
+        },
+        {
+            canonical: ' hướng dẫn du lịch du lịch tour lữ hành ',
+            triggers: ['du lich', 'dulich', 'huong dan vien', 'huongdanvien', 'tour', 'lu hanh', 'le tan', 'khach san', 'resort'],
+            fuzzyWords: ['dulich']
+        },
+        {
+            canonical: ' pháp luật luật tư pháp công chứng ',
+            triggers: ['phap luat', 'phapluat', 'luat', 'tu phap', 'cong chung', 'ho tich'],
+            fuzzyWords: ['phapluat']
+        },
+        {
+            canonical: ' trồng trọt bảo vệ thực vật bvtv cây trồng nông nghiệp ',
+            triggers: ['trong trot', 'trongtrot', 'bao ve thuc vat', 'baovethucvat', 'bvtv', 'cay trong', 'caytrong', 'nong nghiep', 'khuyen nong', 'loc troi', 'phan bon', 'thuoc sau'],
+            fuzzyWords: ['trongtrot', 'baovethucvat']
+        },
+        {
+            canonical: ' làm việc ở đâu việc làm vị trí việc làm cơ hội việc làm ra trường làm xin việc ',
+            triggers: ['lam viec o dau', 'lamviecodau', 'lam o dau', 'viec lam', 'vieclam', 'ra truong lam', 'ra lam gi', 'hoc xong lam', 'vi tri viec lam', 'co hoi viec lam', 'xin viec', 'gioi thieu viec lam', 'co viec lam khong'],
+            fuzzyWords: ['vieclam']
+        },
+        {
+            canonical: ' học phí tiền học miễn học phí ký túc xá ktx nội trú ',
+            triggers: ['hoc phi', 'hocphi', 'tien hoc', 'dong tien', 'mien phi', 'ky tuc xa', 'kytucxa', 'ktx', 'noi tru', 'o lai truong'],
+            fuzzyWords: ['hocphi', 'kytucxa']
+        },
+        {
+            canonical: ' hồ sơ tuyển sinh xét tuyển điều kiện đăng ký ',
+            triggers: ['ho so', 'hoso', 'xet tuyen', 'xettuyen', 'tuyen sinh', 'tuyensinh', 'dieu kien', 'dang ky', 'lop 9', 'thcs'],
+            fuzzyWords: ['tuyensinh']
+        },
+        {
+            canonical: ' thời khóa biểu tkb lịch học điểm danh lms trực tuyến ',
+            triggers: ['thoi khoa bieu', 'thoikhoabieu', 'tkb', 'lich hoc', 'diem danh', 'diemdanh', 'lms', 'hoc truc tuyen'],
+            fuzzyWords: ['thoikhoabieu', 'diemdanh']
+        }
+    ];
+
+    for (var i = 0; i < mappings.length; i++) {
+        var m = mappings[i];
+        var matched = false;
+        for (var j = 0; j < m.triggers.length; j++) {
+            var trig = m.triggers[j];
+            if (qNorm.indexOf(trig) !== -1 || qClean.indexOf(trig.replace(/\s+/g, '')) !== -1) {
+                matched = true;
+                break;
+            }
+        }
+        if (!matched && m.fuzzyWords && m.fuzzyWords.length > 0) {
+            for (var f = 0; f < m.fuzzyWords.length; f++) {
+                var fw = m.fuzzyWords[f];
+                for (var w = 0; w < words.length; w++) {
+                    var word = words[w];
+                    if (word.length >= 4 && Math.abs(word.length - fw.length) <= 1 && levenshtein(word, fw) <= 1) {
+                        matched = true;
+                        break;
+                    }
+                }
+                if (matched) break;
+            }
+        }
+        if (matched) {
+            expanded += m.canonical;
+        }
+    }
+
+    return expanded;
+}
+
+/* =========================
    GỬI TIN NHẮN
 ========================= */
 
@@ -764,7 +931,7 @@ function guiTinNhan() {
 
 
     var text =
-    cauhoi.toLowerCase();
+    expandNormalizedQuery(cauhoi);
 
 
     var traLoi = "";
@@ -898,8 +1065,11 @@ function guiTinNhan() {
        TRA CỨU CÁN BỘ, GIÁO VIÊN, TRƯỞNG PHÒNG, TRƯỞNG KHOA
     ========================= */
     else if(
-        (text.includes("giáo viên") || text.includes("cán bộ") || text.includes("trưởng phòng") || text.includes("trưởng khoa") || text.includes("hiệu trưởng") || text.includes("ban giám hiệu") || text.includes("bgh") || text.includes("email") || text.includes("thầy") || text.includes("cô")) &&
-        !text.includes("cô thuỷ") && !text.includes("cô thủy")
+        (!text.includes("cô thuỷ") && !text.includes("cô thủy")) &&
+        (CAN_BO_LIST.some(function(p) {
+            var n = p.name.toLowerCase();
+            return text.includes(n) || p.keywords.some(function(k) { return text.includes(k); });
+        }) || text.includes("giáo viên") || text.includes("cán bộ") || text.includes("trưởng phòng") || text.includes("trưởng khoa") || text.includes("hiệu trưởng") || text.includes("ban giám hiệu") || text.includes("bgh") || text.includes("email") || (/\b(thầy|cô)\b/i.test(cauhoi)))
     ) {
         var matched = CAN_BO_LIST.find(function(p) {
             var n = p.name.toLowerCase();
