@@ -681,8 +681,17 @@ function removeTypingIndicatorIndex() {
 function typeWriterEffectIndex(container, html, scrollContainer) {
     var i = 0;
     var len = html.length;
-    var stepSize = len > 500 ? 5 : (len > 250 ? 3 : 2);
-    var speed = 10;
+    // Nhịp gõ vừa phải, hiển thị từng ký tự rõ ràng
+    var stepSize = len > 700 ? 2 : 1;
+    var speed = 22;
+
+    container.style.cursor = 'pointer';
+    container.title = 'Bấm vào để hiển thị ngay';
+    container.onclick = function() {
+        stopTypingIndex();
+        container.innerHTML = html;
+        if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    };
 
     function step() {
         if (i < len) {

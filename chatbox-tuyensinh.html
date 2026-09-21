@@ -229,12 +229,20 @@
     function typeWriterEffect(container, html, scrollContainer) {
       let i = 0;
       const len = html.length;
-      const stepSize = len > 500 ? 5 : (len > 250 ? 3 : 2);
-      const speed = 10;
+      // Nhịp gõ vừa phải, từng chữ hiển thị rõ ràng, tự nhiên
+      const stepSize = len > 700 ? 2 : 1;
+      const speed = 22;
 
       currentTypingResolve = () => {
         container.innerHTML = html;
         if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      };
+
+      // Bấm vào tin nhắn để hiển thị ngay toàn bộ nội dung nếu không muốn đợi
+      container.style.cursor = 'pointer';
+      container.title = 'Bấm vào để hiển thị ngay';
+      container.onclick = function() {
+        stopCurrentTyping();
       };
 
       function step() {
