@@ -151,7 +151,7 @@
       // 0. Lời chào & Bắt đầu câu hỏi
       if (
         (q.includes('xin chào') || q.includes('chào') || q.includes('hello') || q === 'hi' || q.includes('có câu hỏi') || q === 'cho em hỏi' || q === 'cho tôi hỏi')
-        && !q.includes('học phí') && !q.includes('ngành') && !q.includes('nghề') && !q.includes('ký túc xá') && !q.includes('hồ sơ') && !q.includes('liên hệ') && !q.includes('thời gian') && !q.includes('thực hành') && !q.includes('tuyển sinh') && !q.includes('lĩnh vực') && !q.includes('trình độ') && !q.includes('máy tính') && !q.includes('công nghệ thông tin') && !q.includes('cntt') && !q.includes('việc làm')
+        && !q.includes('học phí') && !q.includes('ngành') && !q.includes('nghề') && !q.includes('ký túc xá') && !q.includes('hồ sơ') && !q.includes('liên hệ') && !q.includes('thời gian') && !q.includes('thực hành') && !q.includes('tuyển sinh') && !q.includes('lĩnh vực') && !q.includes('trình độ') && !q.includes('máy tính') && !q.includes('công nghệ thông tin') && !q.includes('cntt') && !q.includes('việc làm') && !q.includes('ô tô') && !q.includes('cơ khí') && !q.includes('điện')
       ) {
         setTimeout(() => {
           appendMessage(`👋 <b>Chào bạn, cảm ơn bạn đã liên hệ, bạn có câu hỏi gì không?</b>`, 'bot');
@@ -260,6 +260,51 @@
           3️⃣ <b>Thiết kế đồ họa:</b> Thiết kế ấn phẩm, banner quảng cáo, xử lý hình ảnh truyền thông đa phương tiện.<br>
           4️⃣ <b>Tin học ứng dụng:</b> Ứng dụng phần mềm công nghệ thông tin, quản trị dữ liệu và văn phòng số.<br>
           5️⃣ <b>Tin học văn phòng:</b> Soạn thảo văn bản chuyên nghiệp, bảng tính thống kê dữ liệu.<br><br>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            👉 Xem Chi Tiết Chương Trình Đào Tạo
+          </a><br><br>
+          📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 1.5. Câu hỏi: Cơ hội / Vị trí việc làm khối Điện - Cơ khí - Ô tô
+      const isEngQuery = (q.includes('ô tô') || q.includes('oto') || q.includes('cơ khí') || q.includes('điện') || q.includes('máy lạnh') || q.includes('điều hòa') || q.includes('cơ điện') || q.includes('điện lạnh')) && !q.includes('số điện thoại') && !q.includes('hồ sơ') && !q.includes('học phí') && !q.includes('thời gian');
+
+      if (isEngQuery && isJobQuery) {
+        setTimeout(() => {
+          appendMessage(`💼 <b>VỊ TRÍ VIỆC LÀM KHỐI KỸ THUẬT - ĐIỆN - CƠ KHÍ - Ô TÔ</b><br><br>
+          Sau khi tốt nghiệp các ngành Kỹ thuật - Điện - Cơ khí tại trường, học sinh có tay nghề vững vàng và cơ hội việc làm rộng mở:<br><br>
+          🚗 <b>1. Công nghệ ô tô:</b><br>
+          • Kỹ thuật viên bảo dưỡng, sửa chữa động cơ, khung gầm, hệ thống điện - điện tử tại các đại lý ô tô, garage, trạm đăng kiểm.<br>
+          • Cố vấn dịch vụ kỹ thuật, nhân viên chăm sóc và làm đẹp ô tô (detailing).<br>
+          • Kinh doanh phụ tùng, phụ kiện ô tô hoặc tự mở xưởng/garage ô tô.<br><br>
+          ❄️ <b>2. Kỹ thuật máy lạnh &amp; Điều hòa không khí (Điện lạnh):</b><br>
+          • Kỹ thuật viên lắp đặt, bảo trì, sửa chữa máy lạnh dân dụng, tủ lạnh tại các siêu thị điện máy, trung tâm bảo hành.<br>
+          • Kỹ thuật viên vận hành hệ thống thông gió, điều hòa không khí trung tâm (HVAC), kho lạnh tại tòa nhà, khách sạn, xí nghiệp chế biến.<br>
+          • Tự mở cơ sở dịch vụ sửa chữa và bảo dưỡng điện lạnh.<br><br>
+          ⚡ <b>3. Điện công nghiệp:</b><br>
+          • Kỹ thuật viên vận hành, bảo trì hệ thống điện, tủ điện phân phối và động cơ điện tại các nhà máy, xí nghiệp, khu công nghiệp.<br>
+          • Công nhân kỹ thuật thi công, lắp đặt hệ thống điện dân dụng và công nghiệp cho các công trình xây dựng.<br>
+          • Nhân viên kỹ thuật bảo trì điện tại các trạm biến áp, tòa nhà, resort.<br><br>
+          🚜 <b>4. Cơ điện nông thôn:</b><br>
+          • Thợ kỹ thuật bảo dưỡng, sửa chữa máy móc nông nghiệp (máy cày, máy gặt đập liên hợp, máy bơm, hệ thống tưới tự động).<br>
+          • Kỹ thuật viên cơ điện tại các trang trại nông nghiệp công nghệ cao, nhà máy chế biến nông sản, hợp tác xã.<br>
+          • Tự mở xưởng cơ khí, sửa chữa máy cơ điện nông thôn.<br><br>
+          🤝 <i>Nhà trường luôn liên kết với các doanh nghiệp, gara ô tô, xí nghiệp trên địa bàn để giới thiệu việc làm cho học sinh sau khi tốt nghiệp!</i>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 1.6. Câu hỏi: Các ngành Điện - Cơ khí - Ô tô của trường
+      if (isEngQuery) {
+        setTimeout(() => {
+          appendMessage(`⚙️ <b>CÁC NGÀNH ĐIỆN - CƠ KHÍ - Ô TÔ CỦA TRƯỜNG</b><br><br>
+          Trường hiện đang đào tạo các ngành nghề mũi nhọn thuộc khối <b>Kỹ thuật - Cơ điện - Ô tô</b> bao gồm:<br><br>
+          1️⃣ <b>Công nghệ ô tô:</b> Đào tạo chuyên sâu về bảo dưỡng, chẩn đoán, sửa chữa động cơ, khung gầm, hệ thống điện - điện tử ô tô hiện đại.<br>
+          2️⃣ <b>Kỹ thuật máy lạnh &amp; Điều hòa không khí:</b> Thực hành lắp đặt, sửa chữa, bảo trì máy lạnh dân dụng, điều hòa không khí và kho lạnh công nghiệp.<br>
+          3️⃣ <b>Điện công nghiệp:</b> Lắp đặt, vận hành, bảo trì tủ điện điều khiển, động cơ điện, hệ thống cung cấp điện nhà xưởng và xí nghiệp.<br>
+          4️⃣ <b>Cơ điện nông thôn:</b> Vận hành, bảo dưỡng, sửa chữa máy móc thiết bị nông nghiệp và cơ điện phục vụ cơ giới hóa nông thôn.<br><br>
           <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
             👉 Xem Chi Tiết Chương Trình Đào Tạo
           </a><br><br>
