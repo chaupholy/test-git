@@ -981,6 +981,14 @@ function expandNormalizedQuery(rawText) {
             fuzzyWords: ['gdtx']
         },
         {
+            canonical: ' trình độ đào tạo các trình độ các cấp trình độ sơ cấp đào tạo dưới 3 tháng ',
+            triggers: [
+                'trinh do', 'trinhdo', 'trinh do dao tao', 'cac trinh do', 'cac cap trinh do',
+                'dao tao trinh do nao', 'cac trinh do nao', 'he dao tao', 'cap trinh do'
+            ],
+            fuzzyWords: ['trinhdo']
+        },
+        {
             canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
             triggers: [
                 'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -1335,24 +1343,23 @@ function guiTinNhan() {
     ========================= */
 
     else if(
-
-        text.includes("trình độ") ||
-
-        text.includes("sơ cấp") ||
-
+        text.includes("trình độ đào tạo") || text.includes("trinh do dao tao") ||
+        text.includes("các trình độ") || text.includes("cac trinh do") ||
+        text.includes("các cấp trình độ") || text.includes("cac cap trinh do") ||
+        text.includes("cấp trình độ") || text.includes("cap trinh do") ||
+        text.includes("trình độ nào") || text.includes("trinh do nao") ||
+        text.includes("hệ đào tạo") || text.includes("he dao tao") ||
+        ((text.includes("trình độ") || text.includes("trinh do")) && !text.includes("văn hóa") && !text.includes("thcs") && !text.includes("thpt") && !text.includes("lớp 9")) ||
         text.includes("đào tạo thường xuyên")
-
     ) {
 
         traLoi =
-
-        "📚 <b>CÁC TRÌNH ĐỘ ĐÀO TẠO</b><br><br>" +
-
-        "🎓 Trung cấp<br>" +
-
-        "📘 Sơ cấp<br>" +
-
-        "📚 Đào tạo thường xuyên dưới 3 tháng.";
+        "📚 <b>CÁC TRÌNH ĐỘ ĐÀO TẠO CỦA TRƯỜNG</b><br><br>" +
+        "Hiện nay trường đào tạo các cấp trình độ: <b>Trung cấp, sơ cấp và đào tạo dưới 3 tháng</b>.<br><br>" +
+        "• 🎓 <b>1. Trình độ Trung cấp:</b> Đào tạo chính quy <b>15 ngành nghề</b> (thời gian 2 năm, miễn 100% học phí THCS, có liên thông CĐ - ĐH).<br>" +
+        "• 📘 <b>2. Trình độ Sơ cấp:</b> Các khóa đào tạo nghề ngắn hạn từ 3 tháng đến dưới 1 năm, cấp chứng chỉ sơ cấp nghề.<br>" +
+        "• ⏱️ <b>3. Đào tạo dưới 3 tháng (Thường xuyên):</b> Bồi dưỡng, nâng cao tay nghề, tập huấn kỹ thuật chuyển giao công nghệ.<br><br>" +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none;'>👉 Xem Chi Tiết Chương Trình Đào Tạo</a>";
 
     }
 
@@ -1936,7 +1943,7 @@ function guiTinNhan() {
         text.includes("danh sách nghề") || text.includes("danh sach nghe") ||
         text.includes("sổ tay") || text.includes("so tay") ||
         text.includes("đang đào tạo") || text.includes("dang dao tao") ||
-        ((text.includes("đào tạo") || text.includes("dao tao")) && (text.includes("nghề") || text.includes("nghe") || text.includes("ngành") || text.includes("nganh") || text.includes("gì") || text.includes("nào")))
+        ((text.includes("đào tạo") || text.includes("dao tao")) && (text.includes("nghề") || text.includes("nghe") || text.includes("ngành") || text.includes("nganh") || text.includes("gì") || text.includes("nào")) && !text.includes("trình độ") && !text.includes("trinh do"))
     ) {
         traLoi =
         "🎓 <b>DANH SÁCH 15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP CỦA TRƯỜNG</b><br><br>" +

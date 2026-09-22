@@ -465,6 +465,14 @@
           fuzzyWords: ['gdtx']
         },
         {
+          canonical: ' trình độ đào tạo các trình độ các cấp trình độ sơ cấp đào tạo dưới 3 tháng ',
+          triggers: [
+            'trinh do', 'trinhdo', 'trinh do dao tao', 'cac trinh do', 'cac cap trinh do',
+            'dao tao trinh do nao', 'cac trinh do nao', 'he dao tao', 'cap trinh do'
+          ],
+          fuzzyWords: ['trinhdo']
+        },
+        {
           canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
           triggers: [
             'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -799,16 +807,24 @@
       }
 
       // 1.1. Câu hỏi: Trường đào tạo những trình độ nào?
-      if (q.includes('trình độ đào tạo') || q.includes('các trình độ') || q.includes('hệ đào tạo') || (q.includes('trình độ') && !q.includes('văn hóa') && !q.includes('thcs') && !q.includes('thpt'))) {
+      if (
+        q.includes('trình độ đào tạo') || q.includes('trinh do dao tao') ||
+        q.includes('các trình độ') || q.includes('cac trinh do') ||
+        q.includes('các cấp trình độ') || q.includes('cac cap trinh do') ||
+        q.includes('cấp trình độ') || q.includes('cap trinh do') ||
+        q.includes('trình độ nào') || q.includes('trinh do nao') ||
+        q.includes('hệ đào tạo') || q.includes('he dao tao') ||
+        ((q.includes('trình độ') || q.includes('trinh do')) && !q.includes('văn hóa') && !q.includes('thcs') && !q.includes('thpt') && !q.includes('lớp 9')) ||
+        q.includes('đào tạo thường xuyên')
+      ) {
         setTimeout(() => {
-          appendMessage(`📚 <b>CÁC TRÌNH ĐỘ ĐÀO TẠO</b><br><br>
-          Trường đào tạo các trình độ:<br>
-          • 🎓 <b>Trung cấp</b><br>
-          • 📘 <b>Sơ cấp</b><br>
-          • ⏱️ <b>Đào tạo thường xuyên &lt; 3 tháng</b>.<br><br>
-          Xem chương trình chi tiết tại Mục Đào tạo trên Website trường:<br><br>
-          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
-            👉 Xem Mục Đào Tạo Website Trường
+          appendMessage(`📚 <b>CÁC TRÌNH ĐỘ ĐÀO TẠO CỦA TRƯỜNG</b><br><br>
+          Hiện nay trường đào tạo các cấp trình độ: <b>Trung cấp, sơ cấp và đào tạo dưới 3 tháng</b>.<br><br>
+          • 🎓 <b>1. Trình độ Trung cấp:</b> Đào tạo chính quy <b>15 ngành nghề</b> (thời gian 2 năm, miễn 100% học phí THCS, có liên thông CĐ - ĐH).<br>
+          • 📘 <b>2. Trình độ Sơ cấp:</b> Các khóa đào tạo nghề ngắn hạn từ 3 tháng đến dưới 1 năm, cấp chứng chỉ sơ cấp nghề.<br>
+          • ⏱️ <b>3. Đào tạo dưới 3 tháng (Thường xuyên):</b> Bồi dưỡng, nâng cao tay nghề, tập huấn kỹ thuật chuyển giao công nghệ.<br><br>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            👉 Xem Chi Tiết Chương Trình Đào Tạo
           </a>`, 'bot');
         }, 300);
         return;
@@ -1415,7 +1431,7 @@
         q.includes('sổ tay') || q.includes('so tay') ||
         q.includes('đang đào tạo') || q.includes('dang dao tao') ||
         ((q.includes('đào tạo') || q.includes('dao tao')) && (q.includes('nghề') || q.includes('nghe') || q.includes('ngành') || q.includes('nganh') || q.includes('gì') || q.includes('nào')))
-      ) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian') && !q.includes('số điện thoại') && !q.includes('ký túc xá');
+      ) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian') && !q.includes('số điện thoại') && !q.includes('ký túc xá') && !q.includes('trình độ') && !q.includes('trinh do');
 
       if (isGeneralMajorsQuery) {
         setTimeout(() => {
