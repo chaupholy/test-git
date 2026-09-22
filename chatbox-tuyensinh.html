@@ -457,6 +457,14 @@
           fuzzyWords: ['cacnganh', 'cacnghe', 'nganhnghe', 'danhsachnganh']
         },
         {
+          canonical: ' hệ 9+ văn hóa thpt gdtx vừa học nghề vừa học cấp 3 học văn hóa ',
+          triggers: [
+            'he 9+', 'he 9', '9+', 'vua hoc nghe vua hoc cap 3', 'hoc cap 3', 'hoc thpt',
+            'van hoa thpt', 'gdtx', 'he gdtx', 'hoc van hoa', 'van hoa he gdtx'
+          ],
+          fuzzyWords: ['gdtx']
+        },
+        {
           canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
           triggers: [
             'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -615,8 +623,8 @@
             <button onclick="sendQuickMessage('Điều kiện tuyển sinh')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-amber-200">
               📝 Điều kiện xét tuyển
             </button>
-            <button onclick="sendQuickMessage('Hệ 9+')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-purple-200">
-              📚 Hệ 9+ (Học nghề + Cấp 3)
+            <button onclick="sendQuickMessage('Học nghề + học văn hóa THPT hệ GDTX')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-purple-200">
+              📚 Học nghề + học văn hóa THPT hệ GDTX
             </button>
             <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
               📞 Hẹn cán bộ gọi lại
@@ -1654,15 +1662,16 @@
         return;
       }
 
-      // 18. Câu hỏi: Chương trình văn hóa THPT hệ 9+ (Vừa học nghề vừa học cấp 3)
+      // 18. Câu hỏi: Chương trình văn hóa THPT hệ 9+ (Học nghề + học văn hóa THPT hệ GDTX)
       if (
         q.includes('văn hóa') || q.includes('van hoa') ||
         q.includes('hệ 9+') || q.includes('he 9+') || q.includes('9+') ||
         q.includes('vừa học nghề vừa học') || q.includes('học cấp 3') ||
-        q.includes('học thpt') || q.includes('bằng cấp 3') || q.includes('văn hóa thpt')
+        q.includes('học thpt') || q.includes('bằng cấp 3') || q.includes('văn hóa thpt') ||
+        q.includes('gdtx') || q.includes('học văn hóa')
       ) {
         setTimeout(() => {
-          appendMessage(`📚 <b>CHƯƠNG TRÌNH VĂN HÓA THPT (HỆ 9+)</b><br><br>
+          appendMessage(`📚 <b>CHƯƠNG TRÌNH HỌC NGHỀ + HỌC VĂN HÓA THPT HỆ GDTX (HỆ 9+)</b><br><br>
           Mô hình dành riêng cho học sinh <b>tốt nghiệp THCS (lớp 9)</b>:<br><br>
           • 🎓 <b>Đào tạo kép song song:</b> Học sinh vừa học nghề Trung cấp chính quy (<b>miễn 100% học phí nghề</b>), vừa học 7 môn văn hóa THPT (chương trình GDTX cấp THPT).<br><br>
           • ⏱️ <b>Thời gian học:</b> 3 năm (vừa hoàn thành chương trình văn hóa cấp 3 vừa thành thạo tay nghề).<br><br>

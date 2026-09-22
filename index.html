@@ -973,6 +973,14 @@ function expandNormalizedQuery(rawText) {
             fuzzyWords: ['cacnganh', 'cacnghe', 'nganhnghe', 'danhsachnganh']
         },
         {
+            canonical: ' hệ 9+ văn hóa thpt gdtx vừa học nghề vừa học cấp 3 học văn hóa ',
+            triggers: [
+                'he 9+', 'he 9', '9+', 'vua hoc nghe vua hoc cap 3', 'hoc cap 3', 'hoc thpt',
+                'van hoa thpt', 'gdtx', 'he gdtx', 'hoc van hoa', 'van hoa he gdtx'
+            ],
+            fuzzyWords: ['gdtx']
+        },
+        {
             canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
             triggers: [
                 'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -1159,7 +1167,7 @@ function guiTinNhan() {
         "<button onclick=\"sendQuickMessage('Các ngành đào tạo')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>🎓 15 Ngành đào tạo</button>" +
         "<button onclick=\"sendQuickMessage('Học phí')\" style='padding:5px 10px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>💰 Miễn học phí & KTX</button>" +
         "<button onclick=\"sendQuickMessage('Điều kiện tuyển sinh')\" style='padding:5px 10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📝 Điều kiện xét tuyển</button>" +
-        "<button onclick=\"sendQuickMessage('Hệ 9+')\" style='padding:5px 10px; background:#faf5ff; color:#7e22ce; border:1px solid #e9d5ff; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📚 Hệ 9+ (Học nghề + Cấp 3)</button>" +
+        "<button onclick=\"sendQuickMessage('Học nghề + học văn hóa THPT hệ GDTX')\" style='padding:5px 10px; background:#faf5ff; color:#7e22ce; border:1px solid #e9d5ff; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📚 Học nghề + học văn hóa THPT hệ GDTX</button>" +
         "</div>";
     }
 
@@ -2441,7 +2449,7 @@ function guiTinNhan() {
 
 
     /* =========================
-       CHƯƠNG TRÌNH VĂN HÓA THPT (HỆ 9+)
+       CHƯƠNG TRÌNH HỌC NGHỀ + HỌC VĂN HÓA THPT HỆ GDTX (HỆ 9+)
     ========================= */
 
     else if(
@@ -2452,13 +2460,15 @@ function guiTinNhan() {
 
         text.includes("vừa học nghề vừa học") || text.includes("học cấp 3") ||
 
-        text.includes("học thpt") || text.includes("bằng cấp 3") || text.includes("văn hóa thpt")
+        text.includes("học thpt") || text.includes("bằng cấp 3") || text.includes("văn hóa thpt") ||
+
+        text.includes("gdtx") || text.includes("học văn hóa")
 
     ) {
 
         traLoi =
 
-        "📚 <b>CHƯƠNG TRÌNH VĂN HÓA THPT (HỆ 9+)</b><br><br>" +
+        "📚 <b>CHƯƠNG TRÌNH HỌC NGHỀ + HỌC VĂN HÓA THPT HỆ GDTX (HỆ 9+)</b><br><br>" +
 
         "Chương trình dành riêng cho học sinh <b>tốt nghiệp THCS (lớp 9)</b>:<br><br>" +
 
