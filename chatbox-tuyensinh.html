@@ -442,6 +442,21 @@
           fuzzyWords: ['thoikhoabieu', 'diemdanh']
         },
         {
+          canonical: ' các ngành các nghề đào tạo 15 ngành danh sách ngành sổ tay nghề ',
+          triggers: [
+            'cac nganh', 'cacnganh', 'cac nghe', 'cacnghe',
+            'nhung nganh', 'nhungnganh', 'nhung nghe', 'nhungnghe',
+            'nganh nghe', 'nganhnghe', 'nganh dao tao', 'nghe dao tao',
+            'dao tao cac nghe', 'dao tao cac nganh', 'dao tao nhung nghe', 'dao tao nhung nganh',
+            'co nhung nghe nao', 'co nhung nganh nao', 'cac nghe nao', 'cac nganh nao',
+            'day nhung nghe nao', 'day nghe gi', 'hoc nghe gi',
+            '15 nganh', '15nganh', '15 nghe', '15nghe',
+            'danh sach nganh', 'danhsachnganh', 'danh sach nghe', 'danhsachnghe',
+            'so tay nghe', 'so tay'
+          ],
+          fuzzyWords: ['cacnganh', 'cacnghe', 'nganhnghe', 'danhsachnganh']
+        },
+        {
           canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
           triggers: [
             'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -459,9 +474,18 @@
       for (const m of mappings) {
         let matched = false;
         for (const trig of m.triggers) {
-          if (qNorm.includes(trig) || qClean.includes(trig.replace(/\s+/g, ''))) {
-            matched = true;
-            break;
+          const trigClean = trig.replace(/\s+/g, '');
+          if (trigClean.length <= 3) {
+            const regex = new RegExp('(?:^|[\\s,.;:!?])' + trig.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?:[\\s,.;:!?]|$)', 'i');
+            if (regex.test(qNorm)) {
+              matched = true;
+              break;
+            }
+          } else {
+            if (qNorm.includes(trig) || qClean.includes(trigClean)) {
+              matched = true;
+              break;
+            }
           }
         }
         if (!matched && m.fuzzyWords && m.fuzzyWords.length > 0) {
@@ -1363,6 +1387,61 @@
         return;
       }
 
+      // 0. Tổng quan 15 ngành nghề đào tạo Trung cấp của trường
+      // Bắt mọi trường hợp hỏi chung: đào tạo các nghề nào, có các nghề nào, các ngành đào tạo, 15 ngành, sổ tay nghề, danh sách ngành...
+      const isGeneralMajorsQuery = (
+        q.includes('các nghề nào') || q.includes('cac nghe nao') ||
+        q.includes('các ngành nào') || q.includes('cac nganh nao') ||
+        q.includes('những nghề nào') || q.includes('nhung nghe nao') ||
+        q.includes('những ngành nào') || q.includes('nhung nganh nao') ||
+        q.includes('những nghề gì') || q.includes('nhung nghe gi') ||
+        q.includes('học nghề gì') || q.includes('hoc nghe gi') ||
+        q.includes('học gì') || q.includes('hoc gi') ||
+        q.includes('các ngành nghề') || q.includes('cac nganh nghe') ||
+        q.includes('các nghề') || q.includes('cac nghe') ||
+        q.includes('các ngành') || q.includes('cac nganh') ||
+        q.includes('15 ngành') || q.includes('15 nganh') ||
+        q.includes('15 nghề') || q.includes('15 nghe') ||
+        q.includes('danh sách ngành') || q.includes('danh sach nganh') ||
+        q.includes('danh sách nghề') || q.includes('danh sach nghe') ||
+        q.includes('sổ tay') || q.includes('so tay') ||
+        q.includes('đang đào tạo') || q.includes('dang dao tao') ||
+        ((q.includes('đào tạo') || q.includes('dao tao')) && (q.includes('nghề') || q.includes('nghe') || q.includes('ngành') || q.includes('nganh') || q.includes('gì') || q.includes('nào')))
+      ) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian') && !q.includes('số điện thoại') && !q.includes('ký túc xá');
+
+      if (isGeneralMajorsQuery) {
+        setTimeout(() => {
+          appendMessage(`🎓 <b>DANH SÁCH 15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP CỦA TRƯỜNG</b><br><br>
+          Trường Trung cấp Dân tộc Nội trú An Giang hiện đang đào tạo <b>15 ngành nghề</b> trình độ Trung cấp:<br><br>
+          1️⃣ <b>Công nghệ ô tô</b><br>
+          2️⃣ <b>Kỹ thuật máy lạnh &amp; điều hoà không khí</b><br>
+          3️⃣ <b>Cơ điện nông thôn</b><br>
+          4️⃣ <b>Điện công nghiệp</b><br>
+          5️⃣ <b>Trồng trọt và bảo vệ thực vật</b><br>
+          6️⃣ <b>Bảo vệ thực vật</b><br>
+          7️⃣ <b>Thương mại điện tử</b><br>
+          8️⃣ <b>Pháp luật</b><br>
+          9️⃣ <b>Tin học văn phòng</b><br>
+          🔟 <b>Tin học ứng dụng</b><br>
+          1️⃣1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính</b><br>
+          1️⃣2️⃣ <b>Quản trị mạng máy tính</b><br>
+          1️⃣3️⃣ <b>Thiết kế đồ họa</b><br>
+          1️⃣4️⃣ <b>Hướng dẫn du lịch</b><br>
+          1️⃣5️⃣ <b>Kế toán doanh nghiệp</b><br><br>
+          • 💰 <b>Học phí:</b> <b>Miễn 100% học phí</b> cho học sinh tốt nghiệp THCS.<br>
+          • 🏠 <b>Ký túc xá:</b> Miễn phí 100% chỗ ở nội trú, có chính sách học bổng &amp; trợ cấp.<br>
+          • 🔧 <b>Thực hành thực tế:</b> Chiếm <b>75% - 80%</b> thời lượng đào tạo.<br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            📝 Đăng Ký Xét Tuyển Online
+          </a>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg font-semibold hover:bg-gray-200 transition ml-2">
+            📖 Chi Tiết 15 Ngành
+          </a><br><br>
+          📖 <i>Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.</i>`, 'bot');
+        }, 300);
+        return;
+      }
+
       // Các nhóm ngành đào tạo của trường
       // 1. Khối Công nghệ thông tin / Máy tính
       const isITQuery = q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('máy tính') || q.includes('tin học') || q.includes('đồ họa') || q.includes('quản trị mạng') || q.includes('lắp ráp máy tính');
@@ -1424,40 +1503,6 @@
             👉 Xem Chi Tiết Chương Trình Đào Tạo
           </a><br><br>
           📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
-        }, 300);
-        return;
-      }
-
-      // 2. Các ngành, nghề đang đào tạo (15 ngành nghề đào tạo trung cấp)
-      if (q.includes('sổ tay') || q.includes('nghề') || q.includes('ngành') || q.includes('đang đào tạo') || q.includes('học gì') || q.includes('15 ngành') || q.includes('danh sách ngành')) {
-        setTimeout(() => {
-          appendMessage(`🎓 <b>DANH SÁCH 15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP CỦA TRƯỜNG</b><br><br>
-          Trường Trung cấp Dân tộc Nội trú An Giang hiện đang đào tạo <b>15 ngành nghề</b> trình độ Trung cấp:<br><br>
-          1️⃣ <b>Công nghệ ô tô</b><br>
-          2️⃣ <b>Kỹ thuật máy lạnh &amp; điều hoà không khí</b><br>
-          3️⃣ <b>Cơ điện nông thôn</b><br>
-          4️⃣ <b>Điện công nghiệp</b><br>
-          5️⃣ <b>Trồng trọt và bảo vệ thực vật</b><br>
-          6️⃣ <b>Bảo vệ thực vật</b><br>
-          7️⃣ <b>Thương mại điện tử</b><br>
-          8️⃣ <b>Pháp luật</b><br>
-          9️⃣ <b>Tin học văn phòng</b><br>
-          🔟 <b>Tin học ứng dụng</b><br>
-          1️⃣1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính</b><br>
-          1️⃣2️⃣ <b>Quản trị mạng máy tính</b><br>
-          1️⃣3️⃣ <b>Thiết kế đồ họa</b><br>
-          1️⃣4️⃣ <b>Hướng dẫn du lịch</b><br>
-          1️⃣5️⃣ <b>Kế toán doanh nghiệp</b><br><br>
-          • 💰 <b>Học phí:</b> <b>Miễn 100% học phí</b> cho học sinh tốt nghiệp THCS.<br>
-          • 🏠 <b>Ký túc xá:</b> Miễn phí 100% chỗ ở nội trú, có chính sách học bổng &amp; trợ cấp.<br>
-          • 🔧 <b>Thực hành thực tế:</b> Chiếm <b>75% - 80%</b> thời lượng đào tạo.<br><br>
-          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
-            📝 Đăng Ký Xét Tuyển Online
-          </a>
-          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg font-semibold hover:bg-gray-200 transition ml-2">
-            📖 Chi Tiết 15 Ngành
-          </a><br><br>
-          📖 <i>Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.</i>`, 'bot');
         }, 300);
         return;
       }

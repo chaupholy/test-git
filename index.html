@@ -958,6 +958,21 @@ function expandNormalizedQuery(rawText) {
             fuzzyWords: ['thoikhoabieu', 'diemdanh']
         },
         {
+            canonical: ' các ngành các nghề đào tạo 15 ngành danh sách ngành sổ tay nghề ',
+            triggers: [
+                'cac nganh', 'cacnganh', 'cac nghe', 'cacnghe',
+                'nhung nganh', 'nhungnganh', 'nhung nghe', 'nhungnghe',
+                'nganh nghe', 'nganhnghe', 'nganh dao tao', 'nghe dao tao',
+                'dao tao cac nghe', 'dao tao cac nganh', 'dao tao nhung nghe', 'dao tao nhung nganh',
+                'co nhung nghe nao', 'co nhung nganh nao', 'cac nghe nao', 'cac nganh nao',
+                'day nhung nghe nao', 'day nghe gi', 'hoc nghe gi',
+                '15 nganh', '15nganh', '15 nghe', '15nghe',
+                'danh sach nganh', 'danhsachnganh', 'danh sach nghe', 'danhsachnghe',
+                'so tay nghe', 'so tay'
+            ],
+            fuzzyWords: ['cacnganh', 'cacnghe', 'nganhnghe', 'danhsachnganh']
+        },
+        {
             canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
             triggers: [
                 'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -977,9 +992,18 @@ function expandNormalizedQuery(rawText) {
         var matched = false;
         for (var j = 0; j < m.triggers.length; j++) {
             var trig = m.triggers[j];
-            if (qNorm.indexOf(trig) !== -1 || qClean.indexOf(trig.replace(/\s+/g, '')) !== -1) {
-                matched = true;
-                break;
+            var trigClean = trig.replace(/\s+/g, '');
+            if (trigClean.length <= 3) {
+                var regex = new RegExp('(?:^|[\\s,.;:!?])' + trig.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?:[\\s,.;:!?]|$)', 'i');
+                if (regex.test(qNorm)) {
+                    matched = true;
+                    break;
+                }
+            } else {
+                if (qNorm.indexOf(trig) !== -1 || qClean.indexOf(trigClean) !== -1) {
+                    matched = true;
+                    break;
+                }
             }
         }
         if (!matched && m.fuzzyWords && m.fuzzyWords.length > 0) {
@@ -1885,6 +1909,56 @@ function guiTinNhan() {
 
 
     /* =========================
+       15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP CỦA TRƯỜNG
+    ========================= */
+    else if(
+        text.includes("các nghề nào") || text.includes("cac nghe nao") ||
+        text.includes("các ngành nào") || text.includes("cac nganh nao") ||
+        text.includes("những nghề nào") || text.includes("nhung nghe nao") ||
+        text.includes("những ngành nào") || text.includes("nhung nganh nao") ||
+        text.includes("những nghề gì") || text.includes("nhung nghe gi") ||
+        text.includes("học nghề gì") || text.includes("hoc nghe gi") ||
+        text.includes("học gì") || text.includes("hoc gi") ||
+        text.includes("các ngành nghề") || text.includes("cac nganh nghe") ||
+        text.includes("các nghề") || text.includes("cac nghe") ||
+        text.includes("các ngành") || text.includes("cac nganh") ||
+        text.includes("15 ngành") || text.includes("15 nganh") ||
+        text.includes("15 nghề") || text.includes("15 nghe") ||
+        text.includes("danh sách ngành") || text.includes("danh sach nganh") ||
+        text.includes("danh sách nghề") || text.includes("danh sach nghe") ||
+        text.includes("sổ tay") || text.includes("so tay") ||
+        text.includes("đang đào tạo") || text.includes("dang dao tao") ||
+        ((text.includes("đào tạo") || text.includes("dao tao")) && (text.includes("nghề") || text.includes("nghe") || text.includes("ngành") || text.includes("nganh") || text.includes("gì") || text.includes("nào")))
+    ) {
+        traLoi =
+        "🎓 <b>DANH SÁCH 15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP CỦA TRƯỜNG</b><br><br>" +
+        "Trường Trung cấp Dân tộc Nội trú An Giang hiện đang đào tạo <b>15 ngành nghề</b> trình độ Trung cấp:<br><br>" +
+        "1️⃣ <b>Công nghệ ô tô</b><br>" +
+        "2️⃣ <b>Kỹ thuật máy lạnh & điều hoà không khí</b><br>" +
+        "3️⃣ <b>Cơ điện nông thôn</b><br>" +
+        "4️⃣ <b>Điện công nghiệp</b><br>" +
+        "5️⃣ <b>Trồng trọt và bảo vệ thực vật</b><br>" +
+        "6️⃣ <b>Bảo vệ thực vật</b><br>" +
+        "7️⃣ <b>Thương mại điện tử</b><br>" +
+        "8️⃣ <b>Pháp luật</b><br>" +
+        "9️⃣ <b>Tin học văn phòng</b><br>" +
+        "🔟 <b>Tin học ứng dụng</b><br>" +
+        "1️⃣1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính</b><br>" +
+        "1️⃣2️⃣ <b>Quản trị mạng máy tính</b><br>" +
+        "1️⃣3️⃣ <b>Thiết kế đồ họa</b><br>" +
+        "1️⃣4️⃣ <b>Hướng dẫn du lịch</b><br>" +
+        "1️⃣5️⃣ <b>Kế toán doanh nghiệp</b><br><br>" +
+        "• 💰 <b>Học phí:</b> <b>Miễn 100% học phí</b> cho học sinh tốt nghiệp THCS.<br>" +
+        "• 🏠 <b>Ký túc xá:</b> Miễn phí 100% chỗ ở nội trú, có chính sách học bổng & trợ cấp.<br>" +
+        "• 🔧 <b>Thực hành thực tế:</b> Chiếm <b>75% - 80%</b> thời lượng đào tạo.<br><br>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none;'>📝 Đăng Ký Xét Tuyển Online</a> " +
+        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-left:5px;'>📖 Chi Tiết 15 Ngành</a><br><br>" +
+        "📖 <i>Hoặc mở <a href='https://heyzine.com/flip-book/cb1c57e308.html' target='_blank' style='color:#059669; font-weight:bold; text-decoration:underline;'>Sổ tay các nghề</a> để xem sách lật điện tử.</i>";
+    }
+
+
+
+    /* =========================
        CÁC NGÀNH CNTT - MÁY TÍNH
     ========================= */
     else if(
@@ -2074,42 +2148,6 @@ function guiTinNhan() {
         "🌾 5️⃣ <b>Trồng trọt và bảo vệ thực vật:</b> Kỹ thuật canh tác VietGAP, quản lý vùng trồng nông nghiệp công nghệ cao.<br>" +
         "🌱 6️⃣ <b>Bảo vệ thực vật:</b> Chuyên sâu điều tra dự tính dịch hại, kỹ thuật IPM, kiểm dịch thực vật và quản lý nông dược.<br><br>" +
         "👉 Bấm vào liên kết Đào tạo trên Website trường để xem chi tiết chương trình học!";
-    }
-
-    /* =========================
-       NGÀNH ĐÀO TẠO (15 NGÀNH NGHỀ TRUNG CẤP)
-    ========================= */
-    else if(
-        text.includes("ngành") ||
-        text.includes("nghề") ||
-        text.includes("học gì") ||
-        text.includes("đào tạo") ||
-        text.includes("15 ngành") ||
-        text.includes("danh sách ngành")
-    ) {
-        traLoi =
-        "🎓 <b>DANH SÁCH 15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP CỦA TRƯỜNG</b><br><br>" +
-        "Trường Trung cấp Dân tộc Nội trú An Giang hiện đang đào tạo <b>15 ngành nghề</b> trình độ Trung cấp:<br><br>" +
-        "1️⃣ <b>Công nghệ ô tô</b><br>" +
-        "2️⃣ <b>Kỹ thuật máy lạnh & điều hoà không khí</b><br>" +
-        "3️⃣ <b>Cơ điện nông thôn</b><br>" +
-        "4️⃣ <b>Điện công nghiệp</b><br>" +
-        "5️⃣ <b>Trồng trọt và bảo vệ thực vật</b><br>" +
-        "6️⃣ <b>Bảo vệ thực vật</b><br>" +
-        "7️⃣ <b>Thương mại điện tử</b><br>" +
-        "8️⃣ <b>Pháp luật</b><br>" +
-        "9️⃣ <b>Tin học văn phòng</b><br>" +
-        "🔟 <b>Tin học ứng dụng</b><br>" +
-        "1️⃣1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính</b><br>" +
-        "1️⃣2️⃣ <b>Quản trị mạng máy tính</b><br>" +
-        "1️⃣3️⃣ <b>Thiết kế đồ họa</b><br>" +
-        "1️⃣4️⃣ <b>Hướng dẫn du lịch</b><br>" +
-        "1️⃣5️⃣ <b>Kế toán doanh nghiệp</b><br><br>" +
-        "• 💰 <b>Học phí:</b> <b>Miễn 100% học phí</b> cho học sinh tốt nghiệp THCS.<br>" +
-        "• 🏠 <b>Ký túc xá:</b> Miễn phí 100% chỗ ở nội trú, có chính sách học bổng & trợ cấp.<br>" +
-        "• 🔧 <b>Thực hành thực tế:</b> Chiếm <b>75% - 80%</b> thời lượng đào tạo.<br><br>" +
-        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none;'>📝 Đăng Ký Xét Tuyển Online</a> " +
-        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-left:5px;'>📖 Chi Tiết 15 Ngành</a>";
     }
 
 
