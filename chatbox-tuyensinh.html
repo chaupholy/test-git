@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,92 +8,99 @@
   <!-- Thư viện Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="m-0 p-0 overflow-hidden font-sans w-screen h-screen flex flex-col bg-white">
   <!-- ================= BẮT ĐẦU GIAO DIỆN CHATBOX ================= -->
   <div id="chat-box" class="w-full h-full bg-white flex flex-col overflow-hidden">
-      
-      <!-- Tiêu đề Chatbox -->
-      <div class="bg-indigo-600 text-white px-4 py-3 flex items-center justify-between shadow">
-        <div class="flex items-center space-x-3">
-          <!-- Logo Chatbot AI thông minh -->
-          <div class="relative flex items-center">
-            <div class="w-10 h-10 rounded-2xl bg-white flex items-center justify-center p-1 shadow-md border-2 border-white/80">
-              <img src="logo-chatbot.png" alt="Chatbot AI" class="w-full h-full object-contain" />
-            </div>
-            <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full shadow-sm"></span>
-          </div>
-          <div>
-            <div class="flex items-center space-x-1.5">
-              <h3 class="font-bold text-sm">Cán bộ Tư vấn</h3>
-              <span class="px-1.5 py-0.5 text-[9px] font-extrabold bg-indigo-500/80 text-white rounded-md tracking-wider uppercase border border-indigo-300/40">AI BOT</span>
-            </div>
-            <p class="text-[11px] text-indigo-200">Trợ lý AI thông minh • Trực tuyến 24/7</p>
-          </div>
-        </div>
-        <button onclick="dongChat()" class="text-white hover:text-gray-200 p-1" title="Đóng chat">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
 
-      <!-- Vùng tin nhắn -->
-      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50 text-xs">
-        <!-- Lời chào đầu tiên -->
-        <div class="flex items-start space-x-2">
-          <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-slate-200 p-0.5 overflow-hidden">
+    <!-- Tiêu đề Chatbox -->
+    <div class="bg-indigo-600 text-white px-4 py-3 flex items-center justify-between shadow">
+      <div class="flex items-center space-x-3">
+        <!-- Logo Chatbot AI thông minh -->
+        <div class="relative flex items-center">
+          <div
+            class="w-10 h-10 rounded-2xl bg-white flex items-center justify-center p-1 shadow-md border-2 border-white/80">
             <img src="logo-chatbot.png" alt="Chatbot AI" class="w-full h-full object-contain" />
           </div>
-          <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-800 max-w-[85%] border border-gray-100 leading-relaxed">
-            Xin chào! Tôi là <b>Chatbot AI thông minh</b> hỗ trợ tư vấn tuyển sinh. Bạn có thể chọn nhanh các danh mục dưới đây hoặc nhập câu hỏi trực tiếp nhé:
-          </div>
+          <span
+            class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full shadow-sm"></span>
         </div>
+        <div>
+          <div class="flex items-center space-x-1.5">
+            <h3 class="font-bold text-sm">Cán bộ Tư vấn</h3>
+            <span
+              class="px-1.5 py-0.5 text-[9px] font-extrabold bg-indigo-500/80 text-white rounded-md tracking-wider uppercase border border-indigo-300/40">TCNDTNTAG</span>
+          </div>
+          <p class="text-[11px] text-indigo-200">Trợ lý thông minh • Trực tuyến 24/7</p>
+        </div>
+      </div>
+      <button onclick="dongChat()" class="text-white hover:text-gray-200 p-1" title="Đóng chat">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
 
-        <!-- MENU DANH MỤC TIỆN ÍCH -->
-        <div id="quick-options" class="grid grid-cols-2 gap-2 pt-1">
-          <!-- 1. Link Cổng Đăng Ký Online -->
-          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" rel="noopener noreferrer" 
-             class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl hover:bg-indigo-100 transition flex flex-col justify-between">
-            <span class="font-bold">📝 Đăng ký Online ↗</span>
-            <span class="text-[10px] text-gray-500 mt-0.5">Cổng tuyển sinh trực tuyến</span>
-          </a>
-
-          <!-- 2. Link Sổ Tay Nghề Flipbook -->
-          <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" rel="noopener noreferrer" 
-             class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-2.5 py-2 rounded-xl hover:bg-emerald-100 transition flex flex-col justify-between">
-            <span class="font-bold">📖 Sổ tay các nghề ↗</span>
-            <span class="text-[10px] text-gray-500 mt-0.5">Xem sách lật thông tin nghề</span>
-          </a>
-
-          <!-- 3. Form Đăng ký tư vấn nhanh qua Sheet -->
-          <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" 
-                  class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl text-left hover:bg-indigo-100 transition">
-            <span class="font-bold">📞 Hẹn gọi tư vấn</span>
-            <span class="text-[10px] text-gray-500 block mt-0.5">Để lại SĐT cán bộ gọi lại</span>
-          </button>
-
-          <!-- 4. Chính sách & Hỗ trợ -->
-          <button onclick="sendQuickMessage('Chính sách và hỗ trợ')" 
-                  class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl text-left hover:bg-indigo-100 transition">
-            <span class="font-bold">💰 Chính sách & Hỗ trợ</span>
-            <span class="text-[10px] text-gray-500 block mt-0.5">Miễn học phí, KTX & trợ cấp</span>
-          </button>
+    <!-- Vùng tin nhắn -->
+    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50 text-xs">
+      <!-- Lời chào đầu tiên -->
+      <div class="flex items-start space-x-2">
+        <div
+          class="w-7 h-7 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-slate-200 p-0.5 overflow-hidden">
+          <img src="logo-chatbot.png" alt="Chatbot AI" class="w-full h-full object-contain" />
+        </div>
+        <div
+          class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-800 max-w-[85%] border border-gray-100 leading-relaxed">
+          Xin chào! Tôi là <b>Chatbot thông minh</b> hỗ trợ tư vấn tuyển sinh và các thông tin liên quan Trường. Bạn có
+          thể chọn nhanh các danh mục dưới đây hoặc nhập câu hỏi trực tiếp nhé:
         </div>
       </div>
 
-      <!-- Khung nhập câu hỏi -->
-      <div class="p-2.5 bg-white border-t border-gray-100 flex items-center space-x-2">
-        <input id="chat-input" type="text" placeholder="Nhập câu hỏi cần tư vấn..." 
-               onkeydown="if(event.key==='Enter') sendMessage()" 
-               class="flex-1 px-3 py-2 border border-gray-200 rounded-full text-xs focus:outline-none focus:border-indigo-500">
-        <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full shadow">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
+      <!-- MENU DANH MỤC TIỆN ÍCH -->
+      <div id="quick-options" class="grid grid-cols-2 gap-2 pt-1">
+        <!-- 1. Link Cổng Đăng Ký Online -->
+        <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" rel="noopener noreferrer"
+          class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl hover:bg-indigo-100 transition flex flex-col justify-between">
+          <span class="font-bold">📝 Đăng ký Online ↗</span>
+          <span class="text-[10px] text-gray-500 mt-0.5">Cổng tuyển sinh trực tuyến</span>
+        </a>
+
+        <!-- 2. Link Sổ Tay Nghề Flipbook -->
+        <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" rel="noopener noreferrer"
+          class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-2.5 py-2 rounded-xl hover:bg-emerald-100 transition flex flex-col justify-between">
+          <span class="font-bold">📖 Sổ tay các nghề ↗</span>
+          <span class="text-[10px] text-gray-500 mt-0.5">Xem sách lật thông tin nghề</span>
+        </a>
+
+        <!-- 3. Form Đăng ký tư vấn nhanh qua Sheet -->
+        <button onclick="sendQuickMessage('Hẹn gọi tư vấn')"
+          class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl text-left hover:bg-indigo-100 transition">
+          <span class="font-bold">📞 Hẹn gọi tư vấn</span>
+          <span class="text-[10px] text-gray-500 block mt-0.5">Để lại SĐT cán bộ gọi lại</span>
+        </button>
+
+        <!-- 4. Chính sách & Hỗ trợ -->
+        <button onclick="sendQuickMessage('Chính sách và hỗ trợ')"
+          class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl text-left hover:bg-indigo-100 transition">
+          <span class="font-bold">💰 Chính sách & Hỗ trợ</span>
+          <span class="text-[10px] text-gray-500 block mt-0.5">Miễn học phí, KTX & trợ cấp</span>
         </button>
       </div>
-
     </div>
+
+    <!-- Khung nhập câu hỏi -->
+    <div class="p-2.5 bg-white border-t border-gray-100 flex items-center space-x-2">
+      <input id="chat-input" type="text" placeholder="Nhập câu hỏi cần tư vấn..."
+        onkeydown="if(event.key==='Enter') sendMessage()"
+        class="flex-1 px-3 py-2 border border-gray-200 rounded-full text-xs focus:outline-none focus:border-indigo-500">
+      <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full shadow">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </button>
+    </div>
+
+  </div>
   </div>
   <!-- ================= KẾT THÚC GIAO DIỆN CHATBOX ================= -->
 
@@ -170,7 +178,7 @@
         window.parent.postMessage({
           type: 'CLOSE_ADMISSIONS_CHAT'
         }, '*');
-      } catch (e) {}
+      } catch (e) { }
     }
 
     function sendMessage() {
@@ -248,7 +256,7 @@
       // Bấm vào tin nhắn để hiển thị ngay toàn bộ nội dung nếu không muốn đợi
       container.style.cursor = 'pointer';
       container.title = 'Bấm vào để hiển thị ngay';
-      container.onclick = function() {
+      container.onclick = function () {
         stopCurrentTyping();
       };
 
@@ -488,7 +496,7 @@
           fuzzyWords: ['cacnganh', 'cacnghe', 'nganhnghe', 'danhsachnganh', 'nganhhoc', 'nanhhoc', 'nghanhhoc']
         },
         {
-          canonical: ' hệ 9+ văn hóa thpt gdtx vừa học nghề vừa học cấp 3 học văn hóa ',
+          canonical: ' hệ văn hóa thpt gdtx vừa học nghề vừa học cấp 3 học văn hóa ',
           triggers: [
             'he 9+', 'he 9', '9+', 'vua hoc nghe vua hoc cap 3', 'hoc cap 3', 'hoc thpt',
             'van hoa thpt', 'gdtx', 'he gdtx', 'hoc van hoa', 'van hoa he gdtx'
@@ -704,14 +712,14 @@
 
       // 0.1. NHÓM 1: Lời chào & Lời ngỏ mở đầu (Chào bạn, Hello, Hi, Xin hỏi, Cho tôi hỏi, Tôi có câu hỏi...)
       const isHoiChung = q.includes('xin hỏi') || q.includes('xin hoi') ||
-                         q.includes('cho tôi hỏi') || q.includes('cho toi hoi') ||
-                         q.includes('cho em hỏi') || q.includes('cho em hoi') ||
-                         q.includes('tôi có câu hỏi') || q.includes('toi co cau hoi') ||
-                         q.includes('em có câu hỏi') || q.includes('có câu hỏi') ||
-                         q.includes('muốn hỏi') || q.includes('muon hoi') ||
-                         q.includes('chào bạn') || q.includes('chao ban') ||
-                         q.includes('xin chào') || q.includes('xin chao') ||
-                         q.includes('hello') || q === 'hi' || q === 'chào' || q === 'chao';
+        q.includes('cho tôi hỏi') || q.includes('cho toi hoi') ||
+        q.includes('cho em hỏi') || q.includes('cho em hoi') ||
+        q.includes('tôi có câu hỏi') || q.includes('toi co cau hoi') ||
+        q.includes('em có câu hỏi') || q.includes('có câu hỏi') ||
+        q.includes('muốn hỏi') || q.includes('muon hoi') ||
+        q.includes('chào bạn') || q.includes('chao ban') ||
+        q.includes('xin chào') || q.includes('xin chao') ||
+        q.includes('hello') || q === 'hi' || q === 'chào' || q === 'chao';
 
       if (isHoiChung && !hasSpecificTopic) {
         setTimeout(() => {
@@ -739,13 +747,13 @@
 
       // 0.2. NHÓM 2: Yêu cầu tư vấn trực tiếp (Tư vấn, Xin được tư vấn, Cần tư vấn, Tư vấn tuyển sinh...)
       const isYeuCauTuVan = q.includes('tư vấn') || q.includes('tu van') ||
-                            q.includes('từ vấn') || // xử lý gõ nhầm dấu
-                            q.includes('xin được tư vấn') || q.includes('xin duoc tu van') ||
-                            q.includes('cần tư vấn') || q.includes('can tu van') ||
-                            q.includes('muốn tư vấn') || q.includes('muon tu van') ||
-                            q.includes('nhờ tư vấn') || q.includes('nho tu van') ||
-                            q.includes('hỗ trợ tư vấn') || q.includes('ho tro tu van') ||
-                            q.includes('tư vấn giúp') || q.includes('tu van giup');
+        q.includes('từ vấn') || // xử lý gõ nhầm dấu
+        q.includes('xin được tư vấn') || q.includes('xin duoc tu van') ||
+        q.includes('cần tư vấn') || q.includes('can tu van') ||
+        q.includes('muốn tư vấn') || q.includes('muon tu van') ||
+        q.includes('nhờ tư vấn') || q.includes('nho tu van') ||
+        q.includes('hỗ trợ tư vấn') || q.includes('ho tro tu van') ||
+        q.includes('tư vấn giúp') || q.includes('tu van giup');
 
       if (isYeuCauTuVan && !hasSpecificTopic) {
         setTimeout(() => {
@@ -963,17 +971,17 @@
 
       // === CÂU HỎI VỊ TRÍ VIỆC LÀM & LÀM VIỆC Ở ĐÂU TỪNG NGÀNH ===
       const isJobQuery = (q.includes('làm việc ở đâu') || q.includes('lam viec o dau') ||
-                          q.includes('làm ở đâu') || q.includes('lam o dau') ||
-                          q.includes('việc làm') || q.includes('viec lam') ||
-                          q.includes('ra trường làm') || q.includes('ra truong lam') ||
-                          q.includes('ra làm gì') || q.includes('ra lam gi') ||
-                          q.includes('học xong làm') || q.includes('hoc xong lam') ||
-                          q.includes('vị trí việc làm') || q.includes('vi tri viec lam') ||
-                          q.includes('cơ hội việc làm') || q.includes('co hoi viec lam') ||
-                          q.includes('xin việc') || q.includes('xin viec') ||
-                          q.includes('giới thiệu việc làm') || q.includes('gioi thieu viec lam') ||
-                          q.includes('có việc làm không') || q.includes('co viec lam khong')) &&
-                          !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian') && !q.includes('số điện thoại');
+        q.includes('làm ở đâu') || q.includes('lam o dau') ||
+        q.includes('việc làm') || q.includes('viec lam') ||
+        q.includes('ra trường làm') || q.includes('ra truong lam') ||
+        q.includes('ra làm gì') || q.includes('ra lam gi') ||
+        q.includes('học xong làm') || q.includes('hoc xong lam') ||
+        q.includes('vị trí việc làm') || q.includes('vi tri viec lam') ||
+        q.includes('cơ hội việc làm') || q.includes('co hoi viec lam') ||
+        q.includes('xin việc') || q.includes('xin viec') ||
+        q.includes('giới thiệu việc làm') || q.includes('gioi thieu viec lam') ||
+        q.includes('có việc làm không') || q.includes('co viec lam khong')) &&
+        !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian') && !q.includes('số điện thoại');
 
       if (isJobQuery) {
         setTimeout(() => {
@@ -1715,21 +1723,21 @@
       }
 
       // 14.1. Câu hỏi: Các hồ sơ cần nộp / Hồ sơ đăng ký tuyển sinh gồm những gì?
-      const isCachNop = q.includes('nộp ở đâu') || q.includes('nop o dau') || 
-                        q.includes('cách nộp') || q.includes('cach nop') || 
-                        q.includes('phương thức nộp') || q.includes('phuong thuc nop') || 
-                        q.includes('hướng dẫn nộp') || q.includes('huong dan nop');
+      const isCachNop = q.includes('nộp ở đâu') || q.includes('nop o dau') ||
+        q.includes('cách nộp') || q.includes('cach nop') ||
+        q.includes('phương thức nộp') || q.includes('phuong thuc nop') ||
+        q.includes('hướng dẫn nộp') || q.includes('huong dan nop');
 
       const isThoiGianNop = q.includes('thời gian nhận hồ sơ') || q.includes('thoi gian nhan ho so') ||
-                            q.includes('khi nào nhận') || q.includes('khi nao nhan') ||
-                            q.includes('khi nào nộp') || q.includes('khi nao nop') ||
-                            q.includes('hạn nộp') || q.includes('han nop') ||
-                            q.includes('thời gian nộp') || q.includes('thoi gian nop');
+        q.includes('khi nào nhận') || q.includes('khi nao nhan') ||
+        q.includes('khi nào nộp') || q.includes('khi nao nop') ||
+        q.includes('hạn nộp') || q.includes('han nop') ||
+        q.includes('thời gian nộp') || q.includes('thoi gian nop');
 
       const isBieuMau = q.includes('tải biểu mẫu') || q.includes('tai bieu mau') ||
-                        q.includes('mẫu hồ sơ') || q.includes('mau ho so') ||
-                        q.includes('tải hồ sơ') || q.includes('tai ho so') ||
-                        q.includes('phiếu đăng ký') || q.includes('phieu dang ky');
+        q.includes('mẫu hồ sơ') || q.includes('mau ho so') ||
+        q.includes('tải hồ sơ') || q.includes('tai ho so') ||
+        q.includes('phiếu đăng ký') || q.includes('phieu dang ky');
 
       const isHoSoCanNop = !isCachNop && !isThoiGianNop && !isBieuMau && (
         q.includes('các hồ sơ cần nộp') || q.includes('cac ho so can nop') ||
@@ -2029,7 +2037,7 @@
     }
 
     // Gửi form về Google Sheets
-    window.handleLeadSubmit = async function(event) {
+    window.handleLeadSubmit = async function (event) {
       event.preventDefault();
 
       const name = document.getElementById('lead-name').value.trim();
@@ -2066,4 +2074,5 @@
     };
   </script>
 </body>
+
 </html>
