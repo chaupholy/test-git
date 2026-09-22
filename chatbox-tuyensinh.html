@@ -439,9 +439,22 @@
           fuzzyWords: ['hocphi', 'kytucxa']
         },
         {
-          canonical: ' hồ sơ tuyển sinh xét tuyển điều kiện đăng ký ',
-          triggers: ['ho so', 'hoso', 'xet tuyen', 'xettuyen', 'tuyen sinh', 'tuyensinh', 'dieu kien', 'dang ky', 'lop 9', 'thcs'],
-          fuzzyWords: ['tuyensinh']
+          canonical: ' các hồ sơ cần nộp hồ sơ cần nộp hồ sơ tuyển sinh giấy tờ cần nộp ',
+          triggers: [
+            'ho so', 'hoso', 'ho so can nop', 'cac ho so can nop', 'ho so gom nhung gi',
+            'ho so can nhung gi', 'can nop ho so gi', 'nop nhung ho so gi',
+            'giay to can nop', 'cac giay to can nop', 'giay to', 'giayto', 'ho so nhap hoc',
+            'ho so xet tuyen', 'ho so dang ky'
+          ],
+          fuzzyWords: ['hoso', 'giayto']
+        },
+        {
+          canonical: ' điều kiện tuyển sinh đối tượng tuyển sinh xét tuyển học bạ độ tuổi ',
+          triggers: [
+            'dieu kien', 'dieukien', 'dieu kien tuyen sinh', 'doi tuong', 'doituong',
+            'xet tuyen', 'xettuyen', 'do tuoi', 'dotuoi', 'ai duoc hoc', 'lop 9', 'thcs'
+          ],
+          fuzzyWords: ['dieukien', 'doituong', 'xettuyen']
         },
         {
           canonical: ' thời khóa biểu tkb lịch học điểm danh lms trực tuyến ',
@@ -904,7 +917,7 @@
       // 1.2. Câu hỏi: Hỏi tuyển sinh?
       if (
         q.includes('hỏi tuyển sinh') ||
-        (q.includes('tuyển sinh') && !q.includes('đăng ký online') && !q.includes('cổng tuyển sinh') && !q.includes('hồ sơ') && !q.includes('hình thức') && !q.includes('thời gian') && !q.includes('học phí') && !q.includes('liên hệ'))
+        (q.includes('tuyển sinh') && !q.includes('điều kiện') && !q.includes('đối tượng') && !q.includes('đăng ký online') && !q.includes('cổng tuyển sinh') && !q.includes('hồ sơ') && !q.includes('hình thức') && !q.includes('thời gian') && !q.includes('học phí') && !q.includes('liên hệ'))
         || q.includes('lĩnh vực') || q === 'tuyển sinh'
       ) {
         setTimeout(() => {
@@ -1666,13 +1679,79 @@
         return;
       }
 
+      // 14.1. Câu hỏi: Các hồ sơ cần nộp / Hồ sơ đăng ký tuyển sinh gồm những gì?
+      const isCachNop = q.includes('nộp ở đâu') || q.includes('nop o dau') || 
+                        q.includes('cách nộp') || q.includes('cach nop') || 
+                        q.includes('phương thức nộp') || q.includes('phuong thuc nop') || 
+                        q.includes('hướng dẫn nộp') || q.includes('huong dan nop');
+
+      const isThoiGianNop = q.includes('thời gian nhận hồ sơ') || q.includes('thoi gian nhan ho so') ||
+                            q.includes('khi nào nhận') || q.includes('khi nao nhan') ||
+                            q.includes('khi nào nộp') || q.includes('khi nao nop') ||
+                            q.includes('hạn nộp') || q.includes('han nop') ||
+                            q.includes('thời gian nộp') || q.includes('thoi gian nop');
+
+      const isBieuMau = q.includes('tải biểu mẫu') || q.includes('tai bieu mau') ||
+                        q.includes('mẫu hồ sơ') || q.includes('mau ho so') ||
+                        q.includes('tải hồ sơ') || q.includes('tai ho so') ||
+                        q.includes('phiếu đăng ký') || q.includes('phieu dang ky');
+
+      const isHoSoCanNop = !isCachNop && !isThoiGianNop && !isBieuMau && (
+        q.includes('các hồ sơ cần nộp') || q.includes('cac ho so can nop') ||
+        q.includes('hồ sơ cần nộp') || q.includes('ho so can nop') ||
+        q.includes('hồ sơ cần chuẩn bị') || q.includes('ho so can chuan bi') ||
+        q.includes('hồ sơ gồm những gì') || q.includes('ho so gom nhung gi') ||
+        q.includes('hồ sơ gồm những') || q.includes('ho so gom nhung') ||
+        q.includes('hồ sơ cần những gì') || q.includes('ho so can nhung gi') ||
+        q.includes('cần nộp những hồ sơ gì') || q.includes('can nop nhung ho so gi') ||
+        q.includes('cần nộp hồ sơ gì') || q.includes('can nop ho so gi') ||
+        q.includes('nộp những hồ sơ gì') || q.includes('nop nhung ho so gi') ||
+        q.includes('nộp hồ sơ gì') || q.includes('nop ho so gi') ||
+        q.includes('giấy tờ cần nộp') || q.includes('giay to can nop') ||
+        q.includes('các giấy tờ cần nộp') || q.includes('cac giay to can nop') ||
+        q.includes('giấy tờ cần chuẩn bị') || q.includes('giay to can chuan bi') ||
+        q.includes('cần những giấy tờ gì') || q.includes('can nhung giay to gi') ||
+        q.includes('hồ sơ nhập học') || q.includes('ho so nhap hoc') ||
+        q.includes('hồ sơ đăng ký') || q.includes('ho so dang ky') ||
+        q.includes('hồ sơ xét tuyển') || q.includes('ho so xet tuyen') ||
+        q.includes('hồ sơ tuyển sinh') || q.includes('ho so tuyen sinh') ||
+        q.includes('hồ sơ') || q.includes('ho so') ||
+        q.includes('giấy tờ') || q.includes('giay to') ||
+        q.includes('cần chuẩn bị') || q.includes('can chuan bi')
+      );
+
+      if (isHoSoCanNop) {
+        setTimeout(() => {
+          appendMessage(`📄 <b>CÁC HỒ SƠ &amp; GIẤY TỜ CẦN NỘP KHI ĐĂNG KÝ XÉT TUYỂN</b><br><br>
+          Thí sinh đăng ký xét tuyển và nhập học cần chuẩn bị bộ hồ sơ bao gồm:<br><br>
+          • 📝 <b>1. Phiếu đăng ký dự tuyển:</b> Theo mẫu của nhà trường (điền đầy đủ thông tin cá nhân và chọn ngành nghề).<br>
+          • 📋 <b>2. Bằng tốt nghiệp THCS hoặc THPT:</b> Bản sao công chứng (hoặc <i>Giấy chứng nhận tốt nghiệp tạm thời</i> nếu vừa tốt nghiệp trong năm).<br>
+          • 📘 <b>3. Học bạ THCS hoặc THPT:</b> Bản sao công chứng (để đối chiếu xét tuyển).<br>
+          • 📑 <b>4. Bản sao Giấy khai sinh:</b> 01 bản trích lục hoặc bản sao hợp lệ.<br>
+          • 🪪 <b>5. Căn cước công dân (CCCD):</b> 01 bản photocopy CCCD của học sinh (hoặc CCCD của phụ huynh nếu học sinh chưa có).<br>
+          • 📸 <b>6. Ảnh thẻ 4×6:</b> 04 ảnh (chụp không quá 6 tháng, phông nền sáng, mặt sau ghi rõ Họ tên và Ngày sinh).<br>
+          • 📌 <b>7. Giấy tờ xác nhận đối tượng chính sách (nếu có):</b> Giấy xác nhận học sinh người dân tộc thiểu số, sổ hộ nghèo/cận nghèo, gia đình thương binh, liệt sĩ... để được hưởng <b>chính sách miễn 100% học phí, cấp tiền trợ cấp nội trú và miễn phí 100% Ký túc xá</b>.<br><br>
+          📁 <b>Tải các biểu mẫu hồ sơ chính thức tại:</b><br>
+          👉 <a href="https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so" target="_blank" class="text-indigo-600 font-bold underline">https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so</a><br><br>
+          <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;">
+            <button onclick="sendQuickMessage('Cách nộp hồ sơ')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">📮 Phương thức nộp hồ sơ</button>
+            <button onclick="sendQuickMessage('Thời gian nhận hồ sơ')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">📅 Lịch nhận hồ sơ</button>
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">📞 Hẹn cán bộ gọi lại</button>
+          </div>`, 'bot');
+        }, 300);
+        return;
+      }
+
       // 15. Câu hỏi: Đối tượng & Điều kiện tuyển sinh
       if (
-        q.includes('đối tượng') || q.includes('doi tuong') ||
-        q.includes('điều kiện') || q.includes('dieu kien') ||
-        q.includes('ai được học') || q.includes('ai duoc hoc') ||
-        q.includes('độ tuổi') || q.includes('do tuoi') ||
-        (q.includes('tốt nghiệp') && (q.includes('thcs') || q.includes('thpt') || q.includes('lớp 9') || q.includes('cấp 2')))
+        !q.includes('hồ sơ') && !q.includes('ho so') && !q.includes('giấy tờ') &&
+        (
+          q.includes('đối tượng') || q.includes('doi tuong') ||
+          q.includes('điều kiện') || q.includes('dieu kien') ||
+          q.includes('ai được học') || q.includes('ai duoc hoc') ||
+          q.includes('độ tuổi') || q.includes('do tuoi') ||
+          (q.includes('tốt nghiệp') && (q.includes('thcs') || q.includes('thpt') || q.includes('lớp 9') || q.includes('cấp 2')))
+        )
       ) {
         setTimeout(() => {
           appendMessage(`📋 <b>ĐỐI TƯỢNG & ĐIỀU KIỆN TUYỂN SINH</b><br><br>
@@ -1831,22 +1910,6 @@
           • 💻 <b>Phòng thực hành máy tính:</b> Nhiều phòng máy tính cấu hình cao kết nối mạng internet cáp quang phục vụ học CNTT, Đồ họa, TMĐT.<br>
           • 🏠 <b>Ký túc xá nội trú:</b> Khang trang, sạch sẽ, miễn phí 100% chỗ ở cho học sinh ở xa.<br>
           • ⚽ <b>Khu rèn luyện thể thao:</b> Sân bóng đá mini, bóng chuyền, sân chơi thể thao và các câu lạc bộ văn hóa nghệ thuật sôi nổi.`, 'bot');
-        }, 300);
-        return;
-      }
-
-      // 8. Câu hỏi: Hồ sơ đăng ký tuyển sinh gồm những gì?
-      if (q.includes('hồ sơ') || q.includes('giấy tờ') || q.includes('cần chuẩn bị')) {
-        setTimeout(() => {
-          appendMessage(`📄 <b>HỒ SƠ ĐĂNG KÝ TUYỂN SINH</b><br><br>
-          Hồ sơ tuyển sinh cần chuẩn bị bao gồm:<br><br>
-          • 📝 Phiếu đăng ký dự tuyển (theo mẫu của trường)<br>
-          • 📋 Bản sao bằng tốt nghiệp THCS/THPT (hoặc giấy chứng nhận tốt nghiệp tạm thời)<br>
-          • 📘 Bản sao học bạ THCS/THPT<br>
-          • 📑 Bản sao giấy khai sinh & Căn cước công dân (CCCD)<br>
-          • 📸 4 ảnh 4×6 (chụp không quá 6 tháng)<br>
-          • 📌 Giấy tờ xác nhận đối tượng ưu tiên, chế độ chính sách (nếu có).<br><br>
-          📁 <a href="https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so" target="_blank" class="text-indigo-600 underline font-semibold">Tải biểu mẫu hồ sơ tuyển sinh tại đây</a>`, 'bot');
         }, 300);
         return;
       }
