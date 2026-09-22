@@ -412,9 +412,14 @@
           fuzzyWords: ['phapluat']
         },
         {
-          canonical: ' trồng trọt bảo vệ thực vật bvtv cây trồng nông nghiệp ',
-          triggers: ['trong trot', 'trongtrot', 'bao ve thuc vat', 'baovethucvat', 'bvtv', 'cay trong', 'caytrong', 'nong nghiep', 'khuyen nong', 'loc troi', 'phan bon', 'thuoc sau'],
-          fuzzyWords: ['trongtrot', 'baovethucvat']
+          canonical: ' trồng trọt cây trồng nông nghiệp ',
+          triggers: ['trong trot', 'trongtrot', 'cay trong', 'caytrong', 'khuyen nong'],
+          fuzzyWords: ['trongtrot']
+        },
+        {
+          canonical: ' bảo vệ thực vật bvtv thuốc bảo vệ thực vật sâu bệnh ',
+          triggers: ['bao ve thuc vat', 'baovethucvat', 'bvtv', 'thuoc sau', 'phan bon', 'loc troi', 'sau benh'],
+          fuzzyWords: ['baovethucvat']
         },
         {
           canonical: ' làm việc ở đâu việc làm vị trí việc làm cơ hội việc làm ra trường làm xin việc ',
@@ -524,7 +529,7 @@
               📞 Hẹn cán bộ gọi lại
             </button>
             <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
-              🎓 14 Ngành đào tạo
+              🎓 15 Ngành đào tạo
             </button>
             <button onclick="sendQuickMessage('Học phí')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
               💰 Miễn học phí &amp; KTX
@@ -549,7 +554,7 @@
           Nếu có bất kỳ câu hỏi nào về <b>ngành nghề</b>, <b>chính sách miễn 100% học phí</b> hay <b>ký túc xá nội trú</b>, bạn cứ nhắn cho Cán bộ tư vấn bất kỳ lúc nào nhé! ✨
           <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
             <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
-              🎓 14 Ngành đào tạo
+              🎓 15 Ngành đào tạo
             </button>
             <button onclick="sendQuickMessage('Học phí')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
               💰 Miễn học phí &amp; KTX
@@ -578,7 +583,7 @@
           appendMessage(`👋 <b>Chào bạn! Cán bộ Trường TC Dân tộc Nội trú An Giang xin nghe. Bạn muốn đặt câu hỏi về vấn đề gì?</b>
           <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
             <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
-              🎓 14 Ngành đào tạo
+              🎓 15 Ngành đào tạo
             </button>
             <button onclick="sendQuickMessage('Học phí')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
               💰 Miễn học phí &amp; KTX
@@ -784,27 +789,27 @@
         || q.includes('lĩnh vực') || q === 'tuyển sinh'
       ) {
         setTimeout(() => {
-          appendMessage(`📢 <b>TƯ VẤN TUYỂN SINH</b><br><br>
-          Cảm ơn bạn đã quan tâm, hiện nay trường đang tuyển sinh rất nhiều ngành nghề. <b>Bạn muốn học lĩnh vực nào?</b><br><br>
-          Dưới đây là các lĩnh vực/ngành nghề trường đang đào tạo:<br><br>
-          ⚙️ <b>Khối Kỹ thuật &amp; Cơ điện:</b><br>
-          • Công nghệ ô tô<br>
-          • Kỹ thuật máy lạnh &amp; Điều hòa không khí<br>
-          • Điện công nghiệp<br>
-          • Cơ điện nông thôn<br><br>
-          💻 <b>Khối Công nghệ thông tin:</b><br>
-          • Tin học ứng dụng<br>
-          • Kỹ thuật sửa chữa, lắp ráp máy tính<br>
-          • Quản trị mạng máy tính<br>
-          • Thiết kế đồ họa<br>
-          • Tin học văn phòng<br><br>
-          📊 <b>Khối Kinh tế - Dịch vụ - Nghiệp vụ:</b><br>
-          • Thương mại điện tử<br>
-          • Kế toán doanh nghiệp<br>
-          • Hướng dẫn du lịch<br>
-          • Pháp luật<br><br>
-          🌱 <b>Khối Nông nghiệp:</b><br>
-          • Trồng trọt và bảo vệ thực vật<br><br>
+          appendMessage(`📢 <b>TƯ VẤN TUYỂN SINH - 15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP</b><br><br>
+          Cảm ơn bạn đã quan tâm! Hiện nay trường đang tuyển sinh tổng cộng <b>15 ngành nghề trình độ Trung cấp</b>. <b>Bạn muốn tìm hiểu ngành nghề hoặc lĩnh vực nào?</b><br><br>
+          ⚙️ <b>Khối Kỹ thuật &amp; Cơ điện (4 ngành):</b><br>
+          • 1. Công nghệ ô tô<br>
+          • 2. Kỹ thuật máy lạnh &amp; điều hoà không khí<br>
+          • 3. Cơ điện nông thôn<br>
+          • 4. Điện công nghiệp<br><br>
+          🌱 <b>Khối Nông nghiệp (2 ngành):</b><br>
+          • 5. Trồng trọt và bảo vệ thực vật<br>
+          • 6. Bảo vệ thực vật<br><br>
+          📊 <b>Khối Kinh tế - Dịch vụ - Luật (4 ngành):</b><br>
+          • 7. Thương mại điện tử<br>
+          • 8. Pháp luật<br>
+          • 14. Hướng dẫn du lịch<br>
+          • 15. Kế toán doanh nghiệp<br><br>
+          💻 <b>Khối Công nghệ thông tin (5 ngành):</b><br>
+          • 9. Tin học văn phòng<br>
+          • 10. Tin học ứng dụng<br>
+          • 11. Kỹ thuật sửa chữa, lắp ráp máy tính<br>
+          • 12. Quản trị mạng máy tính<br>
+          • 13. Thiết kế đồ họa<br><br>
           <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
             👉 Xem Chi Tiết Mục Đào Tạo Website Trường
           </a><br><br>
@@ -1046,14 +1051,31 @@
             return;
           }
 
-          // 14. Trồng trọt & Bảo vệ thực vật
-          if (q.includes('trồng trọt') || q.includes('bảo vệ thực vật') || q.includes('bvtv') || q.includes('cây trồng') || q.includes('nông nghiệp')) {
+          // 6. Bảo vệ thực vật (hỏi riêng)
+          if ((q.includes('bảo vệ thực vật') || q.includes('bvtv')) && !q.includes('trồng trọt')) {
+            appendMessage(`🌱 <b>Nghề Bảo vệ thực vật có vị trí việc làm cụ thể tại:</b><br><br>
+            • <b>Chi cục &amp; Trạm Trồng trọt - BVTV:</b> Cán bộ kỹ thuật điều tra, dự tính dự báo dịch hại, công tác kiểm dịch thực vật tại địa phương.<br>
+            • <b>Doanh nghiệp Nông dược &amp; Thuốc BVTV:</b> Kỹ thuật viên khảo nghiệm thuốc, nhân viên tư vấn giải pháp phòng trừ sâu bệnh, chuyên viên kinh doanh thuốc BVTV (Tập đoàn Lộc Trời, Tân Thành, Syngenta...).<br>
+            • <b>Trang trại &amp; HTX nông nghiệp:</b> Phụ trách công tác quản lý dịch hại tổng hợp (IPM), kiểm soát dư lượng thuốc BVTV đạt tiêu chuẩn an toàn VietGAP/GlobalGAP.<br>
+            • <b>Tự làm chủ:</b> Mở cửa hàng kinh doanh thuốc bảo vệ thực vật, phân bón và vật tư nông nghiệp.<br>
+            🤝 <i>Thời lượng thực hành 75% - 80%, nhà trường liên kết thực tập và giới thiệu việc làm tại các doanh nghiệp nông nghiệp hàng đầu.</i><br><br>
+            <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
+              📝 Đăng Ký Xét Tuyển Online
+            </a>
+            <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-semibold hover:bg-gray-200 transition ml-1">
+              📖 Chi Tiết Ngành
+            </a>`, 'bot');
+            return;
+          }
+
+          // 5. Trồng trọt & Bảo vệ thực vật
+          if (q.includes('trồng trọt') || q.includes('cây trồng') || q.includes('nông nghiệp') || q.includes('bảo vệ thực vật') || q.includes('bvtv')) {
             appendMessage(`🌱 <b>Nghề Trồng trọt và bảo vệ thực vật có vị trí việc làm cụ thể tại:</b><br><br>
-            • <b>Công ty giống &amp; Nông dược:</b> Kỹ thuật viên chuyển giao kỹ thuật, nhân viên kinh doanh giống cây trồng, phân bón, thuốc BVTV (Tập đoàn Lộc Trời, Tân Thành...).<br>
+            • <b>Công ty giống &amp; Nông dược:</b> Kỹ thuật viên chuyển giao kỹ thuật trồng trọt, nhân viên kinh doanh giống cây trồng, phân bón, thuốc BVTV (Tập đoàn Lộc Trời, Tân Thành...).<br>
             • <b>Trang trại &amp; Hợp tác xã nông nghiệp:</b> Kỹ thuật viên quản lý vùng trồng nông nghiệp công nghệ cao, nhà màng, cây ăn trái tiêu chuẩn VietGAP.<br>
             • <b>Cơ quan khuyến nông:</b> Cán bộ kỹ thuật tại các Trạm Khuyến nông, Trạm Trồng trọt và BVTV huyện/thị xã.<br>
             • <b>Tự làm chủ:</b> Mở đại lý kinh doanh vật tư nông nghiệp hoặc làm chủ mô hình vườn, trang trại sạch.<br>
-            🤝 <i>Nhà trường liên kết chặt chẽ với các doanh nghiệp nông nghiệp hàng đầu tại ĐBSCL.</i><br><br>
+            🤝 <i>Thời lượng thực hành 75% - 80%, nhà trường liên kết chặt chẽ với các doanh nghiệp nông nghiệp hàng đầu tại ĐBSCL.</i><br><br>
             <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
               📝 Đăng Ký Xét Tuyển Online
             </a>
@@ -1305,13 +1327,32 @@
         return;
       }
 
-      // 14. Trồng trọt và bảo vệ thực vật
-      if ((q.includes('trồng trọt') || q.includes('bảo vệ thực vật') || q.includes('bvtv') || q.includes('cây trồng') || (q.includes('nông nghiệp') && !q.includes('kinh tế') && !q.includes('du lịch') && !q.includes('cơ điện')) || q.includes('có ngành trồng trọt') || q.includes('có ngành bảo vệ thực vật')) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
+      // 6. Ngành Bảo vệ thực vật (hỏi riêng)
+      if ((q.includes('bảo vệ thực vật') || q.includes('bvtv') || q.includes('có ngành bảo vệ thực vật')) && !q.includes('trồng trọt') && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
+        setTimeout(() => {
+          appendMessage(`🌱 <b>DẠ CÓ BẠN NHÉ! NGÀNH BẢO VỆ THỰC VẬT</b><br><br>
+          • <b>Học phí &amp; Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí 100%.<br>
+          • <b>Thời lượng thực hành:</b> Lên đến <b>75% - 80%</b> tại đồng ruộng, trạm thực nghiệm và phòng phân tích - xét nghiệm sâu bệnh.<br>
+          • <b>Nội dung đào tạo:</b> Nhận diện chẩn đoán các loại sinh vật gây hại, kỹ thuật phòng trừ dịch hại tổng hợp (IPM), kiểm dịch thực vật nội địa &amp; xuất nhập khẩu, kỹ năng sử dụng thuốc BVTV an toàn – hiệu quả.<br>
+          • <b>Cơ hội việc làm:</b> Cán bộ kỹ thuật tại Chi cục/Trạm Trồng trọt &amp; BVTV, kỹ thuật viên khảo nghiệm &amp; kinh doanh nông dược (Lộc Trời, Tân Thành, Syngenta...), trang trại VietGAP/GlobalGAP hoặc tự mở đại lý vật tư nông nghiệp.<br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
+            📝 Đăng Ký Xét Tuyển Online
+          </a>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-semibold hover:bg-gray-200 transition ml-1">
+            📖 Chi Tiết Ngành
+          </a>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 5. Ngành Trồng trọt và bảo vệ thực vật
+      if ((q.includes('trồng trọt') || (q.includes('nông nghiệp') && !q.includes('kinh tế') && !q.includes('du lịch') && !q.includes('cơ điện')) || q.includes('có ngành trồng trọt')) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
         setTimeout(() => {
           appendMessage(`🌱 <b>DẠ CÓ BẠN NHÉ! NGÀNH TRỒNG TRỌT VÀ BẢO VỆ THỰC VẬT</b><br><br>
-          • <b>Học phí &amp; Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>
-          • <b>Nội dung:</b> Kỹ thuật trồng trọt công nghệ cao, nông nghiệp sạch, chẩn đoán và phòng trừ sâu bệnh hại, sử dụng thuốc BVTV an toàn.<br>
-          • <b>Việc làm:</b> Làm việc tại công ty giống cây trồng, trạm khuyến nông, trang trại nông nghiệp, cửa hàng phân bón – thuốc BVTV hoặc làm chủ mô hình vườn.<br><br>
+          • <b>Học phí &amp; Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí 100%.<br>
+          • <b>Thời lượng thực hành:</b> Lên đến <b>75% - 80%</b> thời lượng học tập.<br>
+          • <b>Nội dung:</b> Kỹ thuật nhân giống, trồng trọt và thâm canh các loại cây ăn trái, lúa, hoa màu công nghệ cao; kỹ thuật quản lý dịch hại và sản xuất theo tiêu chuẩn VietGAP.<br>
+          • <b>Việc làm:</b> Làm việc tại công ty giống cây trồng, trạm khuyến nông, trang trại nông nghiệp công nghệ cao, cơ sở kinh doanh phân bón – nông dược hoặc làm chủ trang trại sạch.<br><br>
           <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
             📝 Đăng Ký Xét Tuyển Online
           </a>
@@ -1377,7 +1418,8 @@
           📑 2️⃣ <b>Kế toán doanh nghiệp:</b> Nghiệp vụ kế toán, khai báo thuế điện tử, lập báo cáo tài chính và sử dụng phần mềm kế toán chuyên nghiệp.<br>
           🎒 3️⃣ <b>Hướng dẫn du lịch:</b> Kỹ năng thuyết minh, dẫn tour du lịch nội địa, thiết kế tour, nghiệp vụ lữ hành và khách sạn.<br>
           ⚖️ 4️⃣ <b>Pháp luật:</b> Kiến thức pháp lý, nghiệp vụ hành chính - tư pháp, công tác văn phòng công chứng và tư vấn cơ sở.<br>
-          🌾 5️⃣ <b>Trồng trọt và bảo vệ thực vật:</b> Kỹ thuật canh tác VietGAP, chẩn đoán phòng trừ sâu bệnh, ứng dụng nông nghiệp công nghệ cao.<br><br>
+          🌾 5️⃣ <b>Trồng trọt và bảo vệ thực vật:</b> Kỹ thuật canh tác VietGAP, quản lý vùng trồng nông nghiệp công nghệ cao.<br>
+          🌱 6️⃣ <b>Bảo vệ thực vật:</b> Chuyên sâu điều tra dự tính dịch hại, kỹ thuật IPM, kiểm dịch thực vật và quản lý nông dược.<br><br>
           <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
             👉 Xem Chi Tiết Chương Trình Đào Tạo
           </a><br><br>
@@ -1386,16 +1428,36 @@
         return;
       }
 
-      // 2. Các ngành, nghề đang đào tạo
-      if (q.includes('sổ tay') || q.includes('nghề') || q.includes('ngành') || q.includes('đang đào tạo') || q.includes('học gì')) {
+      // 2. Các ngành, nghề đang đào tạo (15 ngành nghề đào tạo trung cấp)
+      if (q.includes('sổ tay') || q.includes('nghề') || q.includes('ngành') || q.includes('đang đào tạo') || q.includes('học gì') || q.includes('15 ngành') || q.includes('danh sách ngành')) {
         setTimeout(() => {
-          appendMessage(`🎓 <b>CÁC NGÀNH, NGHỀ ĐÀO TẠO</b><br><br>
-          Trường đào tạo đa dạng các ngành nghề.<br><br>
-          Bấm vào sổ tay để biết các ngành đang đào tạo và xem chi tiết chương trình học tại:<br><br>
-          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
-            👉 Xem Chi Tiết Chương Trình Đào Tạo
+          appendMessage(`🎓 <b>DANH SÁCH 15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP CỦA TRƯỜNG</b><br><br>
+          Trường Trung cấp Dân tộc Nội trú An Giang hiện đang đào tạo <b>15 ngành nghề</b> trình độ Trung cấp:<br><br>
+          1️⃣ <b>Công nghệ ô tô</b><br>
+          2️⃣ <b>Kỹ thuật máy lạnh &amp; điều hoà không khí</b><br>
+          3️⃣ <b>Cơ điện nông thôn</b><br>
+          4️⃣ <b>Điện công nghiệp</b><br>
+          5️⃣ <b>Trồng trọt và bảo vệ thực vật</b><br>
+          6️⃣ <b>Bảo vệ thực vật</b><br>
+          7️⃣ <b>Thương mại điện tử</b><br>
+          8️⃣ <b>Pháp luật</b><br>
+          9️⃣ <b>Tin học văn phòng</b><br>
+          🔟 <b>Tin học ứng dụng</b><br>
+          1️⃣1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính</b><br>
+          1️⃣2️⃣ <b>Quản trị mạng máy tính</b><br>
+          1️⃣3️⃣ <b>Thiết kế đồ họa</b><br>
+          1️⃣4️⃣ <b>Hướng dẫn du lịch</b><br>
+          1️⃣5️⃣ <b>Kế toán doanh nghiệp</b><br><br>
+          • 💰 <b>Học phí:</b> <b>Miễn 100% học phí</b> cho học sinh tốt nghiệp THCS.<br>
+          • 🏠 <b>Ký túc xá:</b> Miễn phí 100% chỗ ở nội trú, có chính sách học bổng &amp; trợ cấp.<br>
+          • 🔧 <b>Thực hành thực tế:</b> Chiếm <b>75% - 80%</b> thời lượng đào tạo.<br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            📝 Đăng Ký Xét Tuyển Online
+          </a>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg font-semibold hover:bg-gray-200 transition ml-2">
+            📖 Chi Tiết 15 Ngành
           </a><br><br>
-          📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
+          📖 <i>Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.</i>`, 'bot');
         }, 300);
         return;
       }
