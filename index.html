@@ -30,7 +30,7 @@ body {
 
 
 /* =========================
-   NÚT CHAT
+   NÚT CHAT (BIỂU TƯỢNG AI BOT)
 ========================= */
 
 #nutChat {
@@ -41,23 +41,21 @@ body {
 
     bottom: 25px;
 
-    padding: 12px 22px;
+    width: 60px;
+
+    height: 60px;
 
     border: none;
 
-    border-radius: 30px;
+    border-radius: 50%;
 
     background: linear-gradient(135deg, #4f46e5, #7c3aed);
 
     color: white;
 
-    font-size: 15px;
-
-    font-weight: bold;
-
     cursor: pointer;
 
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.45);
 
     z-index: 999;
 
@@ -65,9 +63,13 @@ body {
 
     align-items: center;
 
-    gap: 8px;
+    justify-content: center;
 
-    transition: transform 0.2s, background 0.2s;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s, background 0.2s;
+
+    outline: none;
+
+    padding: 0;
 
 }
 
@@ -75,7 +77,87 @@ body {
 
     background: linear-gradient(135deg, #4338ca, #6d28d9);
 
+    transform: scale(1.1);
+
+    box-shadow: 0 12px 30px rgba(79, 70, 229, 0.6);
+
+}
+
+#nutChat:active {
+
+    transform: scale(0.95);
+
+}
+
+#nutChat .ai-bot-icon {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: block;
+
+    transition: transform 0.2s;
+
+}
+
+#nutChat:hover .ai-bot-icon {
+
     transform: scale(1.05);
+
+}
+
+#nutChat .online-dot {
+
+    position: absolute;
+
+    top: 2px;
+
+    right: 2px;
+
+    width: 14px;
+
+    height: 14px;
+
+    background: #10b981;
+
+    border: 2.5px solid white;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+
+}
+
+#nutChat .icon-close {
+
+    display: none;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    font-weight: bold;
+
+    color: white;
+
+}
+
+#nutChat.is-open .ai-bot-icon {
+
+    display: none;
+
+}
+
+#nutChat.is-open .icon-close {
+
+    display: block;
+
+}
+
+#nutChat.is-open .online-dot {
+
+    display: none;
 
 }
 
@@ -345,12 +427,37 @@ body {
 
 
 <!-- =========================
-     NÚT CHAT
+     NÚT CHAT (BIỂU TƯỢNG AI BOT)
 ========================= -->
 
-<button id="nutChat" onclick="moChat()">
+<button id="nutChat" onclick="toggleChat()" title="Chat với Chatbot AI thông minh">
 
-🤖 Chatbot AI
+    <!-- Biểu tượng AI Bot SVG -->
+    <svg class="ai-bot-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ăng-ten phát tín hiệu AI -->
+        <line x1="16" y1="3" x2="16" y2="7" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="16" cy="3" r="2.2" fill="#38bdf8"/>
+        <!-- Tai nghe hai bên -->
+        <rect x="2" y="13" width="3" height="7" rx="1.5" fill="#a5b4fc"/>
+        <rect x="27" y="13" width="3" height="7" rx="1.5" fill="#a5b4fc"/>
+        <!-- Khung đầu Robot trắng cao cấp bo tròn -->
+        <rect x="5" y="7" width="22" height="19" rx="6.5" fill="white" stroke="#e0e7ff" stroke-width="0.8"/>
+        <!-- Màn hình mắt công nghệ -->
+        <rect x="7.5" y="10" width="17" height="9" rx="4" fill="#1e1b4b"/>
+        <!-- Đôi mắt AI xanh phát sáng -->
+        <circle cx="12" cy="14.5" r="1.8" fill="#38bdf8"/>
+        <circle cx="20" cy="14.5" r="1.8" fill="#38bdf8"/>
+        <circle cx="12.6" cy="13.9" r="0.6" fill="white"/>
+        <circle cx="20.6" cy="13.9" r="0.6" fill="white"/>
+        <!-- Miệng cười Robot thân thiện -->
+        <path d="M12.5 21.5C13.5 22.8 18.5 22.8 19.5 21.5" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+
+    <!-- Biểu tượng Đóng khi mở chatbox -->
+    <span class="icon-close">✕</span>
+
+    <!-- Chấm xanh Online trực tuyến 24/7 -->
+    <span class="online-dot"></span>
 
 </button>
 
@@ -606,7 +713,10 @@ body {
 
 function moChat() {
 
-    document.getElementById("chatbox").style.display = "block";
+    var chatbox = document.getElementById("chatbox");
+    var nutChat = document.getElementById("nutChat");
+    if (chatbox) chatbox.style.display = "block";
+    if (nutChat) nutChat.classList.add("is-open");
 
 }
 
@@ -618,7 +728,27 @@ function moChat() {
 
 function dongChat() {
 
-    document.getElementById("chatbox").style.display = "none";
+    var chatbox = document.getElementById("chatbox");
+    var nutChat = document.getElementById("nutChat");
+    if (chatbox) chatbox.style.display = "none";
+    if (nutChat) nutChat.classList.remove("is-open");
+
+}
+
+
+
+/* =========================
+   BẬT / TẮT CHAT (TOGGLE)
+========================= */
+
+function toggleChat() {
+
+    var chatbox = document.getElementById("chatbox");
+    if (chatbox && chatbox.style.display === "block") {
+        dongChat();
+    } else {
+        moChat();
+    }
 
 }
 
