@@ -990,7 +990,7 @@ function expandNormalizedQuery(rawText) {
             fuzzyWords: ['thoikhoabieu', 'diemdanh']
         },
         {
-            canonical: ' các ngành các nghề đào tạo 15 ngành danh sách ngành sổ tay nghề ',
+            canonical: ' các ngành các nghề đào tạo 15 ngành danh sách ngành sổ tay nghề thông tin ngành nghề ngành học đăng ký ngành học ',
             triggers: [
                 'cac nganh', 'cacnganh', 'cac nghe', 'cacnghe',
                 'nhung nganh', 'nhungnganh', 'nhung nghe', 'nhungnghe',
@@ -1000,9 +1000,20 @@ function expandNormalizedQuery(rawText) {
                 'day nhung nghe nao', 'day nghe gi', 'hoc nghe gi',
                 '15 nganh', '15nganh', '15 nghe', '15nghe',
                 'danh sach nganh', 'danhsachnganh', 'danh sach nghe', 'danhsachnghe',
-                'so tay nghe', 'so tay'
+                'so tay nghe', 'so tay',
+                'thong nganh', 'thongnganh', 'thong nghe', 'thongnghe',
+                'thong tin nganh', 'thong tin nghe', 'thong tin nganh nghe',
+                'thong nganh hoac nghe', 'thong tin nganh hoac nghe',
+                'nghanh', 'nghanhhoc', 'cac nghanh', 'cacnghanh', 'nghanh can hoc',
+                'nghe can hoc', 'nganh can hoc', 'cac nghe can hoc', 'cac nganh can hoc',
+                'can hoc nghe gi', 'can hoc nganh gi', 'nen hoc nghe gi', 'nen hoc nganh gi',
+                'truong dao tao cac nghe nao', 'truong dao tao cac nganh nao',
+                'truong dao tao nhung nghe nao', 'truong dao tao nhung nganh nao',
+                'nanh hoc', 'nanhhoc', 'nanh', 'nganh hoc', 'nganhhoc',
+                'dang ky nganh hoc', 'dang ky nganh', 'dang ky nghe', 'dang ky hoc nghe',
+                'chon nganh hoc', 'chon nganh', 'chon nghe'
             ],
-            fuzzyWords: ['cacnganh', 'cacnghe', 'nganhnghe', 'danhsachnganh']
+            fuzzyWords: ['cacnganh', 'cacnghe', 'nganhnghe', 'danhsachnganh', 'nganhhoc', 'nanhhoc', 'nghanhhoc']
         },
         {
             canonical: ' hệ 9+ văn hóa thpt gdtx vừa học nghề vừa học cấp 3 học văn hóa ',
@@ -1463,7 +1474,7 @@ function guiTinNhan() {
 
     else if(
         text.includes("hỏi tuyển sinh") ||
-        (text.includes("tuyển sinh") && !text.includes("điều kiện") && !text.includes("đối tượng") && !text.includes("hồ sơ") && !text.includes("học phí") && !text.includes("thời gian") && !text.includes("cách nộp") && !text.includes("ở đâu")) ||
+        (text.includes("tuyển sinh") && !text.includes("điều kiện") && !text.includes("đối tượng") && !text.includes("hồ sơ") && !text.includes("học phí") && !text.includes("thời gian") && !text.includes("cách nộp") && !text.includes("ở đâu") && !text.includes("ngành") && !text.includes("nghề") && !text.includes("nghanh") && !text.includes("nành")) ||
         text.includes("lĩnh vực")
     ) {
 
@@ -2025,38 +2036,66 @@ function guiTinNhan() {
         text.includes("các ngành nghề") || text.includes("cac nganh nghe") ||
         text.includes("các nghề") || text.includes("cac nghe") ||
         text.includes("các ngành") || text.includes("cac nganh") ||
+        text.includes("các nghành") || text.includes("cac nghanh") ||
+        text.includes("nghành") || text.includes("nghanh") ||
         text.includes("15 ngành") || text.includes("15 nganh") ||
         text.includes("15 nghề") || text.includes("15 nghe") ||
         text.includes("danh sách ngành") || text.includes("danh sach nganh") ||
         text.includes("danh sách nghề") || text.includes("danh sach nghe") ||
         text.includes("sổ tay") || text.includes("so tay") ||
         text.includes("đang đào tạo") || text.includes("dang dao tao") ||
-        ((text.includes("đào tạo") || text.includes("dao tao")) && (text.includes("nghề") || text.includes("nghe") || text.includes("ngành") || text.includes("nganh") || text.includes("gì") || text.includes("nào")) && !text.includes("trình độ") && !text.includes("trinh do"))
+        text.includes("thông ngành") || text.includes("thong nganh") ||
+        text.includes("thông nghề") || text.includes("thong nghe") ||
+        text.includes("thông tin ngành") || text.includes("thong tin nganh") ||
+        text.includes("thông tin nghề") || text.includes("thong tin nghe") ||
+        text.includes("cần học") || text.includes("can hoc") ||
+        text.includes("nành học") || text.includes("nanh hoc") ||
+        text.includes("nành") || text.includes("nanh") ||
+        text.includes("ngành học") || text.includes("nganh hoc") ||
+        text.includes("đăng ký ngành") || text.includes("dang ky nganh") ||
+        text.includes("đăng ký nghề") || text.includes("dang ky nghe") ||
+        text.includes("chọn ngành") || text.includes("chon nganh") ||
+        text.includes("chọn nghề") || text.includes("chon nghe") ||
+        text.includes("trường đào tạo các nghề nào") || text.includes("truong dao tao cac nghe nao") ||
+        text.includes("trường đào tạo các ngành nào") || text.includes("truong dao tao cac nganh nao") ||
+        ((text.includes("đào tạo") || text.includes("dao tao")) && (text.includes("nghề") || text.includes("nghe") || text.includes("ngành") || text.includes("nganh") || text.includes("nghành") || text.includes("nghanh") || text.includes("gì") || text.includes("nào")) && !text.includes("trình độ") && !text.includes("trinh do"))
     ) {
         traLoi =
         "🎓 <b>DANH SÁCH 15 NGÀNH NGHỀ ĐÀO TẠO TRUNG CẤP CỦA TRƯỜNG</b><br><br>" +
-        "Trường Trung cấp Dân tộc Nội trú An Giang hiện đang đào tạo <b>15 ngành nghề</b> trình độ Trung cấp:<br><br>" +
+        "Trường Trung cấp Dân tộc Nội trú An Giang hiện đang tuyển sinh và đào tạo chính quy <b>15 ngành nghề</b> trình độ Trung cấp:<br><br>" +
+        "⚙️ <b>Khối Kỹ thuật & Cơ điện (4 ngành):</b><br>" +
         "1️⃣ <b>Công nghệ ô tô</b><br>" +
         "2️⃣ <b>Kỹ thuật máy lạnh & điều hoà không khí</b><br>" +
         "3️⃣ <b>Cơ điện nông thôn</b><br>" +
-        "4️⃣ <b>Điện công nghiệp</b><br>" +
+        "4️⃣ <b>Điện công nghiệp</b><br><br>" +
+        "🌱 <b>Khối Nông nghiệp (2 ngành):</b><br>" +
         "5️⃣ <b>Trồng trọt và bảo vệ thực vật</b><br>" +
-        "6️⃣ <b>Bảo vệ thực vật</b><br>" +
+        "6️⃣ <b>Bảo vệ thực vật</b><br><br>" +
+        "📊 <b>Khối Kinh tế - Dịch vụ - Luật (4 ngành):</b><br>" +
         "7️⃣ <b>Thương mại điện tử</b><br>" +
         "8️⃣ <b>Pháp luật</b><br>" +
+        "1️⃣4️⃣ <b>Hướng dẫn du lịch</b><br>" +
+        "1️⃣5️⃣ <b>Kế toán doanh nghiệp</b><br><br>" +
+        "💻 <b>Khối Công nghệ thông tin (5 ngành):</b><br>" +
         "9️⃣ <b>Tin học văn phòng</b><br>" +
         "🔟 <b>Tin học ứng dụng</b><br>" +
         "1️⃣1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính</b><br>" +
         "1️⃣2️⃣ <b>Quản trị mạng máy tính</b><br>" +
-        "1️⃣3️⃣ <b>Thiết kế đồ họa</b><br>" +
-        "1️⃣4️⃣ <b>Hướng dẫn du lịch</b><br>" +
-        "1️⃣5️⃣ <b>Kế toán doanh nghiệp</b><br><br>" +
-        "• 💰 <b>Học phí:</b> <b>Miễn 100% học phí</b> cho học sinh tốt nghiệp THCS.<br>" +
-        "• 🏠 <b>Ký túc xá:</b> Miễn phí 100% chỗ ở nội trú, có chính sách học bổng & trợ cấp.<br>" +
-        "• 🔧 <b>Thực hành thực tế:</b> Chiếm <b>75% - 80%</b> thời lượng đào tạo.<br><br>" +
+        "1️⃣3️⃣ <b>Thiết kế đồ họa</b><br><br>" +
+        "✨ <b>QUYỀN LỢI & CHÍNH SÁCH DÀNH CHO HỌC SINH:</b><br>" +
+        "• 💰 <b>Học phí:</b> <b>Miễn 100% học phí</b> học nghề cho học sinh tốt nghiệp THCS.<br>" +
+        "• 🏠 <b>Ký túc xá:</b> Miễn phí 100% chỗ ở nội trú khang trang, sạch sẽ.<br>" +
+        "• 🔧 <b>Thực hành thực tế:</b> Chiếm <b>75% - 80%</b> thời lượng đào tạo tại xưởng máy móc hiện đại.<br>" +
+        "• 📚 <b>Hệ 9+ (Song bằng):</b> Vừa học nghề vừa học văn hóa THPT hệ GDTX để thi lấy bằng tốt nghiệp THPT.<br>" +
+        "• 💼 <b>Cơ hội việc làm & Liên thông:</b> Giới thiệu việc làm sau tốt nghiệp hoặc liên thông thẳng lên Cao đẳng, Đại học.<br><br>" +
+        "📖 <i>Xem trực tuyến: <a href='https://heyzine.com/flip-book/cb1c57e308.html' target='_blank' style='color:#059669; font-weight:bold; text-decoration:underline;'>Sổ tay các nghề (Flipbook) ↗</a> hoặc <a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>Chi tiết chương trình đào tạo ↗</a></i><br><br>" +
+        "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
         "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#4f46e5; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none;'>📝 Đăng Ký Xét Tuyển Online</a> " +
-        "<a href='https://online.dtntag.edu.vn/ChuongTrinhDaoTao' target='_blank' style='display:inline-block; background:#f3f4f6; color:#374151; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none; margin-left:5px;'>📖 Chi Tiết 15 Ngành</a><br><br>" +
-        "📖 <i>Hoặc mở <a href='https://heyzine.com/flip-book/cb1c57e308.html' target='_blank' style='color:#059669; font-weight:bold; text-decoration:underline;'>Sổ tay các nghề</a> để xem sách lật điện tử.</i>";
+        "<a href='https://heyzine.com/flip-book/cb1c57e308.html' target='_blank' style='display:inline-block; background:#059669; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none;'>📖 Sổ tay các nghề ↗</a> " +
+        "<button onclick=\"sendQuickMessage('Các hồ sơ cần nộp')\" style='display:inline-block; background:#fffbeb; color:#92400e; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; border:1px solid #fde68a; cursor:pointer;'>📄 Hồ sơ cần nộp</button> " +
+        "<button onclick=\"sendQuickMessage('Chính sách và hỗ trợ')\" style='display:inline-block; background:#ecfdf5; color:#065f46; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; border:1px solid #a7f3d0; cursor:pointer;'>💰 Miễn học phí & KTX</button> " +
+        "<button onclick=\"sendQuickMessage('Hẹn gọi tư vấn')\" style='display:inline-block; background:#eef2ff; color:#3730a3; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; border:1px solid #c7d2fe; cursor:pointer;'>📞 Hẹn cán bộ gọi lại</button>" +
+        "</div>";
     }
 
 
