@@ -91,9 +91,11 @@ body {
 
 #nutChat .ai-bot-icon {
 
-    width: 34px;
+    width: 44px;
 
-    height: 34px;
+    height: 44px;
+
+    object-fit: contain;
 
     display: block;
 
@@ -103,7 +105,7 @@ body {
 
 #nutChat:hover .ai-bot-icon {
 
-    transform: scale(1.05);
+    transform: scale(1.08);
 
 }
 
@@ -432,26 +434,8 @@ body {
 
 <button id="nutChat" onclick="toggleChat()" title="Chat với Chatbot AI thông minh">
 
-    <!-- Biểu tượng AI Bot SVG -->
-    <svg class="ai-bot-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Ăng-ten phát tín hiệu AI -->
-        <line x1="16" y1="3" x2="16" y2="7" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="16" cy="3" r="2.2" fill="#38bdf8"/>
-        <!-- Tai nghe hai bên -->
-        <rect x="2" y="13" width="3" height="7" rx="1.5" fill="#a5b4fc"/>
-        <rect x="27" y="13" width="3" height="7" rx="1.5" fill="#a5b4fc"/>
-        <!-- Khung đầu Robot trắng cao cấp bo tròn -->
-        <rect x="5" y="7" width="22" height="19" rx="6.5" fill="white" stroke="#e0e7ff" stroke-width="0.8"/>
-        <!-- Màn hình mắt công nghệ -->
-        <rect x="7.5" y="10" width="17" height="9" rx="4" fill="#1e1b4b"/>
-        <!-- Đôi mắt AI xanh phát sáng -->
-        <circle cx="12" cy="14.5" r="1.8" fill="#38bdf8"/>
-        <circle cx="20" cy="14.5" r="1.8" fill="#38bdf8"/>
-        <circle cx="12.6" cy="13.9" r="0.6" fill="white"/>
-        <circle cx="20.6" cy="13.9" r="0.6" fill="white"/>
-        <!-- Miệng cười Robot thân thiện -->
-        <path d="M12.5 21.5C13.5 22.8 18.5 22.8 19.5 21.5" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"/>
-    </svg>
+    <!-- Biểu tượng AI Bot từ ảnh người dùng -->
+    <img class="ai-bot-icon" src="logo-chatbot.png" alt="Chatbot AI" />
 
     <!-- Biểu tượng Đóng khi mở chatbox -->
     <span class="icon-close">✕</span>
@@ -476,8 +460,8 @@ body {
 
         <div style="display:flex; align-items:center; gap:10px;">
             <div style="position:relative; display:flex; align-items:center;">
-                <div style="width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg, #6366f1, #9333ea); color:white; display:flex; align-items:center; justify-content:center; font-size:20px; box-shadow:0 2px 6px rgba(0,0,0,0.2); border:2px solid rgba(255,255,255,0.8);">
-                    🤖
+                <div style="width:38px; height:38px; border-radius:12px; background:white; display:flex; align-items:center; justify-content:center; padding:2px; box-shadow:0 2px 6px rgba(0,0,0,0.2); border:2px solid rgba(255,255,255,0.8); overflow:hidden;">
+                    <img src="logo-chatbot.png" style="width:100%; height:100%; object-fit:contain;" alt="Chatbot AI" />
                 </div>
                 <span style="position:absolute; top:-2px; right:-2px; width:10px; height:10px; background:#10b981; border:2px solid white; border-radius:50%;"></span>
             </div>
@@ -507,7 +491,7 @@ body {
         <div class="bot">
 
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid #eef2ff;">
-                <span style="font-size:18px;">🤖</span>
+                <img src="logo-chatbot.png" style="width:24px; height:24px; object-fit:contain;" alt="Chatbot AI" />
                 <span style="font-weight:bold; color:#4f46e5; font-size:12px;">Chatbot AI thông minh</span>
             </div>
 
@@ -817,7 +801,7 @@ function showTypingIndicatorIndex() {
     ind.className = "bot";
     ind.style.fontStyle = "italic";
     ind.style.color = "#6366f1";
-    ind.innerHTML = "🤖 <i>Chatbot AI đang soạn câu trả lời...</i>";
+    ind.innerHTML = "<img src='logo-chatbot.png' style='width:18px; height:18px; object-fit:contain; vertical-align:middle; margin-right:5px;' alt='Bot' /> <i>Chatbot AI đang soạn câu trả lời...</i>";
     khungChat.appendChild(ind);
     khungChat.scrollTop = khungChat.scrollHeight;
 }
