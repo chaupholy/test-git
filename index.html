@@ -698,6 +698,11 @@ function removeTypingIndicatorIndex() {
 }
 
 function typeWriterEffectIndex(container, html, scrollContainer) {
+    if (html.includes('<form') || html.includes('<input')) {
+        container.innerHTML = html;
+        if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        return;
+    }
     var i = 0;
     var len = html.length;
     // Nhịp gõ vừa phải, hiển thị từng ký tự rõ ràng
@@ -1011,6 +1016,14 @@ function expandNormalizedQuery(rawText) {
             fuzzyWords: ['lienhe', 'cothuy']
         },
         {
+            canonical: ' hẹn cán bộ gọi lại hẹn gọi tư vấn để lại số điện thoại gọi lại ',
+            triggers: [
+                'hen goi', 'hengoi', 'hen can bo', 'hencanbo', 'can bo goi lai', 'goi lai',
+                'de lai sdt', 'de lai so', 'hen goi tu van', 'hen can bo goi lai'
+            ],
+            fuzzyWords: ['hengoi', 'hencanbo']
+        },
+        {
             canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
             triggers: [
                 'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -1288,9 +1301,57 @@ function guiTinNhan() {
     }
 
     /* =========================
+       HẸN CÁN BỘ GỌI LẠI (LEAD FORM)
+    ========================= */
+    else if(
+        text.includes("hẹn gọi") || text.includes("hen goi") ||
+        text.includes("hẹn cán bộ") || text.includes("hen can bo") ||
+        text.includes("cán bộ gọi lại") || text.includes("can bo goi lai") ||
+        text.includes("gọi lại cho tôi") || text.includes("goi lai cho toi") ||
+        text.includes("gọi lại") || text.includes("goi lai") ||
+        text.includes("để lại sđt") || text.includes("de lai sdt") ||
+        text.includes("để lại số điện thoại") || text.includes("de lai so dien thoai") ||
+        text.includes("để lại số") || text.includes("de lai so") ||
+        text.includes("nhận tư vấn nhanh") || text.includes("nhan tu van nhanh") ||
+        text.includes("điền thông tin") || text.includes("dien thong tin") ||
+        text.includes("đặt lịch hẹn") || text.includes("dat lich hen") ||
+        text.includes("gọi tư vấn") || text.includes("goi tu van")
+    ) {
+
+        traLoi =
+        "<div style='font-weight:bold; color:#4338ca; margin-bottom:4px; font-size:13px; display:flex; align-items:center; gap:6px;'>" +
+        "<span>📞</span> <b>HẸN CÁN BỘ TƯ VẤN GỌI LẠI</b>" +
+        "</div>" +
+        "<p style='font-size:11px; color:#4b5563; margin-bottom:8px;'>Vui lòng để lại họ tên và số điện thoại, cán bộ tuyển sinh sẽ gọi điện tư vấn trực tiếp cho bạn sớm nhất:</p>" +
+        "<form onsubmit='handleLeadSubmit(event)' style='display:flex; flex-direction:column; gap:8px; background:#f8fafc; padding:10px; border-radius:10px; border:1px solid #e2e8f0;'>" +
+        "<div>" +
+        "<input id='lead-name' type='text' placeholder='Họ và tên thí sinh / phụ huynh *' required style='width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid #cbd5e1; border-radius:8px; font-size:12px; outline:none;'>" +
+        "</div>" +
+        "<div>" +
+        "<input id='lead-phone' type='tel' placeholder='Số điện thoại / Zalo *' required style='width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid #cbd5e1; border-radius:8px; font-size:12px; outline:none;'>" +
+        "</div>" +
+        "<div>" +
+        "<select id='lead-major' style='width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid #cbd5e1; border-radius:8px; font-size:12px; color:#334155; outline:none; background:white;'>" +
+        "<option value='Hỏi thông tin xét tuyển'>📋 Hỏi thông tin xét tuyển</option>" +
+        "<option value='Tư vấn chọn nghề'>🎓 Tư vấn chọn nghề phù hợp</option>" +
+        "<option value='Hỏi chính sách nội trú - học phí'>💰 Chính sách nội trú & Học bổng</option>" +
+        "<option value='Học nghề + học văn hóa THPT hệ GDTX'>📚 Học nghề + học văn hóa THPT hệ GDTX</option>" +
+        "</select>" +
+        "</div>" +
+        "<button type='submit' style='width:100%; padding:9px; background:#4f46e5; color:white; font-weight:bold; border:none; border-radius:8px; font-size:12px; cursor:pointer; box-shadow:0 2px 6px rgba(79,70,229,0.3);'>" +
+        "📞 Gửi Thông Tin Hẹn Gọi" +
+        "</button>" +
+        "</form>";
+
+    }
+
+
+
+    /* =========================
        TRA CỨU CÁN BỘ, GIÁO VIÊN, TRƯỞNG PHÒNG, TRƯỞNG KHOA
     ========================= */
     else if(
+        (!text.includes("hẹn") && !text.includes("gọi lại") && !text.includes("hen") && !text.includes("goi lai")) &&
         (!text.includes("cô thuỷ") && !text.includes("cô thủy") && !text.includes("cô thúy") && !text.includes("cô thuy") || text.includes("email")) &&
         (CAN_BO_LIST.some(function(p) {
             var n = p.name.toLowerCase();
@@ -2933,6 +2994,50 @@ function guiTinNhan() {
 
 }
 
+
+/* =========================
+   XỬ LÝ GỬI FORM HẸN GỌI LẠI
+========================= */
+var GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxZiikLptQw8DRS2vHunU2HbWVjKDwM9ckuxMo2ae6bmEr19RYxpwVNswjliQvpBVrmJA/exec';
+
+window.handleLeadSubmit = async function(event) {
+    event.preventDefault();
+
+    var name = document.getElementById('lead-name').value.trim();
+    var phone = document.getElementById('lead-phone').value.trim();
+    var major = document.getElementById('lead-major').value;
+    var submitBtn = event.target.querySelector('button[type="submit"]');
+
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Đang gửi...';
+    }
+
+    var formData = new URLSearchParams();
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('major', major);
+
+    try {
+        await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+        });
+
+        event.target.innerHTML =
+            "<div style='text-align:center; padding:10px 0; color:#059669; font-weight:bold; font-size:12px;'>" +
+            "✅ <b>Đã ghi nhận yêu cầu tư vấn!</b><br>" +
+            "Cán bộ tuyển sinh sẽ gọi qua SĐT <b>" + phone + "</b> sớm nhất." +
+            "</div>";
+    } catch (error) {
+        alert('Có lỗi kết nối, vui lòng thử lại!');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = '📞 Gửi Thông Tin Hẹn Gọi';
+        }
+    }
+};
 
 </script>
 
