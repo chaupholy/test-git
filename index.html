@@ -47,17 +47,17 @@ body {
 
     border-radius: 30px;
 
-    background: #e91e63;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
 
     color: white;
 
-    font-size: 16px;
+    font-size: 15px;
 
     font-weight: bold;
 
     cursor: pointer;
 
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45);
 
     z-index: 999;
 
@@ -73,7 +73,7 @@ body {
 
 #nutChat:hover {
 
-    background: #d81557;
+    background: linear-gradient(135deg, #4338ca, #6d28d9);
 
     transform: scale(1.05);
 
@@ -119,11 +119,11 @@ body {
 
 #chatHeader {
 
-    background: #e91e63;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
 
     color: white;
 
-    padding: 16px;
+    padding: 12px 16px;
 
     display: flex;
 
@@ -350,7 +350,7 @@ body {
 
 <button id="nutChat" onclick="moChat()">
 
-💬 Chatbox
+🤖 Chatbot AI
 
 </button>
 
@@ -367,15 +367,24 @@ body {
 
     <div id="chatHeader">
 
-        <h3>
-        🎓 TƯ VẤN TUYỂN SINH
-        </h3>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div style="position:relative; display:flex; align-items:center;">
+                <div style="width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg, #6366f1, #9333ea); color:white; display:flex; align-items:center; justify-content:center; font-size:20px; box-shadow:0 2px 6px rgba(0,0,0,0.2); border:2px solid rgba(255,255,255,0.8);">
+                    🤖
+                </div>
+                <span style="position:absolute; top:-2px; right:-2px; width:10px; height:10px; background:#10b981; border:2px solid white; border-radius:50%;"></span>
+            </div>
+            <div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-weight:bold; font-size:14px; color:white;">Cán bộ Tư vấn</span>
+                    <span style="font-size:9px; font-weight:bold; background:rgba(255,255,255,0.2); padding:1px 5px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px; border:1px solid rgba(255,255,255,0.3);">AI BOT</span>
+                </div>
+                <div style="font-size:11px; opacity:0.85; color:#c7d2fe;">Trợ lý AI thông minh • Trực tuyến 24/7</div>
+            </div>
+        </div>
 
-
-        <span id="dongChat" onclick="dongChat()">
-
+        <span id="dongChat" onclick="dongChat()" style="font-size:20px; cursor:pointer; opacity:0.85; padding:4px; color:white;" title="Đóng chat">
         ✕
-
         </span>
 
     </div>
@@ -390,11 +399,16 @@ body {
 
         <div class="bot">
 
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid #eef2ff;">
+                <span style="font-size:18px;">🤖</span>
+                <span style="font-weight:bold; color:#4f46e5; font-size:12px;">Chatbot AI thông minh</span>
+            </div>
+
             👋 <b>Xin chào bạn!</b>
 
             <br><br>
 
-            Tôi là trợ lý tư vấn tuyển sinh.
+            Tôi là <b>Chatbot AI thông minh</b> hỗ trợ tư vấn tuyển sinh trường.
 
             <br><br>
 
@@ -673,7 +687,7 @@ function showTypingIndicatorIndex() {
     ind.className = "bot";
     ind.style.fontStyle = "italic";
     ind.style.color = "#6366f1";
-    ind.innerHTML = "💬 <i>Cán bộ đang soạn câu trả lời...</i>";
+    ind.innerHTML = "🤖 <i>Chatbot AI đang soạn câu trả lời...</i>";
     khungChat.appendChild(ind);
     khungChat.scrollTop = khungChat.scrollHeight;
 }
