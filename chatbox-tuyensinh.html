@@ -473,6 +473,14 @@
           fuzzyWords: ['trinhdo']
         },
         {
+          canonical: ' liên hệ tư vấn hotline số điện thoại cô thúy cô thủy ',
+          triggers: [
+            'hotline', 'lien he', 'lienhe', 'so dien thoai', 'sdt', 'dien thoai',
+            'co thuy', 'cothuy', 'co thuy hotline', 'so co thuy', 'sdt co thuy'
+          ],
+          fuzzyWords: ['lienhe', 'cothuy']
+        },
+        {
           canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
           triggers: [
             'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -560,7 +568,7 @@
           Rất vui vì đã được đồng hành và chia sẻ thông tin tuyển sinh cùng bạn hôm nay.<br><br>
           Chúc bạn luôn nhiều niềm vui, dồi dào sức khỏe, học tập thật tốt và sớm chọn được ngành nghề tương lai phù hợp nhất!<br><br>
           📌 <b>Khi cần hỗ trợ thêm thông tin bất cứ lúc nào, bạn có thể:</b><br>
-          • 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thuỷ)<br>
+          • 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thúy)<br>
           • 🌐 <b>Website nhà trường:</b> <a href="https://dtntag.edu.vn" target="_blank" class="text-indigo-600 underline">dtntag.edu.vn</a><br>
           • 📝 <b>Cổng nộp hồ sơ xét tuyển:</b> <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 underline font-semibold">tuyensinh.dtntag.edu.vn</a><br><br>
           <i>Trường Trung cấp Dân tộc Nội trú An Giang luôn sẵn sàng chào đón bạn! Hẹn gặp lại bạn nhé! ✨</i>
@@ -657,7 +665,7 @@
           appendMessage(`📢 <b>TƯ VẤN TUYỂN SINH TRƯỜNG TC DÂN TỘC NỘI TRÚ AN GIANG</b><br><br>
           • <b>Hình thức:</b> Xét tuyển học bạ THCS/THPT (Không thi tuyển).<br>
           • <b>Chính sách:</b> Miễn 100% học phí THCS, KTX miễn phí 100%, có trợ cấp nội trú.<br>
-          • <b>Hotline:</b> <b>0983 498 091</b> (Cô Thuỷ).<br><br>
+          • <b>Hotline:</b> <b>0983 498 091</b> (Cô Thúy).<br><br>
           👉 <i>Bạn cần tư vấn nội dung nào? Bấm chọn nhanh bên dưới hoặc gõ vào khung chat:</i>
           <div class="mt-2 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
             <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
@@ -750,7 +758,7 @@
       // 0.4. Tra cứu Cán bộ, Giáo viên, Trưởng phòng, Trưởng khoa, Ban Giám Hiệu & Email
       const isStaffQuery = q.includes('giáo viên') || q.includes('cán bộ') || q.includes('trưởng phòng') || q.includes('trưởng khoa') || q.includes('hiệu trưởng') || q.includes('ban giám hiệu') || q.includes('bgh') || q.includes('email') || (/\b(thầy|cô)\b/i.test(query));
 
-      if (isStaffQuery && !q.includes('cô thuỷ') && !q.includes('cô thủy')) {
+      if (isStaffQuery && (!q.includes('cô thuỷ') && !q.includes('cô thủy') && !q.includes('cô thúy') && !q.includes('cô thuy') || q.includes('email'))) {
         // Tìm đích danh cán bộ / giáo viên theo tên hoặc từ khóa
         const matchedPerson = CAN_BO_LIST.find(p => {
           const nameLower = p.name.toLowerCase();
@@ -1556,10 +1564,14 @@
       }
 
       // 3.1. Câu hỏi: Tôi muốn liên hệ để tư vấn như thế nào?
-      if (q.includes('liên hệ') || q.includes('tư vấn như thế nào') || q.includes('cách liên hệ') || q.includes('số điện thoại') || q.includes('hotline') || q.includes('cô thuỷ') || q.includes('gọi điện')) {
+      if (
+        q.includes('liên hệ') || q.includes('tư vấn như thế nào') || q.includes('cách liên hệ') ||
+        q.includes('số điện thoại') || q.includes('hotline') || q.includes('gọi điện') ||
+        q.includes('cô thúy') || q.includes('cô thuy') || q.includes('cô thuỷ') || q.includes('cô thủy')
+      ) {
         setTimeout(() => {
           appendMessage(`📞 <b>LIÊN HỆ TƯ VẤN TUYỂN SINH</b><br><br>
-          Liên hệ số điện thoại: <b>0983 498 091 (Cô Thuỷ)</b><br><br>
+          Liên hệ số điện thoại: <b>0983 498 091 (Cô Thúy)</b><br><br>
           Hoặc em có thể bấm nút bên dưới để hẹn cán bộ gọi lại hỗ trợ:<br><br>
           <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg font-semibold transition text-xs shadow-sm">
             📞 Hẹn Gọi Tư Vấn
@@ -1673,7 +1685,7 @@
           • 🌐 <b>Cách 1 - Đăng ký Online:</b> Điền hồ sơ xét tuyển trực tuyến tại Cổng Tuyển sinh:<br>
           👉 <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 font-bold underline">https://tuyensinh.dtntag.edu.vn/tuyen-sinh</a><br><br>
           • 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Đến nộp tại Văn phòng Tuyển sinh (Phòng QLHS & GTVL hoặc Phòng Đào tạo) tại <b>Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang</b>.<br><br>
-          • 📦 <b>Cách 3 - Gửi qua bưu điện:</b> Gửi chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (Hotline: 0983 498 091 - Cô Thuỷ)</i>.`, 'bot');
+          • 📦 <b>Cách 3 - Gửi qua bưu điện:</b> Gửi chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (Hotline: 0983 498 091 - Cô Thúy)</i>.`, 'bot');
         }, 300);
         return;
       }
@@ -1850,7 +1862,7 @@
         setTimeout(() => {
           appendMessage(`📍 <b>ĐỊA CHỈ NHÀ TRƯỜNG</b><br><br>
           🏫 <b>Địa chỉ:</b> Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang.<br><br>
-          📞 <b>Hotline tư vấn tuyển sinh:</b> 0983 498 091 (Cô Thuỷ).`, 'bot');
+          📞 <b>Hotline tư vấn tuyển sinh:</b> 0983 498 091 (Cô Thúy).`, 'bot');
         }, 300);
         return;
       }
@@ -1864,7 +1876,7 @@
         • 💰 <b>Học phí &amp; Chính sách:</b> Miễn 100% học phí THCS, KTX miễn phí 100%, Trợ cấp nội trú<br>
         • 📚 <b>Hệ thống học tập:</b> Thời khóa biểu, Điểm danh online, Học trực tuyến LMS<br>
         • 📁 <b>Biểu mẫu:</b> Tải biểu mẫu hồ sơ tuyển sinh &amp; nội trú<br>
-        • 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thuỷ)<br><br>
+        • 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thúy)<br><br>
         <div class="mt-2 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
           <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
             🎓 15 Ngành đào tạo

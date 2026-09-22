@@ -989,6 +989,14 @@ function expandNormalizedQuery(rawText) {
             fuzzyWords: ['trinhdo']
         },
         {
+            canonical: ' liên hệ tư vấn hotline số điện thoại cô thúy cô thủy ',
+            triggers: [
+                'hotline', 'lien he', 'lienhe', 'so dien thoai', 'sdt', 'dien thoai',
+                'co thuy', 'cothuy', 'co thuy hotline', 'so co thuy', 'sdt co thuy'
+            ],
+            fuzzyWords: ['lienhe', 'cothuy']
+        },
+        {
             canonical: ' tạm biệt bye bye ngưng chia tay hẹn gặp lại goodbye ',
             triggers: [
                 'tam biet', 'tambiet', 'tam biet nhe', 'tam biet nha', 'tam biet can bo',
@@ -1109,7 +1117,7 @@ function guiTinNhan() {
         "Rất vui vì đã được trao đổi và chia sẻ thông tin tuyển sinh cùng bạn hôm nay.<br><br>" +
         "Chúc bạn luôn nhiều niềm vui, dồi dào sức khỏe, học tập thật tốt và sớm chọn được ngành nghề tương lai phù hợp nhất!<br><br>" +
         "📌 <b>Khi cần hỗ trợ thêm thông tin bất cứ lúc nào, bạn có thể:</b><br>" +
-        "• 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thuỷ)<br>" +
+        "• 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thúy)<br>" +
         "• 🌐 <b>Website nhà trường:</b> <a href='https://dtntag.edu.vn' target='_blank'>dtntag.edu.vn</a><br>" +
         "• 📝 <b>Cổng nộp hồ sơ xét tuyển:</b> <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'>tuyensinh.dtntag.edu.vn</a><br><br>" +
         "<i>Trường Trung cấp Dân tộc Nội trú An Giang luôn sẵn sàng chào đón bạn! Hẹn gặp lại bạn nhé! ✨</i><br><br>" +
@@ -1205,7 +1213,7 @@ function guiTinNhan() {
         "📢 <b>TƯ VẤN TUYỂN SINH TRƯỜNG TC DÂN TỘC NỘI TRÚ AN GIANG</b><br><br>" +
         "• <b>Hình thức:</b> Xét tuyển học bạ THCS/THPT (Không thi tuyển).<br>" +
         "• <b>Chính sách:</b> Miễn 100% học phí THCS, KTX miễn phí 100%, có trợ cấp nội trú.<br>" +
-        "• <b>Hotline:</b> <b>0983 498 091</b> (Cô Thuỷ).<br><br>" +
+        "• <b>Hotline:</b> <b>0983 498 091</b> (Cô Thúy).<br><br>" +
         "👉 <i>Bạn cần tư vấn nội dung nào? Bấm chọn nhanh bên dưới hoặc gõ vào khung chat:</i><br>" +
         "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
         "<button onclick=\"sendQuickMessage('Các ngành đào tạo')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>🎓 Tư vấn chọn ngành</button>" +
@@ -1269,7 +1277,7 @@ function guiTinNhan() {
        TRA CỨU CÁN BỘ, GIÁO VIÊN, TRƯỞNG PHÒNG, TRƯỞNG KHOA
     ========================= */
     else if(
-        (!text.includes("cô thuỷ") && !text.includes("cô thủy")) &&
+        (!text.includes("cô thuỷ") && !text.includes("cô thủy") && !text.includes("cô thúy") && !text.includes("cô thuy") || text.includes("email")) &&
         (CAN_BO_LIST.some(function(p) {
             var n = p.name.toLowerCase();
             return text.includes(n) || p.keywords.some(function(k) { return text.includes(k); });
@@ -2449,7 +2457,7 @@ function guiTinNhan() {
 
         "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Đến Văn phòng Tuyển sinh trường tại <b>Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang</b>.<br><br>" +
 
-        "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (SĐT: 0983 498 091 - Cô Thuỷ)</i>.";
+        "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (SĐT: 0983 498 091 - Cô Thúy)</i>.";
 
     }
 
@@ -2856,26 +2864,21 @@ function guiTinNhan() {
     ========================= */
 
     else if(
-
         text.includes("liên hệ") ||
-
         text.includes("điện thoại") ||
-
         text.includes("số điện thoại") ||
-
-        text.includes("cô thuỷ")
-
+        text.includes("hotline") ||
+        text.includes("cô thúy") ||
+        text.includes("cô thuy") ||
+        text.includes("cô thuỷ") ||
+        text.includes("cô thủy")
     ) {
 
         traLoi =
-
         "📞 <b>LIÊN HỆ TƯ VẤN TUYỂN SINH</b><br><br>" +
-
-        "📱 0983 498 091<br>" +
-
-        "👩 Cô Thuỷ<br><br>" +
-
-        "Bạn có thể gọi điện để được tư vấn trực tiếp.";
+        "Liên hệ số điện thoại: <b>0983 498 091 (Cô Thúy)</b><br><br>" +
+        "Hoặc bạn có thể bấm nút bên dưới để hẹn cán bộ gọi lại hỗ trợ:<br><br>" +
+        "<button onclick=\"sendQuickMessage('Hẹn gọi tư vấn')\" style='padding:6px 12px; background:#4f46e5; color:#ffffff; border:none; border-radius:8px; font-size:12px; cursor:pointer; font-weight:bold;'>📞 Hẹn Gọi Tư Vấn</button>";
 
     }
 
@@ -2893,7 +2896,7 @@ function guiTinNhan() {
         "• 💰 <b>Học phí & Chính sách:</b> Miễn 100% học phí THCS, KTX miễn phí 100%, Trợ cấp nội trú<br>" +
         "• 📚 <b>Hệ thống học tập:</b> Thời khóa biểu, Điểm danh online, Học trực tuyến LMS<br>" +
         "• 📁 <b>Biểu mẫu:</b> Tải biểu mẫu hồ sơ tuyển sinh & nội trú<br>" +
-        "• 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thuỷ)<br><br>" +
+        "• 📞 <b>Hotline/Zalo tuyển sinh:</b> <b>0983 498 091</b> (Cô Thúy)<br><br>" +
         "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
         "<button onclick=\"sendQuickMessage('Các ngành đào tạo')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>🎓 15 Ngành đào tạo</button>" +
         "<button onclick=\"sendQuickMessage('Chính sách và hỗ trợ')\" style='padding:5px 10px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>💰 Miễn học phí & KTX</button>" +
