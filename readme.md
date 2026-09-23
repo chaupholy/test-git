@@ -71,6 +71,18 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
     #ts-chat-toggle:checked ~ #ts-chat-window {
         display: block !important;
     }
+    /* Tối ưu toàn màn hình trên điện thoại di động */
+    @media (max-width: 480px) {
+        #ts-chat-window {
+            bottom: 0 !important;
+            right: 0 !important;
+            width: 100vw !important;
+            height: 100% !important;
+            max-width: 100vw !important;
+            max-height: 100% !important;
+            border-radius: 0 !important;
+        }
+    }
     /* Khi đang mở: Nút tròn chuyển sang màu đỏ có dấu X */
     #ts-chat-toggle:checked ~ #ts-chat-btn {
         background: #ef4444 !important;

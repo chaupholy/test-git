@@ -6,7 +6,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
 
 <title>Chatbox Tuyển sinh</title>
 
@@ -369,7 +369,26 @@ body {
 
     outline: none;
 
+    font-size: 16px;
+
+    touch-action: manipulation;
+
 }
+
+/* Chống tự động phóng to (auto-zoom) trên điện thoại khi bấm vào bất kỳ ô nhập liệu nào */
+input, select, textarea {
+    font-size: 16px !important;
+}
+
+@media(min-width: 640px) {
+    #cauhoi {
+        font-size: 14px !important;
+    }
+    #lead-name, #lead-phone, #lead-major {
+        font-size: 12px !important;
+    }
+}
+
 
 
 #nutGui {
