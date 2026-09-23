@@ -2763,8 +2763,8 @@ function guiTinNhan() {
         "👉 Nộp trực tiếp tại <b>các cơ sở gần nhất với bạn</b>.<br><br>" +
         "🏢 <b>Cụ thể:</b> <b>Phòng Tuyển sinh và Liên kết đào tạo</b>.<br><br>" +
         "🏫 <b>Địa chỉ các cơ sở:</b><br>" +
-        "• <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Núi Tô, An Giang.<br>" +
-        "• <b>Phân hiệu Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>" +
+        "• <b>Cơ sở chính:</b> ấp Tô Hạ, Xã Tri Tôn, An Giang.<br>" +
+        "• <b>Cơ sở Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>" +
         "📞 Hoặc liên hệ <b>Hotline: 0983 498 091 (Cô Thúy)</b> để biết cụ thể và được hướng dẫn chi tiết!";
     }
 
@@ -2782,8 +2782,8 @@ function guiTinNhan() {
         "Bạn có thể chọn 1 trong 3 hình thức nộp hồ sơ rất thuận tiện sau:<br><br>" +
         "• 🌐 <b>Cách 1 - Đăng ký Online:</b> Đăng ký qua Cổng tuyển sinh trực tuyến:<br>" +
         "👉 <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'><b>https://tuyensinh.dtntag.edu.vn/tuyen-sinh</b></a><br><br>" +
-        "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Nộp trực tiếp tại các cơ sở gần nhất với bạn (Cụ thể: <b>Phòng Tuyển sinh và Liên kết đào tạo</b>) tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang</b> hoặc <b>Phân hiệu Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>" +
-        "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang (SĐT: 0983 498 091 - Cô Thúy)</i>.";
+        "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Nộp trực tiếp tại các cơ sở gần nhất với bạn (Cụ thể: <b>Phòng Tuyển sinh và Liên kết đào tạo</b>) tại <b>Cơ sở chính: ấp Tô Hạ, Xã Tri Tôn, An Giang</b> hoặc <b>Cơ sở Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>" +
+        "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Cơ sở chính: ấp Tô Hạ, Xã Tri Tôn, An Giang (SĐT: 0983 498 091 - Cô Thúy)</i>.";
     }
 
 
@@ -3127,39 +3127,36 @@ function guiTinNhan() {
 
 
     /* =========================
-       ĐỊA CHỈ
+       VỊ TRÍ & ĐỊA CHỈ TRƯỜNG (GOOGLE MAPS)
     ========================= */
-
     else if(
-        text.includes("địa chỉ") ||
-        text.includes("dia chi") ||
-        text.includes("ở đâu") ||
-        text.includes("o dau") ||
-        text.includes("địa điểm") ||
-        text.includes("dia diem") ||
-        text.includes("vị trí") ||
-        text.includes("vi tri") ||
-        text.includes("trường nằm") ||
-        text.includes("trụ sở") ||
-        text.includes("tru so") ||
-        text.includes("cơ sở") ||
-        text.includes("co so") ||
-        text.includes("phân hiệu") ||
-        text.includes("phan hieu") ||
-        text.includes("núi tô") ||
-        text.includes("nui to") ||
-        text.includes("tô hạ") ||
-        text.includes("to ha") ||
-        text.includes("xẻo chác") ||
-        text.includes("xeo chac") ||
-        text.includes("long thạnh") ||
-        text.includes("long thanh") ||
+        text.includes("vị trí trường ở đâu") || text.includes("vi tri truong o dau") ||
+        text.includes("địa chỉ trường ở đâu") || text.includes("dia chi truong o dau") ||
+        text.includes("cho biết vị trí") || text.includes("cho biet vi tri") ||
+        text.includes("vị trí trường") || text.includes("vi tri truong") ||
+        text.includes("địa chỉ trường") || text.includes("dia chi truong") ||
+        text.includes("google map") || text.includes("google maps") || text.includes("bản đồ") || text.includes("ban do") ||
+        text.includes("địa chỉ") || text.includes("dia chi") ||
+        text.includes("ở đâu") || text.includes("o dau") ||
+        text.includes("địa điểm") || text.includes("dia diem") ||
+        text.includes("trường nằm") || text.includes("vị trí") || text.includes("vi tri") ||
+        text.includes("trụ sở") || text.includes("tru so") ||
+        text.includes("cơ sở chính") || text.includes("cơ sở long thạnh") || text.includes("co so long thanh") ||
+        text.includes("cơ sở") || text.includes("co so") ||
+        text.includes("phân hiệu") || text.includes("phan hieu") ||
+        text.includes("tri tôn") || text.includes("tri ton") ||
+        text.includes("núi tô") || text.includes("nui to") ||
+        text.includes("tô hạ") || text.includes("to ha") ||
+        text.includes("xẻo chác") || text.includes("xeo chac") ||
+        text.includes("long thạnh") || text.includes("long thanh") ||
         text.includes("tcndtntag")
     ) {
         traLoi =
-        "📍 <b>ĐỊA CHỈ TRƯỜNG TRUNG CẤP NGHỀ DÂN TỘC NỘI TRÚ AN GIANG (TCNDTNTAG)</b><br><br>" +
-        "🏫 <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Núi Tô, An Giang.<br>" +
-        "🏢 <b>Phân hiệu Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>" +
+        "📍 <b>VỊ TRÍ & ĐỊA CHỈ TRƯỜNG TRUNG CẤP NGHỀ DÂN TỘC NỘI TRÚ AN GIANG</b><br><br>" +
+        "🏫 <b>Cơ sở chính:</b> ấp Tô Hạ, Xã Tri Tôn, An Giang.<br>" +
+        "👉 <i>Xem Google map cơ sở chính:</i> <a href='https://maps.google.com/?q=Trường+Trung+cấp+nghề+Dân+tộc+nội+trú+An+Giang,+Ấp+Tô+Hạ,+Tri+Tôn,+An+Giang' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>Bấm xem trên Google Maps ↗</a><br><br>" +
+        "🏢 <b>Cơ sở Long thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br>" +
+        "👉 <i>Xem Google map:</i> <a href='https://maps.google.com/?q=Ấp+Xẻo+Chác,+Long+Thạnh,+An+Giang' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>Bấm xem trên Google Maps ↗</a><br><br>" +
         "📞 <b>Hotline tư vấn tuyển sinh:</b> 0983 498 091 (Cô Thúy).";
     }
 

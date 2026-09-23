@@ -564,16 +564,18 @@
           fuzzyWords: ['tambiet', 'byebye', 'chiatay', 'baibai']
         },
         {
-          canonical: ' địa chỉ ở đâu cơ sở chính ấp tô hạ xã núi tô phân hiệu long thạnh ấp xẻo chác tcndtntag vị trí trụ sở ',
+          canonical: ' vị trí ở đâu địa chỉ trường ở đâu cơ sở chính ấp tô hạ xã tri tôn xem google map cơ sở long thạnh ấp xẻo chác tcndtntag bản đồ ',
           triggers: [
+            'cho biet vi tri truong o dau', 'cho biet vi tri', 'vi tri truong o dau', 'vi tri truong', 'dia chi truong o dau', 'dia chi truong',
             'dia chi', 'diachi', 'o dau', 'odau', 'dia diem', 'diadiem', 'vi tri', 'vitri',
             'truong o dau', 'truong nam o dau', 'truong o cho nao', 'tru so', 'truso',
-            'co so chinh', 'cosochinh', 'co so', 'coso', 'phan hieu', 'phanhieu', 'long thanh', 'longthanh',
-            'nui to', 'nuito', 'to ha', 'toha', 'xeo chac', 'xeochac',
-            'tcndtntag', 'tcnd tntag', 'dia chi truong', 'dia chi o dau', 'truong nam o dau',
+            'co so chinh', 'cosochinh', 'co so long thanh', 'cosolongthanh', 'co so', 'coso', 'phan hieu', 'phanhieu', 'long thanh', 'longthanh',
+            'tri ton', 'triton', 'nui to', 'nuito', 'to ha', 'toha', 'xeo chac', 'xeochac',
+            'google map', 'google maps', 'googlemap', 'ban do', 'bando',
+            'tcndtntag', 'tcnd tntag', 'dia chi o dau', 'truong nam o dau',
             'dia chi truong trung cap nghe dan toc noi tru an giang', 'tcndtntag dia chi o dau'
           ],
-          fuzzyWords: ['diachi', 'odau', 'coso', 'phanhieu', 'tcndtntag', 'nuito', 'toha', 'xeochac']
+          fuzzyWords: ['diachi', 'odau', 'vitri', 'coso', 'phanhieu', 'tcndtntag', 'triton', 'toha', 'xeochac', 'googlemap']
         },
         {
           canonical: ' nộp hồ sơ trực tiếp ở đâu cho ai phòng tuyển sinh và liên kết đào tạo cơ sở gần nhất hotline ',
@@ -1890,8 +1892,8 @@
           👉 Nộp trực tiếp tại <b>các cơ sở gần nhất với bạn</b>.<br><br>
           🏢 <b>Cụ thể:</b> <b>Phòng Tuyển sinh và Liên kết đào tạo</b>.<br><br>
           🏫 <b>Địa chỉ các cơ sở:</b><br>
-          • <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Núi Tô, An Giang.<br>
-          • <b>Phân hiệu Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>
+          • <b>Cơ sở chính:</b> ấp Tô Hạ, Xã Tri Tôn, An Giang.<br>
+          • <b>Cơ sở Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>
           📞 Hoặc liên hệ <b>Hotline: 0983 498 091 (Cô Thúy)</b> để biết cụ thể và được hướng dẫn chi tiết!`, 'bot');
         }, 300);
         return;
@@ -1909,8 +1911,8 @@
           Bạn có thể lựa chọn 1 trong 3 hình thức nộp hồ sơ sau:<br><br>
           • 🌐 <b>Cách 1 - Đăng ký Online:</b> Điền hồ sơ xét tuyển trực tuyến tại Cổng Tuyển sinh:<br>
           👉 <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 font-bold underline">https://tuyensinh.dtntag.edu.vn/tuyen-sinh</a><br><br>
-          • 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Nộp trực tiếp tại các cơ sở gần nhất với bạn (Cụ thể: <b>Phòng Tuyển sinh và Liên kết đào tạo</b>) tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang</b> hoặc <b>Phân hiệu Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>
-          • 📦 <b>Cách 3 - Gửi qua bưu điện:</b> Gửi chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang (Hotline: 0983 498 091 - Cô Thúy)</i>.`, 'bot');
+          • 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Nộp trực tiếp tại các cơ sở gần nhất với bạn (Cụ thể: <b>Phòng Tuyển sinh và Liên kết đào tạo</b>) tại <b>Cơ sở chính: ấp Tô Hạ, Xã Tri Tôn, An Giang</b> hoặc <b>Cơ sở Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>
+          • 📦 <b>Cách 3 - Gửi qua bưu điện:</b> Gửi chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Cơ sở chính: ấp Tô Hạ, Xã Tri Tôn, An Giang (Hotline: 0983 498 091 - Cô Thúy)</i>.`, 'bot');
         }, 300);
         return;
       }
@@ -2066,15 +2068,23 @@
         return;
       }
 
-      // 14. Câu hỏi: Địa chỉ nhà trường (TCNDTNTAG)
+      // 14. Câu hỏi: Vị trí & Địa chỉ nhà trường (TCNDTNTAG)
       if (
+        q.includes('vị trí trường ở đâu') || q.includes('vi tri truong o dau') ||
+        q.includes('địa chỉ trường ở đâu') || q.includes('dia chi truong o dau') ||
+        q.includes('cho biết vị trí') || q.includes('cho biet vi tri') ||
+        q.includes('vị trí trường') || q.includes('vi tri truong') ||
+        q.includes('địa chỉ trường') || q.includes('dia chi truong') ||
+        q.includes('google map') || q.includes('google maps') || q.includes('bản đồ') || q.includes('ban do') ||
         q.includes('địa chỉ') || q.includes('dia chi') ||
         q.includes('ở đâu') || q.includes('o dau') ||
         q.includes('địa điểm') || q.includes('dia diem') ||
         q.includes('trường nằm') || q.includes('vị trí') || q.includes('vi tri') ||
         q.includes('trụ sở') || q.includes('tru so') ||
+        q.includes('cơ sở chính') || q.includes('cơ sở long thạnh') || q.includes('co so long thanh') ||
         q.includes('cơ sở') || q.includes('co so') ||
         q.includes('phân hiệu') || q.includes('phan hieu') ||
+        q.includes('tri tôn') || q.includes('tri ton') ||
         q.includes('núi tô') || q.includes('nui to') ||
         q.includes('tô hạ') || q.includes('to ha') ||
         q.includes('xẻo chác') || q.includes('xeo chac') ||
@@ -2082,9 +2092,11 @@
         q.includes('tcndtntag')
       ) {
         setTimeout(() => {
-          appendMessage(`📍 <b>ĐỊA CHỈ TRƯỜNG TRUNG CẤP NGHỀ DÂN TỘC NỘI TRÚ AN GIANG (TCNDTNTAG)</b><br><br>
-          🏫 <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Núi Tô, An Giang.<br>
-          🏢 <b>Phân hiệu Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>
+          appendMessage(`📍 <b>VỊ TRÍ & ĐỊA CHỈ TRƯỜNG TRUNG CẤP NGHỀ DÂN TỘC NỘI TRÚ AN GIANG</b><br><br>
+          🏫 <b>Cơ sở chính:</b> ấp Tô Hạ, Xã Tri Tôn, An Giang.<br>
+          👉 <i>Xem Google map cơ sở chính:</i> <a href="https://maps.google.com/?q=Trường+Trung+cấp+nghề+Dân+tộc+nội+trú+An+Giang,+Ấp+Tô+Hạ,+Tri+Tôn,+An+Giang" target="_blank" class="text-indigo-600 font-bold underline">Bấm xem trên Google Maps ↗</a><br><br>
+          🏢 <b>Cơ sở Long thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br>
+          👉 <i>Xem Google map:</i> <a href="https://maps.google.com/?q=Ấp+Xẻo+Chác,+Long+Thạnh,+An+Giang" target="_blank" class="text-indigo-600 font-bold underline">Bấm xem trên Google Maps ↗</a><br><br>
           📞 <b>Hotline tư vấn tuyển sinh:</b> 0983 498 091 (Cô Thúy).`, 'bot');
         }, 300);
         return;
