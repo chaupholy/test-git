@@ -2749,35 +2749,41 @@ function guiTinNhan() {
 
 
     /* =========================
+       NỘP HỒ SƠ TRỰC TIẾP Ở ĐÂU CHO AI
+    ========================= */
+    else if(
+        ((text.includes("nộp") || text.includes("nop")) &&
+        (text.includes("cho ai") || text.includes("ở đâu cho ai") || text.includes("o dau cho ai") || text.includes("gặp ai") || text.includes("gap ai") || text.includes("ai nhận") || text.includes("ai nhan") || text.includes("ai tiếp nhận") || text.includes("phòng nào") || text.includes("phong nao") || text.includes("trực tiếp ở đâu") || text.includes("truc tiep o dau"))) ||
+        text.includes("phòng tuyển sinh và liên kết") || text.includes("phong tuyen sinh va lien ket") ||
+        text.includes("phòng tuyển sinh") || text.includes("phong tuyen sinh") ||
+        text.includes("nop ho so truc tiep o dau cho ai")
+    ) {
+        traLoi =
+        "📝 <b>NỘP HỒ SƠ TRỰC TIẾP Ở ĐÂU CHO AI?</b><br><br>" +
+        "👉 Nộp trực tiếp tại <b>các cơ sở gần nhất với bạn</b>.<br><br>" +
+        "🏢 <b>Cụ thể:</b> <b>Phòng Tuyển sinh và Liên kết đào tạo</b>.<br><br>" +
+        "🏫 <b>Địa chỉ các cơ sở:</b><br>" +
+        "• <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Núi Tô, An Giang.<br>" +
+        "• <b>Phân hiệu Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>" +
+        "📞 Hoặc liên hệ <b>Hotline: 0983 498 091 (Cô Thúy)</b> để biết cụ thể và được hướng dẫn chi tiết!";
+    }
+
+    /* =========================
        PHƯƠNG THỨC & CÁCH NỘP HỒ SƠ
     ========================= */
-
     else if(
-
         text.includes("nộp hồ sơ ở đâu") || text.includes("cách nộp hồ sơ") ||
-
         text.includes("phương thức nộp") || text.includes("phuong thuc nop") ||
-
         text.includes("cách đăng ký") || text.includes("hướng dẫn nộp") ||
-
         text.includes("nop ho so o dau") || text.includes("cach nop ho so")
-
     ) {
-
         traLoi =
-
         "📮 <b>PHƯƠNG THỨC & CÁCH NỘP HỒ SƠ</b><br><br>" +
-
         "Bạn có thể chọn 1 trong 3 hình thức nộp hồ sơ rất thuận tiện sau:<br><br>" +
-
         "• 🌐 <b>Cách 1 - Đăng ký Online:</b> Đăng ký qua Cổng tuyển sinh trực tuyến:<br>" +
-
         "👉 <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'><b>https://tuyensinh.dtntag.edu.vn/tuyen-sinh</b></a><br><br>" +
-
-        "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Đến Văn phòng Tuyển sinh trường tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang</b> hoặc <b>Phân hiệu Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>" +
-
+        "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Nộp trực tiếp tại các cơ sở gần nhất với bạn (Cụ thể: <b>Phòng Tuyển sinh và Liên kết đào tạo</b>) tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang</b> hoặc <b>Phân hiệu Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>" +
         "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang (SĐT: 0983 498 091 - Cô Thúy)</i>.";
-
     }
 
 

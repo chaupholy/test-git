@@ -574,6 +574,16 @@
             'dia chi truong trung cap nghe dan toc noi tru an giang', 'tcndtntag dia chi o dau'
           ],
           fuzzyWords: ['diachi', 'odau', 'coso', 'phanhieu', 'tcndtntag', 'nuito', 'toha', 'xeochac']
+        },
+        {
+          canonical: ' nộp hồ sơ trực tiếp ở đâu cho ai phòng tuyển sinh và liên kết đào tạo cơ sở gần nhất hotline ',
+          triggers: [
+            'nop ho so truc tiep o dau cho ai', 'nop ho so cho ai', 'nop truc tiep cho ai',
+            'nop truc tiep o dau', 'gap ai nop ho so', 'nop o phong nao', 'phong nao nhan ho so',
+            'ai nhan ho so', 'ai tiep nhan ho so', 'den truong gap ai', 'nop ho so phong nao',
+            'phong tuyen sinh va lien ket dao tao', 'phong tuyen sinh', 'co so gan nhat'
+          ],
+          fuzzyWords: ['nophoso', 'tructiep', 'choai', 'phongtuyensinh']
         }
       ];
 
@@ -1868,6 +1878,25 @@
         return;
       }
 
+      // 17.0. Câu hỏi: Nộp hồ sơ trực tiếp ở đâu cho ai?
+      if (
+        ((q.includes('nộp') || q.includes('nop')) &&
+        (q.includes('cho ai') || q.includes('choai') || q.includes('ở đâu cho ai') || q.includes('o dau cho ai') || q.includes('gặp ai') || q.includes('gap ai') || q.includes('ai nhận') || q.includes('ai nhan') || q.includes('ai tiếp nhận') || q.includes('phòng nào') || q.includes('phong nao') || q.includes('trực tiếp ở đâu') || q.includes('truc tiep o dau'))) ||
+        q.includes('phòng tuyển sinh và liên kết') || q.includes('phong tuyen sinh va lien ket') ||
+        q.includes('phòng tuyển sinh') || q.includes('phong tuyen sinh')
+      ) {
+        setTimeout(() => {
+          appendMessage(`📝 <b>NỘP HỒ SƠ TRỰC TIẾP Ở ĐÂU CHO AI?</b><br><br>
+          👉 Nộp trực tiếp tại <b>các cơ sở gần nhất với bạn</b>.<br><br>
+          🏢 <b>Cụ thể:</b> <b>Phòng Tuyển sinh và Liên kết đào tạo</b>.<br><br>
+          🏫 <b>Địa chỉ các cơ sở:</b><br>
+          • <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Núi Tô, An Giang.<br>
+          • <b>Phân hiệu Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>
+          📞 Hoặc liên hệ <b>Hotline: 0983 498 091 (Cô Thúy)</b> để biết cụ thể và được hướng dẫn chi tiết!`, 'bot');
+        }, 300);
+        return;
+      }
+
       // 17. Câu hỏi: Phương thức & Cách nộp hồ sơ
       if (
         q.includes('nộp hồ sơ ở đâu') || q.includes('cách nộp hồ sơ') ||
@@ -1880,7 +1909,7 @@
           Bạn có thể lựa chọn 1 trong 3 hình thức nộp hồ sơ sau:<br><br>
           • 🌐 <b>Cách 1 - Đăng ký Online:</b> Điền hồ sơ xét tuyển trực tuyến tại Cổng Tuyển sinh:<br>
           👉 <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 font-bold underline">https://tuyensinh.dtntag.edu.vn/tuyen-sinh</a><br><br>
-          • 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Đến nộp tại Văn phòng Tuyển sinh (Phòng QLHS & GTVL hoặc Phòng Đào tạo) tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang</b> hoặc <b>Phân hiệu Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>
+          • 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Nộp trực tiếp tại các cơ sở gần nhất với bạn (Cụ thể: <b>Phòng Tuyển sinh và Liên kết đào tạo</b>) tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang</b> hoặc <b>Phân hiệu Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>
           • 📦 <b>Cách 3 - Gửi qua bưu điện:</b> Gửi chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang (Hotline: 0983 498 091 - Cô Thúy)</i>.`, 'bot');
         }, 300);
         return;
