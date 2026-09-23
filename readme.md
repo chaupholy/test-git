@@ -120,8 +120,8 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
 
 <!-- Nút tròn góc phải dưới màn hình -->
 <label for="ts-chat-toggle" id="ts-chat-btn" title="Chatbot AI Tư vấn Tuyển sinh">
-    <!-- Biểu tượng Logo Robot AI mới -->
-    <img class="icon-open" src="https://chaupholy.github.io/test-git/logo-chatbot.png" alt="Chatbot AI" />
+    <!-- Biểu tượng Logo Nhà Trường -->
+    <img class="icon-open" src="https://chaupholy.github.io/test-git/logo.png" alt="Logo Trường" />
     <!-- Biểu tượng đóng ✕ -->
     <svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
