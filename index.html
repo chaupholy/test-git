@@ -2774,9 +2774,9 @@ function guiTinNhan() {
 
         "👉 <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'><b>https://tuyensinh.dtntag.edu.vn/tuyen-sinh</b></a><br><br>" +
 
-        "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Đến Văn phòng Tuyển sinh trường tại <b>Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang</b>.<br><br>" +
+        "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Đến Văn phòng Tuyển sinh trường tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang</b> hoặc <b>Phân hiệu Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>" +
 
-        "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (SĐT: 0983 498 091 - Cô Thúy)</i>.";
+        "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Cơ sở chính: Ấp Tô Hạ, Xã Núi Tô, An Giang (SĐT: 0983 498 091 - Cô Thúy)</i>.";
 
     }
 
@@ -3125,23 +3125,36 @@ function guiTinNhan() {
     ========================= */
 
     else if(
-
         text.includes("địa chỉ") ||
-
+        text.includes("dia chi") ||
         text.includes("ở đâu") ||
-
+        text.includes("o dau") ||
         text.includes("địa điểm") ||
-
-        text.includes("trường nằm")
-
+        text.includes("dia diem") ||
+        text.includes("vị trí") ||
+        text.includes("vi tri") ||
+        text.includes("trường nằm") ||
+        text.includes("trụ sở") ||
+        text.includes("tru so") ||
+        text.includes("cơ sở") ||
+        text.includes("co so") ||
+        text.includes("phân hiệu") ||
+        text.includes("phan hieu") ||
+        text.includes("núi tô") ||
+        text.includes("nui to") ||
+        text.includes("tô hạ") ||
+        text.includes("to ha") ||
+        text.includes("xẻo chác") ||
+        text.includes("xeo chac") ||
+        text.includes("long thạnh") ||
+        text.includes("long thanh") ||
+        text.includes("tcndtntag")
     ) {
-
         traLoi =
-
-        "📍 <b>ĐỊA CHỈ NHÀ TRƯỜNG</b><br><br>" +
-
-        "🏫 Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang.";
-
+        "📍 <b>ĐỊA CHỈ TRƯỜNG TRUNG CẤP NGHỀ DÂN TỘC NỘI TRÚ AN GIANG (TCNDTNTAG)</b><br><br>" +
+        "🏫 <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Núi Tô, An Giang.<br>" +
+        "🏢 <b>Phân hiệu Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>" +
+        "📞 <b>Hotline tư vấn tuyển sinh:</b> 0983 498 091 (Cô Thúy).";
     }
 
 
