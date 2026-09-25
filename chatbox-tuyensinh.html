@@ -25,6 +25,8 @@
       }
     }
 
+    /*xác thực */
+
     /* Chống trễ cảm ứng 300ms và tránh double-tap zoom */
     * {
       touch-action: manipulation;
@@ -586,6 +588,17 @@
             'phong tuyen sinh va lien ket dao tao', 'phong tuyen sinh', 'co so gan nhat'
           ],
           fuzzyWords: ['nophoso', 'tructiep', 'choai', 'phongtuyensinh']
+        },
+        {
+          canonical: ' học sinh thực hành ở đâu xưởng thực hành nơi thực hành xưởng công nghệ thông tin xưởng điện xưởng ô tô cơ khí nhà lưới trồng trọt bảo vệ thực vật ',
+          triggers: [
+            'hoc sinh thuc hanh o dau', 'thuc hanh o dau', 'thuc hanh tai dau', 'thuc hanh o cho nao',
+            'hoc thuc hanh o dau', 'noi thuc hanh', 'cho thuc hanh', 'dia diem thuc hanh',
+            'xuong thuc hanh', 'cac xuong thuc hanh', 'xuong thuc hanh o dau',
+            'nhung xuong thuc hanh nao', 'co nhung xuong nao', 'xuong co kho', 'nha luoi trong trot',
+            'co xuong thuc hanh khong'
+          ],
+          fuzzyWords: ['thuchanh', 'xuongthuchanh']
         }
       ];
 
@@ -2041,11 +2054,59 @@
         return;
       }
 
-      // 11. Câu hỏi: Học sinh học tại trường có được thực hành nhiều không?
+      // 11. Câu hỏi: Học sinh thực hành ở đâu? / Các xưởng thực hành của trường
+      const isThucHanhODau = (
+        q.includes('thực hành ở đâu') || q.includes('thuc hanh o dau') ||
+        q.includes('học sinh thực hành ở đâu') || q.includes('hoc sinh thuc hanh o dau') ||
+        q.includes('học thực hành ở đâu') || q.includes('hoc thuc hanh o dau') ||
+        q.includes('thực hành tại đâu') || q.includes('thuc hanh tai dau') ||
+        q.includes('thực hành chỗ nào') || q.includes('thuc hanh cho nao') ||
+        q.includes('nơi thực hành') || q.includes('noi thuc hanh') ||
+        q.includes('chỗ thực hành') || q.includes('cho thuc hanh') ||
+        q.includes('địa điểm thực hành') || q.includes('dia diem thuc hanh') ||
+        q.includes('xưởng thực hành ở đâu') || q.includes('xuong thuc hanh o dau') ||
+        q.includes('các xưởng thực hành') || q.includes('cac xuong thuc hanh') ||
+        q.includes('có những xưởng nào') || q.includes('co nhung xuong nao') ||
+        q.includes('những xưởng nào') || q.includes('nhung xuong nao') ||
+        q.includes('nhà lưới') || q.includes('nha luoi') ||
+        q.includes('xưởng nào') || q.includes('xuong nao') ||
+        ((q.includes('thực hành') || q.includes('thuc hanh') || q.includes('xưởng') || q.includes('xuong')) &&
+         (q.includes('ở đâu') || q.includes('o dau') || q.includes('tại đâu') || q.includes('tai dau') || q.includes('chỗ nào') || q.includes('cho nao') || q.includes('địa điểm') || q.includes('dia diem')))
+      );
+
+      if (isThucHanhODau) {
+        setTimeout(() => {
+          appendMessage(`🔧 <b>HỌC SINH THỰC HÀNH Ở ĐÂU?</b><br><br>
+          Trường có các xưởng thực hành như <b>xưởng Công nghệ thông tin</b>, <b>xưởng điện</b>, <b>ô tô</b>, <b>cơ khí</b> và <b>nhà lưới cho nghề trồng trọt và bảo vệ thực vật</b> cho học sinh thực hành.
+          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
+              🎓 15 Ngành đào tạo
+            </button>
+            <button onclick="sendQuickMessage('Cơ sở vật chất')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
+              🏫 Cơ sở vật chất
+            </button>
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
+              📞 Hẹn cán bộ gọi lại
+            </button>
+          </div>`, 'bot');
+        }, 300);
+        return;
+      }
+
+      // 11.1. Câu hỏi: Học sinh học tại trường có được thực hành nhiều không? / Thực hành chung
       if (q.includes('thực hành') || q.includes('thực tập') || q.includes('xưởng') || q.includes('phòng máy')) {
         setTimeout(() => {
           appendMessage(`🔧 <b>HỌC TẬP VÀ THỰC HÀNH</b><br><br>
-          Chương trình đào tạo chú trọng thực hành là chủ yếu. Học sinh được học tập tại các xưởng thực hành, phòng máy và các khu vực thực hành nghề nghiệp.`, 'bot');
+          Chương trình đào tạo chú trọng thực hành là chủ yếu (chiếm <b>70% - 80%</b> thời lượng).<br><br>
+          Trường có các xưởng thực hành hiện đại như <b>xưởng Công nghệ thông tin</b>, <b>xưởng điện</b>, <b>ô tô</b>, <b>cơ khí</b> và <b>nhà lưới cho nghề trồng trọt và bảo vệ thực vật</b> cho học sinh thực hành và rèn luyện tay nghề thực tế.
+          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Học sinh thực hành ở đâu?')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
+              🔧 Các xưởng thực hành
+            </button>
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
+              🎓 15 Ngành đào tạo
+            </button>
+          </div>`, 'bot');
         }, 300);
         return;
       }
