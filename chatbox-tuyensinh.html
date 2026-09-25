@@ -103,49 +103,76 @@
         </div>
         <div
           class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-800 max-w-[85%] border border-gray-100 leading-relaxed">
-          Xin chào! Tôi là <b>Cán bộ</b> hỗ trợ tư vấn tuyển sinh và các thông tin liên quan Trường. Bạn có
-          thể chọn nhanh các danh mục dưới đây hoặc nhập câu hỏi trực tiếp nhé:
+          Sous-dey (សួស្តី)! Xin chào quý phụ huynh và các em học sinh! Tôi là <b>Trợ lý Cán bộ Tư vấn</b> Trường Trung cấp Dân tộc Nội trú An Giang. Bạn có thể chọn nhanh các tiện ích bên dưới hoặc nhập câu hỏi trực tiếp nhé:
         </div>
       </div>
 
       <!-- MENU DANH MỤC TIỆN ÍCH -->
       <div id="quick-options" class="grid grid-cols-2 gap-2 pt-1">
-        <!-- 1. Link Cổng Đăng Ký Online -->
+        <!-- 1. Trắc nghiệm chọn nghề 1 phút -->
+        <button onclick="batDauTracNghiem()"
+          class="bg-purple-50 border border-purple-200 text-purple-700 px-2.5 py-2 rounded-xl text-left hover:bg-purple-100 transition flex flex-col justify-between">
+          <span class="font-bold">🎯 Chọn nghề phù hợp</span>
+          <span class="text-[10px] text-gray-500 mt-0.5">Trắc nghiệm nhanh 1 phút</span>
+        </button>
+
+        <!-- 2. Chat Zalo Tuyển sinh -->
+        <a href="https://zalo.me/0983498091" target="_blank" rel="noopener noreferrer"
+          class="bg-sky-50 border border-sky-200 text-sky-700 px-2.5 py-2 rounded-xl hover:bg-sky-100 transition flex flex-col justify-between">
+          <span class="font-bold">💬 Chat Zalo tư vấn ↗</span>
+          <span class="text-[10px] text-gray-500 mt-0.5">Cô Thúy: 0983 498 091</span>
+        </a>
+
+        <!-- 3. Link Cổng Đăng Ký Online -->
         <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" rel="noopener noreferrer"
           class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl hover:bg-indigo-100 transition flex flex-col justify-between">
           <span class="font-bold">📝 Đăng ký Online ↗</span>
           <span class="text-[10px] text-gray-500 mt-0.5">Cổng tuyển sinh trực tuyến</span>
         </a>
 
-        <!-- 2. Link Sổ Tay Nghề Flipbook -->
+        <!-- 4. Link Sổ Tay Nghề Flipbook -->
         <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" rel="noopener noreferrer"
           class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-2.5 py-2 rounded-xl hover:bg-emerald-100 transition flex flex-col justify-between">
           <span class="font-bold">📖 Sổ tay các nghề ↗</span>
           <span class="text-[10px] text-gray-500 mt-0.5">Xem sách lật thông tin nghề</span>
         </a>
 
-        <!-- 3. Form Đăng ký tư vấn nhanh qua Sheet -->
+        <!-- 5. Form Đăng ký tư vấn nhanh -->
         <button onclick="sendQuickMessage('Hẹn gọi tư vấn')"
-          class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl text-left hover:bg-indigo-100 transition">
+          class="bg-amber-50 border border-amber-200 text-amber-800 px-2.5 py-2 rounded-xl text-left hover:bg-amber-100 transition">
           <span class="font-bold">📞 Hẹn gọi tư vấn</span>
           <span class="text-[10px] text-gray-500 block mt-0.5">Để lại SĐT cán bộ gọi lại</span>
         </button>
 
-        <!-- 4. Chính sách & Hỗ trợ -->
+        <!-- 6. Chính sách & Hỗ trợ -->
         <button onclick="sendQuickMessage('Chính sách và hỗ trợ')"
           class="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-2 rounded-xl text-left hover:bg-indigo-100 transition">
-          <span class="font-bold">💰 Chính sách & Hỗ trợ</span>
-          <span class="text-[10px] text-gray-500 block mt-0.5">Miễn học phí, KTX & trợ cấp</span>
+          <span class="font-bold">💰 Chính sách &amp; Hỗ trợ</span>
+          <span class="text-[10px] text-gray-500 block mt-0.5">Miễn học phí, KTX &amp; trợ cấp</span>
         </button>
       </div>
     </div>
 
     <!-- Khung nhập câu hỏi -->
-    <div class="p-2.5 bg-white border-t border-gray-100 flex items-center space-x-2">
-      <input id="chat-input" type="text" placeholder="Nhập câu hỏi cần tư vấn..."
+    <div class="p-2 sm:p-2.5 bg-white border-t border-gray-100 flex items-center space-x-1.5 sm:space-x-2">
+      <!-- Nút Micro giọng nói (Speech-to-Text) -->
+      <button id="btn-voice-input" onclick="toggleVoiceInput()" type="button"
+        title="Bấm để nói bằng giọng nói (Voice-to-Text)"
+        class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 transition border border-gray-200 shrink-0">
+        <svg id="icon-mic-idle" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 003-3V5a3 3 0 00-6 0v6a3 3 0 003 3z"></path>
+        </svg>
+        <span id="icon-mic-recording" class="hidden relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+        </span>
+      </button>
+
+      <input id="chat-input" type="text" placeholder="Nhập câu hỏi hoặc bấm 🎙️ để nói..."
         onkeydown="if(event.key==='Enter') sendMessage()"
         class="flex-1 px-3 py-2 border border-gray-200 rounded-full text-base sm:text-xs focus:outline-none focus:border-indigo-500">
-      <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full shadow">
+      
+      <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white p-2 sm:p-2.5 rounded-full shadow shrink-0" title="Gửi câu hỏi">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
         </svg>
@@ -677,6 +704,272 @@
       dongLichSuModal();
     };
 
+    // =========================================================================
+    // TÍNH NĂNG NHẬP LIỆU BẰNG GIỌNG NÓI (VOICE-TO-TEXT)
+    // =========================================================================
+    let speechRecognition = null;
+    let isRecordingVoice = false;
+
+    function initVoiceRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        console.warn('Trình duyệt không hỗ trợ Web Speech API.');
+        return null;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'vi-VN';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onstart = function () {
+        isRecordingVoice = true;
+        const btn = document.getElementById('btn-voice-input');
+        const idleIcon = document.getElementById('icon-mic-idle');
+        const recIcon = document.getElementById('icon-mic-recording');
+        const input = document.getElementById('chat-input');
+        if (btn) btn.classList.add('bg-red-50', 'border-red-300', 'text-red-600');
+        if (idleIcon) idleIcon.classList.add('hidden');
+        if (recIcon) recIcon.classList.remove('hidden');
+        if (input) input.placeholder = 'Đang lắng nghe bạn nói... Hãy nói câu hỏi!';
+      };
+
+      recognition.onresult = function (event) {
+        const transcript = event.results[0][0].transcript;
+        const input = document.getElementById('chat-input');
+        if (input && transcript) {
+          input.value = transcript;
+          setTimeout(() => {
+            sendMessage();
+          }, 300);
+        }
+      };
+
+      recognition.onerror = function (event) {
+        console.warn('Lỗi nhận diện giọng nói:', event.error);
+        resetVoiceUI();
+      };
+
+      recognition.onend = function () {
+        resetVoiceUI();
+      };
+
+      return recognition;
+    }
+
+    function resetVoiceUI() {
+      isRecordingVoice = false;
+      const btn = document.getElementById('btn-voice-input');
+      const idleIcon = document.getElementById('icon-mic-idle');
+      const recIcon = document.getElementById('icon-mic-recording');
+      const input = document.getElementById('chat-input');
+      if (btn) btn.classList.remove('bg-red-50', 'border-red-300', 'text-red-600');
+      if (idleIcon) idleIcon.classList.remove('hidden');
+      if (recIcon) recIcon.classList.add('hidden');
+      if (input) input.placeholder = 'Nhập câu hỏi hoặc bấm 🎙️ để nói...';
+    }
+
+    window.toggleVoiceInput = function () {
+      if (!speechRecognition) {
+        speechRecognition = initVoiceRecognition();
+      }
+      if (!speechRecognition) {
+        alert('Trình duyệt của bạn chưa hỗ trợ nhận diện giọng nói. Bạn hãy dùng trình duyệt Chrome/Edge hoặc gõ câu hỏi bằng bàn phím nhé!');
+        return;
+      }
+
+      if (isRecordingVoice) {
+        speechRecognition.stop();
+        resetVoiceUI();
+      } else {
+        try {
+          speechRecognition.start();
+        } catch (e) {
+          console.warn('Không thể bắt đầu voice recognition:', e);
+          resetVoiceUI();
+        }
+      }
+    };
+
+    // =========================================================================
+    // TRẮC NGHIỆM CHỌN NGHỀ PHÙ HỢP 1 PHÚT (CAREER DISCOVERY QUIZ)
+    // =========================================================================
+    let quizAnswers = {};
+
+    window.batDauTracNghiem = function () {
+      quizAnswers = {};
+      const html = `
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
+          <div class="font-bold text-indigo-800 flex items-center gap-1.5 text-xs">
+            <span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 1/3)</b>
+          </div>
+          <p class="text-gray-700 text-xs"><b>Bạn cảm thấy hào hứng nhất khi được làm việc trong môi trường nào?</b></p>
+          <div class="space-y-1.5 pt-1">
+            <button onclick="chonDapAnQuiz(1, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+              <span>💻</span> <span>Trong văn phòng, ngồi phòng máy lạnh làm việc với máy tính</span>
+            </button>
+            <button onclick="chonDapAnQuiz(1, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+              <span>🔧</span> <span>Trong nhà xưởng thực tế, mày mò lắp ráp cơ khí, máy móc, ô tô, điện</span>
+            </button>
+            <button onclick="chonDapAnQuiz(1, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+              <span>🌾</span> <span>Gần gũi thiên nhiên, nông trại công nghệ cao, cây trồng, nhà lưới</span>
+            </button>
+            <button onclick="chonDapAnQuiz(1, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+              <span>🤝</span> <span>Giao tiếp, gặp gỡ nhiều người, kinh doanh bán hàng, du lịch</span>
+            </button>
+          </div>
+        </div>
+      `;
+      appendMessage(html, 'bot');
+    };
+
+    window.chonDapAnQuiz = function (cauHoi, luaChon) {
+      quizAnswers['cau' + cauHoi] = luaChon;
+
+      if (cauHoi === 1) {
+        const html = `
+          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
+            <div class="font-bold text-indigo-800 flex items-center gap-1.5 text-xs">
+              <span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 2/3)</b>
+            </div>
+            <p class="text-gray-700 text-xs"><b>Thế mạnh hoặc sở thích nổi bật nhất của bạn là gì?</b></p>
+            <div class="space-y-1.5 pt-1">
+              <button onclick="chonDapAnQuiz(2, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🎨</span> <span>Tư duy sáng tạo, thích vẽ/thiết kế hình ảnh, mạng internet, công nghệ</span>
+              </button>
+              <button onclick="chonDapAnQuiz(2, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>⚙️</span> <span>Khéo tay, thích tự sửa đồ đạc, xe máy, quạt điện, máy móc trong nhà</span>
+              </button>
+              <button onclick="chonDapAnQuiz(2, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🌱</span> <span>Thích tìm hiểu cách trồng trọt, nhân giống cây, bảo vệ mùa màng</span>
+              </button>
+              <button onclick="chonDapAnQuiz(2, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>📊</span> <span>Tính toán nhanh nhẹn, thích buôn bán online hoặc am hiểu luật lệ</span>
+              </button>
+            </div>
+          </div>
+        `;
+        appendMessage(html, 'bot');
+      } else if (cauHoi === 2) {
+        const html = `
+          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
+            <div class="font-bold text-indigo-800 flex items-center gap-1.5 text-xs">
+              <span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 3/3)</b>
+            </div>
+            <p class="text-gray-700 text-xs"><b>Định hướng tương lai sau khi ra trường bạn mong muốn nhất là gì?</b></p>
+            <div class="space-y-1.5 pt-1">
+              <button onclick="chonDapAnQuiz(3, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>💼</span> <span>Làm chuyên viên IT, thiết kế đồ họa hoặc quản trị bán hàng online</span>
+              </button>
+              <button onclick="chonDapAnQuiz(3, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🏢</span> <span>Làm kỹ thuật viên gara ô tô, điện xí nghiệp hoặc tự mở tiệm sửa chữa</span>
+              </button>
+              <button onclick="chonDapAnQuiz(3, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🏡</span> <span>Làm chủ trang trại sạch, kỹ thuật viên công ty giống hoặc cửa hàng VTNN</span>
+              </button>
+              <button onclick="chonDapAnQuiz(3, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🧭</span> <span>Làm hướng dẫn viên du lịch, nhân viên kế toán thuế hoặc công chức tư pháp</span>
+              </button>
+            </div>
+          </div>
+        `;
+        appendMessage(html, 'bot');
+      } else if (cauHoi === 3) {
+        hienThiKetQuaQuiz();
+      }
+    };
+
+    function hienThiKetQuaQuiz() {
+      const counts = { CNTT: 0, KYTHUAT: 0, NONGNGHIEP: 0, KINHTE: 0 };
+      counts[quizAnswers.cau1] = (counts[quizAnswers.cau1] || 0) + 1;
+      counts[quizAnswers.cau2] = (counts[quizAnswers.cau2] || 0) + 1;
+      counts[quizAnswers.cau3] = (counts[quizAnswers.cau3] || 0) + 1;
+
+      let topGroup = 'CNTT';
+      let maxCount = -1;
+      for (const [group, count] of Object.entries(counts)) {
+        if (count > maxCount) {
+          maxCount = count;
+          topGroup = group;
+        }
+      }
+
+      let resTitle = '';
+      let resDesc = '';
+      let resMajors = [];
+
+      if (topGroup === 'CNTT') {
+        resTitle = '💻 KHỐI CÔNG NGHỆ THÔNG TIN & THIẾT KẾ ĐỒ HỌA';
+        resDesc = 'Bạn có tư duy công nghệ, thích sáng tạo và làm việc trong môi trường năng động, văn phòng hiện đại.';
+        resMajors = [
+          { name: 'Thiết kế đồ họa', tag: 'Hot Trend, thu nhập cao' },
+          { name: 'Tin học ứng dụng', tag: 'Văn phòng, dễ xin việc' },
+          { name: 'Quản trị mạng máy tính', tag: 'Hệ thống, an ninh mạng' }
+        ];
+      } else if (topGroup === 'KYTHUAT') {
+        resTitle = '🔧 KHỐI KỸ THUẬT - ĐIỆN - CÔNG NGHỆ Ô TÔ';
+        resDesc = 'Bạn là người có năng khiếu kỹ thuật, khéo tay, yêu thích máy móc và muốn có tay nghề vững chắc, ra trường có việc ngay!';
+        resMajors = [
+          { name: 'Công nghệ ô tô', tag: 'Nhu cầu tuyển dụng cực lớn' },
+          { name: 'Kỹ thuật máy lạnh & ĐHKK', tag: 'Dễ mở tiệm riêng, thu nhập tốt' },
+          { name: 'Điện công nghiệp', tag: 'Trụ cột các nhà máy, xí nghiệp' }
+        ];
+      } else if (topGroup === 'NONGNGHIEP') {
+        resTitle = '🌾 KHỐI NÔNG NGHIỆP CÔNG NGHỆ CAO';
+        resDesc = 'Bạn có tình yêu với thiên nhiên, cây trồng và nông nghiệp sạch – xu hướng phát triển bền vững hàng đầu tại ĐBSCL.';
+        resMajors = [
+          { name: 'Trồng trọt & Bảo vệ thực vật', tag: 'Nhà lưới, VietGAP, khuyến nông' },
+          { name: 'Cơ điện nông thôn', tag: 'Cơ giới hóa nông nghiệp hiện đại' }
+        ];
+      } else {
+        resTitle = '📈 KHỐI KINH TẾ - DỊCH VỤ - DU LỊCH & LUẬT';
+        resDesc = 'Bạn có khả năng giao tiếp tốt, thích buôn bán, kinh doanh hoặc nắm bắt thông tin và pháp luật.';
+        resMajors = [
+          { name: 'Thương mại điện tử', tag: 'Bán hàng online, TikTok Shop, Marketing' },
+          { name: 'Kế toán doanh nghiệp', tag: 'Khai thuế, chứng từ, phần mềm kế toán' },
+          { name: 'Hướng dẫn du lịch', tag: 'Năng động, khám phá địa danh' }
+        ];
+      }
+
+      let majorsHTML = resMajors.map(m => `
+        <div class="bg-white p-2 rounded-xl border border-indigo-100 flex items-center justify-between text-xs">
+          <div>
+            <b class="text-indigo-900">${m.name}</b>
+            <span class="block text-[10px] text-gray-500">${m.tag}</span>
+          </div>
+          <button onclick="sendQuickMessage('${m.name}')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold border border-indigo-200">
+            Xem nghề ↗
+          </button>
+        </div>
+      `).join('');
+
+      const resultHTML = `
+        <div class="bg-gradient-to-r from-emerald-50 to-indigo-50 p-3.5 rounded-2xl border border-emerald-200 shadow-sm space-y-2.5">
+          <div class="font-bold text-emerald-800 flex items-center gap-1.5 text-xs">
+            <span>🎉</span> <b>KẾT QUẢ GỢI Ý NGHỀ PHÙ HỢP VỚI BẠN</b>
+          </div>
+          <div class="text-xs text-gray-800">
+            <b>${resTitle}</b><br>
+            <p class="text-[11px] text-gray-600 mt-0.5">${resDesc}</p>
+          </div>
+          <div class="space-y-1.5">
+            ${majorsHTML}
+          </div>
+          <div class="pt-1.5 border-t border-emerald-100 flex flex-wrap gap-1.5">
+            <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm inline-block">
+              📝 Đăng Ký Xét Tuyển Ngay
+            </a>
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm">
+              📞 Hẹn cán bộ gọi lại
+            </button>
+            <button onclick="batDauTracNghiem()" class="bg-white hover:bg-gray-100 text-gray-700 px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-gray-200">
+              🔄 Làm lại trắc nghiệm
+            </button>
+          </div>
+        </div>
+      `;
+      appendMessage(resultHTML, 'bot');
+    }
+
     // Kiểm tra phiên đăng nhập khi tải xong trang
     window.addEventListener('DOMContentLoaded', () => {
       kiemTraPhienDangNhap();
@@ -1198,7 +1491,28 @@
       const q = expandNormalizedQuery(query);
 
       // 0. Kiểm tra chủ đề chuyên biệt
-      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật') || q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('điểm danh') || q.includes('lms') || q.includes('trực tuyến') || q.includes('đối tượng') || q.includes('điều kiện') || q.includes('khai giảng') || q.includes('nhập học') || q.includes('văn hóa') || q.includes('bằng cấp') || q.includes('biểu mẫu') || q.includes('sơ cấp') || q.includes('cơ sở vật chất') || q.includes('ngắn hạn') || q.includes('hệ 9+') || q.includes('9+') || q.includes('dưới 3 tháng') || q.includes('mẫu') || q.includes('văn bằng') || q.includes('hẹn') || q.includes('gọi lại');
+      const hasSpecificTopic = q.includes('học phí') || q.includes('ngành') || q.includes('nghề') || q.includes('ký túc xá') || q.includes('hồ sơ') || q.includes('liên hệ') || q.includes('thời gian') || q.includes('thực hành') || q.includes('lĩnh vực') || q.includes('trình độ') || q.includes('máy tính') || q.includes('công nghệ thông tin') || q.includes('cntt') || q.includes('việc làm') || q.includes('ô tô') || q.includes('cơ khí') || q.includes('điện') || q.includes('kinh tế') || q.includes('du lịch') || q.includes('nông nghiệp') || q.includes('kế toán') || q.includes('thương mại điện tử') || q.includes('pháp luật') || q.includes('thời khóa biểu') || q.includes('tkb') || q.includes('lịch học') || q.includes('điểm danh') || q.includes('lms') || q.includes('trực tuyến') || q.includes('đối tượng') || q.includes('điều kiện') || q.includes('khai giảng') || q.includes('nhập học') || q.includes('văn hóa') || q.includes('bằng cấp') || q.includes('biểu mẫu') || q.includes('sơ cấp') || q.includes('cơ sở vật chất') || q.includes('ngắn hạn') || q.includes('hệ 9+') || q.includes('9+') || q.includes('dưới 3 tháng') || q.includes('mẫu') || q.includes('văn bằng') || q.includes('hẹn') || q.includes('gọi lại') || q.includes('trắc nghiệm') || q.includes('chọn nghề');
+
+      // 0.000. NHÓM: Trắc nghiệm chọn nghề 1 phút (Career Discovery Quiz)
+      const isQuizTrigger = (
+        q.includes('trắc nghiệm') || q.includes('trac nghiem') ||
+        q.includes('chọn nghề') || q.includes('chon nghe') ||
+        q.includes('khám phá nghề') || q.includes('kham pha nghe') ||
+        q.includes('chưa biết học gì') || q.includes('chua biet hoc gi') ||
+        q.includes('chưa biết chọn nghề nào') || q.includes('chua biet chon nghe nao') ||
+        q.includes('tư vấn chọn nghề') || q.includes('tu van chon nghe') ||
+        q.includes('tư vấn nghề phù hợp') || q.includes('tu van nghe phu hop') ||
+        q.includes('nên học nghề nào') || q.includes('nen hoc nghe nao') ||
+        q.includes('nghề nào hợp') || q.includes('nghe nao hop') ||
+        q.includes('gợi ý nghề') || q.includes('goi y nghe')
+      );
+
+      if (isQuizTrigger) {
+        setTimeout(() => {
+          batDauTracNghiem();
+        }, 300);
+        return;
+      }
 
       // 0.00. NHÓM: Hẹn cán bộ gọi lại / Để lại số điện thoại (Lead Form)
       const isHenGoiLai = (
@@ -2633,14 +2947,22 @@
       if (isThucHanhODau) {
         setTimeout(() => {
           appendMessage(`🔧 <b>HỌC SINH THỰC HÀNH Ở ĐÂU?</b><br><br>
-          Trường có các xưởng thực hành như <b>xưởng Công nghệ thông tin</b>, <b>xưởng điện</b>, <b>ô tô</b>, <b>cơ khí</b> và <b>nhà lưới cho nghề trồng trọt và bảo vệ thực vật</b> cho học sinh thực hành.
+          Trường có hệ thống xưởng thực hành hiện đại, trang thiết bị đồng bộ phục vụ thời lượng thực hành lên tới <b>75% - 80%</b>:<br><br>
+          • 🚗 <b>Xưởng Công nghệ Ô tô:</b> Đầy đủ mô hình động cơ, khung gầm, hệ thống điện ô tô, cầu nâng và máy chẩn đoán lỗi chuyên dụng.<br>
+          • ⚡ <b>Xưởng Điện &amp; Điện lạnh:</b> Tủ điện điều khiển công nghiệp, động cơ điện, điều hòa không khí VRV/Chiller, máy lạnh dân dụng.<br>
+          • 💻 <b>Phòng thực hành máy tính:</b> Nhiều phòng máy tính cấu hình cao kết nối cáp quang cho CNTT, Đồ họa, Thương mại điện tử.<br>
+          • 🌾 <b>Khu Nhà lưới Nông nghiệp:</b> Thực hành nhân giống, trồng trọt rau củ sạch VietGAP và bảo vệ thực vật công nghệ cao.<br><br>
+          <i>👉 Học sinh được thực hành trực tiếp trên máy móc thật ngay từ học kỳ đầu tiên!</i>
           <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
-            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
-              🎓 15 Ngành đào tạo
+            <button onclick="batDauTracNghiem()" class="bg-purple-50 hover:bg-purple-100 text-purple-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-purple-200">
+              🎯 Gợi ý chọn nghề
             </button>
             <button onclick="sendQuickMessage('Cơ sở vật chất')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-emerald-200">
-              🏫 Cơ sở vật chất
+              🏫 Cơ sở vật chất &amp; KTX
             </button>
+            <a href="https://zalo.me/0983498091" target="_blank" class="bg-sky-50 hover:bg-sky-100 text-sky-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-sky-200">
+              💬 Chat Zalo tư vấn
+            </a>
             <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
               📞 Hẹn cán bộ gọi lại
             </button>
@@ -2710,11 +3032,22 @@
       ) {
         setTimeout(() => {
           appendMessage(`📍 <b>VỊ TRÍ & ĐỊA CHỈ TRƯỜNG TRUNG CẤP NGHỀ DÂN TỘC NỘI TRÚ AN GIANG</b><br><br>
-          🏫 <b>Cơ sở chính:</b> ấp Tô Hạ, Xã Tri Tôn, An Giang.<br>
-          👉 <i>Xem Google map cơ sở chính:</i> <a href="https://maps.google.com/?q=Trường+Trung+cấp+nghề+Dân+tộc+nội+trú+An+Giang,+Ấp+Tô+Hạ,+Tri+Tôn,+An+Giang" target="_blank" class="text-indigo-600 font-bold underline">Bấm xem trên Google Maps ↗</a><br><br>
-          🏢 <b>Cơ sở Long thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br>
-          👉 <i>Xem Google map:</i> <a href="https://maps.google.com/?q=Ấp+Xẻo+Chác,+Long+Thạnh,+An+Giang" target="_blank" class="text-indigo-600 font-bold underline">Bấm xem trên Google Maps ↗</a><br><br>
-          📞 <b>Hotline tư vấn tuyển sinh:</b> 0983 498 091 (Cô Thúy).`, 'bot');
+          🏫 <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Tri Tôn, An Giang.<br>
+          👉 <i>Bản đồ chỉ đường:</i> <a href="https://maps.google.com/?q=Trường+Trung+cấp+nghề+Dân+tộc+nội+trú+An+Giang,+Ấp+Tô+Hạ,+Tri+Tôn,+An+Giang" target="_blank" class="text-indigo-600 font-bold underline">🗺️ Bấm mở chỉ đường Google Maps ↗</a><br><br>
+          🏢 <b>Cơ sở Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br>
+          👉 <i>Bản đồ chỉ đường:</i> <a href="https://maps.google.com/?q=Ấp+Xẻo+Chác,+Long+Thạnh,+An+Giang" target="_blank" class="text-indigo-600 font-bold underline">🗺️ Bấm mở chỉ đường Google Maps ↗</a><br><br>
+          📞 <b>Hotline/Zalo tuyển sinh:</b> <a href="https://zalo.me/0983498091" target="_blank" class="text-sky-600 font-bold underline">0983 498 091 (Cô Thúy) ↗</a>.
+          <div class="mt-2.5 pt-2 border-t border-indigo-100 flex flex-wrap gap-1.5">
+            <a href="https://zalo.me/0983498091" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm inline-flex items-center gap-1">
+              💬 Nhắn Zalo Cô Thúy
+            </a>
+            <button onclick="sendQuickMessage('Học sinh thực hành ở đâu?')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-200">
+              🔧 Xưởng thực hành
+            </button>
+            <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm">
+              📞 Hẹn cán bộ gọi lại
+            </button>
+          </div>`, 'bot');
         }, 300);
         return;
       }
