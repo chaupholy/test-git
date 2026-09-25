@@ -131,7 +131,7 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
 <!-- Cửa sổ Chatbox hiển thị trực tiếp trên website của trường -->
 <div id="ts-chat-window">
     <label for="ts-chat-toggle" id="ts-close-header" title="Đóng chat">✕</label>
-    <iframe src="https://chaupholy.github.io/test-git/chatbox-tuyensinh.html" style="width: 100%; height: 100%; border: none;" allow="autoplay"></iframe>
+    <iframe src="https://chaupholy.github.io/test-git/chatbox-tuyensinh.html" style="width: 100%; height: 100%; border: none;" allow="autoplay; microphone; clipboard-write;"></iframe>
 </div>
 ```
 

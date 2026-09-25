@@ -163,6 +163,7 @@
       <!-- Nút Micro giọng nói (Speech-to-Text) -->
       <button id="btn-voice-input" onclick="toggleVoiceInput()" type="button"
         title="Bấm để nói bằng giọng nói (Voice-to-Text)"
+        style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;"
         class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 transition border border-gray-200 shrink-0">
         <svg id="icon-mic-idle" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -294,7 +295,7 @@
 
         <!-- Footer Modal -->
         <div class="px-4 py-2.5 bg-gray-50 border-t border-gray-100 flex justify-between items-center text-[11px]">
-          <span class="text-gray-500">Phát triển bởi quan trị: Chau Pho Ly</span>
+          <span class="text-gray-500">Phát triển bởi quản trị Website Trường</span>
           <button onclick="dongAuthModal()" type="button" class="text-indigo-600 font-semibold hover:underline">
             Tiếp tục hỏi tự do ↗
           </button>
@@ -730,21 +731,53 @@
     };
 
     // =========================================================================
-    // TÍNH NĂNG NHẬP LIỆU BẰNG GIỌNG NÓI (VOICE-TO-TEXT)
+    // TÍNH NĂNG NHẬP LIỆU BẰNG GIỌNG NÓI (VOICE-TO-TEXT) TỐI ƯU CHO ĐIỆN THOẠI
     // =========================================================================
     let speechRecognition = null;
     let isRecordingVoice = false;
+    let voiceAutoStopTimer = null;
+    let hasRequestedMic = false;
 
-    function initVoiceRecognition() {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        console.warn('Trình duyệt không hỗ trợ Web Speech API.');
-        return null;
+    function getSpeechRecognitionClass() {
+      return window.SpeechRecognition || window.webkitSpeechRecognition || null;
+    }
+
+    function isInsideInAppBrowser() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+      return /Zalo|FBAN|FBAV|Instagram|TikTok|Line|Twitter/i.test(ua);
+    }
+
+    function resetVoiceUI() {
+      isRecordingVoice = false;
+      if (voiceAutoStopTimer) {
+        clearTimeout(voiceAutoStopTimer);
+        voiceAutoStopTimer = null;
       }
-      const recognition = new SpeechRecognition();
+      const btn = document.getElementById('btn-voice-input');
+      const idleIcon = document.getElementById('icon-mic-idle');
+      const recIcon = document.getElementById('icon-mic-recording');
+      const input = document.getElementById('chat-input');
+      if (btn) {
+        btn.classList.remove('bg-red-50', 'border-red-300', 'text-red-600');
+        btn.classList.add('text-gray-500');
+      }
+      if (idleIcon) idleIcon.classList.remove('hidden');
+      if (recIcon) recIcon.classList.add('hidden');
+      if (input && input.placeholder.includes('Đang lắng nghe')) {
+        input.placeholder = 'Nhập câu hỏi hoặc bấm 🎙️ để nói...';
+      }
+    }
+
+    function createFreshSpeechRecognition() {
+      const SpeechClass = getSpeechRecognitionClass();
+      if (!SpeechClass) return null;
+
+      const recognition = new SpeechClass();
       recognition.lang = 'vi-VN';
       recognition.continuous = false;
-      recognition.interimResults = false;
+      // Bật interimResults để trên điện thoại người dùng thấy câu nói xuất hiện lập tức
+      recognition.interimResults = true;
+      recognition.maxAlternatives = 1;
 
       recognition.onstart = function () {
         isRecordingVoice = true;
@@ -752,26 +785,76 @@
         const idleIcon = document.getElementById('icon-mic-idle');
         const recIcon = document.getElementById('icon-mic-recording');
         const input = document.getElementById('chat-input');
-        if (btn) btn.classList.add('bg-red-50', 'border-red-300', 'text-red-600');
+        if (btn) {
+          btn.classList.remove('text-gray-500');
+          btn.classList.add('bg-red-50', 'border-red-300', 'text-red-600');
+        }
         if (idleIcon) idleIcon.classList.add('hidden');
         if (recIcon) recIcon.classList.remove('hidden');
-        if (input) input.placeholder = 'Đang lắng nghe bạn nói... Hãy nói câu hỏi!';
+        if (input) {
+          input.placeholder = '🎙️ Đang lắng nghe... Hãy nói câu hỏi!';
+        }
+
+        // Tự động dừng sau 12 giây nếu không nhận được tiếng nói tiếp
+        if (voiceAutoStopTimer) clearTimeout(voiceAutoStopTimer);
+        voiceAutoStopTimer = setTimeout(() => {
+          if (isRecordingVoice) {
+            try { recognition.stop(); } catch (e) { }
+            resetVoiceUI();
+          }
+        }, 12000);
       };
 
       recognition.onresult = function (event) {
-        const transcript = event.results[0][0].transcript;
+        let interimTranscript = '';
+        let finalTranscript = '';
+
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          const item = event.results[i];
+          if (item && item[0]) {
+            if (item.isFinal) {
+              finalTranscript += item[0].transcript;
+            } else {
+              interimTranscript += item[0].transcript;
+            }
+          }
+        }
+
         const input = document.getElementById('chat-input');
-        if (input && transcript) {
-          input.value = transcript;
+        const spoken = (finalTranscript || interimTranscript).trim();
+        if (input && spoken) {
+          input.value = spoken;
+        }
+
+        // Khi người dùng dừng nói và nhận diện hoàn tất câu
+        if (finalTranscript.trim()) {
+          resetVoiceUI();
+          try { recognition.stop(); } catch (e) { }
           setTimeout(() => {
             sendMessage();
-          }, 300);
+          }, 350);
         }
       };
 
       recognition.onerror = function (event) {
-        console.warn('Lỗi nhận diện giọng nói:', event.error);
+        console.warn('Lỗi SpeechRecognition:', event.error);
         resetVoiceUI();
+
+        if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+          alert('⚠️ Quyền Micro chưa được cấp phép.\n\n👉 Bạn hãy bấm vào biểu tượng Cài đặt / Ổ khóa bên cạnh thanh địa chỉ web trên trình duyệt (Chrome / Safari), chọn "Cho phép Micro" rồi bấm lại nút Mic nhé!');
+        } else if (event.error === 'network') {
+          alert('⚠️ Lỗi kết nối mạng khi xử lý giọng nói. Vui lòng kiểm tra Wifi / 4G trên điện thoại.');
+        } else if (event.error === 'audio-capture') {
+          alert('⚠️ Không tìm thấy hoặc không thể kết nối tới Micro của thiết bị.');
+        } else if (event.error === 'no-speech') {
+          const input = document.getElementById('chat-input');
+          if (input && !input.value) {
+            input.placeholder = 'Chưa nghe rõ câu nói... Bấm 🎙️ và thử lại nhé!';
+            setTimeout(() => {
+              if (!isRecordingVoice) input.placeholder = 'Nhập câu hỏi hoặc bấm 🎙️ để nói...';
+            }, 3000);
+          }
+        }
       };
 
       recognition.onend = function () {
@@ -781,37 +864,58 @@
       return recognition;
     }
 
-    function resetVoiceUI() {
-      isRecordingVoice = false;
-      const btn = document.getElementById('btn-voice-input');
-      const idleIcon = document.getElementById('icon-mic-idle');
-      const recIcon = document.getElementById('icon-mic-recording');
-      const input = document.getElementById('chat-input');
-      if (btn) btn.classList.remove('bg-red-50', 'border-red-300', 'text-red-600');
-      if (idleIcon) idleIcon.classList.remove('hidden');
-      if (recIcon) recIcon.classList.add('hidden');
-      if (input) input.placeholder = 'Nhập câu hỏi hoặc bấm 🎙️ để nói...';
-    }
-
-    window.toggleVoiceInput = function () {
-      if (!speechRecognition) {
-        speechRecognition = initVoiceRecognition();
-      }
-      if (!speechRecognition) {
-        alert('Trình duyệt của bạn chưa hỗ trợ nhận diện giọng nói. Bạn hãy dùng trình duyệt Chrome/Edge hoặc gõ câu hỏi bằng bàn phím nhé!');
+    window.toggleVoiceInput = async function () {
+      // 1. Kiểm tra hỗ trợ Web Speech API
+      const SpeechClass = getSpeechRecognitionClass();
+      if (!SpeechClass) {
+        if (isInsideInAppBrowser()) {
+          alert('⚠️ Trình duyệt của ứng dụng (Zalo/Facebook) đang chặn tính năng Micro.\n\n👉 Bạn hãy bấm vào dấu ba chấm (⋮ hoặc •••) ở góc màn hình và chọn "Mở bằng trình duyệt" (Chrome / Safari) để sử dụng giọng nói nhé!');
+        } else {
+          alert('⚠️ Trình duyệt hiện tại chưa hỗ trợ nhận diện giọng nói (Web Speech API).\n\n👉 Bạn vui lòng mở trang bằng Google Chrome, Microsoft Edge hoặc Safari để nói bằng Micro nhé!');
+        }
         return;
       }
 
+      // 2. Nếu đang nói thì bấm lại sẽ dừng
       if (isRecordingVoice) {
-        speechRecognition.stop();
-        resetVoiceUI();
-      } else {
-        try {
-          speechRecognition.start();
-        } catch (e) {
-          console.warn('Không thể bắt đầu voice recognition:', e);
-          resetVoiceUI();
+        if (speechRecognition) {
+          try { speechRecognition.stop(); } catch (e) { }
         }
+        resetVoiceUI();
+        return;
+      }
+
+      // 3. Yêu cầu quyền Micro trên trình duyệt điện thoại nếu chưa xin quyền
+      if (!hasRequestedMic && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          hasRequestedMic = true;
+          // Giải phóng ngay micro cho Web Speech API sử dụng
+          stream.getTracks().forEach(track => track.stop());
+        } catch (err) {
+          console.warn('Lỗi xin quyền getUserMedia:', err);
+          if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+            alert('⚠️ Bạn chưa cấp quyền truy cập Micro.\n\nVui lòng cho phép Micro trong cài đặt trình duyệt để sử dụng tính năng nói nhé!');
+            resetVoiceUI();
+            return;
+          }
+        }
+      }
+
+      // 4. Tạo instance mới (bắt buộc cho mobile WebKit/Safari để không bị lỗi không gọi start() lại được)
+      if (speechRecognition) {
+        try { speechRecognition.abort(); } catch (e) { }
+        speechRecognition = null;
+      }
+
+      speechRecognition = createFreshSpeechRecognition();
+      if (!speechRecognition) return;
+
+      try {
+        speechRecognition.start();
+      } catch (err) {
+        console.warn('Không thể khởi động SpeechRecognition:', err);
+        resetVoiceUI();
       }
     };
 
