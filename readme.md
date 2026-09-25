@@ -134,3 +134,5 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
     <iframe src="https://chaupholy.github.io/test-git/chatbox-tuyensinh.html" style="width: 100%; height: 100%; border: none;" allow="autoplay"></iframe>
 </div>
 ```
+
+<!-- Xác thực kết nối GitHub -->
