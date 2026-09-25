@@ -11,18 +11,19 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
 ```html
 <style>
     /* ========================================================
-    CHATBOX TUYỂN SINH - CSS THUẦN (100% KHÔNG BỊ XÓA CODE)
-    ======================================================== */
+       CHATBOX TUYỂN SINH - CSS THUẦN (100% KHÔNG BỊ XÓA CODE)
+       ======================================================== */
     #ts-chat-toggle {
         display: none !important;
     }
-    /* NÚT TRÒN CHAT GÓC PHẢI DƯỚI - 60px x 60px VỚI LOGO ROBOT AI */
+
+    /* NÚT TRÒN CHAT GÓC PHẢI DƯỚI - HIỆU ỨNG NHẢY 80px x 80px */
     #ts-chat-btn {
         position: fixed !important;
         bottom: 20px !important;
         right: 20px !important;
-        width: 60px !important;
-        height: 60px !important;
+        width: 80px !important;
+        height: 80px !important;
         background: #4f46e5 !important;
         color: #ffffff !important;
         border-radius: 50% !important;
@@ -34,32 +35,56 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
         cursor: pointer !important;
         transition: transform 0.2s ease, background 0.2s ease !important;
         -webkit-tap-highlight-color: transparent !important;
+        animation: chatBounce 1.8s infinite !important;
     }
+
     #ts-chat-btn:hover {
         transform: scale(1.08) !important;
     }
-    /* Logo trong nút tròn */
+
+    /* HIỆU ỨNG NÚT CHAT NHẢY THU HÚT CHÚ Ý */
+    @keyframes chatBounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        20% {
+            transform: translateY(-8px);
+        }
+        40% {
+            transform: translateY(0);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+        80% {
+            transform: translateY(0);
+        }
+    }
+
+    /* Biểu tượng robot AI trong nút tròn */
     #ts-chat-btn .icon-open { 
         display: block !important; 
-        width: 44px !important; 
-        height: 44px !important; 
+        width: 72px !important; 
+        height: 72px !important; 
         object-fit: contain !important;
     }
+
     #ts-chat-btn .icon-close { 
         display: none !important; 
-        width: 26px !important; 
-        height: 26px !important; 
+        width: 28px !important; 
+        height: 28px !important; 
     }
+
     /* CỬA SỔ CHAT: MẶC ĐỊNH ẨN HOÀN TOÀN */
     #ts-chat-window {
         display: none !important;
         position: fixed !important;
-        bottom: 90px !important;
+        bottom: 105px !important;
         right: 20px !important;
         width: 380px !important;
         max-width: calc(100vw - 30px) !important;
         height: 540px !important;
-        max-height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 130px) !important;
         z-index: 999999 !important;
         border-radius: 18px !important;
         box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3) !important;
@@ -67,10 +92,26 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
         background: #ffffff !important;
         border: 1px solid #e5e7eb !important;
     }
+
     /* KHI BẤM NÚT TRÒN: BẬT KHUNG CHAT */
     #ts-chat-toggle:checked ~ #ts-chat-window {
         display: block !important;
     }
+
+    /* Khi đang mở: Nút tròn chuyển sang màu đỏ có dấu X và ngưng nhảy */
+    #ts-chat-toggle:checked ~ #ts-chat-btn {
+        background: #ef4444 !important;
+        animation: none !important;
+    }
+
+    #ts-chat-toggle:checked ~ #ts-chat-btn .icon-open {
+        display: none !important;
+    }
+
+    #ts-chat-toggle:checked ~ #ts-chat-btn .icon-close {
+        display: block !important;
+    }
+
     /* Tối ưu toàn màn hình trên điện thoại di động */
     @media (max-width: 480px) {
         #ts-chat-window {
@@ -83,16 +124,7 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
             border-radius: 0 !important;
         }
     }
-    /* Khi đang mở: Nút tròn chuyển sang màu đỏ có dấu X */
-    #ts-chat-toggle:checked ~ #ts-chat-btn {
-        background: #ef4444 !important;
-    }
-    #ts-chat-toggle:checked ~ #ts-chat-btn .icon-open {
-        display: none !important;
-    }
-    #ts-chat-toggle:checked ~ #ts-chat-btn .icon-close {
-        display: block !important;
-    }
+
     /* Nút X đóng ở góc trên bên phải thanh tiêu đề */
     #ts-close-header {
         position: absolute !important;
@@ -120,8 +152,8 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
 
 <!-- Nút tròn góc phải dưới màn hình -->
 <label for="ts-chat-toggle" id="ts-chat-btn" title="Chatbot AI Tư vấn Tuyển sinh">
-    <!-- Biểu tượng Logo Nhà Trường -->
-    <img class="icon-open" src="https://chaupholy.github.io/test-git/logo.png" alt="Logo Trường" />
+    <!-- Biểu tượng tin nhắn bot -->
+    <img class="icon-open" src="https://raw.githubusercontent.com/chaupholy/test-git/master/bot1.png" alt="AI" />
     <!-- Biểu tượng đóng ✕ -->
     <svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
