@@ -2057,7 +2057,7 @@
       if (isJobQuery) {
         setTimeout(() => {
           // 1. Ô tô
-          if (q.includes('ô tô') || q.includes('oto')) {
+          if ((q.includes('ô tô') || /(?:^|[\s,.;:!?])oto(?:[\s,.;:!?]|$)/i.test(q)) && !q.includes('thiết kế đồ họa') && !q.includes('đồ họa') && !q.includes('photoshop')) {
             appendMessage(`🚗 <b>Nghề Công nghệ ô tô có vị trí việc làm cụ thể tại:</b><br><br>
             • <b>Hãng xe &amp; Showroom:</b> Kỹ thuật viên bảo dưỡng, chẩn đoán, sửa chữa tại các đại lý xe lớn (Toyota, Hyundai, Thaco, Ford, Kia...).<br>
             • <b>Garage &amp; Trạm dịch vụ:</b> Thợ máy gầm, điện lạnh ô tô tại các garage tư nhân, trung tâm chăm sóc ô tô (detailing), trạm đăng kiểm cơ giới.<br>
@@ -2169,13 +2169,21 @@
           }
 
           // 7. Thiết kế đồ họa
-          if (q.includes('thiết kế đồ họa') || q.includes('đồ họa') || q.includes('photoshop') || q.includes('illustrator')) {
-            appendMessage(`🎨 <b>Nghề Thiết kế đồ họa có vị trí việc làm cụ thể tại:</b><br><br>
-            • <b>Công ty quảng cáo &amp; In ấn:</b> Chuyên viên thiết kế banner, poster, bảng hiệu, bao bì, nhận diện thương hiệu tại các xưởng in, công ty truyền thông - sự kiện.<br>
-            • <b>Studio ảnh nghệ thuật:</b> Nhân viên xử lý ảnh, phục hồi ảnh tại các studio cưới, viện ảnh nghệ thuật.<br>
-            • <b>Doanh nghiệp TMĐT:</b> Thiết kế hình ảnh sản phẩm, banner bán hàng cho các shop online, fanpage bán hàng.<br>
-            • <b>Freelancer:</b> Nhận các dự án thiết kế trực tuyến tự do tại nhà với thu nhập linh hoạt.<br>
-            🤝 <i>Nhà trường đào tạo thành thạo thực hành Photoshop, Illustrator, CorelDRAW đáp ứng ngay yêu cầu công việc.</i><br><br>
+          if (q.includes('thiết kế đồ họa') || q.includes('đồ họa') || q.includes('photoshop') || q.includes('illustrator') || q.includes('thiet ke do hoa') || q.includes('do hoa')) {
+            appendMessage(`🎨 <b>NGÀNH THIẾT KẾ ĐỒ HỌA - VỊ TRÍ &amp; NƠI LÀM VIỆC CỤ THỂ</b><br><br>
+            Học sinh tốt nghiệp ngành <b>Thiết kế đồ họa</b> được trang bị tư duy mỹ thuật hiện đại và thành thạo các phần mềm đồ họa tiêu chuẩn: <b>Adobe Photoshop, Illustrator, CorelDRAW</b>. Cơ hội và vị trí việc làm cụ thể gồm:<br><br>
+            • 🏢 <b>Công ty quảng cáo, truyền thông &amp; tổ chức sự kiện:</b><br>
+            - Vị trí: Chuyên viên thiết kế đồ họa (Graphic Designer), nhân viên thiết kế sân khấu sự kiện, backdrop, poster, standee, bảng hiệu quảng cáo ngoài trời (LED, hộp đèn, bạt Hiflex).<br><br>
+            • 🖨️ <b>Xưởng in ấn, nhà xuất bản, cơ sở chế bản &amp; bao bì:</b><br>
+            - Vị trí: Nhân viên thiết kế và bình trang in offset, kỹ thuật viên in ấn kỹ thuật số, thiết kế bao bì sản phẩm, tem nhãn mác, catalogue, lịch Tết.<br><br>
+            • 📸 <b>Studio nhiếp ảnh nghệ thuật &amp; Áo cưới:</b><br>
+            - Vị trí: Chuyên viên xử lý và hậu kỳ ảnh số, chỉnh sửa và phục hồi ảnh nghệ thuật, thiết kế layout album ảnh cưới và ảnh thời trang.<br><br>
+            • 🛍️ <b>Doanh nghiệp thương mại, công ty &amp; Shop kinh doanh online:</b><br>
+            - Vị trí: Nhân viên thiết kế hình ảnh marketing đa kênh, thiết kế banner quảng cáo trên Facebook, Google, hình ảnh sản phẩm chuẩn SEO trên sàn TMĐT (TikTok Shop, Shopee, Lazada).<br><br>
+            • 💼 <b>Làm tự do (Freelancer) &amp; Khởi nghiệp làm chủ:</b><br>
+            - Tự nhận các dự án thiết kế logo, bộ nhận diện thương hiệu online cho khách hàng trong nước và quốc tế.<br>
+            - Mở cơ sở in ấn quảng cáo, studio chụp ảnh, tiệm bảng hiệu tại địa phương.<br><br>
+            🤝 <i>Chính sách: Miễn 100% học phí (tốt nghiệp THCS), KTX miễn phí 100%, thực hành xưởng máy tính cấu hình cao và cam kết giới thiệu việc làm sau tốt nghiệp!</i><br><br>
             <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
               📝 Đăng Ký Xét Tuyển Online
             </a>
@@ -2370,7 +2378,7 @@
       // === CÂU HỎI CHI TIẾT TỪNG NGÀNH NGHỀ & VIỆC LÀM CỤ THỂ ===
 
       // 1. Công nghệ ô tô
-      if ((q.includes('ô tô') || q.includes('oto')) && !q.includes('số điện thoại') && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian') && !q.includes('ký túc xá')) {
+      if ((q.includes('ô tô') || /(?:^|[\s,.;:!?])oto(?:[\s,.;:!?]|$)/i.test(q)) && !q.includes('thiết kế đồ họa') && !q.includes('đồ họa') && !q.includes('photoshop') && !q.includes('số điện thoại') && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian') && !q.includes('ký túc xá')) {
         setTimeout(() => {
           appendMessage(`🚗 <b>DẠ CÓ BẠN NHÉ! TRƯỜNG ĐÀO TẠO NGÀNH CÔNG NGHỆ Ô TÔ</b><br><br>
           • <b>Học phí &amp; Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br>
@@ -2483,17 +2491,27 @@
       }
 
       // 7. Thiết kế đồ họa
-      if ((q.includes('thiết kế đồ họa') || q.includes('đồ họa') || q.includes('photoshop') || q.includes('illustrator')) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
+      if ((q.includes('thiết kế đồ họa') || q.includes('đồ họa') || q.includes('photoshop') || q.includes('illustrator') || q.includes('thiet ke do hoa') || q.includes('do hoa')) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
         setTimeout(() => {
           appendMessage(`🎨 <b>NGÀNH THIẾT KẾ ĐỒ HỌA</b><br><br>
-          • <b>Nội dung đào tạo:</b> Thành thạo các phần mềm đồ họa chuyên nghiệp (Photoshop, Illustrator, CorelDRAW); tư duy mỹ thuật, bố cục, màu sắc; thiết kế logo, banner, poster, ấn phẩm quảng cáo, bao bì sản phẩm và xử lý ảnh nghệ thuật.<br><br>
-          • <b>Vị trí việc làm sau khi ra trường:</b><br>
-          - Chuyên viên thiết kế tại các xưởng in ấn, công ty quảng cáo, truyền thông, sự kiện.<br>
-          - Nhân viên xử lý ảnh tại các studio ảnh cưới, studio nghệ thuật.<br>
-          - Nhân viên thiết kế hình ảnh, banner cho các shop bán hàng online, fanpage, sàn TMĐT.<br>
-          - Nhận các dự án thiết kế tự do (Freelancer).<br><br>
-          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
-            👉 Xem Chi Tiết Chương Trình Đào Tạo
+          • <b>Nội dung đào tạo:</b><br>
+          - Thành thạo trọn bộ phần mềm đồ họa tiêu chuẩn quốc tế: <b>Adobe Photoshop</b> (xử lý &amp; hậu kỳ hình ảnh), <b>Adobe Illustrator</b> (thiết kế vector đồ họa), <b>CorelDRAW</b> (thiết kế chế bản in ấn).<br>
+          - Rèn luyện tư duy thẩm mỹ thị giác, quy chuẩn bố cục, phối màu, nghệ thuật chữ (Typography) và hệ thống nhận diện thương hiệu.<br>
+          - Thiết kế ấn phẩm in ấn quảng cáo: Logo, poster, banner, standee, tờ rơi, brochure, catalogue, bao bì sản phẩm, bảng hiệu ngoài trời.<br>
+          - Thiết kế đồ họa số &amp; mạng xã hội: Visual marketing cho fanpage, banner quảng cáo online, hình ảnh bán hàng chuẩn kích thước trên sàn TMĐT (Shopee, TikTok Shop).<br>
+          - Kỹ thuật in ấn &amp; chế bản: Xuất file in kỹ thuật số, in offset, in bạt, đảm bảo độ phân giải và chuẩn hệ màu in (CMYK).<br><br>
+          • <b>Vị trí việc làm cụ thể sau khi ra trường:</b><br>
+          - 🏢 <i>Công ty quảng cáo &amp; truyền thông sự kiện:</i> Chuyên viên thiết kế đồ họa (Graphic Designer), nhân viên thiết kế sân khấu, bảng hiệu.<br>
+          - 🖨️ <i>Xưởng in ấn &amp; chế bản:</i> Kỹ thuật viên bình bản, xuất file in, kiểm tra chất lượng ấn phẩm in offset và in kỹ thuật số.<br>
+          - 📸 <i>Studio nhiếp ảnh &amp; Áo cưới:</i> Nhân viên xử lý hậu kỳ ảnh số, chỉnh sửa và phục hồi ảnh nghệ thuật, dàn trang album cưới.<br>
+          - 🛍️ <i>Doanh nghiệp &amp; Cửa hàng online:</i> Nhân viên thiết kế hình ảnh truyền thông, banner khuyến mãi trên website, fanpage, sàn TMĐT.<br>
+          - 💼 <i>Làm tự do (Freelancer) &amp; Khởi nghiệp:</i> Nhận dự án thiết kế logo, bộ nhận diện online tại nhà; mở cơ sở in ấn, quảng cáo riêng.<br><br>
+          • <b>Chính sách &amp; Quyền lợi:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí 100%, thực hành xưởng máy tính đồ họa cấu hình cao.<br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            📝 Đăng Ký Xét Tuyển Online
+          </a>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg font-semibold hover:bg-gray-200 transition text-xs ml-1">
+            👉 Chi Tiết Chương Trình Đào Tạo
           </a><br><br>
           📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
         }, 300);
@@ -2759,7 +2777,7 @@
       }
 
       // 2. Khối Điện - Cơ khí - Ô tô
-      const isEngQuery = (q.includes('ô tô') || q.includes('oto') || q.includes('cơ khí') || q.includes('điện') || q.includes('máy lạnh') || q.includes('điều hòa') || q.includes('cơ điện') || q.includes('điện lạnh')) && !q.includes('số điện thoại') && !q.includes('hồ sơ') && !q.includes('học phí') && !q.includes('thời gian');
+      const isEngQuery = (q.includes('ô tô') || /(?:^|[\s,.;:!?])oto(?:[\s,.;:!?]|$)/i.test(q) || q.includes('cơ khí') || q.includes('điện') || q.includes('máy lạnh') || q.includes('điều hòa') || q.includes('cơ điện') || q.includes('điện lạnh')) && !q.includes('thiết kế đồ họa') && !q.includes('đồ họa') && !q.includes('photoshop') && !q.includes('số điện thoại') && !q.includes('hồ sơ') && !q.includes('học phí') && !q.includes('thời gian');
       if (isEngQuery) {
         setTimeout(() => {
           appendMessage(`⚙️ <b>CÁC NGÀNH ĐIỆN - CƠ KHÍ - Ô TÔ CỦA TRƯỜNG</b><br><br>
