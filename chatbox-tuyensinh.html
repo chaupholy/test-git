@@ -278,6 +278,7 @@
                 <option value="Quản trị mạng máy tính">🖥️ Quản trị mạng máy tính</option>
                 <option value="Thiết kế đồ họa">🎨 Thiết kế đồ họa</option>
                 <option value="Tin học ứng dụng">💻 Tin học ứng dụng</option>
+                <option value="Tin học văn phòng">📋 Tin học văn phòng</option>
                 <option value="Thương mại điện tử">🛒 Thương mại điện tử</option>
                 <option value="Kế toán doanh nghiệp">📊 Kế toán doanh nghiệp</option>
                 <option value="Hướng dẫn du lịch">✈️ Hướng dẫn du lịch</option>
@@ -1395,8 +1396,8 @@
           fuzzyWords: ['codien']
         },
         {
-          canonical: ' quản trị mạng mạng máy tính mạng lan server ',
-          triggers: ['quan tri mang', 'quantrimang', 'mang may tinh', 'mang lan', 'server', 'wifi', 'camera'],
+          canonical: ' quản trị mạng mạng máy tính mạng lan server an ninh mạng hạ tầng mạng camera wifi ',
+          triggers: ['quan tri mang', 'quantrimang', 'mang may tinh', 'mang lan', 'server', 'wifi', 'camera', 'an ninh mang', 'ha tang mang'],
           fuzzyWords: ['quantrimang']
         },
         {
@@ -1405,9 +1406,14 @@
           fuzzyWords: ['dohoa']
         },
         {
-          canonical: ' tin học ứng dụng tin học văn phòng văn thư ',
-          triggers: ['tin hoc ung dung', 'tin hoc van phong', 'van thu', 'nhap lieu'],
-          fuzzyWords: []
+          canonical: ' tin học ứng dụng ứng dụng tin học lập trình phần mềm cơ sở dữ liệu website ',
+          triggers: ['tin hoc ung dung', 'tinhocungdung', 'ung dung tin hoc', 'cntt ung dung'],
+          fuzzyWords: ['tinhocungdung']
+        },
+        {
+          canonical: ' tin học văn phòng văn phòng văn thư lưu trữ hành chính soạn thảo văn bản ',
+          triggers: ['tin hoc van phong', 'tinhocvanphong', 'nghiep vu van phong', 'van thu', 'soan thao van ban', 'tin hoc van phong van thu'],
+          fuzzyWords: ['tinhocvanphong']
         },
         {
           canonical: ' thương mại điện tử tmdt bán hàng online digital marketing ',
@@ -1441,7 +1447,7 @@
         },
         {
           canonical: ' làm việc ở đâu việc làm vị trí việc làm cơ hội việc làm ra trường làm xin việc ',
-          triggers: ['lam viec o dau', 'lamviecodau', 'lam o dau', 'viec lam', 'vieclam', 'ra truong lam', 'ra lam gi', 'hoc xong lam', 'vi tri viec lam', 'co hoi viec lam', 'xin viec', 'gioi thieu viec lam', 'co viec lam khong'],
+          triggers: ['lam viec o dau', 'lamviecodau', 'lam o dau', 'lamodau', 'o dau', 'odau', 'viec lam', 'vieclam', 'ra truong lam', 'ra lam gi', 'hoc xong lam', 'vi tri viec lam', 'co hoi viec lam', 'xin viec', 'gioi thieu viec lam', 'co viec lam khong'],
           fuzzyWords: ['vieclam']
         },
         {
@@ -2029,8 +2035,11 @@
       }
 
       // === CÂU HỎI VỊ TRÍ VIỆC LÀM & LÀM VIỆC Ở ĐÂU TỪNG NGÀNH ===
-      const isJobQuery = (q.includes('làm việc ở đâu') || q.includes('lam viec o dau') ||
+      const isJobQuery = (
+        q.includes('làm việc ở đâu') || q.includes('lam viec o dau') ||
+        q.includes('làm việc ở dâu') || q.includes('lam viec o dâu') ||
         q.includes('làm ở đâu') || q.includes('lam o dau') ||
+        q.includes('làm ở dâu') ||
         q.includes('việc làm') || q.includes('viec lam') ||
         q.includes('ra trường làm') || q.includes('ra truong lam') ||
         q.includes('ra làm gì') || q.includes('ra lam gi') ||
@@ -2039,7 +2048,10 @@
         q.includes('cơ hội việc làm') || q.includes('co hoi viec lam') ||
         q.includes('xin việc') || q.includes('xin viec') ||
         q.includes('giới thiệu việc làm') || q.includes('gioi thieu viec lam') ||
-        q.includes('có việc làm không') || q.includes('co viec lam khong')) &&
+        q.includes('có việc làm không') || q.includes('co viec lam khong') ||
+        (q.includes('ở đâu') && (q.includes('ngành') || q.includes('nghề') || q.includes('làm') || q.includes('tin học') || q.includes('mạng'))) ||
+        (q.includes('o dau') && (q.includes('nganh') || q.includes('nghe') || q.includes('lam') || q.includes('tin hoc') || q.includes('mang')))
+      ) &&
         !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian') && !q.includes('số điện thoại');
 
       if (isJobQuery) {
@@ -2130,12 +2142,23 @@
           }
 
           // 6. Quản trị mạng máy tính
-          if (q.includes('quản trị mạng') || q.includes('mạng máy tính') || q.includes('mạng lan')) {
-            appendMessage(`🌐 <b>Nghề Quản trị mạng máy tính có vị trí việc làm cụ thể tại:</b><br><br>
-            • <b>Doanh nghiệp &amp; Cơ quan hành chính:</b> Quản trị viên hệ thống mạng LAN/WAN, cấu hình server, bảo mật dữ liệu nội bộ.<br>
-            • <b>Nhà mạng viễn thông:</b> Kỹ thuật viên hạ tầng mạng, đường truyền tại VNPT, Viettel, FPT Telecom.<br>
-            • <b>Công ty an ninh giám sát:</b> Kỹ thuật viên thi công lắp đặt và quản trị hệ thống camera giám sát, nhà thông minh.<br>
-            🤝 <i>Cơ hội việc làm rộng mở tại các tổ chức, ngân hàng, trường học và doanh nghiệp.</i><br><br>
+          if (q.includes('quản trị mạng') || q.includes('mạng máy tính') || q.includes('mạng lan') || q.includes('quan tri mang')) {
+            appendMessage(`🌐 <b>NGÀNH QUẢN TRỊ MẠNG MÁY TÍNH - VỊ TRÍ &amp; NƠI LÀM VIỆC CỤ THỂ</b><br><br>
+            Học sinh tốt nghiệp ngành <b>Quản trị mạng máy tính</b> có kỹ năng chuyên sâu về cấu hình Router/Switch, quản trị Server, an toàn thông tin, triển khai mạng LAN/Wi-Fi và camera an ninh. Cơ hội và nơi làm việc cụ thể gồm:<br><br>
+            • 🏛️ <b>Cơ quan hành chính Nhà nước &amp; Đơn vị sự nghiệp:</b><br>
+            - Làm việc tại Trung tâm CNTT, văn phòng UBND các cấp (tỉnh, huyện, xã), Sở ban ngành, trường học, bệnh viện.<br>
+            - Vị trí: Quản trị viên hệ thống mạng (Network Administrator), quản lý phòng máy chủ (Server), sao lưu và bảo mật dữ liệu, phân quyền truy cập và chống tấn công mạng nội bộ.<br><br>
+            • 🏢 <b>Doanh nghiệp, Công ty, Khu công nghiệp &amp; Ngân hàng:</b><br>
+            - Làm việc tại các xí nghiệp nhà máy, ngân hàng thương mại, siêu thị, khách sạn cao cấp, công ty tư nhân.<br>
+            - Vị trí: Chuyên viên IT Helpdesk, quản trị viên mạng LAN/WAN, vận hành hệ thống máy chủ dữ liệu (Storage Server), quản lý hệ thống tổng đài IP và máy in mạng.<br><br>
+            • 📡 <b>Các nhà mạng viễn thông &amp; Dịch vụ Internet (ISP):</b><br>
+            - Làm việc tại các chi nhánh VNPT, Viettel, FPT Telecom, MobiFone...<br>
+            - Vị trí: Kỹ thuật viên hạ tầng mạng, lắp đặt modem cáp quang, cấu hình thiết bị truyền dẫn, bảo trì định kỳ đường truyền mạng cho hộ gia đình và doanh nghiệp.<br><br>
+            • 📹 <b>Công ty an ninh giám sát &amp; Nhà thông minh:</b><br>
+            - Vị trí: Kỹ thuật viên thiết kế, thi công và cấu hình hệ thống Camera giám sát (CCTV), hệ thống chấm công vân tay/khuôn mặt, kiểm soát cửa ra vào (Access Control), Smart Home.<br><br>
+            • 🚀 <b>Tự mở cơ sở kinh doanh:</b><br>
+            - Mở cửa hàng kinh doanh thiết bị viễn thông, nhận thầu thi công lắp đặt hệ thống mạng, camera an ninh tại địa phương.<br><br>
+            🤝 <i>Chính sách: Miễn 100% học phí (tốt nghiệp THCS), KTX miễn phí và nhà trường cam kết giới thiệu việc làm sau khi tốt nghiệp!</i><br><br>
             <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
               📝 Đăng Ký Xét Tuyển Online
             </a>
@@ -2162,13 +2185,46 @@
             return;
           }
 
-          // 8. Tin học ứng dụng & Tin học văn phòng
-          if (q.includes('tin học ứng dụng') || q.includes('tin học văn phòng')) {
-            appendMessage(`📋 <b>Nghề Tin học ứng dụng &amp; Tin học văn phòng có vị trí việc làm cụ thể tại:</b><br><br>
-            • <b>Cơ quan hành chính Nhà nước:</b> Cán bộ văn thư, nhân viên một cửa, nhập liệu và xử lý số liệu tại UBND xã/phường, trường học, bệnh viện.<br>
-            • <b>Doanh nghiệp:</b> Thư ký văn phòng, nhân viên kế toán nội bộ, tổng hợp báo cáo nhân sự - hành chính.<br>
-            • <b>Quản trị nội dung số:</b> Quản trị website, fanpage và cổng thông tin điện tử của cơ quan, doanh nghiệp.<br>
-            🤝 <i>Chương trình đào tạo sát với nhu cầu chuyển đổi số và công tác văn phòng hiện đại.</i><br><br>
+          // 8. Tin học ứng dụng
+          if (q.includes('tin học ứng dụng') || q.includes('ung dung tin hoc') || q.includes('tinhocungdung')) {
+            appendMessage(`💻 <b>NGÀNH TIN HỌC ỨNG DỤNG - VỊ TRÍ &amp; NƠI LÀM VIỆC CỤ THỂ</b><br><br>
+            Học sinh tốt nghiệp ngành <b>Tin học ứng dụng</b> được trang bị kiến thức vững vàng về phần mềm ứng dụng, lập trình cơ sở, cơ sở dữ liệu số, quản trị website và xử lý số liệu. Cơ hội và nơi làm việc cụ thể gồm:<br><br>
+            • 🏛️ <b>Cơ quan hành chính Nhà nước, Trường học &amp; Bệnh viện:</b><br>
+            - Làm việc tại bộ phận CNTT, văn phòng một cửa tại UBND các cấp, trường học, cơ sở y tế.<br>
+            - Vị trí: Cán bộ chuyên trách CNTT, quản trị và cập nhật Cổng thông tin điện tử / Website đơn vị, vận hành hệ thống phần mềm quản lý số và hỗ trợ chuyển đổi số.<br><br>
+            • 🏢 <b>Doanh nghiệp, Công ty sản xuất &amp; Thương mại dịch vụ:</b><br>
+            - Làm việc tại các công ty, hợp tác xã, doanh nghiệp thương mại.<br>
+            - Vị trí: Nhân viên tin học nội bộ (IT Support), quản trị cơ sở dữ liệu kinh doanh - kho hàng, vận hành các phần mềm nghiệp vụ (phần mềm bán hàng, kế toán, CRM).<br>
+            - Quản trị nội dung số: Cập nhật thông tin website, quản lý sản phẩm trên sàn TMĐT và fanpage bán hàng.<br><br>
+            • 🌐 <b>Công ty giải pháp phần mềm &amp; Truyền thông số:</b><br>
+            - Vị trí: Lập trình viên Front-end cấp độ cơ sở (HTML, CSS, JavaScript, PHP), nhân viên kiểm thử phần mềm (Software Tester), nhân viên SEO và tối ưu hóa website.<br><br>
+            • 💼 <b>Khởi nghiệp &amp; Làm tự do (Freelancer):</b><br>
+            - Cung cấp dịch vụ thiết kế, bảo trì website cho các hộ kinh doanh; số hóa tài liệu cho các doanh nghiệp vừa và nhỏ.<br><br>
+            🤝 <i>Chính sách: Miễn 100% học phí (tốt nghiệp THCS), KTX miễn phí và nhà trường liên kết doanh nghiệp cung ứng việc làm ngay sau tốt nghiệp!</i><br><br>
+            <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
+              📝 Đăng Ký Xét Tuyển Online
+            </a>
+            <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-semibold hover:bg-gray-200 transition ml-1">
+              📖 Chi Tiết Ngành
+            </a>`, 'bot');
+            return;
+          }
+
+          // 9. Tin học văn phòng
+          if (q.includes('tin học văn phòng') || q.includes('tinhocvanphong') || q.includes('văn thư') || q.includes('van thu') || q.includes('hành chính văn phòng') || q.includes('nghiep vu van phong')) {
+            appendMessage(`📋 <b>NGÀNH TIN HỌC VĂN PHÒNG - VỊ TRÍ &amp; NƠI LÀM VIỆC CỤ THỂ</b><br><br>
+            Học sinh tốt nghiệp ngành <b>Tin học văn phòng</b> thành thạo kỹ năng soạn thảo văn bản hành chính theo đúng quy chuẩn thể thức Nhà nước (Nghị định 30/2020/NĐ-CP), bảng tính Excel nâng cao, quản trị công văn - văn thư lưu trữ điện tử. Cơ hội và nơi làm việc cụ thể gồm:<br><br>
+            • 🏛️ <b>Cơ quan hành chính Nhà nước &amp; Đoàn thể các cấp:</b><br>
+            - Làm việc tại văn phòng UBND xã/phường/thị trấn, các phòng ban chuyên môn cấp huyện, cơ quan Đảng, Mặt trận Tổ quốc, Đoàn thể.<br>
+            - Vị trí: Cán bộ văn thư - lưu trữ, nhân viên tiếp nhận và trả kết quả tại Bộ phận Một cửa, cán bộ nhập liệu và xử lý văn bản hành chính điện tử.<br><br>
+            • 🏫 <b>Các cơ sở giáo dục (Trường Mầm non, Tiểu học, THCS, THPT, Trung tâm GDNN):</b><br>
+            - Vị trí: Nhân viên văn thư, thủ quỹ, giáo vụ phụ trách quản lý hồ sơ sổ sách học sinh, quản trị và nhập liệu hệ thống phần mềm giáo dục (VnEdu, SMAS, CSDL ngành).<br><br>
+            • 🏢 <b>Doanh nghiệp tư nhân, Công ty liên doanh &amp; Nhà máy:</b><br>
+            - Vị trí: Thư ký văn phòng, trợ lý hành chính giám đốc, nhân viên lễ tân văn phòng.<br>
+            - Vị trí: Nhân viên hành chính - nhân sự (soạn thảo hợp đồng lao động, theo dõi chấm công, làm hồ sơ bảo hiểm xã hội), nhân viên xử trị bảng tính và tổng hợp số liệu báo cáo nội bộ.<br><br>
+            • 🏥 <b>Bệnh viện, Phòng khám, Ngân hàng &amp; Văn phòng công chứng:</b><br>
+            - Vị trí: Nhân viên tiếp nhận khách hàng/bệnh nhân, nhân viên nhập liệu hồ sơ giao dịch và hồ sơ bệnh án điện tử, nhân viên soạn thảo hợp đồng công chứng.<br><br>
+            🤝 <i>Chính sách: Miễn 100% học phí (tốt nghiệp THCS), KTX miễn phí và chương trình đào tạo sát thực tế nhu cầu chuyển đổi số văn phòng hiện đại!</i><br><br>
             <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
               📝 Đăng Ký Xét Tuyển Online
             </a>
@@ -2400,16 +2456,26 @@
       }
 
       // 6. Quản trị mạng máy tính
-      if ((q.includes('quản trị mạng') || q.includes('mạng máy tính') || q.includes('mạng lan')) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
+      if ((q.includes('quản trị mạng') || q.includes('mạng máy tính') || q.includes('mạng lan') || q.includes('quan tri mang')) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
         setTimeout(() => {
           appendMessage(`🌐 <b>NGÀNH QUẢN TRỊ MẠNG MÁY TÍNH</b><br><br>
-          • <b>Nội dung đào tạo:</b> Thiết kế, lắp đặt hệ thống mạng LAN, Wi-Fi; cấu hình Router, Switch; cài đặt quản trị Server (Windows/Linux), chia sẻ tài nguyên, bảo mật hệ thống mạng và thi công hệ thống camera giám sát.<br><br>
-          • <b>Vị trí việc làm sau khi ra trường:</b><br>
-          - Nhân viên quản trị hệ thống mạng tại các doanh nghiệp, ngân hàng, trường học, bệnh viện, cơ quan hành chính.<br>
-          - Kỹ thuật viên triển khai hạ tầng mạng cho các nhà mạng viễn thông (VNPT, Viettel, FPT Telecom).<br>
-          - Nhân viên kỹ thuật IT chuyên trách camera giám sát và an toàn mạng.<br><br>
-          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
-            👉 Xem Chi Tiết Chương Trình Đào Tạo
+          • <b>Nội dung đào tạo:</b><br>
+          - Thiết kế, thi công và cấu hình mạng LAN, hệ thống Wi-Fi doanh nghiệp diện rộng.<br>
+          - Cấu hình thiết bị mạng chuyên dụng: Router, Switch, Access Point, Firewall (tường lửa bảo mật).<br>
+          - Cài đặt, quản trị máy chủ Server (Windows Server, Linux), quản lý tài khoản người dùng, phân quyền và sao lưu dữ liệu an toàn.<br>
+          - Đảm bảo an toàn thông tin mạng và thi công lắp đặt hệ thống Camera an ninh giám sát (CCTV).<br><br>
+          • <b>Vị trí việc làm cụ thể sau khi ra trường:</b><br>
+          - 🏛️ <i>Cơ quan nhà nước, trường học, bệnh viện:</i> Quản trị viên hệ thống mạng (Network Administrator), quản lý phòng máy chủ và bảo mật dữ liệu cơ quan.<br>
+          - 🏢 <i>Doanh nghiệp, Ngân hàng, Khu công nghiệp:</i> Chuyên viên IT Helpdesk, quản trị hệ thống mạng nội bộ LAN/WAN, tổng đài IP và máy in mạng.<br>
+          - 📡 <i>Nhà mạng viễn thông (VNPT, Viettel, FPT Telecom):</i> Kỹ thuật viên hạ tầng mạng cáp quang, cấu hình thiết bị truyền dẫn mạng cho khách hàng.<br>
+          - 📹 <i>Công ty an ninh số &amp; Nhà thông minh:</i> Kỹ thuật viên thi công lắp đặt hệ thống camera an ninh, máy chấm công, kiểm soát ra vào (Access Control), Smart Home.<br>
+          - 🚀 <i>Khởi nghiệp:</i> Mở cửa hàng kinh doanh, nhận thầu thi công mạng và camera giám sát tại địa phương.<br><br>
+          • <b>Chính sách:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí, cam kết giới thiệu việc làm.<br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            📝 Đăng Ký Xét Tuyển Online
+          </a>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg font-semibold hover:bg-gray-200 transition text-xs ml-1">
+            👉 Chi Tiết Chương Trình Đào Tạo
           </a><br><br>
           📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
         }, 300);
@@ -2435,16 +2501,25 @@
       }
 
       // 8. Tin học ứng dụng
-      if (q.includes('tin học ứng dụng') && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
+      if ((q.includes('tin học ứng dụng') || q.includes('ung dung tin hoc') || q.includes('tinhocungdung')) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
         setTimeout(() => {
           appendMessage(`💻 <b>NGÀNH TIN HỌC ỨNG DỤNG</b><br><br>
-          • <b>Nội dung đào tạo:</b> Lập trình cơ bản, xây dựng và quản trị cơ sở dữ liệu số; khai thác các phần mềm ứng dụng chuyên ngành; thiết kế và quản trị website cơ bản; ứng dụng công nghệ thông tin trong quản lý doanh nghiệp.<br><br>
-          • <b>Vị trí việc làm sau khi ra trường:</b><br>
-          - Nhân viên tin học, quản trị website và cổng thông tin điện tử tại cơ quan, doanh nghiệp.<br>
-          - Kỹ thuật viên xử lý dữ liệu, vận hành phần mềm nghiệp vụ số.<br>
-          - Nhân viên hỗ trợ chuyển đổi số, nhập liệu và xử lý thông tin tại các đơn vị.<br><br>
-          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
-            👉 Xem Chi Tiết Chương Trình Đào Tạo
+          • <b>Nội dung đào tạo:</b><br>
+          - Lập trình ứng dụng cơ sở, lập trình giao diện Web (HTML5, CSS3, JavaScript, PHP cơ bản).<br>
+          - Xây dựng, quản trị và khai thác cơ sở dữ liệu số (MySQL, SQL Server, Excel nâng cao).<br>
+          - Khai thác thành thạo các phần mềm ứng dụng chuyên ngành, quản trị website đơn vị và tham gia chuyển đổi số.<br>
+          - Kỹ thuật đồ họa ứng dụng cơ bản và kỹ năng phân tích, xử lý số liệu nghiệp vụ.<br><br>
+          • <b>Vị trí việc làm cụ thể sau khi ra trường:</b><br>
+          - 🏛️ <i>Cơ quan nhà nước, UBND, trường học, bệnh viện:</i> Cán bộ kỹ thuật phụ trách CNTT, quản trị Cổng thông tin điện tử / Website đơn vị, hỗ trợ dịch vụ công trực tuyến và công tác chuyển đổi số.<br>
+          - 🏢 <i>Doanh nghiệp &amp; Công ty sản xuất kinh doanh:</i> Nhân viên tin học nội bộ (IT Support), quản trị cơ sở dữ liệu bán hàng - kho bãi, vận hành phần mềm kế toán/bán hàng, quản trị website và sàn TMĐT.<br>
+          - 🌐 <i>Công ty phần mềm &amp; Truyền thông số:</i> Lập trình viên Front-end cấp cơ sở, nhân viên kiểm thử phần mềm (Tester), nhân viên SEO và tối ưu hóa website.<br>
+          - 💼 <i>Khởi nghiệp &amp; Tự do (Freelancer):</i> Thiết kế và quản trị website cho các hộ kinh doanh; số hóa dữ liệu cho các doanh nghiệp vừa và nhỏ.<br><br>
+          • <b>Chính sách:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí, hỗ trợ kết nối việc làm.<br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            📝 Đăng Ký Xét Tuyển Online
+          </a>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg font-semibold hover:bg-gray-200 transition text-xs ml-1">
+            👉 Chi Tiết Chương Trình Đào Tạo
           </a><br><br>
           📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
         }, 300);
@@ -2452,16 +2527,25 @@
       }
 
       // 9. Tin học văn phòng
-      if (q.includes('tin học văn phòng') && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
+      if ((q.includes('tin học văn phòng') || q.includes('tinhocvanphong') || q.includes('văn thư') || q.includes('van thu')) && !q.includes('học phí') && !q.includes('hồ sơ') && !q.includes('thời gian')) {
         setTimeout(() => {
           appendMessage(`📋 <b>NGÀNH TIN HỌC VĂN PHÒNG</b><br><br>
-          • <b>Nội dung đào tạo:</b> Kỹ năng soạn thảo văn bản hành chính quy chuẩn nhà nước (Word); phân tích và xử lý số liệu bảng tính nâng cao (Excel); thiết kế bài thuyết trình số (PowerPoint); quản lý văn thư điện tử và lưu trữ đám mây.<br><br>
-          • <b>Vị trí việc làm sau khi ra trường:</b><br>
-          - Nhân viên văn thư, thư ký, trợ lý văn phòng tại các cơ quan nhà nước, trường học, doanh nghiệp.<br>
-          - Nhân viên nhập liệu, tổng hợp báo cáo và xử lý số liệu hành chính - nhân sự.<br>
-          - Nhân viên lễ tân, nhân viên văn phòng tại các đơn vị hành chính sự nghiệp.<br><br>
-          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
-            👉 Xem Chi Tiết Chương Trình Đào Tạo
+          • <b>Nội dung đào tạo:</b><br>
+          - Kỹ năng soạn thảo văn bản hành chính quy chuẩn nhà nước theo đúng thể thức (Nghị định 30/2020/NĐ-CP).<br>
+          - Phân tích và xử lý bảng tính nâng cao với Microsoft Excel (hàm thống kê, PivotTable, biểu đồ báo cáo).<br>
+          - Thiết kế bài thuyết trình số chuyên nghiệp (PowerPoint), quản lý văn thư điện tử và lưu trữ đám mây.<br>
+          - Nghiệp vụ công tác văn thư, quản lý công văn đi - đến, lưu trữ hồ sơ tài liệu cơ quan, trường học, doanh nghiệp.<br><br>
+          • <b>Vị trí việc làm cụ thể sau khi ra trường:</b><br>
+          - 🏛️ <i>Cơ quan hành chính Nhà nước (UBND các cấp, phòng ban huyện/thị, Đảng, Đoàn thể):</i> Cán bộ văn thư - lưu trữ, nhân viên tiếp nhận và trả kết quả tại Bộ phận Một cửa, nhân viên xử lý hồ sơ hành chính điện tử.<br>
+          - 🏫 <i>Cơ sở giáo dục (Trường Mầm non, Tiểu học, THCS, THPT, Trung tâm GDNN):</i> Nhân viên văn thư, thủ quỹ, giáo vụ phụ trách quản lý sổ sách hồ sơ học sinh, quản trị phần mềm VnEdu, SMAS.<br>
+          - 🏢 <i>Doanh nghiệp &amp; Công ty tư nhân/nước ngoài:</i> Thư ký văn phòng, trợ lý hành chính giám đốc, nhân viên nhân sự (soạn thảo hợp đồng, theo dõi chấm công, bảo hiểm), nhân viên kế toán nội bộ và nhập liệu.<br>
+          - 🏥 <i>Bệnh viện, Phòng khám, Ngân hàng, Văn phòng công chứng:</i> Nhân viên lễ tân tiếp đón, nhập liệu hồ sơ giao dịch, bệnh án điện tử, soạn thảo hợp đồng công chứng.<br><br>
+          • <b>Chính sách:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br><br>
+          <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition text-xs">
+            📝 Đăng Ký Xét Tuyển Online
+          </a>
+          <a href="https://online.dtntag.edu.vn/ChuongTrinhDaoTao" target="_blank" class="inline-block bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg font-semibold hover:bg-gray-200 transition text-xs ml-1">
+            👉 Chi Tiết Chương Trình Đào Tạo
           </a><br><br>
           📖 Hoặc mở <a href="https://heyzine.com/flip-book/cb1c57e308.html" target="_blank" class="text-emerald-600 font-semibold underline">Sổ tay các nghề</a> để xem sách lật điện tử.`, 'bot');
         }, 300);
@@ -2661,7 +2745,8 @@
           1️⃣ <b>Kỹ thuật sửa chữa, lắp ráp máy tính:</b> Phần cứng, laptop, thiết bị văn phòng.<br>
           2️⃣ <b>Quản trị mạng máy tính:</b> Mạng LAN/Wi-Fi, hệ thống server, an ninh mạng, camera.<br>
           3️⃣ <b>Thiết kế đồ họa:</b> Photoshop, Illustrator, thiết kế banner, quảng cáo, in ấn.<br>
-          4️⃣ <b>Tin học ứng dụng &amp; Tin học văn phòng:</b> Cơ sở dữ liệu số, văn thư số.<br>
+          4️⃣ <b>Tin học ứng dụng:</b> Cơ sở dữ liệu số, quản trị website, lập trình cơ sở, chuyển đổi số.<br>
+          5️⃣ <b>Tin học văn phòng:</b> Soạn thảo văn bản quy chuẩn, Excel nâng cao, văn thư lưu trữ điện tử.<br>
           • <b>Học phí &amp; Thời gian:</b> Học <b>2 năm</b>, <b>miễn 100% học phí</b> (tốt nghiệp THCS), KTX miễn phí.<br><br>
           <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
             📝 Đăng Ký Xét Tuyển Online
