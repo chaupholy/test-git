@@ -471,6 +471,7 @@
         const user = await appwriteAccount.get();
         capNhatGiaoDienAuth(user);
         console.log('Appwrite: Đã nhận diện tài khoản:', user.name || user.email);
+        await tuDongKiemTraVaGoiYLichSu();
       } catch (e) {
         // Chưa đăng nhập: chạy chế độ Tự do
         capNhatGiaoDienAuth(null);
@@ -501,9 +502,10 @@
 
         await dongBoGuestHistory();
 
-        setTimeout(() => {
+        setTimeout(async () => {
           dongAuthModal();
           appendMessage(`👋 Chào mừng bạn <b>${user.name || 'Thí sinh'}</b> đã đăng nhập! Toàn bộ đoạn chat từ giờ sẽ được tự động lưu vĩnh viễn vào tài khoản của bạn. ✨`, 'bot');
+          await tuDongKiemTraVaGoiYLichSu();
         }, 600);
       } catch (err) {
         console.error('Lỗi đăng nhập:', err);
@@ -545,8 +547,8 @@
               APPWRITE_CONFIG.studentDataCollectionId,
               ID.unique(),
               {
-                userId: user.$id,
-                fullName: name,
+                userID: user.$id,
+                fullname: name,
                 phone: phone,
                 email: email,
                 interestedMajor: major
@@ -582,16 +584,20 @@
         } catch (_) { }
       }
       capNhatGiaoDienAuth(null);
+      savedHistoryList = [];
+      hasLoadedHistoryIntoChat = false;
       appendMessage('ℹ️ Bạn đã đăng xuất. Hiện chatbox đang ở <b>Chế độ Tự do</b> (tin nhắn sẽ không được lưu vào tài khoản).', 'bot');
     };
 
-    // Lưu tin nhắn vào Appwrite (Chỉ lưu khi đã đăng nhập)
+    // Lưu tin nhắn vào Appwrite (Chỉ lưu vào DB khi đã đăng nhập)
     async function saveMessageToAppwrite(sender, messageText) {
       if (!messageText) return;
 
-      // Lưu tạm vào guest history
-      guestHistory.push({ sender, message: messageText, timestamp: new Date().toISOString() });
-      if (guestHistory.length > 30) guestHistory.shift();
+      // Lưu tạm vào guest history nếu chưa đăng nhập
+      if (!currentUser) {
+        guestHistory.push({ sender, message: messageText, timestamp: new Date().toISOString() });
+        if (guestHistory.length > 30) guestHistory.shift();
+      }
 
       // Nếu ĐÃ ĐĂNG NHẬP: Lưu vào Collection chat_history trên Appwrite
       if (currentUser && appwriteDatabases) {
@@ -602,7 +608,7 @@
             APPWRITE_CONFIG.chatHistoryCollectionId,
             ID.unique(),
             {
-              userId: currentUser.$id,
+              userID: currentUser.$id,
               sender: sender,
               message: messageText.substring(0, 4800),
               timestamp: new Date().toISOString()
@@ -614,7 +620,7 @@
       }
     }
 
-    // Chuyển tiếp mượt mà: Đồng bộ tin nhắn khách khi vừa đăng nhập
+    // Chuyển tiếp mượt mà: Đồng bộ tin nhắn khách vào tài khoản khi vừa đăng nhập
     async function dongBoGuestHistory() {
       if (!currentUser || !appwriteDatabases || guestHistory.length === 0) return;
       try {
@@ -625,7 +631,7 @@
             APPWRITE_CONFIG.chatHistoryCollectionId,
             ID.unique(),
             {
-              userId: currentUser.$id,
+              userID: currentUser.$id,
               sender: item.sender,
               message: item.message.substring(0, 4800),
               timestamp: item.timestamp || new Date().toISOString()
@@ -651,6 +657,8 @@
     };
 
     let savedHistoryList = [];
+    let hasLoadedHistoryIntoChat = false;
+
     window.taiLaiLichSuChat = async function () {
       const listEl = document.getElementById('history-list');
       const countEl = document.getElementById('history-count');
@@ -669,7 +677,7 @@
           APPWRITE_CONFIG.databaseId,
           APPWRITE_CONFIG.chatHistoryCollectionId,
           [
-            Query.equal('userId', currentUser.$id),
+            Query.equal('userID', currentUser.$id),
             Query.orderAsc('timestamp'),
             Query.limit(100)
           ]
@@ -716,6 +724,12 @@
         alert('Không có tin nhắn nào để nạp vào khung chat.');
         return;
       }
+      if (hasLoadedHistoryIntoChat) {
+        if (!confirm('Lịch sử chat đã được hiển thị trong khung chat. Bạn có muốn nạp lại không?')) {
+          dongLichSuModal();
+          return;
+        }
+      }
       isHistoryLoading = true;
       const messagesContainer = document.getElementById('chat-messages');
 
@@ -728,7 +742,33 @@
         appendMessage(doc.message, doc.sender);
       });
       isHistoryLoading = false;
+      hasLoadedHistoryIntoChat = true;
+      if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
       dongLichSuModal();
+    };
+
+    // Tự động kiểm tra và gợi ý khôi phục lịch sử chat khi có phiên đăng nhập
+    async function tuDongKiemTraVaGoiYLichSu() {
+      if (!currentUser || !appwriteDatabases) return;
+      try {
+        const { Query } = Appwrite;
+        const res = await appwriteDatabases.listDocuments(
+          APPWRITE_CONFIG.databaseId,
+          APPWRITE_CONFIG.chatHistoryCollectionId,
+          [
+            Query.equal('userID', currentUser.$id),
+            Query.orderAsc('timestamp'),
+            Query.limit(100)
+          ]
+        );
+        savedHistoryList = res.documents || [];
+        const count = savedHistoryList.length;
+        if (count > 0 && !hasLoadedHistoryIntoChat) {
+          appendMessage(`💡 Hệ thống tìm thấy <b>${count} tin nhắn</b> đã lưu từ các phiên tư vấn trước của bạn.<br><button onclick="taiLichSuVaoKhungChat()" class="mt-2 inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-3 py-1.5 rounded-lg text-xs shadow-sm transition"><span>📥</span> Nạp lịch sử vào khung chat ngay</button>`, 'bot');
+        }
+      } catch (err) {
+        console.warn('Kiểm tra lịch sử tự động:', err);
+      }
     };
 
     // =========================================================================
@@ -1319,7 +1359,11 @@
         `;
         messagesContainer.appendChild(messageDiv);
         const textContainer = messageDiv.querySelector('.bot-msg-box');
-        typeWriterEffect(textContainer, content, messagesContainer);
+        if (isHistoryLoading) {
+          textContainer.innerHTML = content;
+        } else {
+          typeWriterEffect(textContainer, content, messagesContainer);
+        }
       }
     }
 
@@ -3329,8 +3373,8 @@
             APPWRITE_CONFIG.studentDataCollectionId,
             ID.unique(),
             {
-              userId: currentUser ? currentUser.$id : 'guest',
-              fullName: name,
+              userID: currentUser ? currentUser.$id : 'guest',
+              fullname: name,
               phone: phone,
               email: currentUser ? (currentUser.email || '') : '',
               interestedMajor: major
