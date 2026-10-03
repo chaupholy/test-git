@@ -968,23 +968,23 @@
     window.batDauTracNghiem = function () {
       quizAnswers = {};
       const html = `
-        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3.5 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
           <div class="font-bold text-indigo-800 flex items-center gap-1.5 text-xs">
             <span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 1/3)</b>
           </div>
-          <p class="text-gray-700 text-xs"><b>Bạn cảm thấy hào hứng nhất khi được làm việc trong môi trường nào?</b></p>
+          <p class="text-gray-700 text-xs"><b>Môi trường và phong cách làm việc nào khiến bạn cảm thấy hào hứng nhất?</b></p>
           <div class="space-y-1.5 pt-1">
-            <button onclick="chonDapAnQuiz(1, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-              <span>💻</span> <span>Trong văn phòng, ngồi phòng máy lạnh làm việc với máy tính</span>
+            <button onclick="chonDapAnQuiz(1, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+              <span>🔧</span> <span><b>Nhà xưởng kỹ thuật, công trình:</b> Mày mò ô tô, máy móc, cơ khí hàn, lắp điện, xây dựng</span>
             </button>
-            <button onclick="chonDapAnQuiz(1, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-              <span>🔧</span> <span>Trong nhà xưởng thực tế, mày mò lắp ráp cơ khí, máy móc, ô tô, điện</span>
+            <button onclick="chonDapAnQuiz(1, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+              <span>💻</span> <span><b>Văn phòng công nghệ số:</b> Ngồi phòng máy lạnh làm việc với máy tính, phần mềm, đồ họa, internet</span>
             </button>
-            <button onclick="chonDapAnQuiz(1, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-              <span>🌾</span> <span>Gần gũi thiên nhiên, nông trại công nghệ cao, cây trồng, nhà lưới</span>
+            <button onclick="chonDapAnQuiz(1, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+              <span>🐾</span> <span><b>Gần gũi thiên nhiên & động vật:</b> Chăm sóc thú cưng/gia súc (Thú y), nuôi tôm cá, nông trại sạch</span>
             </button>
-            <button onclick="chonDapAnQuiz(1, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-              <span>🤝</span> <span>Giao tiếp, gặp gỡ nhiều người, kinh doanh bán hàng, du lịch</span>
+            <button onclick="chonDapAnQuiz(1, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+              <span>🏨</span> <span><b>Dịch vụ, ẩm thực & du lịch:</b> Khách sạn, nhà hàng, làm bếp đầu bếp, spa làm đẹp, du lịch, kế toán</span>
             </button>
           </div>
         </div>
@@ -997,23 +997,23 @@
 
       if (cauHoi === 1) {
         const html = `
-          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
+          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3.5 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
             <div class="font-bold text-indigo-800 flex items-center gap-1.5 text-xs">
               <span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 2/3)</b>
             </div>
-            <p class="text-gray-700 text-xs"><b>Thế mạnh hoặc sở thích nổi bật nhất của bạn là gì?</b></p>
+            <p class="text-gray-700 text-xs"><b>Năng khiếu hoặc sở thích cá nhân nổi trội nhất của bạn là gì?</b></p>
             <div class="space-y-1.5 pt-1">
-              <button onclick="chonDapAnQuiz(2, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-                <span>🎨</span> <span>Tư duy sáng tạo, thích vẽ/thiết kế hình ảnh, mạng internet, công nghệ</span>
+              <button onclick="chonDapAnQuiz(2, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>⚙️</span> <span><b>Khéo tay & đam mê kỹ thuật:</b> Thích sửa xe, đồ điện gia dụng, cơ khí hàn xì, đọc bản vẽ công trình</span>
               </button>
-              <button onclick="chonDapAnQuiz(2, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-                <span>⚙️</span> <span>Khéo tay, thích tự sửa đồ đạc, xe máy, quạt điện, máy móc trong nhà</span>
+              <button onclick="chonDapAnQuiz(2, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🎨</span> <span><b>Tư duy sáng tạo & công nghệ:</b> Thích máy tính, vẽ/thiết kế ảnh, lập trình web, bán hàng online</span>
               </button>
-              <button onclick="chonDapAnQuiz(2, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-                <span>🌱</span> <span>Thích tìm hiểu cách trồng trọt, nhân giống cây, bảo vệ mùa màng</span>
+              <button onclick="chonDapAnQuiz(2, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🦐</span> <span><b>Yêu động vật, sông nước & cây cối:</b> Thích chăm sóc chó mèo, đam mê nuôi tôm cá, bảo vệ mùa màng</span>
               </button>
-              <button onclick="chonDapAnQuiz(2, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-                <span>📊</span> <span>Tính toán nhanh nhẹn, thích buôn bán online hoặc am hiểu luật lệ</span>
+              <button onclick="chonDapAnQuiz(2, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>💄</span> <span><b>Khéo léo, chăm sóc & giao tiếp:</b> Thích nấu ăn (bếp), làm đẹp (spa, make-up), tiếp đón khách, ngoại ngữ</span>
               </button>
             </div>
           </div>
@@ -1021,23 +1021,23 @@
         appendMessage(html, 'bot');
       } else if (cauHoi === 2) {
         const html = `
-          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
+          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-3.5 rounded-2xl border border-indigo-100 shadow-sm space-y-2.5">
             <div class="font-bold text-indigo-800 flex items-center gap-1.5 text-xs">
               <span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 3/3)</b>
             </div>
-            <p class="text-gray-700 text-xs"><b>Định hướng tương lai sau khi ra trường bạn mong muốn nhất là gì?</b></p>
+            <p class="text-gray-700 text-xs"><b>Định hướng công việc sau khi ra trường bạn mong muốn nhất là gì?</b></p>
             <div class="space-y-1.5 pt-1">
-              <button onclick="chonDapAnQuiz(3, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-                <span>💼</span> <span>Làm chuyên viên IT, thiết kế đồ họa hoặc quản trị bán hàng online</span>
+              <button onclick="chonDapAnQuiz(3, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🚗</span> <span><b>Kỹ thuật viên hãng xe, công trình, nhà máy:</b> Kỹ thuật viên ô tô, thợ hàn cơ khí, thợ điện, giám sát xây dựng</span>
               </button>
-              <button onclick="chonDapAnQuiz(3, 'KYTHUAT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-                <span>🏢</span> <span>Làm kỹ thuật viên gara ô tô, điện xí nghiệp hoặc tự mở tiệm sửa chữa</span>
+              <button onclick="chonDapAnQuiz(3, 'CNTT')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>💼</span> <span><b>Chuyên viên IT, Thiết kế hoặc Thương mại số:</b> Lập trình viên, thiết kế đồ họa, quản trị mạng, vận hành shop online</span>
               </button>
-              <button onclick="chonDapAnQuiz(3, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-                <span>🏡</span> <span>Làm chủ trang trại sạch, kỹ thuật viên công ty giống hoặc cửa hàng VTNN</span>
+              <button onclick="chonDapAnQuiz(3, 'NONGNGHIEP')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🏡</span> <span><b>Kỹ thuật viên Thú y, Thủy sản hoặc Nông trại:</b> Phòng khám thú cưng Pet Shop, trại tôm cá công nghệ cao, trang trại VietGAP</span>
               </button>
-              <button onclick="chonDapAnQuiz(3, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
-                <span>🧭</span> <span>Làm hướng dẫn viên du lịch, nhân viên kế toán thuế hoặc công chức tư pháp</span>
+              <button onclick="chonDapAnQuiz(3, 'KINHTE')" class="w-full text-left bg-white hover:bg-indigo-100 p-2.5 rounded-xl border border-indigo-100 text-xs text-gray-700 transition flex items-center gap-2">
+                <span>🌟</span> <span><b>Chuyên viên Dịch vụ, Đầu bếp, Thẩm mỹ hay Du lịch:</b> Đầu bếp nhà hàng Á - Âu, kỹ thuật viên spa, lễ tân khách sạn, dẫn tour du lịch</span>
               </button>
             </div>
           </div>
@@ -1049,12 +1049,12 @@
     };
 
     function hienThiKetQuaQuiz() {
-      const counts = { CNTT: 0, KYTHUAT: 0, NONGNGHIEP: 0, KINHTE: 0 };
+      const counts = { KYTHUAT: 0, CNTT: 0, NONGNGHIEP: 0, KINHTE: 0 };
       counts[quizAnswers.cau1] = (counts[quizAnswers.cau1] || 0) + 1;
       counts[quizAnswers.cau2] = (counts[quizAnswers.cau2] || 0) + 1;
       counts[quizAnswers.cau3] = (counts[quizAnswers.cau3] || 0) + 1;
 
-      let topGroup = 'CNTT';
+      let topGroup = 'KYTHUAT';
       let maxCount = -1;
       for (const [group, count] of Object.entries(counts)) {
         if (count > maxCount) {
@@ -1067,46 +1067,62 @@
       let resDesc = '';
       let resMajors = [];
 
-      if (topGroup === 'CNTT') {
-        resTitle = '💻 KHỐI CÔNG NGHỆ THÔNG TIN & THIẾT KẾ ĐỒ HỌA';
-        resDesc = 'Bạn có tư duy công nghệ, thích sáng tạo và làm việc trong môi trường năng động, văn phòng hiện đại.';
+      if (topGroup === 'KYTHUAT') {
+        resTitle = '🔧 KHOA KỸ THUẬT - CÔNG NGHỆ (7 NGHỀ ĐÀO TẠO)';
+        resDesc = 'Bạn là người có tư duy kỹ thuật, khéo tay, yêu thích máy móc, xe cộ và công trình. Các nghề kỹ thuật có thời lượng thực hành lên đến 80%, tay nghề thực chiến vững chắc, ra trường có việc làm ngay với thu nhập cao!';
         resMajors = [
-          { name: 'Thiết kế đồ họa', tag: 'Hot Trend, thu nhập cao' },
-          { name: 'Tin học ứng dụng', tag: 'Văn phòng, dễ xin việc' },
-          { name: 'Quản trị mạng máy tính', tag: 'Hệ thống, an ninh mạng' }
+          { name: 'Công nghệ ô tô', code: '5510216', tag: 'Nhu cầu cực lớn: Hãng xe, garage ô tô, trạm đăng kiểm, detailing' },
+          { name: 'Công nghệ Hàn', code: '5510217', tag: 'Lương cao: Hàn TIG/MIG, đóng tàu sà lan ĐBSCL, kết cấu thép KCN' },
+          { name: 'Kỹ thuật xây dựng', code: '5580201', tag: 'Thi công công trình dân dụng, trắc địa, giám sát an toàn thi công' },
+          { name: 'Điện công nghiệp', code: '5520227', tag: 'Trụ cột các nhà máy, xí nghiệp: Đấu nối tủ điện, điều khiển máy' },
+          { name: 'Điện Dân dụng', code: '5520226', tag: 'Thi công mạng điện nhà ở, chiếu sáng thông minh, đồ gia dụng' },
+          { name: 'Kỹ thuật máy lạnh và ĐHKK', code: '5520205', tag: 'Điện lạnh, siêu thị máy lạnh, kho lạnh cấp đông thủy sản' },
+          { name: 'Cơ điện nông thôn', code: '5520262', tag: 'Bảo trì máy cày, máy gặt đập liên hợp, máy bay nông nghiệp' }
         ];
-      } else if (topGroup === 'KYTHUAT') {
-        resTitle = '🔧 KHỐI KỸ THUẬT - ĐIỆN - CÔNG NGHỆ Ô TÔ';
-        resDesc = 'Bạn là người có năng khiếu kỹ thuật, khéo tay, yêu thích máy móc và muốn có tay nghề vững chắc, ra trường có việc ngay!';
+      } else if (topGroup === 'CNTT') {
+        resTitle = '💻 KHOA CÔNG NGHỆ THÔNG TIN (7 NGHỀ ĐÀO TẠO)';
+        resDesc = 'Bạn có tư duy logic, sáng tạo và yêu thích làm việc trong môi trường công nghệ số hiện đại, văn phòng máy lạnh hoặc làm việc từ xa (freelancer).';
         resMajors = [
-          { name: 'Công nghệ ô tô', tag: 'Nhu cầu tuyển dụng cực lớn' },
-          { name: 'Kỹ thuật máy lạnh & ĐHKK', tag: 'Dễ mở tiệm riêng, thu nhập tốt' },
-          { name: 'Điện công nghiệp', tag: 'Trụ cột các nhà máy, xí nghiệp' }
+          { name: 'Công nghệ thông tin (Ứng dụng phần mềm)', code: '5480202', tag: 'Lập trình ứng dụng, thiết kế Website responsive, quản trị CSDL SQL' },
+          { name: 'Thiết kế đồ họa', code: '5210402', tag: 'Hot Trend: Photoshop, Illustrator, Corel, ấn phẩm truyền thông, in ấn' },
+          { name: 'Thương mại điện tử', code: '5340122', tag: 'Vận hành gian hàng Shopee, TikTok Shop, Digital Marketing đa kênh' },
+          { name: 'Quản trị mạng máy tính', code: '5480209', tag: 'Quản trị hệ thống Server, mạng LAN/Wi-Fi, camera an ninh' },
+          { name: 'Kỹ thuật sửa chữa, lắp ráp máy tính', code: '5480102', tag: 'Phần cứng máy tính, laptop, IT Helpdesk hỗ trợ kỹ thuật cơ quan' },
+          { name: 'Tin học văn phòng', code: '5480203', tag: 'Soạn thảo thể thức chuẩn Nghị định 30, Excel nâng cao, văn thư' },
+          { name: 'Tin học ứng dụng', code: '5480205', tag: 'Quản trị cổng thông tin, phần mềm nghiệp vụ, chuyển đổi số' }
         ];
       } else if (topGroup === 'NONGNGHIEP') {
-        resTitle = '🌾 KHỐI NÔNG NGHIỆP CÔNG NGHỆ CAO';
-        resDesc = 'Bạn có tình yêu với thiên nhiên, cây trồng và nông nghiệp sạch – xu hướng phát triển bền vững hàng đầu tại ĐBSCL.';
+        resTitle = '🌾 KHOA NÔNG NGHIỆP CÔNG NGHỆ CAO (4 NGHỀ ĐÀO TẠO)';
+        resDesc = 'Bạn có tình yêu với thiên nhiên, động vật và ngành nông - thủy sản công nghệ cao – thế mạnh kinh tế hàng đầu tại vùng ĐBSCL với tiềm năng làm chủ cực kỳ lớn!';
         resMajors = [
-          { name: 'Trồng trọt & Bảo vệ thực vật', tag: 'Nhà lưới, VietGAP, khuyến nông' },
-          { name: 'Cơ điện nông thôn', tag: 'Cơ giới hóa nông nghiệp hiện đại' }
+          { name: 'Thú y', code: '5640101', tag: 'Xu hướng Hot: Phòng khám thú cưng Pet Shop, trại chăn nuôi CP, Japfa' },
+          { name: 'Nuôi trồng thủy sản nước mặn, nước lợ', code: '5620305', tag: 'Thế mạnh ĐBSCL: Trại nuôi tôm cá công nghệ cao, trại sản xuất giống' },
+          { name: 'Trồng trọt và bảo vệ thực vật', code: '5620111', tag: 'Nông nghiệp công nghệ cao, nhà màng, cây ăn trái VietGAP' },
+          { name: 'Bảo vệ thực vật', code: '5620116', tag: 'Chẩn đoán dịch hại IPM, kiểm dịch thực vật, công ty nông dược Lộc Trời' }
         ];
       } else {
-        resTitle = '📈 KHỐI KINH TẾ - DỊCH VỤ - DU LỊCH & LUẬT';
-        resDesc = 'Bạn có khả năng giao tiếp tốt, thích buôn bán, kinh doanh hoặc nắm bắt thông tin và pháp luật.';
+        resTitle = '💼 KHOA KINH TẾ - DU LỊCH - NGOẠI NGỮ & DỊCH VỤ (9 NGHỀ ĐÀO TẠO)';
+        resDesc = 'Bạn là người khéo léo, yêu thích giao tiếp, ẩm thực làm bếp, nghệ thuật làm đẹp hoặc dịch vụ khách hàng với cơ hội việc làm rộng mở tại các khách sạn, resort, thẩm mỹ viện lớn!';
         resMajors = [
-          { name: 'Thương mại điện tử', tag: 'Bán hàng online, TikTok Shop, Marketing' },
-          { name: 'Kế toán doanh nghiệp', tag: 'Khai thuế, chứng từ, phần mềm kế toán' },
-          { name: 'Hướng dẫn du lịch', tag: 'Năng động, khám phá địa danh' }
+          { name: 'Kỹ thuật chế biến món ăn', code: '6810207', tag: 'Nghề Đầu bếp: Nhà hàng, khách sạn 3-5 sao, tiệc cưới Á - Âu' },
+          { name: 'Chăm sóc sắc đẹp', code: '5810404', tag: 'Siêu Hot: Kỹ thuật viên Spa, thẩm mỹ viện, Make-up nghệ thuật cô dâu' },
+          { name: 'Quản trị khách sạn', code: '5810201', tag: 'Quản trị lưu trú, buồng phòng, tiền sảnh, resort du lịch cao cấp' },
+          { name: 'Nghiệp vụ lễ tân', code: '5810203', tag: 'Lễ tân tiếp đón, giao tiếp khách sạn, tòa nhà văn phòng hạng sang' },
+          { name: 'Nghiệp vụ nhà hàng', code: '5810206', tag: 'Phục vụ bàn tiệc Á - Âu, Bartender pha chế đồ uống chuyên nghiệp' },
+          { name: 'Hướng dẫn du lịch', code: '5810103', tag: 'Hướng dẫn viên du lịch nội địa, điều hành tour lữ hành ĐBSCL' },
+          { name: 'Tiếng Anh du lịch', code: '5520217', tag: 'Lễ tân quốc tế, hướng dẫn viên song ngữ, chăm sóc khách VIP' },
+          { name: 'Kế toán doanh nghiệp', code: '5340302', tag: 'Kế toán kho, thuế, chứng từ, thành thạo phần mềm kế toán MISA' },
+          { name: 'Pháp luật', code: '5380101', tag: 'Cán bộ tư pháp - hộ tịch xã/phường, văn phòng luật sư, công chứng' }
         ];
       }
 
       let majorsHTML = resMajors.map(m => `
-        <div class="bg-white p-2 rounded-xl border border-indigo-100 flex items-center justify-between text-xs">
-          <div>
-            <b class="text-indigo-900">${m.name}</b>
-            <span class="block text-[10px] text-gray-500">${m.tag}</span>
+        <div class="bg-white p-2.5 rounded-xl border border-indigo-100 flex items-center justify-between text-xs hover:border-indigo-300 transition">
+          <div class="pr-2">
+            <b class="text-indigo-900">${m.name}</b> <span class="text-[10px] text-gray-400 font-mono">(${m.code})</span>
+            <span class="block text-[10px] text-gray-500 mt-0.5">${m.tag}</span>
           </div>
-          <button onclick="sendQuickMessage('${m.name}')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold border border-indigo-200">
+          <button onclick="sendQuickMessage('${m.name}')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold border border-indigo-200 shrink-0">
             Xem nghề ↗
           </button>
         </div>
@@ -1115,19 +1131,22 @@
       const resultHTML = `
         <div class="bg-gradient-to-r from-emerald-50 to-indigo-50 p-3.5 rounded-2xl border border-emerald-200 shadow-sm space-y-2.5">
           <div class="font-bold text-emerald-800 flex items-center gap-1.5 text-xs">
-            <span>🎉</span> <b>KẾT QUẢ GỢI Ý NGHỀ PHÙ HỢP VỚI BẠN</b>
+            <span>🎉</span> <b>KẾT QUẢ GỢI Ý NGHỀ PHÙ HỢP VỚI BẠN (TRONG 27 NGHỀ ĐÀO TẠO)</b>
           </div>
           <div class="text-xs text-gray-800">
-            <b>${resTitle}</b><br>
-            <p class="text-[11px] text-gray-600 mt-0.5">${resDesc}</p>
+            <b class="text-indigo-900 text-[13px]">${resTitle}</b><br>
+            <p class="text-[11px] text-gray-600 mt-1">${resDesc}</p>
           </div>
-          <div class="space-y-1.5">
+          <div class="space-y-1.5 pt-1">
             ${majorsHTML}
           </div>
-          <div class="pt-1.5 border-t border-emerald-100 flex flex-wrap gap-1.5">
+          <div class="pt-2 border-t border-emerald-100 flex flex-wrap gap-1.5">
             <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm inline-block">
               📝 Đăng Ký Xét Tuyển Ngay
             </a>
+            <button onclick="sendQuickMessage('Các ngành đào tạo')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-indigo-200">
+              🎓 Xem Đủ 27 Nghề
+            </button>
             <button onclick="sendQuickMessage('Hẹn gọi tư vấn')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm">
               📞 Hẹn cán bộ gọi lại
             </button>

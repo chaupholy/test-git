@@ -564,6 +564,9 @@ input, select, textarea {
 
     <div id="menu">
 
+        <button onclick="batDauTracNghiem()" style="background:#eef2ff; color:#4338ca; font-weight:bold; border:1px solid #c7d2fe;">
+        🎯 Trắc nghiệm chọn nghề
+        </button>
 
         <button onclick="hoiNhanh('ngành đào tạo')">
 
@@ -831,7 +834,7 @@ function removeTypingIndicatorIndex() {
 }
 
 function typeWriterEffectIndex(container, html, scrollContainer) {
-    if (html.includes('<form') || html.includes('<input')) {
+    if (html.includes('<form') || html.includes('<input') || html.includes('chonDapAnQuiz') || html.includes('batDauTracNghiem')) {
         container.innerHTML = html;
         if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
         return;
@@ -899,6 +902,197 @@ function themTinNhan(noidung, loai) {
         khungChat.appendChild(botDiv);
         typeWriterEffectIndex(botDiv, noidung, khungChat);
     }
+}
+
+/* =========================================================================
+   TRẮC NGHIỆM CHỌN NGHỀ PHÙ HỢP 1 PHÚT (CAREER DISCOVERY QUIZ) - 27 NGHỀ
+========================================================================= */
+var quizAnswersIndex = {};
+
+window.batDauTracNghiem = function () {
+    quizAnswersIndex = {};
+    var html =
+        "<div style='background:linear-gradient(to right, #eef2ff, #faf5ff); padding:12px; border-radius:14px; border:1px solid #c7d2fe; box-shadow:0 1px 3px rgba(0,0,0,0.05);'>" +
+        "<div style='font-weight:bold; color:#3730a3; margin-bottom:6px; font-size:12px; display:flex; align-items:center; gap:6px;'>" +
+        "<span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 1/3)</b>" +
+        "</div>" +
+        "<p style='font-size:12px; color:#374151; margin-bottom:8px;'><b>Môi trường và phong cách làm việc nào khiến bạn cảm thấy hào hứng nhất?</b></p>" +
+        "<div style='display:flex; flex-direction:column; gap:6px;'>" +
+        "<button onclick=\"chonDapAnQuiz(1, 'KYTHUAT')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+        "<span>🔧</span> <span><b>Nhà xưởng kỹ thuật, công trình:</b> Mày mò ô tô, máy móc, cơ khí hàn, lắp điện, xây dựng</span>" +
+        "</button>" +
+        "<button onclick=\"chonDapAnQuiz(1, 'CNTT')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+        "<span>💻</span> <span><b>Văn phòng công nghệ số:</b> Ngồi phòng máy lạnh làm việc với máy tính, phần mềm, đồ họa, internet</span>" +
+        "</button>" +
+        "<button onclick=\"chonDapAnQuiz(1, 'NONGNGHIEP')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+        "<span>🐾</span> <span><b>Gần gũi thiên nhiên & động vật:</b> Chăm sóc thú cưng/gia súc (Thú y), nuôi tôm cá, nông trại sạch</span>" +
+        "</button>" +
+        "<button onclick=\"chonDapAnQuiz(1, 'KINHTE')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+        "<span>🏨</span> <span><b>Dịch vụ, ẩm thực & du lịch:</b> Khách sạn, nhà hàng, làm bếp đầu bếp, spa làm đẹp, du lịch, kế toán</span>" +
+        "</button>" +
+        "</div>" +
+        "</div>";
+    themTinNhan(html, "bot");
+};
+
+window.chonDapAnQuiz = function (cauHoi, luaChon) {
+    quizAnswersIndex['cau' + cauHoi] = luaChon;
+
+    if (cauHoi === 1) {
+        var html =
+            "<div style='background:linear-gradient(to right, #eef2ff, #faf5ff); padding:12px; border-radius:14px; border:1px solid #c7d2fe; box-shadow:0 1px 3px rgba(0,0,0,0.05);'>" +
+            "<div style='font-weight:bold; color:#3730a3; margin-bottom:6px; font-size:12px; display:flex; align-items:center; gap:6px;'>" +
+            "<span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 2/3)</b>" +
+            "</div>" +
+            "<p style='font-size:12px; color:#374151; margin-bottom:8px;'><b>Năng khiếu hoặc sở thích cá nhân nổi trội nhất của bạn là gì?</b></p>" +
+            "<div style='display:flex; flex-direction:column; gap:6px;'>" +
+            "<button onclick=\"chonDapAnQuiz(2, 'KYTHUAT')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+            "<span>⚙️</span> <span><b>Khéo tay & đam mê kỹ thuật:</b> Thích sửa xe, đồ điện gia dụng, cơ khí hàn xì, đọc bản vẽ công trình</span>" +
+            "</button>" +
+            "<button onclick=\"chonDapAnQuiz(2, 'CNTT')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+            "<span>🎨</span> <span><b>Tư duy sáng tạo & công nghệ:</b> Thích máy tính, vẽ/thiết kế ảnh, lập trình web, bán hàng online</span>" +
+            "</button>" +
+            "<button onclick=\"chonDapAnQuiz(2, 'NONGNGHIEP')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+            "<span>🦐</span> <span><b>Yêu động vật, sông nước & cây cối:</b> Thích chăm sóc chó mèo, đam mê nuôi tôm cá, bảo vệ mùa màng</span>" +
+            "</button>" +
+            "<button onclick=\"chonDapAnQuiz(2, 'KINHTE')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+            "<span>💄</span> <span><b>Khéo léo, chăm sóc & giao tiếp:</b> Thích nấu ăn (bếp), làm đẹp (spa, make-up), tiếp đón khách, ngoại ngữ</span>" +
+            "</button>" +
+            "</div>" +
+            "</div>";
+        themTinNhan(html, "bot");
+    } else if (cauHoi === 2) {
+        var html =
+            "<div style='background:linear-gradient(to right, #eef2ff, #faf5ff); padding:12px; border-radius:14px; border:1px solid #c7d2fe; box-shadow:0 1px 3px rgba(0,0,0,0.05);'>" +
+            "<div style='font-weight:bold; color:#3730a3; margin-bottom:6px; font-size:12px; display:flex; align-items:center; gap:6px;'>" +
+            "<span>🎯</span> <b>TRẮC NGHIỆM CHỌN NGHỀ (CÂU 3/3)</b>" +
+            "</div>" +
+            "<p style='font-size:12px; color:#374151; margin-bottom:8px;'><b>Định hướng công việc sau khi ra trường bạn mong muốn nhất là gì?</b></p>" +
+            "<div style='display:flex; flex-direction:column; gap:6px;'>" +
+            "<button onclick=\"chonDapAnQuiz(3, 'KYTHUAT')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+            "<span>🚗</span> <span><b>Kỹ thuật viên hãng xe, công trình, nhà máy:</b> Kỹ thuật viên ô tô, thợ hàn cơ khí, thợ điện, giám sát xây dựng</span>" +
+            "</button>" +
+            "<button onclick=\"chonDapAnQuiz(3, 'CNTT')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+            "<span>💼</span> <span><b>Chuyên viên IT, Thiết kế hoặc Thương mại số:</b> Lập trình viên, thiết kế đồ họa, quản trị mạng, vận hành shop online</span>" +
+            "</button>" +
+            "<button onclick=\"chonDapAnQuiz(3, 'NONGNGHIEP')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+            "<span>🏡</span> <span><b>Kỹ thuật viên Thú y, Thủy sản hoặc Nông trại:</b> Phòng khám thú cưng Pet Shop, trại tôm cá công nghệ cao, trang trại VietGAP</span>" +
+            "</button>" +
+            "<button onclick=\"chonDapAnQuiz(3, 'KINHTE')\" style='width:100%; text-align:left; background:#ffffff; border:1px solid #c7d2fe; border-radius:10px; padding:8px 10px; cursor:pointer; font-size:12px; color:#374151; display:flex; align-items:center; gap:8px;'>" +
+            "<span>🌟</span> <span><b>Chuyên viên Dịch vụ, Đầu bếp, Thẩm mỹ hay Du lịch:</b> Đầu bếp nhà hàng Á - Âu, kỹ thuật viên spa, lễ tân khách sạn, dẫn tour du lịch</span>" +
+            "</button>" +
+            "</div>" +
+            "</div>";
+        themTinNhan(html, "bot");
+    } else if (cauHoi === 3) {
+        hienThiKetQuaQuizIndex();
+    }
+};
+
+function hienThiKetQuaQuizIndex() {
+    var counts = { KYTHUAT: 0, CNTT: 0, NONGNGHIEP: 0, KINHTE: 0 };
+    counts[quizAnswersIndex.cau1] = (counts[quizAnswersIndex.cau1] || 0) + 1;
+    counts[quizAnswersIndex.cau2] = (counts[quizAnswersIndex.cau2] || 0) + 1;
+    counts[quizAnswersIndex.cau3] = (counts[quizAnswersIndex.cau3] || 0) + 1;
+
+    var topGroup = 'KYTHUAT';
+    var maxCount = -1;
+    for (var group in counts) {
+        if (counts[group] > maxCount) {
+            maxCount = counts[group];
+            topGroup = group;
+        }
+    }
+
+    var resTitle = '';
+    var resDesc = '';
+    var resMajors = [];
+
+    if (topGroup === 'KYTHUAT') {
+        resTitle = '🔧 KHOA KỸ THUẬT - CÔNG NGHỆ (7 NGHỀ ĐÀO TẠO)';
+        resDesc = 'Bạn là người có tư duy kỹ thuật, khéo tay, yêu thích máy móc, xe cộ và công trình. Các nghề kỹ thuật có thời lượng thực hành lên đến 80%, tay nghề thực chiến vững chắc, ra trường có việc làm ngay với thu nhập cao!';
+        resMajors = [
+            { name: 'Công nghệ ô tô', code: '5510216', tag: 'Nhu cầu cực lớn: Hãng xe, garage ô tô, trạm đăng kiểm, detailing' },
+            { name: 'Công nghệ Hàn', code: '5510217', tag: 'Lương cao: Hàn TIG/MIG, đóng tàu sà lan ĐBSCL, kết cấu thép KCN' },
+            { name: 'Kỹ thuật xây dựng', code: '5580201', tag: 'Thi công công trình dân dụng, trắc địa, giám sát an toàn thi công' },
+            { name: 'Điện công nghiệp', code: '5520227', tag: 'Trụ cột các nhà máy, xí nghiệp: Đấu nối tủ điện, điều khiển máy' },
+            { name: 'Điện Dân dụng', code: '5520226', tag: 'Thi công mạng điện nhà ở, chiếu sáng thông minh, đồ gia dụng' },
+            { name: 'Kỹ thuật máy lạnh và ĐHKK', code: '5520205', tag: 'Điện lạnh, siêu thị máy lạnh, kho lạnh cấp đông thủy sản' },
+            { name: 'Cơ điện nông thôn', code: '5520262', tag: 'Bảo trì máy cày, máy gặt đập liên hợp, máy bay nông nghiệp' }
+        ];
+    } else if (topGroup === 'CNTT') {
+        resTitle = '💻 KHOA CÔNG NGHỆ THÔNG TIN (7 NGHỀ ĐÀO TẠO)';
+        resDesc = 'Bạn có tư duy logic, sáng tạo và yêu thích làm việc trong môi trường công nghệ số hiện đại, văn phòng máy lạnh hoặc làm việc từ xa (freelancer).';
+        resMajors = [
+            { name: 'Công nghệ thông tin (Ứng dụng phần mềm)', code: '5480202', tag: 'Lập trình ứng dụng, thiết kế Website responsive, quản trị CSDL SQL' },
+            { name: 'Thiết kế đồ họa', code: '5210402', tag: 'Hot Trend: Photoshop, Illustrator, Corel, ấn phẩm truyền thông, in ấn' },
+            { name: 'Thương mại điện tử', code: '5340122', tag: 'Vận hành gian hàng Shopee, TikTok Shop, Digital Marketing đa kênh' },
+            { name: 'Quản trị mạng máy tính', code: '5480209', tag: 'Quản trị hệ thống Server, mạng LAN/Wi-Fi, camera an ninh' },
+            { name: 'Kỹ thuật sửa chữa, lắp ráp máy tính', code: '5480102', tag: 'Phần cứng máy tính, laptop, IT Helpdesk hỗ trợ kỹ thuật cơ quan' },
+            { name: 'Tin học văn phòng', code: '5480203', tag: 'Soạn thảo thể thức chuẩn Nghị định 30, Excel nâng cao, văn thư' },
+            { name: 'Tin học ứng dụng', code: '5480205', tag: 'Quản trị cổng thông tin, phần mềm nghiệp vụ, chuyển đổi số' }
+        ];
+    } else if (topGroup === 'NONGNGHIEP') {
+        resTitle = '🌾 KHOA NÔNG NGHIỆP CÔNG NGHỆ CAO (4 NGHỀ ĐÀO TẠO)';
+        resDesc = 'Bạn có tình yêu với thiên nhiên, động vật và ngành nông - thủy sản công nghệ cao – thế mạnh kinh tế hàng đầu tại vùng ĐBSCL với tiềm năng làm chủ cực kỳ lớn!';
+        resMajors = [
+            { name: 'Thú y', code: '5640101', tag: 'Xu hướng Hot: Phòng khám thú cưng Pet Shop, trại chăn nuôi CP, Japfa' },
+            { name: 'Nuôi trồng thủy sản nước mặn, nước lợ', code: '5620305', tag: 'Thế mạnh ĐBSCL: Trại nuôi tôm cá công nghệ cao, trại sản xuất giống' },
+            { name: 'Trồng trọt và bảo vệ thực vật', code: '5620111', tag: 'Nông nghiệp công nghệ cao, nhà màng, cây ăn trái VietGAP' },
+            { name: 'Bảo vệ thực vật', code: '5620116', tag: 'Chẩn đoán dịch hại IPM, kiểm dịch thực vật, công ty nông dược Lộc Trời' }
+        ];
+    } else {
+        resTitle = '💼 KHOA KINH TẾ - DU LỊCH - NGOẠI NGỮ & DỊCH VỤ (9 NGHỀ ĐÀO TẠO)';
+        resDesc = 'Bạn là người khéo léo, yêu thích giao tiếp, ẩm thực làm bếp, nghệ thuật làm đẹp hoặc dịch vụ khách hàng với cơ hội việc làm rộng mở tại các khách sạn, resort, thẩm mỹ viện lớn!';
+        resMajors = [
+            { name: 'Kỹ thuật chế biến món ăn', code: '6810207', tag: 'Nghề Đầu bếp: Nhà hàng, khách sạn 3-5 sao, tiệc cưới Á - Âu' },
+            { name: 'Chăm sóc sắc đẹp', code: '5810404', tag: 'Siêu Hot: Kỹ thuật viên Spa, thẩm mỹ viện, Make-up nghệ thuật cô dâu' },
+            { name: 'Quản trị khách sạn', code: '5810201', tag: 'Quản trị lưu trú, buồng phòng, tiền sảnh, resort du lịch cao cấp' },
+            { name: 'Nghiệp vụ lễ tân', code: '5810203', tag: 'Lễ tân tiếp đón, giao tiếp khách sạn, tòa nhà văn phòng hạng sang' },
+            { name: 'Nghiệp vụ nhà hàng', code: '5810206', tag: 'Phục vụ bàn tiệc Á - Âu, Bartender pha chế đồ uống chuyên nghiệp' },
+            { name: 'Hướng dẫn du lịch', code: '5810103', tag: 'Hướng dẫn viên du lịch nội địa, điều hành tour lữ hành ĐBSCL' },
+            { name: 'Tiếng Anh du lịch', code: '5520217', tag: 'Lễ tân quốc tế, hướng dẫn viên song ngữ, chăm sóc khách VIP' },
+            { name: 'Kế toán doanh nghiệp', code: '5340302', tag: 'Kế toán kho, thuế, chứng từ, thành thạo phần mềm kế toán MISA' },
+            { name: 'Pháp luật', code: '5380101', tag: 'Cán bộ tư pháp - hộ tịch xã/phường, văn phòng luật sư, công chứng' }
+        ];
+    }
+
+    var majorsHTML = '';
+    for (var i = 0; i < resMajors.length; i++) {
+        var m = resMajors[i];
+        majorsHTML +=
+            "<div style='background:#ffffff; padding:8px 10px; border-radius:10px; border:1px solid #e0e7ff; display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; font-size:12px;'>" +
+            "<div style='padding-right:8px;'>" +
+            "<b style='color:#312e81;'>" + m.name + "</b> <span style='font-size:10px; color:#9ca3af; font-family:monospace;'>(" + m.code + ")</span>" +
+            "<span style='display:block; font-size:10px; color:#6b7280; margin-top:2px;'>" + m.tag + "</span>" +
+            "</div>" +
+            "<button onclick=\"sendQuickMessage('" + m.name + "')\" style='background:#eef2ff; color:#4338ca; padding:5px 10px; border-radius:8px; font-size:11px; font-weight:bold; border:1px solid #c7d2fe; cursor:pointer; white-space:nowrap;'>" +
+            "Xem nghề ↗" +
+            "</button>" +
+            "</div>";
+    }
+
+    var resultHTML =
+        "<div style='background:linear-gradient(to right, #ecfdf5, #eef2ff); padding:12px; border-radius:14px; border:1px solid #a7f3d0; box-shadow:0 1px 3px rgba(0,0,0,0.05);'>" +
+        "<div style='font-weight:bold; color:#065f46; font-size:12px; display:flex; align-items:center; gap:6px; margin-bottom:4px;'>" +
+        "<span>🎉</span> <b>KẾT QUẢ GỢI Ý NGHỀ PHÙ HỢP VỚI BẠN (TRONG 27 NGHỀ ĐÀO TẠO)</b>" +
+        "</div>" +
+        "<div style='font-size:12px; color:#1f2937; margin-bottom:8px;'>" +
+        "<b style='color:#312e81; font-size:13px;'>" + resTitle + "</b><br>" +
+        "<p style='font-size:11px; color:#4b5563; margin-top:4px; margin-bottom:0;'>" + resDesc + "</p>" +
+        "</div>" +
+        "<div style='margin-bottom:8px;'>" +
+        majorsHTML +
+        "</div>" +
+        "<div style='padding-top:8px; border-top:1px solid #d1fae5; display:flex; flex-wrap:wrap; gap:6px;'>" +
+        "<a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank' style='display:inline-block; background:#059669; color:#ffffff; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold; text-decoration:none;'>📝 Đăng Ký Xét Tuyển Ngay</a>" +
+        "<button onclick=\"sendQuickMessage('Các ngành đào tạo')\" style='padding:6px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:8px; font-size:11px; font-weight:bold; cursor:pointer;'>🎓 Xem Đủ 27 Nghề</button>" +
+        "<button onclick=\"sendQuickMessage('Hẹn gọi tư vấn')\" style='padding:6px 10px; background:#4f46e5; color:#ffffff; border:none; border-radius:8px; font-size:11px; font-weight:bold; cursor:pointer;'>📞 Hẹn cán bộ gọi lại</button>" +
+        "<button onclick='batDauTracNghiem()' style='padding:6px 10px; background:#ffffff; color:#374151; border:1px solid #d1d5db; border-radius:8px; font-size:11px; font-weight:bold; cursor:pointer;'>🔄 Làm lại trắc nghiệm</button>" +
+        "</div>" +
+        "</div>";
+
+    themTinNhan(resultHTML, "bot");
 }
 
 
@@ -1327,6 +1521,30 @@ function guiTinNhan() {
 
     var traLoi = "";
 
+
+    /* =========================
+       0. TRẮC NGHIỆM CHỌN NGHỀ (CAREER QUIZ)
+    ========================= */
+    var isQuizTrigger = (
+        text.includes("trắc nghiệm") || text.includes("trac nghiem") ||
+        text.includes("chọn nghề") || text.includes("chon nghe") ||
+        text.includes("khám phá nghề") || text.includes("kham pha nghe") ||
+        text.includes("chưa biết học gì") || text.includes("chua biet hoc gi") ||
+        text.includes("chưa biết chọn nghề nào") || text.includes("chua biet chon nghe nao") ||
+        text.includes("tư vấn chọn nghề") || text.includes("tu van chon nghe") ||
+        text.includes("tư vấn nghề phù hợp") || text.includes("tu van nghe phu hop") ||
+        text.includes("nên học nghề nào") || text.includes("nen hoc nghe nao") ||
+        text.includes("nghề nào hợp") || text.includes("nghe nao hop") ||
+        text.includes("gợi ý nghề") || text.includes("goi y nghe") ||
+        text.includes("gợi ý chọn nghề") || text.includes("goi y chon nghe")
+    );
+
+    if (isQuizTrigger) {
+        setTimeout(function() {
+            batDauTracNghiem();
+        }, 300);
+        return;
+    }
 
     /* =========================
        HẸN CÁN BỘ GỌI LẠI (LEAD FORM)
