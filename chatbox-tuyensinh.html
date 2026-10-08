@@ -699,6 +699,7 @@
         savedHistoryList.forEach(doc => {
           const isUser = doc.sender === 'user';
           const time = doc.timestamp ? new Date(doc.timestamp).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' }) : '';
+          const safeMessage = escapeHtml(doc.message || '');
           html += `
             <div class="p-2.5 rounded-xl border ${isUser ? 'bg-indigo-50 border-indigo-100' : 'bg-white border-gray-200'}">
               <div class="flex justify-between items-center mb-1 text-[10px] text-gray-500">
@@ -706,7 +707,7 @@
                 <span>${time}</span>
               </div>
               <div class="text-gray-800 leading-relaxed text-xs">
-                ${doc.message}
+                ${safeMessage}
               </div>
             </div>
           `;
@@ -1357,7 +1358,7 @@
         messageDiv.className = 'flex justify-end';
         messageDiv.innerHTML = `
           <div class="bg-indigo-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[80%]">
-            ${content}
+            ${escapeHtml(content)}
           </div>
         `;
         messagesContainer.appendChild(messageDiv);
@@ -1379,11 +1380,21 @@
         messagesContainer.appendChild(messageDiv);
         const textContainer = messageDiv.querySelector('.bot-msg-box');
         if (isHistoryLoading) {
-          textContainer.innerHTML = content;
+          textContainer.textContent = content;
         } else {
           typeWriterEffect(textContainer, content, messagesContainer);
         }
       }
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[char]);
     }
 
     // === CHUẨN HÓA TIẾNG VIỆT & XỬ LÝ LỖI GÕ PHÍM / KHÔNG DẤU / SAI DẤU ===
@@ -2042,6 +2053,93 @@
 
       // 0.4. Tra cứu Cán bộ, Giáo viên, Trưởng phòng, Trưởng khoa, Ban Giám Hiệu & Email
       const isStaffQuery = q.includes('giáo viên') || q.includes('cán bộ') || q.includes('trưởng phòng') || q.includes('trưởng khoa') || q.includes('hiệu trưởng') || q.includes('ban giám hiệu') || q.includes('bgh') || q.includes('email') || (/\b(thầy|cô)\b/i.test(query));
+
+      const staffDirectories = [
+        { label: 'Phòng Tổ chức – Hành chính', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-tc-hc', keys: ['tổ chức', 'to chuc', 'hành chính', 'hanh chinh'] },
+        { label: 'Phòng Tổng hợp – Tài chính – Thiết bị', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-phong-tai-chinh-thiet-bi', keys: ['tài chính', 'tai chinh', 'tổng hợp', 'tong hop', 'thiết bị', 'thiet bi'] },
+        { label: 'Phòng Đào tạo', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-p-dt', keys: ['phòng đào tạo', 'phong dao tao'] },
+        { label: 'Phòng Công tác Học sinh – Quan hệ Doanh nghiệp', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-p-cths', keys: ['công tác học sinh', 'cong tac hoc sinh', 'quản lý học sinh', 'quan ly hoc sinh', 'quan hệ doanh nghiệp', 'quan he doanh nghiep'] },
+        { label: 'Phòng Tuyển sinh – Liên kết đào tạo và Dịch vụ', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-phong-tuyen-sinh-lien-ket-dao-tao-va-dich-vu', keys: ['tuyển sinh', 'tuyen sinh', 'liên kết đào tạo', 'lien ket dao tao'] },
+        { label: 'Khoa Kỹ thuật – Công nghệ', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-khoa-ky-thuat-cong-nghe', keys: ['kỹ thuật công nghệ', 'ky thuat cong nghe', 'khoa kỹ thuật', 'khoa ky thuat'] },
+        { label: 'Khoa Công nghệ thông tin', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-k-cntt', keys: ['công nghệ thông tin', 'cong nghe thong tin', 'cntt'] },
+        { label: 'Khoa Kinh tế – Du lịch – Ngoại ngữ', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-khoa-kinh-te-du-lich-ngoai-ngu', keys: ['kinh tế', 'kinh te', 'du lịch', 'du lich', 'ngoại ngữ', 'ngoai ngu'] },
+        { label: 'Khoa Khoa học cơ bản', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-khoa-khoa-hoc-co-ban', keys: ['khoa học cơ bản', 'khoa hoc co ban'] },
+        { label: 'Khoa Nông nghiệp', url: 'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-khoa-nong-nghiep', keys: ['nông nghiệp', 'nong nghiep'] }
+      ];
+      const currentStaffByDirectory = {
+        'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-tc-hc': [
+          'Tạ Quang Trung — Phó Trưởng phòng', 'Chau Chhane — Phó Trưởng phòng', 'Néang Cung Chanh Đa — Nhân viên',
+          'Phạm Thanh Sang — Nhân viên', 'Huỳnh Thanh Thùy — Nhân viên', 'Thạch Thị Mỹ Hoàng — Nhân viên'
+        ],
+        'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-p-cths': [
+          'Nguyễn Thị Thúy — Phó Trưởng phòng', 'Chi Sóc Hoanh — Chuyên viên', 'Kim Lý Mai — Chuyên viên',
+          'Lê Văn Thịnh — Chuyên viên', 'Phạm Thanh Sang — Nhân viên', 'Chau Sóc Nây — Nhân viên y tế', 'Nguyễn Thị Kim Ngọc — Nhân viên'
+        ],
+        'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-phong-tuyen-sinh-lien-ket-dao-tao-va-dich-vu': [
+          'Đỗ Thanh Việt — Trưởng phòng', 'Phạm Trần Quân — Phó Trưởng phòng', 'Nguyễn Minh Thư — Phó Trưởng phòng',
+          'Thị Mỹ Nhung — Nhân viên', 'Néang Kim Sáng — Nhân viên', 'Bùi Anh Mãi — Nhân viên'
+        ],
+        'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-khoa-ky-thuat-cong-nghe': [
+          'Phan Đại Nghĩa — Trưởng khoa', 'Huỳnh Tuấn Phong — Phó Trưởng khoa', 'Phan Hồng Thạch — Phó Trưởng khoa',
+          'Dương Văn Ngọ — Giáo viên', 'Nguyễn Chí Hiếu — Giáo viên', 'Nguyễn Trung Hiếu — Giáo viên', 'Phan Thị Hồng Phúc — Giáo viên',
+          'Chau Phương — Giáo viên', 'Néang Sa Vinh — Giáo viên', 'Chau Sát — Giáo viên', 'Lê Tiến Việt — Giáo viên',
+          'Nguyễn Trí Tuệ — Giáo viên', 'Danh Quốc Đạt — Giáo viên', 'Huỳnh Thanh Xuân — Giáo viên', 'Huỳnh Quốc Nghị — Giáo viên',
+          'Tô Nhựt Trường — Giáo viên', 'Đỗ Vũ Quang — Giáo viên', 'Nguyễn Đức Hải — Giáo viên', 'Lê Dĩ Khang — Giáo viên'
+        ],
+        'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-k-cntt': [
+          'Nguyễn Lin Ka — Trưởng khoa', 'Chau Pho Ly — Phó Trưởng khoa', 'Phạm Vĩnh Lộc — Phó Trưởng khoa', 'Thái Lâm Ngọc Thi — Phó Trưởng khoa',
+          'Dương Văn Phim — Giáo viên', 'Trần Thị Ngọc Huyền — Giáo viên', 'Chau Sonh — Giáo viên', 'Chau Đặng Trung Hưng — Giáo viên',
+          'Phạm Thị Mộng Điềm — Giáo viên', 'Chau Roth Tha — Giáo viên', 'Néang Ônl — Giáo viên', 'Nguyễn Văn Nhớ — Giáo viên',
+          'Ngô Thị Nguyệt Thanh — Giáo viên', 'Phùng Thanh Phát — Giáo viên'
+        ],
+        'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-khoa-kinh-te-du-lich-ngoai-ngu': [
+          'Danh Thị Diệu Hạnh — Trưởng khoa', 'Dương Kim Thoa — Giáo viên', 'Néang Xuân Kim La — Giáo viên',
+          'Nguyễn Đỗ Khang Anh — Giáo viên', 'Chung Ái Nhân — Giáo viên', 'Nguyễn Đăng Khoa — Giáo viên',
+          'Lưu Ngọc Hào — Giáo viên', 'Hồ Thảo Ly — Giáo viên'
+        ],
+        'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-khoa-khoa-hoc-co-ban': [
+          'Trần Quang Long — Trưởng khoa', 'Lê Thái Ngân — Phó Trưởng khoa', 'Châu Việt — Giáo viên', 'Phạm Thị Lai — Giáo viên',
+          'Châu Thị Tú Khuê — Giáo viên', 'Huỳnh Thị Nhựt Dung — Giáo viên', 'Nguyễn Ngọc Hà — Giáo viên'
+        ],
+        'https://dtntag.edu.vn/vi/phong-khoa/co-cau-to-chuc-khoa-nong-nghiep': [
+          'Trần Quốc Tam — Trưởng khoa', 'Nguyễn Thị Mỹ Khuyên — Phó Trưởng khoa', 'Chau Phi Run — Giáo viên',
+          'Néang Nath — Giáo viên', 'Huỳnh Thị Thùy Linh — Giáo viên', 'Châu Thị Thanh Thúy — Giáo viên', 'Nguyễn Hoàng Anh — Giáo viên'
+        ]
+      };
+      const requestedStaffDirectories = staffDirectories.filter(item => item.keys.some(key => q.includes(key)));
+      const asksForStaffList = (
+        q.includes('danh sách') || q.includes('danh sach') || q.includes('danh bạ') || q.includes('danh ba') ||
+        q.includes('nhân sự') || q.includes('nhan su') || q.includes('theo khoa') || q.includes('theo phòng') || q.includes('theo phong')
+      );
+      const mentionsStaff = q.includes('giáo viên') || q.includes('giao vien') || q.includes('cán bộ') || q.includes('can bo') || q.includes('nhân sự') || q.includes('nhan su') || q.includes('thầy cô');
+      const isStaffDirectoryRequest = !q.includes('email') && (
+        (asksForStaffList && (mentionsStaff || q.includes('khoa') || q.includes('phòng') || q.includes('phong'))) ||
+        (mentionsStaff && requestedStaffDirectories.length > 0)
+      );
+
+      if (isStaffDirectoryRequest) {
+        const asksByFaculty = q.includes('theo khoa') && !q.includes('theo phòng') && !q.includes('theo phong');
+        const asksByOffice = q.includes('theo phòng') || q.includes('theo phong') || q.includes('phòng ban') || q.includes('phong ban');
+        const directoriesToShow = requestedStaffDirectories.length
+          ? requestedStaffDirectories
+          : asksByFaculty
+            ? staffDirectories.filter(item => item.label.startsWith('Khoa '))
+            : asksByOffice
+              ? staffDirectories.filter(item => item.label.startsWith('Phòng '))
+            : staffDirectories;
+        const directoryLinks = directoriesToShow.map(item => {
+          const staff = currentStaffByDirectory[item.url];
+          const staffList = staff
+            ? `<ul class="list-disc pl-5 mt-1 space-y-0.5">${staff.map(person => `<li>${person}</li>`).join('')}</ul>`
+            : '<p class="text-gray-600 mt-1">Danh sách nhân sự xem trên trang chính thức của đơn vị.</p>';
+          return `<li class="mb-3"><b>${item.label}</b>${staffList}<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 underline font-semibold">Xem trang cơ cấu tổ chức ↗</a></li>`;
+        }).join('');
+        setTimeout(() => {
+          appendMessage(`📚 <b>DANH SÁCH CÁN BỘ, GIÁO VIÊN THEO PHÒNG/KHOA</b><br><br>
+          Danh sách trên website trường được cập nhật theo từng đơn vị. Em chọn phòng hoặc khoa để xem cơ cấu tổ chức và nhân sự mới nhất:<ul class="list-disc pl-5 mt-2 space-y-1">${directoryLinks}</ul>`, 'bot');
+        }, 300);
+        return;
+      }
 
       if (isStaffQuery && (!q.includes('cô thuỷ') && !q.includes('cô thủy') && !q.includes('cô thúy') && !q.includes('cô thuy') || q.includes('email'))) {
         // Tìm đích danh cán bộ / giáo viên theo tên hoặc từ khóa
