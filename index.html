@@ -157,10 +157,38 @@ body {
 
 }
 
-#nutChat.is-open .online-dot {
+#nutChat.is-open .online-dot,
+#nutChat.is-open .chat-title-badge {
 
     display: none;
 
+}
+
+#nutChat .chat-title-badge {
+    position: absolute;
+    bottom: 70px;
+    right: -10px;
+    background: #ffffff;
+    color: #4f46e5;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 2px solid #4f46e5;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.28);
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+#nutChat .chat-title-badge::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    right: 34px;
+    border-width: 7px 6px 0;
+    border-style: solid;
+    border-color: #4f46e5 transparent transparent;
 }
 
 
@@ -451,7 +479,10 @@ input, select, textarea {
      NÚT CHAT (BIỂU TƯỢNG AI BOT)
 ========================= -->
 
-<button id="nutChat" onclick="toggleChat()" title="Chat với Chatbot AI thông minh">
+<button id="nutChat" onclick="toggleChat()" title="ChatBox tư vấn">
+
+    <!-- Chữ tiêu đề trên hình ảnh -->
+    <span class="chat-title-badge">ChatBox tư vấn</span>
 
     <!-- Biểu tượng AI Bot từ ảnh người dùng -->
     <img class="ai-bot-icon" src="logo.png" alt="Logo Trường" />

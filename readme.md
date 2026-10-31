@@ -75,6 +75,36 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
         height: 28px !important; 
     }
 
+    /* NHÃN TIÊU ĐỀ "ChatBox tư vấn" PHÍA TRÊN HÌNH ẢNH */
+    #ts-chat-btn .chat-title-badge {
+        position: absolute !important;
+        bottom: 88px !important;
+        right: -8px !important;
+        background: #ffffff !important;
+        color: #4f46e5 !important;
+        font-family: Arial, sans-serif !important;
+        font-size: 13px !important;
+        font-weight: bold !important;
+        padding: 5px 12px !important;
+        border-radius: 20px !important;
+        border: 2px solid #4f46e5 !important;
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.28) !important;
+        white-space: nowrap !important;
+        line-height: 1.2 !important;
+        pointer-events: auto !important;
+    }
+
+    /* Mũi tên nhỏ trỏ xuống đầu robot */
+    #ts-chat-btn .chat-title-badge::after {
+        content: "" !important;
+        position: absolute !important;
+        bottom: -7px !important;
+        right: 42px !important;
+        border-width: 7px 6px 0 !important;
+        border-style: solid !important;
+        border-color: #4f46e5 transparent transparent !important;
+    }
+
     /* CỬA SỔ CHAT: MẶC ĐỊNH ẨN HOÀN TOÀN */
     #ts-chat-window {
         display: none !important;
@@ -104,7 +134,8 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
         animation: none !important;
     }
 
-    #ts-chat-toggle:checked ~ #ts-chat-btn .icon-open {
+    #ts-chat-toggle:checked ~ #ts-chat-btn .icon-open,
+    #ts-chat-toggle:checked ~ #ts-chat-btn .chat-title-badge {
         display: none !important;
     }
 
@@ -151,7 +182,9 @@ Sao chép đoạn mã bên dưới và dán vào phần quản trị giao diện
 <input type="checkbox" id="ts-chat-toggle" />
 
 <!-- Nút tròn góc phải dưới màn hình -->
-<label for="ts-chat-toggle" id="ts-chat-btn" title="Chatbot AI Tư vấn Tuyển sinh">
+<label for="ts-chat-toggle" id="ts-chat-btn" title="ChatBox tư vấn">
+    <!-- Chữ tiêu đề trên hình ảnh -->
+    <span class="chat-title-badge">ChatBox tư vấn</span>
     <!-- Biểu tượng tin nhắn bot -->
     <img class="icon-open" src="https://raw.githubusercontent.com/chaupholy/test-git/master/bot1.png" alt="AI" />
     <!-- Biểu tượng đóng ✕ -->
