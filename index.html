@@ -1395,6 +1395,18 @@ function expandNormalizedQuery(rawText) {
             fuzzyWords: ['hoso', 'giayto']
         },
         {
+            canonical: ' quy trình đăng ký nhập học quy trình nhập học thủ tục nhập học hướng dẫn thủ tục nhập học các bước nhập học ',
+            triggers: [
+                'quy trinh nhap hoc', 'quy trinh dang ky nhap hoc', 'quy trinh dang ky',
+                'quy trinh nop ho so', 'quy trinh', 'quytrinh',
+                'thu tuc nhap hoc', 'thutuc nhaphoc', 'thu tuc', 'thutuc', 'thu tuc dang ky',
+                'huong dan thu tuc nhap hoc', 'huong dan nhap hoc', 'huong dan quy trinh',
+                'cac buoc nhap hoc', 'cac buoc dang ky', 'cac buoc nop ho so',
+                'dang ky nhap hoc nhu the nao', 'lam the nao de nhap hoc', 'cac buoc de nhap hoc'
+            ],
+            fuzzyWords: ['quytrinh', 'thutuc', 'nhaphoc']
+        },
+        {
             canonical: ' điều kiện tuyển sinh đối tượng tuyển sinh xét tuyển học bạ độ tuổi ',
             triggers: [
                 'dieu kien', 'dieukien', 'dieu kien tuyen sinh', 'doi tuong', 'doituong',
@@ -1710,7 +1722,9 @@ function guiTinNhan() {
         !text.includes("hồ sơ") && !text.includes("liên hệ") &&
         !text.includes("giáo viên") && !text.includes("thầy") && !text.includes("cô") &&
         !text.includes("địa chỉ") && !text.includes("đối tượng") && !text.includes("điều kiện") &&
-        !text.includes("khai giảng") && !text.includes("nhập học") && !text.includes("văn hóa") &&
+        !text.includes("khai giảng") && !text.includes("nhập học") &&
+        !text.includes("quy trình") && !text.includes("thủ tục") &&
+        !text.includes("văn hóa") &&
         !text.includes("bằng cấp") && !text.includes("biểu mẫu") && !text.includes("sơ cấp") &&
         !text.includes("cơ sở vật chất") && !text.includes("ngắn hạn") && !text.includes("9+")
     ) {
@@ -1743,7 +1757,9 @@ function guiTinNhan() {
         !text.includes("hồ sơ") && !text.includes("liên hệ") &&
         !text.includes("giáo viên") && !text.includes("thầy") && !text.includes("cô") &&
         !text.includes("địa chỉ") && !text.includes("đối tượng") && !text.includes("điều kiện") &&
-        !text.includes("khai giảng") && !text.includes("nhập học") && !text.includes("văn hóa") &&
+        !text.includes("khai giảng") && !text.includes("nhập học") &&
+        !text.includes("quy trình") && !text.includes("thủ tục") &&
+        !text.includes("văn hóa") &&
         !text.includes("bằng cấp") && !text.includes("biểu mẫu") && !text.includes("sơ cấp") &&
         !text.includes("cơ sở vật chất") && !text.includes("ngắn hạn") && !text.includes("9+")
     ) {
@@ -3238,10 +3254,79 @@ function guiTinNhan() {
 
 
     /* =========================
+       QUY TRÌNH & THỦ TỤC ĐĂNG KÝ NHẬP HỌC
+    ========================= */
+    else if(
+        (!text.includes("tải biểu mẫu") && !text.includes("tai bieu mau") &&
+         !text.includes("mẫu hồ sơ") && !text.includes("mau ho so") &&
+         !text.includes("tải hồ sơ") && !text.includes("tai ho so") &&
+         !text.includes("phiếu đăng ký") && !text.includes("phieu dang ky") &&
+         !text.includes("thời gian nhận hồ sơ") && !text.includes("thoi gian nhan ho so") &&
+         !text.includes("khi nào nhận") && !text.includes("khi nao nhan") &&
+         !text.includes("hạn nộp") && !text.includes("han nop")) &&
+        (
+            text.includes("quy trình nhập học") || text.includes("quy trinh nhap hoc") ||
+            text.includes("quy trình đăng ký nhập học") || text.includes("quy trinh dang ky nhap hoc") ||
+            text.includes("quy trình đăng ký") || text.includes("quy trinh dang ky") ||
+            text.includes("quy trình nộp hồ sơ") || text.includes("quy trinh nop ho so") ||
+            text.includes("quy trình tuyển sinh") || text.includes("quy trinh tuyen sinh") ||
+            text.includes("quy trình xét tuyển") || text.includes("quy trinh xet tuyen") ||
+            text.includes("quy trình") || text.includes("quy trinh") ||
+            text.includes("thủ tục nhập học") || text.includes("thu tuc nhap hoc") ||
+            text.includes("thủ tục đăng ký nhập học") || text.includes("thu tuc dang ky nhap hoc") ||
+            text.includes("thủ tục đăng ký") || text.includes("thu tuc dang ky") ||
+            text.includes("thủ tục xét tuyển") || text.includes("thu tuc xet tuyen") ||
+            text.includes("thủ tục") || text.includes("thu tuc") ||
+            text.includes("hướng dẫn thủ tục nhập học") || text.includes("huong dan thu tuc nhap hoc") ||
+            text.includes("hướng dẫn nhập học") || text.includes("huong dan nhap hoc") ||
+            text.includes("hướng dẫn đăng ký") || text.includes("huong dan dang ky") ||
+            text.includes("các bước nhập học") || text.includes("cac buoc nhap hoc") ||
+            text.includes("các bước đăng ký") || text.includes("cac buoc dang ky") ||
+            text.includes("các bước nộp hồ sơ") || text.includes("cac buoc nop ho so") ||
+            text.includes("đăng ký nhập học như thế nào") || text.includes("dang ky nhap hoc nhu the nao") ||
+            text.includes("làm thế nào để nhập học") || text.includes("lam the nao de nhap hoc") ||
+            text.includes("các bước để nhập học") || text.includes("cac buoc de nhap hoc")
+        )
+    ) {
+        traLoi =
+        "📋 <b>QUY TRÌNH & THỦ TỤC ĐĂNG KÝ NHẬP HỌC</b><br>" +
+        "<i>(Trường Trung cấp nghề Dân tộc Nội trú An Giang)</i><br><br>" +
+        "Quy trình đăng ký xét tuyển và nhập học gồm <b>4 bước thuận tiện</b>:<br><br>" +
+        "• 📝 <b>Bước 1: Chuẩn bị hồ sơ đăng ký nhập học</b><br>" +
+        "- 01 Phiếu đăng ký dự tuyển (theo mẫu phát hành của trường).<br>" +
+        "- 03 Bản sao Giấy khai sinh hợp lệ (trích lục hoặc công chứng).<br>" +
+        "- 03 Bản sao Bằng tốt nghiệp THCS/THPT (hoặc Giấy chứng nhận tốt nghiệp tạm thời).<br>" +
+        "- 03 Bản photocopy Căn cước công dân (CCCD).<br>" +
+        "- 01 Học bạ THCS hoặc THPT (<b>Bản chính</b>).<br>" +
+        "- 04 Ảnh thẻ 3×4 (ghi rõ họ tên, ngày sinh ở mặt sau ảnh).<br>" +
+        "- 03 Bản sao giấy tờ xác nhận chế độ ưu tiên, chính sách (nếu có: hộ nghèo, cận nghèo, dân tộc thiểu số, khuyết tật...).<br><br>" +
+        "• 📮 <b>Bước 2: Lựa chọn hình thức nộp hồ sơ</b><br>" +
+        "- <b>Cách 1 (Online):</b> Nộp trực tuyến tại cổng tuyển sinh: <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'><b>https://tuyensinh.dtntag.edu.vn/tuyen-sinh</b></a>.<br>" +
+        "- <b>Cách 2 (Trực tiếp):</b> Nộp tại <b>Phòng Công tác HSSV – Quản lý nghiệp vụ</b> (hoặc Phòng Tuyển sinh & LKĐT), Cơ sở chính: Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang.<br>" +
+        "- <b>Cách 3 (Bưu điện):</b> Gửi chuyển phát nhanh về địa chỉ nhà trường.<br><br>" +
+        "• 📬 <b>Bước 3: Xét tuyển & Nhận Giấy báo trúng tuyển</b><br>" +
+        "- Nhà trường xét tuyển học bạ (<b>hoàn toàn không thi tuyển</b>).<br>" +
+        "- Học sinh trúng tuyển nhận Giấy báo nhập học và được hướng dẫn nhận phòng Ký túc xá (miễn phí 100%), hoàn tất thủ tục hưởng trợ cấp chính sách.<br><br>" +
+        "• 🏫 <b>Bước 4: Đến trường hoàn tất thủ tục nhập học & nhận lớp</b><br>" +
+        "- Mang theo học bạ bản chính và các giấy tờ gốc đối chiếu, nhận đồng phục, phòng nội trú và nhận thời khóa biểu học tập.<br><br>" +
+        "🔗 <b>Xem chi tiết hướng dẫn thủ tục nhập học trên website trường:</b><br>" +
+        "👉 <a href='https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc</a><br><br>" +
+        "📁 <b>Tải các biểu mẫu hồ sơ:</b> <a href='https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>Tải biểu mẫu tại đây ↗</a><br>" +
+        "📞 <b>Hotline hỗ trợ:</b> <b>0983 498 091</b> (Cô Thúy) - Tổng đài: <b>02966.298.848</b><br><br>" +
+        "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
+        "<button onclick=\"sendQuickMessage('Các hồ sơ cần nộp')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📄 Chi tiết hồ sơ cần nộp</button>" +
+        "<button onclick=\"sendQuickMessage('Cách nộp hồ sơ')\" style='padding:5px 10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📮 Phương thức nộp hồ sơ</button>" +
+        "<button onclick=\"sendQuickMessage('Hẹn gọi tư vấn')\" style='padding:5px 10px; background:#4f46e5; color:#ffffff; border:none; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📞 Hẹn cán bộ gọi lại</button>" +
+        "</div>";
+    }
+
+    /* =========================
        CÁC HỒ SƠ CẦN NỘP / HỒ SƠ TUYỂN SINH
     ========================= */
     else if(
-        (!text.includes("nộp ở đâu") && !text.includes("nop o dau") &&
+        (!text.includes("quy trình") && !text.includes("quy trinh") &&
+         !text.includes("thủ tục") && !text.includes("thu tuc") &&
+         !text.includes("nộp ở đâu") && !text.includes("nop o dau") &&
          !text.includes("cách nộp") && !text.includes("cach nop") &&
          !text.includes("phương thức nộp") && !text.includes("phuong thuc nop") &&
          !text.includes("hướng dẫn nộp") && !text.includes("huong dan nop") &&
@@ -3280,18 +3365,26 @@ function guiTinNhan() {
 
         traLoi =
         "📄 <b>CÁC HỒ SƠ & GIẤY TỜ CẦN NỘP KHI ĐĂNG KÝ XÉT TUYỂN</b><br><br>" +
-        "Thí sinh đăng ký xét tuyển và nhập học cần chuẩn bị bộ hồ sơ bao gồm:<br><br>" +
-        "• 📝 <b>1. Phiếu đăng ký dự tuyển:</b> Theo mẫu của nhà trường (điền đầy đủ thông tin cá nhân và chọn ngành nghề).<br>" +
-        "• 📋 <b>2. Bằng tốt nghiệp THCS hoặc THPT:</b> Bản sao công chứng (hoặc <i>Giấy chứng nhận tốt nghiệp tạm thời</i> nếu vừa tốt nghiệp trong năm).<br>" +
-        "• 📘 <b>3. Học bạ THCS hoặc THPT:</b> Bản sao công chứng (để đối chiếu xét tuyển).<br>" +
-        "• 📑 <b>4. Bản sao Giấy khai sinh:</b> 01 bản trích lục hoặc bản sao hợp lệ.<br>" +
-        "• 🪪 <b>5. Căn cước công dân (CCCD):</b> 01 bản photocopy CCCD của học sinh (hoặc CCCD của phụ huynh nếu học sinh chưa có).<br>" +
-        "• 📸 <b>6. Ảnh thẻ 4×6:</b> 04 ảnh (chụp không quá 6 tháng, phông nền sáng, mặt sau ghi rõ Họ tên và Ngày sinh).<br>" +
-        "• 📌 <b>7. Giấy tờ xác nhận đối tượng chính sách (nếu có):</b> Giấy xác nhận học sinh người dân tộc thiểu số, sổ hộ nghèo/cận nghèo, con thương binh, liệt sĩ... để được hưởng <b>chính sách miễn 100% học phí, cấp tiền trợ cấp nội trú và miễn phí 100% Ký túc xá</b>.<br><br>" +
+        "Thí sinh đăng ký xét tuyển và nhập học cần chuẩn bị bộ hồ sơ theo hướng dẫn của nhà trường bao gồm:<br><br>" +
+        "• 📝 <b>1. Phiếu đăng ký dự tuyển:</b> <b>01 bản</b> theo mẫu của nhà trường (điền đầy đủ thông tin cá nhân và chọn ngành nghề).<br>" +
+        "• 📑 <b>2. Bản sao Giấy khai sinh:</b> <b>03 bản</b> (bản sao trích lục hoặc công chứng hợp lệ).<br>" +
+        "• 📋 <b>3. Bằng tốt nghiệp THCS hoặc THPT:</b> <b>03 bản sao</b> (hoặc <i>Giấy chứng nhận tốt nghiệp tạm thời</i> nếu vừa tốt nghiệp trong năm).<br>" +
+        "• 🪪 <b>4. Căn cước công dân (CCCD):</b> <b>03 bản photocopy</b> CCCD của học sinh (hoặc của phụ huynh nếu học sinh chưa có).<br>" +
+        "• 📘 <b>5. Học bạ THCS hoặc THPT:</b> <b>01 bản chính</b> (để đối chiếu xét tuyển và lưu trữ hồ sơ theo quy định).<br>" +
+        "• 📸 <b>6. Ảnh thẻ 3×4:</b> <b>04 ảnh</b> (chụp không quá 6 tháng, phông nền sáng, mặt sau ghi rõ Họ tên và Ngày tháng năm sinh).<br>" +
+        "• 📌 <b>7. Giấy tờ xác nhận đối tượng chính sách (nếu có):</b> <b>03 bản sao</b> (giấy xác nhận người dân tộc thiểu số, sổ hộ nghèo/cận nghèo, khuyết tật, con thương binh, liệt sĩ... để được hưởng <b>chính sách miễn 100% học phí, cấp tiền trợ cấp nội trú và miễn phí 100% Ký túc xá</b>).<br><br>" +
+        "🔗 <b>Xem chi tiết hướng dẫn thủ tục nhập học:</b><br>" +
+        "👉 <a href='https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc</a><br><br>" +
         "📁 <b>Tải các biểu mẫu hồ sơ chính thức tại:</b><br>" +
         "👉 <a href='https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>https://dtntag.edu.vn/vi/huong-dan-tien-ich/quan-ly-cac-bieu-mau-ho-so</a><br><br>" +
         "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
-        "<button onclick=\"sendQuickMessage('Cách nộp hồ sơ')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📮 Phương thức nộp hồ sơ</button>" +
+        "<button onclick=\"sendQuickMessage('Quy trình nhập học')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📋 Quy trình nhập học</button>" +
+        "<button onclick=\"sendQuickMessage('Cách nộp hồ sơ')\" style='padding:5px 10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📮 Phương thức nộp hồ sơ</button>" +
+        "<button onclick=\"sendQuickMessage('Thời gian nhận hồ sơ')\" style='padding:5px 10px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📅 Lịch nhận hồ sơ</button>" +
+        "<button onclick=\"sendQuickMessage('Hẹn gọi tư vấn')\" style='padding:5px 10px; background:#4f46e5; color:#ffffff; border:none; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📞 Hẹn cán bộ gọi lại</button>" +
+        "</div>";
+
+    }
         "<button onclick=\"sendQuickMessage('Thời gian nhận hồ sơ')\" style='padding:5px 10px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📅 Lịch nhận hồ sơ</button>" +
         "<button onclick=\"sendQuickMessage('Hẹn gọi tư vấn')\" style='padding:5px 10px; background:#4f46e5; color:#ffffff; border:none; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📞 Hẹn cán bộ gọi lại</button>" +
         "</div>";
@@ -3388,18 +3481,23 @@ function guiTinNhan() {
     else if(
         ((text.includes("nộp") || text.includes("nop")) &&
         (text.includes("cho ai") || text.includes("ở đâu cho ai") || text.includes("o dau cho ai") || text.includes("gặp ai") || text.includes("gap ai") || text.includes("ai nhận") || text.includes("ai nhan") || text.includes("ai tiếp nhận") || text.includes("phòng nào") || text.includes("phong nao") || text.includes("trực tiếp ở đâu") || text.includes("truc tiep o dau"))) ||
+        text.includes("phòng công tác hssv") || text.includes("phong cong tac hssv") ||
+        text.includes("phòng quản lý nghiệp vụ") || text.includes("phong quan ly nghiep vu") ||
         text.includes("phòng tuyển sinh và liên kết") || text.includes("phong tuyen sinh va lien ket") ||
         text.includes("phòng tuyển sinh") || text.includes("phong tuyen sinh") ||
         text.includes("nop ho so truc tiep o dau cho ai")
     ) {
         traLoi =
         "📝 <b>NỘP HỒ SƠ TRỰC TIẾP Ở ĐÂU CHO AI?</b><br><br>" +
-        "👉 Nộp trực tiếp tại <b>các cơ sở gần nhất với bạn</b>.<br><br>" +
-        "🏢 <b>Cụ thể:</b> <b>Phòng Tuyển sinh và Liên kết đào tạo</b>.<br><br>" +
-        "🏫 <b>Địa chỉ các cơ sở:</b><br>" +
-        "• <b>Cơ sở chính:</b> ấp Tô Hạ, Xã Tri Tôn, An Giang.<br>" +
+        "👉 Thí sinh và phụ huynh có thể nộp hồ sơ trực tiếp tại <b>Phòng Công tác HSSV – Quản lý nghiệp vụ</b> (hoặc Phòng Tuyển sinh & LKĐT) tại các cơ sở của trường:<br><br>" +
+        "🏫 <b>Địa chỉ các cơ sở tiếp nhận:</b><br>" +
+        "• <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang.<br>" +
         "• <b>Cơ sở Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>" +
-        "📞 Hoặc liên hệ <b>Hotline: 0983 498 091 (Cô Thúy)</b> để biết cụ thể và được hướng dẫn chi tiết!";
+        "📞 <b>Thông tin liên hệ hỗ trợ:</b><br>" +
+        "• <b>Hotline / Zalo:</b> <b>0983 498 091</b> (Cô Thúy)<br>" +
+        "• <b>Tổng đài trường:</b> <b>02966.298.848</b><br>" +
+        "• <b>Email:</b> tcn_dtntag@angiang.edu.vn<br><br>" +
+        "🔗 <b>Hướng dẫn thủ tục nhập học:</b> <a href='https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc</a>";
     }
 
     /* =========================
@@ -3413,11 +3511,17 @@ function guiTinNhan() {
     ) {
         traLoi =
         "📮 <b>PHƯƠNG THỨC & CÁCH NỘP HỒ SƠ</b><br><br>" +
-        "Bạn có thể chọn 1 trong 3 hình thức nộp hồ sơ rất thuận tiện sau:<br><br>" +
-        "• 🌐 <b>Cách 1 - Đăng ký Online:</b> Đăng ký qua Cổng tuyển sinh trực tuyến:<br>" +
+        "Bạn có thể lựa chọn 1 trong các hình thức nộp hồ sơ rất thuận tiện sau:<br><br>" +
+        "• 🌐 <b>Cách 1 - Đăng ký trực tuyến (Online):</b> Điền hồ sơ xét tuyển trực tuyến tại Cổng Tuyển sinh:<br>" +
         "👉 <a href='https://tuyensinh.dtntag.edu.vn/tuyen-sinh' target='_blank'><b>https://tuyensinh.dtntag.edu.vn/tuyen-sinh</b></a><br><br>" +
-        "• 🏫 <b>Cách 2 - Nộp trực tiếp:</b> Nộp trực tiếp tại các cơ sở gần nhất với bạn (Cụ thể: <b>Phòng Tuyển sinh và Liên kết đào tạo</b>) tại <b>Cơ sở chính: ấp Tô Hạ, Xã Tri Tôn, An Giang</b> hoặc <b>Cơ sở Long Thạnh: Ấp Xẻo Chác, Long Thạnh, An Giang</b>.<br><br>" +
-        "• 📦 <b>Cách 3 - Gửi bưu điện:</b> Chuyển phát nhanh về: <i>Trường Trung cấp Dân tộc Nội trú An Giang, Cơ sở chính: ấp Tô Hạ, Xã Tri Tôn, An Giang (SĐT: 0983 498 091 - Cô Thúy)</i>.";
+        "• 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Nộp tại <b>Phòng Công tác HSSV – Quản lý nghiệp vụ</b> (hoặc Phòng Tuyển sinh & LKĐT) tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang</b> hoặc <b>Cơ sở Long Thạnh: Ấp Xẻo Chác, Long Thạnh</b>.<br><br>" +
+        "• 📦 <b>Cách 3 - Gửi qua bưu điện:</b> Gửi chuyển phát nhanh về: <i>Trường Trung cấp nghề Dân tộc Nội trú An Giang, Cơ sở chính: Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (Hotline: 0983 498 091 - Cô Thúy / 02966.298.848)</i>.<br><br>" +
+        "🔗 <b>Xem chi tiết hướng dẫn:</b> <a href='https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc' target='_blank' style='color:#4f46e5; font-weight:bold; text-decoration:underline;'>Hướng dẫn thủ tục nhập học ↗</a><br><br>" +
+        "<div style='margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;'>" +
+        "<button onclick=\"sendQuickMessage('Quy trình nhập học')\" style='padding:5px 10px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📋 Quy trình nhập học</button>" +
+        "<button onclick=\"sendQuickMessage('Các hồ sơ cần nộp')\" style='padding:5px 10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📄 Hồ sơ cần nộp</button>" +
+        "<button onclick=\"sendQuickMessage('Hẹn gọi tư vấn')\" style='padding:5px 10px; background:#4f46e5; color:#ffffff; border:none; border-radius:12px; font-size:11px; cursor:pointer; font-weight:bold;'>📞 Hẹn cán bộ gọi lại</button>" +
+        "</div>";
     }
 
 
