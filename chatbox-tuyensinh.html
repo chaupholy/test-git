@@ -1721,14 +1721,16 @@
           fuzzyWords: ['diachi', 'odau', 'vitri', 'coso', 'phanhieu', 'tcndtntag', 'triton', 'toha', 'xeochac', 'googlemap']
         },
         {
-          canonical: ' nộp hồ sơ trực tiếp ở đâu cho ai phòng tuyển sinh và liên kết đào tạo cơ sở gần nhất hotline ',
+          canonical: ' nộp hồ sơ trực tiếp ở đâu cho ai phòng quản lý học sinh và giới thiệu việc làm cô thúy cơ sở chính phòng tuyển sinh hotline ',
           triggers: [
             'nop ho so truc tiep o dau cho ai', 'nop ho so cho ai', 'nop truc tiep cho ai',
             'nop truc tiep o dau', 'gap ai nop ho so', 'nop o phong nao', 'phong nao nhan ho so',
             'ai nhan ho so', 'ai tiep nhan ho so', 'den truong gap ai', 'nop ho so phong nao',
+            'phong quan ly hoc sinh va gioi thieu viec lam', 'phong quan ly hoc sinh', 'quan ly hoc sinh va gioi thieu viec lam',
+            'phong qlhs va gtvl', 'phong qlhs', 'qlhs', 'co thuy co so chinh', 'gap co thuy',
             'phong tuyen sinh va lien ket dao tao', 'phong tuyen sinh', 'co so gan nhat'
           ],
-          fuzzyWords: ['nophoso', 'tructiep', 'choai', 'phongtuyensinh']
+          fuzzyWords: ['nophoso', 'tructiep', 'choai', 'phongquanlyhocsinh', 'cothuy']
         },
         {
           canonical: ' học sinh thực hành ở đâu xưởng thực hành nơi thực hành xưởng công nghệ thông tin xưởng điện xưởng ô tô cơ khí nhà lưới trồng trọt bảo vệ thực vật ',
@@ -3500,7 +3502,7 @@
           - 03 Bản sao giấy tờ xác nhận chế độ ưu tiên, chính sách (nếu có: hộ nghèo, cận nghèo, dân tộc thiểu số, khuyết tật...).<br><br>
           • 📮 <b>Bước 2: Lựa chọn hình thức nộp hồ sơ</b><br>
           - <b>Cách 1 (Online):</b> Nộp trực tuyến tại cổng tuyển sinh: <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 font-bold underline">https://tuyensinh.dtntag.edu.vn/tuyen-sinh</a>.<br>
-          - <b>Cách 2 (Trực tiếp):</b> Nộp tại <b>Phòng Công tác HSSV – Quản lý nghiệp vụ</b> (hoặc Phòng Tuyển sinh &amp; LKĐT), Cơ sở chính: Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang.<br>
+          - <b>Cách 2 (Trực tiếp):</b> Nộp tại <b>Phòng Quản lý Học sinh và Giới thiệu việc làm</b> (hoặc liên hệ trực tiếp <b>Cô Thúy</b> tại Cơ sở chính: Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang).<br>
           - <b>Cách 3 (Bưu điện):</b> Gửi chuyển phát nhanh về địa chỉ nhà trường.<br><br>
           • 📬 <b>Bước 3: Xét tuyển &amp; Nhận Giấy báo trúng tuyển</b><br>
           - Nhà trường xét tuyển học bạ (<b>hoàn toàn không thi tuyển</b>).<br>
@@ -3621,6 +3623,9 @@
       if (
         ((q.includes('nộp') || q.includes('nop')) &&
           (q.includes('cho ai') || q.includes('choai') || q.includes('ở đâu cho ai') || q.includes('o dau cho ai') || q.includes('gặp ai') || q.includes('gap ai') || q.includes('ai nhận') || q.includes('ai nhan') || q.includes('ai tiếp nhận') || q.includes('phòng nào') || q.includes('phong nao') || q.includes('trực tiếp ở đâu') || q.includes('truc tiep o dau'))) ||
+        q.includes('phòng quản lý học sinh') || q.includes('phong quan ly hoc sinh') ||
+        q.includes('giới thiệu việc làm') || q.includes('gioi thieu viec lam') ||
+        q.includes('qlhs') || q.includes('cô thúy') || q.includes('co thuy') ||
         q.includes('phòng công tác hssv') || q.includes('phong cong tac hssv') ||
         q.includes('phòng quản lý nghiệp vụ') || q.includes('phong quan ly nghiep vu') ||
         q.includes('phòng tuyển sinh và liên kết') || q.includes('phong tuyen sinh va lien ket') ||
@@ -3628,14 +3633,15 @@
       ) {
         setTimeout(() => {
           appendMessage(`📝 <b>NỘP HỒ SƠ TRỰC TIẾP Ở ĐÂU CHO AI?</b><br><br>
-          👉 Thí sinh và phụ huynh có thể nộp hồ sơ trực tiếp tại <b>Phòng Công tác HSSV – Quản lý nghiệp vụ</b> (hoặc Phòng Tuyển sinh &amp; LKĐT) tại các cơ sở của trường:<br><br>
+          🏢 <b>Nơi tiếp nhận:</b> <b>Phòng Quản lý Học sinh và Giới thiệu việc làm</b>.<br>
+          👉 <i>Hoặc liên hệ trực tiếp <b>Cô Thúy</b> tại cơ sở chính của trường.</i><br><br>
           🏫 <b>Địa chỉ các cơ sở tiếp nhận:</b><br>
-          • <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang.<br>
+          • <b>Cơ sở chính:</b> Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (gặp Cô Thúy - Phòng Quản lý Học sinh &amp; GTVL).<br>
           • <b>Cơ sở Long Thạnh:</b> Ấp Xẻo Chác, Long Thạnh, An Giang.<br><br>
           📞 <b>Thông tin liên hệ hỗ trợ:</b><br>
           • <b>Hotline / Zalo:</b> <b>0983 498 091</b> (Cô Thúy)<br>
           • <b>Tổng đài trường:</b> <b>02966.298.848</b><br>
-          • <b>Email:</b> tcn_dtntag@angiang.edu.vn<br><br>
+          • <b>Email:</b> tcndantocnoitru_thuy@angiang.edu.vn / tcn_dtntag@angiang.edu.vn<br><br>
           🔗 <b>Hướng dẫn thủ tục nhập học:</b> <a href="https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc" target="_blank" class="text-indigo-600 font-bold underline">https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc</a>`, 'bot');
         }, 300);
         return;
@@ -3653,7 +3659,7 @@
           Bạn có thể lựa chọn 1 trong các hình thức nộp hồ sơ rất thuận tiện sau:<br><br>
           • 🌐 <b>Cách 1 - Đăng ký trực tuyến (Online):</b> Điền hồ sơ xét tuyển trực tuyến tại Cổng Tuyển sinh:<br>
           👉 <a href="https://tuyensinh.dtntag.edu.vn/tuyen-sinh" target="_blank" class="text-indigo-600 font-bold underline">https://tuyensinh.dtntag.edu.vn/tuyen-sinh</a><br><br>
-          • 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Nộp tại <b>Phòng Công tác HSSV – Quản lý nghiệp vụ</b> (hoặc Phòng Tuyển sinh &amp; LKĐT) tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang</b> hoặc <b>Cơ sở Long Thạnh: Ấp Xẻo Chác, Long Thạnh</b>.<br><br>
+          • 🏫 <b>Cách 2 - Nộp trực tiếp tại trường:</b> Nộp tại <b>Phòng Quản lý Học sinh và Giới thiệu việc làm</b> (hoặc liên hệ trực tiếp <b>Cô Thúy</b> tại <b>Cơ sở chính: Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang</b>) hoặc nộp tại <b>Cơ sở Long Thạnh: Ấp Xẻo Chác, Long Thạnh</b>.<br><br>
           • 📦 <b>Cách 3 - Gửi qua bưu điện:</b> Gửi chuyển phát nhanh về: <i>Trường Trung cấp nghề Dân tộc Nội trú An Giang, Cơ sở chính: Ấp Tô Hạ, Xã Tri Tôn, Tỉnh An Giang (Hotline: 0983 498 091 - Cô Thúy / 02966.298.848)</i>.<br><br>
           🔗 <b>Xem chi tiết hướng dẫn:</b> <a href="https://dtntag.edu.vn/vi/huong-dan-tien-ich/huong-dan-thu-tuc-nhap-hoc" target="_blank" class="text-indigo-600 font-bold underline">Hướng dẫn thủ tục nhập học ↗</a><br><br>
           <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;">
